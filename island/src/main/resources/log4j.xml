@@ -10,19 +10,19 @@
 		</layout>
 	</appender>
 	
-		<appender name="fileAppender" class="org.apache.log4j.FileAppender">
-		<param name="file" value="/Users/postsoonyoung/Desktop/sts/myapp.log" />
+	<!-- 	<appender name="fileAppender" class="org.apache.log4j.FileAppender">
+		<param name="file" value="C:/dev/myapp.log" />
 		<param name="append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%-5p]  %c - %m%n" />
 		</layout>
-	</appender>
+	</appender> -->
 
 	<!-- Root Logger -->
 	<root>
 		<priority value="info" />
 		<appender-ref ref="console" />
-		<appender-ref ref="fileAppender" />
+	<!-- 	<appender-ref ref="fileAppender" /> -->
 	</root>
 	
 </log4j:configuration>
