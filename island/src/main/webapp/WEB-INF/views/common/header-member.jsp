@@ -83,19 +83,10 @@
     </div>
   </header>
 
-<!-- 임시 header-member.css에서 조절 할 것-->
-<div id="wrap" style="width: 300px; height: 1000px;">
+<!-- 임시div 각자 컨텐츠 jsp에서 추가할 것 -->
+<!-- <div id="wrap" style="width: 300px; height: 1000px;">
 
-</div>
-
-
-
-
-
-
-
-
-
+</div> -->
 
 
 </body>
