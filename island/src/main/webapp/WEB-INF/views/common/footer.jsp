@@ -10,7 +10,7 @@
 
   <!-- 푸터 -->
   <div class="container">
-    <footer class="py-5">
+    <footer class="py-5" style="background-color: white;">
       <div class="row">
         <div class="col-6 col-md-2 mb-3">
           <h5 class="footer-part">고객센터</h5>

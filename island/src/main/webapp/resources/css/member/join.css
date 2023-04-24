@@ -1,0 +1,92 @@
+@charset "UTF-8";
+  body {
+            background-color: #f5f5f5;
+        }
+        #wrap{
+            width: 600px;
+            height: 80%;
+            border: 1px solid lightgray;
+            box-sizing: border-box;
+            margin: auto;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            background-color: #ffffff;
+           
+        }
+
+        .title{
+            margin-top: 10%;
+            margin-bottom: 10%;
+            padding: 0 50px 50px;
+            font-size: 30px;
+            font-weight: bold;
+            border-bottom: 1px solid #d8d8d8;
+
+        }
+
+        .join_form input[type = "text"] {
+            display: inline-block;
+        }
+        .join_form label {
+            --float: left;
+            margin-right: 6px;
+            width: 124px;
+            height: 45px;
+            line-height: 45px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: default;
+
+        }
+        .join_form fieldset[class^="area_"] {
+        padding: 0 50px 50px;
+        margin-top: 47px;
+        border-bottom: 1px solid #d8d8d8;
+        
+        }
+
+        .join_form .area_required>div {
+            padding-top: 20px;
+        }
+        .join_form .area_plus >div{
+            padding-top: 20px;
+        }
+
+        .sub_title {
+        float: left;
+        display: inline-block;
+        padding-bottom: 11px;
+        font-weight: bold;
+        font-size: 20px;
+        color: #4195f5;
+
+        }
+        #gender > label:not(:nth-child(1)){
+            margin-left: 10px;
+            display: inline;
+        }
+        #gender input[type = "radio"]{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .form-select.is-invalid {
+            width: 120px; display: inline;
+        }
+        .invalid-feedback {
+            width: 150px;
+            margin-left: 30%;
+        }
+        .agree_title{
+            float: left;
+            display: inline-block;
+            padding-bottom: 11px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .argument label:not(:nth-child(1)){
+            width: 200px;
+        }
+        .join_form .area_agree .agree dl dd div {
+            margin-bottom: 9px
+          }
