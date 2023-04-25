@@ -24,21 +24,24 @@
 
         }
 
-        .join_form input[type = "text"] {
+       
+
+        .join_form input[type = "text"], input[type="password"] {
             display: inline-block;
+            width: 280px;
         }
         .join_form label {
             --float: left;
             margin-right: 6px;
-            width: 124px;
+            width: 100px;
             height: 45px;
             line-height: 45px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 14px;
             cursor: default;
 
         }
-        .join_form fieldset[class^="area_"] {
+        .join_form fieldset[class^="area_"]  {
         padding: 0 50px 50px;
         margin-top: 47px;
         border-bottom: 1px solid #d8d8d8;
@@ -85,8 +88,79 @@
         }
 
         .argument label:not(:nth-child(1)){
-            width: 200px;
+            width: 250px;
         }
-        .join_form .area_agree .agree dl dd div {
+        .join_form .area_agree .agree_box dl dd div {
             margin-bottom: 9px
           }
+        .join_form .area_agree .agree_box dl{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 16px 19px;
+            margin-top: 8px;
+            margin-bottom: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 12px;
+            background-color: #f8f8f8;
+        }
+        .join_form .area_agree .agree_box dl dd {
+            margin-left: 40px;
+            --font-weight: bold;
+            
+        }
+        .join_form .area_agree .agree_box dl dd div span {
+            display: inline-block;
+            width: 65px;
+        }
+        .join_form .area_agree .agree_box {
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
+        }
+        .join_form .area_agree .agree_box .all_check_area {
+            margin-bottom: 4px;
+            padding-top: 12px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid #cccccc;
+            background-color: #f8f8f8;
+        }
+        .join_form fieldset[class^="area_"].area_box {
+            padding: 0 50px 50px;
+        }
+        .join_form .area_agree .agree_box>div {
+            position: relative;
+            padding: 12px 30px;
+        }
+        input[type="submit"]:not(:nth-child(1)) {
+            border: 1px solid #3187e9;
+            color: #ffffff;
+            background-color: #4195f5;
+        }
+        .join_form .joinbtn_submit {
+            margin-left: 33%;
+            width: 192px;
+            text-align: center;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            border-radius: 3px 3px 3px 3px;
+            font-weight: bold;
+            letter-spacing: normal;
+            height: 42px;
+            line-height: 40px;
+            margin-top: 18px;
+            font-size: 12px;
+            margin-bottom: 10%;
+        }
+        .join_form fieldset.area_agree {
+            border-bottom: white;
+        }
+        .form-control.is-valid {
+            width: 280px; margin-right: 5px;
+        }
+        .btn btn-light {
+            width: 90px; font-size: 14px;
+        }
+        
+        
