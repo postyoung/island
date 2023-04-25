@@ -1,0 +1,62 @@
+#seminar-area{
+  width: 1300px;
+  height: 80%;
+  margin: auto;
+  margin-top: 100px;
+}
+#seminar-title{
+margin-bottom: 50px;
+color: rgb(102, 81, 56);
+}
+
+#seminar-serch-area{
+  width: 1000px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.form-select {
+  width: 10%;
+  margin-left: 49px;
+}
+
+.mb-3 {
+  margin-bottom: 0rem!important;
+  margin-right: 10px;
+}
+.form-control{
+  width: 70%;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.btn-outline-secondary{
+  float: right;
+}
+
+#select-menu{
+  margin-bottom: 20px;
+}
+
+.g-3, .gy-3{
+  --bs-gutter-y: 3rem;
+}
+
+.g-3, .gx-3 {
+  --bs-gutter-x: 2rem;
+}
+
+.py-5 {
+  padding-bottom: 5rem!important;
+}
+
+/* .bi-heart{
+  float: right;
+}
+
+#good-icon{
+  float: right;
+} */
