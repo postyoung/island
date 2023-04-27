@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+	nav {
+		background-color: white;
+		font-size: 20px;
+		width: 100%;
+		height: 50px;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 1fr;
+		place-items: center center;
+	}
+	
+	nav a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.search-wrap {
+		text-align: right;
+	}
+
+	#board-list{
+		
+		font-size: 20px;
+		
+	}
+	

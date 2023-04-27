@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+panel panel-info {
+		font-size: 20px;
+		box-sizing: 700px;
+		align-content: center;
+		justify-content: center;
+		box-sizing: 700px;
+	}
+	
+	div>h2 {
+		line-height: 3.3;
+		margin-top: 100px;
+	}
+	
+	#noticeWriteform {
+		margin-top: 100px;
+		margin-left: 200px;
+	}
+	
+	.form-group {
+		margin-top: 10px;
+	}
+	
+	.container {
+		align-items: center;
+	}
+	#wrap
+	{
+		font-size: 20px;
+	}
+	#btn1{
+		box-sizing: border-box;
+		margin: auto;
+		float: right;
+	}
