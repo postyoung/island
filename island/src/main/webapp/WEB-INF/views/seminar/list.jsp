@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>ISLAND 세미나 목록 | ISLAND</title>
 
+	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-<link rel="stylesheet" href="${root}/resources/css/seminar/seminar-list.css">
+<link rel="stylesheet" href="${root}/resources/css/seminar/list.css">
 </head>
 <body>
 
@@ -43,7 +44,7 @@
 
   <div id="select-menu">
     <a href="#" class="ms-3 me-3">최신순</a>|<a href="#" class="ms-3 me-3">인기순</a>|<a href="#" class="ms-3 me-3">종료된 세미나</a>
-    <button type="button" class="btn btn-outline-secondary">개설하기</button>
+    <button type="button" class="btn btn-outline-secondary" onclick="location.href='${root}/seminar/create'">개설하기</button>
   </div>
 
   <!-- 세미나 카드 영역 -->
@@ -235,9 +236,10 @@
 
 
 
-
+	<!-- 페이징 -->
 	<%@ include file="/WEB-INF/views/common/paging.jsp" %>
 
+	<!-- 푸터 -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
 	
