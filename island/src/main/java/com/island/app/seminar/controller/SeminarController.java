@@ -26,7 +26,15 @@ public class SeminarController {
 	
 	
 	
+	//세미나 수정 페이지(화면)
+	
+	
+	
 	//세미나 신청하기(화면)
+	@GetMapping("apply")
+	public String seminarApply() {
+		return "seminar/apply";
+	}
 	
 	
 	
