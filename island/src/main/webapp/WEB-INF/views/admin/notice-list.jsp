@@ -33,7 +33,7 @@
 <body>
 	<!-- main -->
 	<div id="wrap">
-		<form action="" class="noticelistform">
+		<form action="${root}/admin/notice/write" class="noticelistform">
 			<div class="container">
 				<h2>공지사항 리스트</h2>
 				<!-- <%--
@@ -113,7 +113,7 @@
 				</table>
 				<div id="write-btn-area">
 					
-						<button type="submit" class="btn btn-info btn-lg" style="float: right;" ><a href="${root}/notice/write"></a>글쓰기</button>
+						<button type="submit" class="btn btn-info btn-lg" style="float: right;" ><a href="${root}/admin/notice/write"></a>글쓰기</button>
 					</a>
 				</div>
 					

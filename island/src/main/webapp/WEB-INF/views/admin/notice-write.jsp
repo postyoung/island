@@ -26,10 +26,10 @@
 <body>
 	<!-- main -->
 	<div id="wrap">
-		<form class="noticeWriteform" style="margin-left: 225px;">
+		<form class="noticeWriteform" style="margin-left: 225px;" action="${root}/admin/notice/list" method="get">
 			<div class="container">
 				<h2>공지사항 작성하기</h2>
-				<form class="form-horizontal" action="" method="post">
+				<form class="form-horizontal" >
 					<div class="form-group">
 						<label class="control-label col-lg-2" for="title">제목 : </label>
 						<div class="col-lg-12">
@@ -56,12 +56,12 @@
 						<div id="btn1" class="col-sm-offset-2 col-lg-10">
 							<button type="submit" class="btn btn-info btn-lg" style="float: right;">등록</button>
 							<button type="reset" class="btn btn-info btn-lg" style="float: right; margin-right: 10px;">취소</button>
-							<button type="submit" class="btn btn-info btn-lg" style="float: right; margin-right: 10px;"><a href="${root}/notice/list"></a>목록</button>
+							<button type="submit" class="btn btn-info btn-lg" style="float: right; margin-right: 10px;"><a href="${root}/admin/notice/list"></a>목록</button>
 						</div>
 					</div>
 				</form>
 			</div>
 	</div>
-	</div>
+	
 </body>
 </html>

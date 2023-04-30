@@ -39,10 +39,10 @@
 	</div>
 	<hr>
 	<nav>
-		<a href="${root}/notice/list">고객센터</a>
-		<a href="${root}/faq/list">자주하는질문</a>
-		<a href="${root}/notice/list">공지사항</a>
-		<a href="${root}/inquiry/list">문의하기</a>
+		<a href="#">고객센터</a>
+		<a href="${root}/admin/faq/list">자주하는질문</a>
+		<a href="${root}/admin/notice/list">공지사항</a>
+		<a href="${root}/admin/inquiry/list">문의하기</a>
 	</nav>
 	<hr>
 
