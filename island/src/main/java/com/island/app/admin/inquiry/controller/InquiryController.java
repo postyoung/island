@@ -5,10 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("inquiry")
+@RequestMapping("admin")
 public class InquiryController {
-	@GetMapping("list")
+	@GetMapping("inquiry/list")
 	public String inquiry() {
-		return "inquiry/inquiry-list";
+		return "admin/inquiry-list";
 	} 
+	
+	@GetMapping("inquiry/write")
+	public String inquiryWrite() {
+		return "admin/inquiry-write";
+	}
 }
