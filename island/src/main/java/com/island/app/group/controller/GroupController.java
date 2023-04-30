@@ -10,7 +10,7 @@ public class GroupController {
 	
 		@GetMapping("test")
 		public String join() {
-			return "group/groupjointest";
+			return "group/group-list";
 		}
 	}
 
