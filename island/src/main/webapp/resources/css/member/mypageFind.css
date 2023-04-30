@@ -1,0 +1,40 @@
+@charset "UTF-8";
+body {
+    background-color: #ffffff;
+}
+#wrap{
+    width: 1200px;
+    height: 643px;
+    border: 1px solid white;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: white;
+   
+}
+
+/* .title{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 0 50px 50px;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid #d8d8d8;
+
+} */
+
+.main_content>section.find_email {
+    margin-bottom: 20px;
+}
+.main_content>section {
+    padding: 17px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 450px;
+    border: 3px solid #9aaab6;
+}
+
+
+

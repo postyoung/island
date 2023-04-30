@@ -19,8 +19,17 @@ public class MemberController {
 	}
 	
 	//마이페이지 (화면)
-	@GetMapping("mypage")
-	public String mypage() {
-		return "member/mypage";
+	@GetMapping("mypage/home")
+	public String mypageHome() {
+		return "member/mypage-home";
+	}
+	
+	@GetMapping("mypage/edit")
+	public String mypageEidt() {
+		return "member/mypage-edit";
+	}
+	@GetMapping("mypage/find")
+	public String mypageFind() {
+		return "member/mypage-accountfind";
 	}
 }

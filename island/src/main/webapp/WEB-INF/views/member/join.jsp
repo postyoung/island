@@ -71,8 +71,8 @@
 
                       <div id="gender">
                         <label for="">성별</label>
-                        <input type="radio" name="gender"><label for="">여성
-                        <input type="radio" name="gender"><label for="">남성
+                        <input type="radio" name="gender" value="F" id="F"><label for="F">여성</label>
+                        <input type="radio" name="gender" value="M" id="M"><label for="M">남성</label>
 
                 </fieldset>
                 <fieldset class="area_plus" style="padding-left: 15%;">
