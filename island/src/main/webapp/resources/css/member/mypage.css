@@ -1,0 +1,196 @@
+@charset "UTF-8";
+body {
+    background-color: #ffffff;
+}
+#wrap{
+    width: 1200px;
+    height: 643px;
+    border: 1px solid white;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: white;
+   
+}
+
+/* .title{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 0 50px 50px;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid #d8d8d8;
+
+} */
+
+#content h2.main_title {
+    padding-bottom: 9px;
+}
+#content h2.main_title {
+    padding: 7px 0;
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.profile_summary .profile_img {
+    position: relative;
+    float: left;
+    padding: 30px 30px 28px 30px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.profile_summary .thumbnail::before, .profile_summary .thumbnail:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid hsla(0,0%,0%,.1);
+}
+.profile_summary .profile_img {
+    position: relative;
+    float: left;
+    padding: 30px 30px 28px 30px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.profile_info .left_area {
+    width: 419px;
+}
+.profile_info>div {
+    float: left;
+    padding: 19px 20px;
+    height: 214px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #d8d8d8;
+}
+.profile_info .title {
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+h3.title {
+    --font-size: 14px;
+    letter-spacing: -1px;
+}
+.profile_info .information>li {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 25px;
+    margin-bottom: 6px;
+    line-height: 25px;
+    overflow: hidden;
+}
+.profile_info .information>li{
+    margin-bottom: 7px;
+}
+.profile_info .information {
+    position: relative;
+    padding-top: 7px;
+    border-top: 1px solid #d8d8d8;
+}
+.profile_info .label {
+    float: left;
+    display: inline-block;
+    width: 60px;
+    font-weight: bold;
+    vertical-align: middle;
+    letter-spacing: -1px;
+    margin-right: 10px;
+}
+.profile_info .information .value {
+    float: left;
+    display: inline-block;
+    min-width: 135px;
+    max-width: 248px;
+    vertical-align: middle;
+    letter-spacing: normal;
+}
+.profile_info .information .value, .mypage.edit .profile_info .information .email .value {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.profile_info {
+    padding-right: 19px;
+    float: left;
+    padding: 30px 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 858px;
+    border-left: 1px solid #d8d8d8;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    }
+ol, ul {
+    padding-left: 0;
+}
+
+.feed_list {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.sub_content {
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 260px;
+    background-color: #ffffff;
+    --display: inline;
+}
+.sub_content>section {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 460px;
+    padding-top: 18px;
+    font-size: 11px;
+    float: left;
+}
+.right_area{
+    width: 350px;
+}
+.sub_content h3.title {
+    padding-bottom: 9px;
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    margin-left: 5%;
+}
+.feed_list>li {
+    position: relative;
+    padding: 10px;
+    border-top: 1px solid #d8d8d8;
+    margin-left: 5%;
+    font-size: 13px;
+}
+.feed_list .action {
+    padding-bottom: 14px;
+}
+.sub_content>div {
+    float: left;
+    padding: 19px 20px;
+    height: 214px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #d8d8d8;
+}
+.sub_content .feeds2 {
+    float: right;
+}
+.sub_content .feed_list2 {
+    float: right;
+}
+

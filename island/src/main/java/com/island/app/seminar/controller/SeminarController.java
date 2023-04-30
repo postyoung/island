@@ -12,12 +12,32 @@ public class SeminarController {
 	//세미나 목록 조회(+페이징)
 	@GetMapping("list")
 	public String seminarList() {
-		return "seminar/seminar-list";
+		return "seminar/list";
+	}
+	
+	//세미나 개설하기(화면)
+	@GetMapping("create")
+	public String seminarCreate() {
+		return "seminar/create";
+	}
+	
+	
+	//세미나 상세 조회(화면)
+	
+	
+	
+	//세미나 수정 페이지(화면)
+	
+	
+	
+	//세미나 신청하기(화면)
+	@GetMapping("apply")
+	public String seminarApply() {
+		return "seminar/apply";
 	}
 	
 	
 	
 	
-	//세미나 상세 조회 
 	
 }

@@ -20,7 +20,7 @@
 
                     <div id="name" class="">
                         <label for="">이름</label>
-                        <input type="text" class="form-control is-valid" id="validationServer01" value="" required >
+                        <input type="text" class="form-control" id="validationServer01" value="" required >
                       </div>
                       
                       
@@ -54,14 +54,15 @@
                         <label for="">주민번호</label>
                         <input type="text" class="form-control is-valid" id="idNumber01" value="" required style="width: 130px;">
                         -
-                        <input type="text" class="form-control is-valid" id="idNumber02" value="" required style="width: 130px;">
+                        <input type="password" class="form-control is-valid" id="idNumber02" value="" required style="width: 130px;">
                       </div>
 
                       <div id="email">
                         <label for="">이메일</label>
                         <input type="text" class="form-control is-valid" id="validationServer01" value="" required style="width: 140px;">
                         <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" style="width: 140px;">
-                          <option selected disabled value="">naver.com</option>
+                          <option selected disabled value="">email.com</option>
+                          <option>naver.com</option>
                           <option>daum.net</option>
                           <option>google.com</option>
                           <option>kakao.com</option>
@@ -70,8 +71,8 @@
 
                       <div id="gender">
                         <label for="">성별</label>
-                        <input type="radio" name="gender"><label for="">여성
-                        <input type="radio" name="gender"><label for="">남성
+                        <input type="radio" name="gender" value="F" id="F"><label for="F">여성</label>
+                        <input type="radio" name="gender" value="M" id="M"><label for="M">남성</label>
 
                 </fieldset>
                 <fieldset class="area_plus" style="padding-left: 15%;">
@@ -83,7 +84,8 @@
                       <div id="like_place" class="">
                         <label for="">선호지역</label>
                         <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback">
-                            <option selected disabled value="">서울</option>
+                            <option selected disabled value="">지역</option>
+                            <option>서울</option>
                             <option>경기</option>
                             <option>인천</option>
                             <option>강원</option>
