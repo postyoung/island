@@ -16,19 +16,10 @@
             <div class="content_wrapping max_width_area">
                 <div class="top_area">
                     <h2 class="main_title">마이페이지</h2>
-                    <div class="main_area">              
-                            <!-- 마이페이지 메뉴바 시작 -->
-                            <ul class="menu_bar">
-                                <li class="menu_home"><a href="">마이페이지 홈</a> </li>
-                                    <li class="menu_edit"><a href="">회원정보 수정</a></li>
-                                    <li class="menu_pwd"><a href="">비밀번호변경</a></li>
-                                    <li class="menu_findaccount"><a href="">아이디/비밀번호 찾기</a></li>
-                                    <li class="menu_participant"><a href="">신청내역</a></li>
-                                    <li class="menu_like"><a href="">관심내역</a></li>
-                                    <li class="menu_write"><a href="">작성내역</a></li>
-                                    <li class="menu_quit"><a href="">회원탈퇴</a></li>
-                                </ul>
-                                <!-- 마이페이지 메뉴바 끝 -->
+                    <div class="main_area">
+                     <!-- 마이페이지 메뉴바 시작 -->              
+                         <%@include file="/WEB-INF/views/member/common/mypage-nav.jsp" %>
+                         	<!-- 마이페이지 메뉴바 끝 -->
                                 <div class="main_content">
                                     <!-- 마이페이지 콘텐츠 시작 -->
                                         <!-- 프로필 정보 영역시작 -->
@@ -143,12 +134,14 @@
                          </div>
         
                     </div>
-                    </div>
+                   </div>
             
 
-        </main>
-    </div>
-
+        	</main>
+   		</div>
+    <div>
+    <%@include file="/WEB-INF/views/common/footer.jsp" %>
+</div>
 
 </body>
 </html>

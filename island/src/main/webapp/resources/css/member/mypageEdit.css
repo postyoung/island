@@ -41,6 +41,13 @@ body {
     box-sizing: border-box;
     background-color: #ffffff;
 }
+.profile_summary .profile_img .img_thumbnail {
+    width: 280px;
+}
+.profile_summary .profile_img input[type="file"]{
+    width: 280px;
+}
+
 .profile_summary .thumbnail::before, .profile_summary .thumbnail:before {
     position: absolute;
     top: 0;
@@ -67,7 +74,7 @@ body {
 .profile_info>div {
     float: left;
     padding: 19px 20px;
-    height: 214px;
+    height: 265px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -92,6 +99,7 @@ h3.title {
 }
 .profile_info .information>li{
     margin-bottom: 7px;
+    height: 32px;
 }
 .profile_info .information {
     position: relative;
@@ -110,7 +118,7 @@ h3.title {
 .profile_info .information .value {
     float: left;
     display: inline-block;
-    min-width: 135px;
+    --min-width: 135px;
     max-width: 248px;
     vertical-align: middle;
     letter-spacing: normal;
@@ -126,10 +134,14 @@ h3.title {
     padding: 30px 20px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    width: 858px;
+    width: 857px;
     border-left: 1px solid #d8d8d8;
     background-color: #f2f2f2;
     font-size: 12px;
+    }
+.btn_change {
+    display: block;
+
     }
 ol, ul {
     padding-left: 0;
@@ -141,23 +153,7 @@ ol, ul {
 a {
     text-decoration: none;
 }
-.sub_content {
-    padding: 20px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 260px;
-    background-color: #ffffff;
-    --display: inline;
-}
-.sub_content>section {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 460px;
-    padding-top: 18px;
-    font-size: 11px;
-    float: left;
-}
+
 .right_area{
     width: 350px;
 }
@@ -168,29 +164,38 @@ a {
     font-weight: bold;
     margin-left: 5%;
 }
-.feed_list>li {
-    position: relative;
-    padding: 10px;
+
+.right_area li{
+    list-style: none;
+    margin-bottom: 7px;
+}
+.right_area .label {
+    width: 100px;
+}
+.channel_home{
     border-top: 1px solid #d8d8d8;
-    margin-left: 5%;
-    font-size: 13px;
+    padding-top: 7px;
+
 }
-.feed_list .action {
-    padding-bottom: 14px;
+.btn.btn-outline-primary {
+    margin-left: 210px;
+    margin-top: 10%;
+
 }
-.sub_content>div {
-    float: left;
-    padding: 19px 20px;
-    height: 214px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border: 1px solid #d8d8d8;
+.right_area .channel_home input {
+    width: 150px;
+    height: 25px;
+
 }
-.sub_content .feeds2 {
-    float: right;
+.left_area input, #validationServer01{
+    height: 32px;
 }
-.sub_content .feed_list2 {
-    float: right;
+.email input {
+    width: 100px;
 }
+#validationServer01 {
+    width: 170px;
+}
+
+
 
