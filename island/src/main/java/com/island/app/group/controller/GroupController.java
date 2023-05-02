@@ -8,9 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("group")
 public class GroupController {
 	
-		@GetMapping("test")
-		public String join() {
+		@GetMapping("list")
+		public String list() {
 			return "group/group-list";
+		}
+		
+
+		@GetMapping("join")
+		public String join() {
+			return "group/group-join";
+		}
+		
+		@GetMapping("detail")
+		public String detail() {
+			return "group/group-detail";
 		}
 	}
 
