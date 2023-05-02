@@ -23,11 +23,17 @@ public class SeminarController {
 	
 	
 	//세미나 상세 조회(화면)
-	
+	@GetMapping("detail")
+	public String seminarDetail() {
+		return "seminar/detail";
+	}
 	
 	
 	//세미나 수정 페이지(화면)
-	
+	@GetMapping("edit")
+	public String seminarEdit() {
+		return "seminar/edit";
+	}
 	
 	
 	//세미나 신청하기(화면)
