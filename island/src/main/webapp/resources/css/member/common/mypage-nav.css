@@ -26,3 +26,33 @@
     cursor: pointer;
 
 }
+a {
+    text-decoration: none;
+}
+.menu_bar .sub_menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1;
+  }
+  
+  .menu_bar li:hover .sub_menu {
+    display: block;
+  }
+  .menu_bar .sub_menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1;
+  }
+  
+  .menu_bar li:hover .sub_menu {
+    display: block;
+  }
+  .seminar-nav {
+    margin-right: 37px;
+  }
+
+

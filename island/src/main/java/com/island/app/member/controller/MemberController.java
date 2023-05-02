@@ -32,4 +32,26 @@ public class MemberController {
 	public String mypageFind() {
 		return "member/mypage-accountfind";
 	}
+	@GetMapping("mypage/enrollList/group")
+	public String mypageEnrollGroupList() {
+		return "member/mypage-enrollList-group";
+	}
+	@GetMapping("mypage/enrollList/seminar")
+	public String mypageEnrollSeminarList() {
+		return "member/mypage-enrollList-seminar";
+	}
+	@GetMapping("mypage/likeList/group")
+	public String mypageLikeGroupList() {
+		return "member/mypage-likeList-group";
+	}
+	@GetMapping("mypage/likeList/seminar")
+	public String mypageLikeSeminarList() {
+		return "member/mypage-likeList-seminar";
+	}
+	@GetMapping("mypage/madeList/group")
+	public String mypageMadeGroupList() {
+		return "member/mypage-made-list";
+	}
+	
+
 }
