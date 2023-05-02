@@ -26,26 +26,63 @@
                                         <!-- 아이디 찾기 시작-->
                                         <section class="find_email">
                                             <form action="">
-                                                <h3>아이디 찾기</h3>
-                                                <div class="">
-                                                    <label for="name">이름</label>
-                                                    <input type="text" id="name" name="name" required >
+                                                <h3 class="title">아이디 찾기</h3>
+                                                <div class="edit_wrap">
+                                                    <div class="edit_name">
+                                                        <label for="name">이름</label>
+                                                            <input type="text" id="name" name="name" required >
+                                                    </div>
+                                                    
+                                                    <div class="edit_phone">
+                                                        <label for="phone">휴대전화</label>
+                                                        <input type="text" id="phone" name="phone" required>
+                                                    </div>
                                                 </div>
-                                                <div class="">
-                                                    <label for="phone">휴대전화</label>
-                                                    <input type="text" id="phone" name="phone" required>
-                                                </div>
-                                                <div class="btn_wrap">
-                                                    <input type="submit" value="확인" class="" >
-                                                </div>
+                                                    <!-- 버튼영역시작 -->
+                                                    <div class="bottom_btn_area">
+                                                        <div class="btn_wrap">
+                                                            <input type="submit" value="확인" class="btn_submit" >
+                                                        </div>
+                                                    </div>
+                                                    <!-- 버튼영역 끝 -->
+                                                
                                                 <!-- 아이디찾기 끝 -->
-                                            </form>
+                                                </form>
                                             </section>
 
-                                    </div>
+                                    
+                                <!-- 비밀번호 찾기 -->
+                                <section class="find_password">
+                                    <form action="">
+                                        <h3 class="title">비밀번호 찾기</h3>
+                                        <div class="edit_wrap">
+                                            <div class="edit_name">
+                                                <label for="email">이메일</label>
+                                                    <input type="email" id="name" name="name" required >
+                                            </div>
+                                            
+                                            <div class="edit_phone">
+                                                <label for="phone">휴대전화</label>
+                                                <input type="text" id="phone" name="phone" required>
+                                            </div>
+                                        </div>
+                                            <!-- 버튼영역시작 -->
+                                            <div class="bottom_btn_area">
+                                                <div class="btn_wrap">
+                                                    <input type="submit" value="확인" class="btn_submit" >
+                                                </div>
+                                            </div>
+                                            <!-- 버튼영역 끝 -->
+                                        
+                                        <!-- 비밀번호찾기 끝 -->
+                                        </form>
+                                    </section>
+
+                            </div>
+                        </div>
                                        
                    </div>
-            
+                </div>
 
         	</main>
    		</div>

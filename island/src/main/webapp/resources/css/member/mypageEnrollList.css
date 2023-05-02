@@ -1,0 +1,132 @@
+@charset "UTF-8";
+body {
+    background-color: #ffffff;
+}
+#wrap{
+    width: 1200px;
+    height: 643px;
+    border: 1px solid white;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10%;
+    background-color: white;
+   
+}
+a{
+    text-decoration: none;
+}
+ul li {
+    list-style: none;
+}
+
+/* .title{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 0 50px 50px;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid #d8d8d8;
+
+} */
+
+
+#content h2.main_title {
+    padding: 7px 0;
+    font-size: 26px;
+    font-weight: normal;
+}
+
+h3.title {
+    --font-size: 14px;
+    letter-spacing: -1px;
+}
+
+ol, ul {
+    padding-left: 0;
+}
+.sub_content {
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 260px;
+    background-color: #ffffff;
+    --display: inline;
+}
+.sub_content>section {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 460px;
+    padding-top: 18px;
+    font-size: 11px;
+    float: left;
+}
+
+.sub_content h3.title {
+    padding-bottom: 9px;
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    margin-left: 5%;
+}
+
+.sub_content>div {
+    float: left;
+    padding: 19px 20px;
+    height: 214px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    --border: 1px solid #d8d8d8;
+}
+.sub_content .feeds2 {
+    float: right;
+}
+.sub_content .feed_list2 {
+    float: right;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    text-align: center;
+}
+
+ul.list_involved .date_involved {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: normal;
+}
+h3 {
+    font-size: 20px;
+    letter-spacing: -1px;
+    font-weight: bold;
+    margin-left: 19px;
+    
+}
+.data_enrolldate {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: normal;
+}
+.enroll_area {
+    padding-right: 19px;
+    float: left;
+    padding: 30px 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 858px;
+    border-left: 1px solid #d8d8d8;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    width: 1130px;
+    }
+.group_info {
+    width: 1084px;
+    background-color: white;
+}
+.group_info_img {
+    width: 150px; 
+    margin-bottom: 20px;
+}

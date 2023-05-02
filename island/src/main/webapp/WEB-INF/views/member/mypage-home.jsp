@@ -78,6 +78,7 @@
                                         </div>
                                     </div>
                                     <!-- 하단콘텐츠 시작 -->
+                                    <!-- 찜한 모임/참여신청한 모임 시작 -->
                                 <div class="sub_content">
                                     <section class="feeds">
                                         <h3 class="title">마이피드</h3>
@@ -103,7 +104,8 @@
 
                                         </ul>
                                     </section>
-                                   
+                                    <!-- 찜한 모임/참여신청한 모임 끝 -->
+                                     <!-- 찜한 세미나/참여신청한 세미나 시작 -->
                                     <section class="feeds" style="float: right; margin-right: 8%;">
                                         <ul class="feed_list">
                                             <li style="margin-top: 9%;">
@@ -127,6 +129,7 @@
 
                                         </ul>
                                     </section>
+                                    <!-- 찜한 세미나/참여신청한 세미나 시작 -->
                                 </div>
 
                             </div>
