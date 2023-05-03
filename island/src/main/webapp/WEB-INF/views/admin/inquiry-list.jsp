@@ -40,63 +40,62 @@
 					</div>
 					<form action="" class="inquiry-list">
 						<div class="container mt-5">
-
-							<div id="board-search">
-								<div class="container">
-									<div class="search-window">
-										<form action="">
-											<div class="search-wrap">
-												<label for="search" class="blind"></label> <input type=text
-													size=45 class="input-lg" id="fd" name="fd"
-													placeholder="검색어를 입력해주세요.">
-												<button type="submit" class="btn btn-dark">검색</button>
-											</div>
-										</form>
-									</div>
-								</div>
+							<div class="btn-group" role="group">
+							    <select type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+							    	<option>전체</option>
+							    	<option>답변대기</option>
+							    	<option>답변완료</option>
+							    </select>
 							</div>
+							
 							<br> <br>
 							<div id="board-list">
 								<div class="container">
 									<table class="table" id="user-table">
 										<thead>
 											<tr>
-												<td width="5%" class="text-center">번호</td>
+												<td width="5%" class="text-center">분류</td>
 												<td width="35%" class="text-center">제목</td>
 												<td width="15%" class="text-center">닉네임</td>
 												<td width="17%" class="text-center">작성일</td>
+												<td width="17%" class="text-center">답변여부</td>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td class="text-center">00</td>
-												<td class="text-center">로그인</td>
-												<td class="text-center">관리자</td>
+												<td class="text-center">회원</td>
+												<td class="text-center">로그인되지 않습니다.</td>
+												<td class="text-center">내가그린기린</td>
 												<td class="text-center">20221007</td>
+												<td class="text-center">답변대기</td>
 											</tr>
 											<tr>
-												<td class="text-center">01</td>
-												<td class="text-center">마이페이지</td>
-												<td class="text-center">관리자</td>
+												<td class="text-center">회원</td>
+												<td class="text-center">마이페이지관련문의</td>
+												<td class="text-center">매머드사이즈</td>
 												<td class="text-center">20221012</td>
+												<td class="text-center">답변완료</td>
 											</tr>
 											<tr>
-												<td class="text-center">03</td>
 												<td class="text-center">세미나</td>
-												<td class="text-center">관리자</td>
-												<td class="text-center">202211103</td>
+												<td class="text-center">세미나가입문의</td>
+												<td class="text-center">너도밥나무</td>
+												<td class="text-center">20221112</td>
+												<td class="text-center">답변대기</td>
 											</tr>
 											<tr>
-												<td class="text-center">04</td>
 												<td class="text-center">소모임</td>
-												<td class="text-center">관리자</td>
-												<td class="text-center">20221120</td>
+												<td class="text-center">소모임기간문의</td>
+												<td class="text-center">핑거족</td>
+												<td class="text-center">20221122</td>
+												<td class="text-center">답변완료</td>
 											</tr>
 											<tr>
-												<td class="text-center">05</td>
-												<td class="text-center">신고</td>
-												<td class="text-center">관리자</td>
-												<td class="text-center">20221230</td>
+												<td class="text-center">결제</td>
+												<td class="text-center">결제에 오류가 납니다.</td>
+												<td class="text-center">판다너구리</td>
+												<td class="text-center">20221212</td>
+												<td class="text-center">답변완료</td>
 											</tr>
 
 											<%-- <c:forEach var="vo" items="${list }">

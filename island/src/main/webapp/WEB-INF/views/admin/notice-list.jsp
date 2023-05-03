@@ -49,7 +49,7 @@
 							<tbody>
 								<tr>
 									<td>00</td>
-									<td>[공지]개인정보</td>
+									<td>[약관] 개인정보취급방침 변경, 취소 및 환불약관 추가에 따른 안내</td>
 									<td>관리자</td>
 									<td>20210321</td>
 								</tr>
@@ -109,8 +109,8 @@
 						<div id="write-btn-area">
 
 							<button type="submit" class="btn btn-info btn-md" style="float: right;">
-								<a href="${root}/admin/notice/write"></a>글쓰기</button>
-							</a>
+								<a href="${root}/admin/notice/write"></a>글쓰기</button>								
+							
 						</div>
 
 						<br>

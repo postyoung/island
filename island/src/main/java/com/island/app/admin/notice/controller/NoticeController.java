@@ -21,4 +21,9 @@ public class NoticeController {
 	public String noticeEdit() {
 		return "admin/notice-edit";
 	}
+	
+	@GetMapping("notice/detail")
+	public String noticeDetail() {
+		return "admin/notice-detail";
+	}
 }

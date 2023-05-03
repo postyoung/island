@@ -16,4 +16,9 @@ public class InquiryController {
 	public String inquiryWrite() {
 		return "admin/inquiry-write";
 	}
+	
+	@GetMapping("inquiry/detail")
+	public String inquiryDetail() {
+		return "admin/inquiry-detail";
+	}
 }
