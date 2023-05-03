@@ -34,7 +34,7 @@
 			<div id="wrap">
 				<form action="" class="noticeeditform">
 					<div class="container">
-						<h2>공지사항 수정/삭제</h2>
+						<h2>공지사항 수정페이지</h2>
 								<form action="" method="post">
 									<input type="hidden" name="idx" value="${vo.idx }">
 									<table id="tableTitle" class="table table-bordered table-hover" style="">

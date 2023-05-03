@@ -12,8 +12,14 @@ public class FaqListController {
 	public String faqList() {
 		return "admin/faq-list";
 	}
+	
 	@GetMapping("faq/write")
-	public String faqwrite() {
+	public String faqWrite() {
 		return "admin/faq-write";
+	}
+	
+	@GetMapping("faq/detail")
+	public String faqDetail() {
+		return "admin/faq-detail";
 	}
 }

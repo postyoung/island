@@ -37,13 +37,13 @@
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="title">제목 : </label>
 								<div class="col-lg-12">
-									<input type="text" class="form-control" name="title" id="title"	placeholder="Enter title">
+									<input type="text" class="form-control" name="title" id="title"	placeholder="제목을 작성해 주세요.">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="writer">작성자 :</label>
 								<div class="col-lg-12">
-									<input type="text" class="form-control" name="writer" id="writer" placeholder="Enter writer">
+									<input type="text" class="form-control" name="writer" id="writer" placeholder="이름을 작성해 주세요.">
 								</div>
 							</div>
 							<div class="form-group">
@@ -51,15 +51,14 @@
 								<label id="content" class="control-label col-lg-2" for="content">내용	: </label>
 
 								<div class="col-lg-12">
-									<textarea class="form-control" name="content" id="content" rows="16"></textarea>
+									<textarea class="form-control" name="content" id="content" rows="16" placeholder="내용을 작성해 주세요."></textarea>
 								</div>
 
 							</div>
 
 							<div id="btn-area" style="text-align: right; margin-top:10px;">
 										<button type="submit" class="btn btn-md btn-primary" >등록</button>
-										<a href="boardRemove.do?idx=${vo.idx}"><button type="button" class="btn btn-md btn-warning">취소</button></a>
-										<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-info">목록</button></a>
+										<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-warning">취소</button></a>
 									</div>
 						</form>
 					</div>
