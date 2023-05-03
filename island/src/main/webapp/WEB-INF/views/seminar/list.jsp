@@ -22,8 +22,8 @@
     <h2><b>ISLAND</b> | 모집중인 세미나</h2>
   </div>
   <div id="seminar-serch-area">
-    <form class="d-flex" role="search">
-      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example">
+    <form class="d-flex" role="search" id="search-box">
+      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="select-size">
         <option selected>지역</option>
         <option value="1">서울</option>
         <option value="2">경기</option>
@@ -33,7 +33,7 @@
         <option value="6">제주</option>
         <option value="7">기타</option>
       </select>
-      <input class="form-control me-2" type="search" placeholder="검색할 내용을 입력하세요." aria-label="Search">
+      <input class="form-control me-2" id="search-box-size" type="search" placeholder="검색할 내용을 입력하세요." aria-label="Search">
       <button class="btn btn-light " type="submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

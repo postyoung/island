@@ -1,0 +1,167 @@
+#communication-menu{
+	
+  background-color: white;
+  font-size: 20px;
+  width: 100%;
+  height: 70px;
+  display: grid;
+  border: 1px solid rgb(45, 45, 45);
+  background-color: rgb(45, 45, 45);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  place-items: center center;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+#title{
+margin-bottom: 20px;
+}
+.search-wrap {
+  text-align: right;
+}
+
+#board-list{
+  
+  font-size: 20px;
+  
+}
+
+.mb-4 {
+margin-bottom: 0rem!important;
+}
+
+.title-area{
+border-top: 1px solid rgb(194, 194, 194);
+}
+
+
+
+.member-profile{
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+}
+
+.member-name{
+  position: relative;
+  left: 80px;
+  top: -50px;
+}
+
+.shadow-sm{
+  padding: 20px 30px;
+  width: 350px;
+  height: 530px;
+}
+
+.row{
+  margin-right: calc(-15 * var(--bs-gutter-x));
+  width: 1600px;
+}
+
+.py-5{
+  padding-right: 13%;
+}
+
+.seminar-name{
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 10px;
+  width: 290px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.seminar-photo{
+  border-radius: 10px;
+}
+
+.box{
+  border: 1px solid rgb(202, 202, 202);
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.member-info-area{
+  margin-bottom: 10px;
+}
+
+.seminar-title{
+  font-size: 14px;
+  font-weight: 800;
+  width: 300px;
+  border: 1px solid white;
+  color: rgb(49, 49, 146);
+}
+
+.card-body{
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.seminar-review{
+  margin-top: 20px;
+  max-height: 70px;
+  overflow: hidden;
+}
+
+.review-detail-btn{
+  width: 100px;
+  height: 30px;
+  text-decoration: none;
+  color: blue;
+  float: right;
+  font-weight: 700;
+}
+
+.review-detail-btn:hover{
+  background-color: rgb(243, 247, 255);
+  width: 95px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid rgb(189, 189, 255);
+}
+
+#search-area{
+  width: 1000px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.search-box{
+  width:550px;
+  display: inline-block;
+}
+
+.search-btn{
+  margin-left: 20px;
+}
+
+.back-area{
+  background: url("/app/resources/img/community/common/review.png") no-repeat center center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  color: white;
+}
+
+.mb-4 {
+  margin-bottom: 0rem!important;
+}
+
+#review-write-btn-area{
+  width: 100px;
+  height:80px;
+  border: 1px solid black;
+}
