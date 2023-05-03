@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISLAND 회원가입 | ISLAND</title>
+    <title>ISLAND 관심내역|세미나 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
-    <link rel="stylesheet" href="${root}/resources/css/member/mypageLikeList.css">
+    <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList.css">
 </head>
 <body>
     <div id="wrap">
@@ -42,16 +42,20 @@
                                                                     
                                                                         <thead>
                                                                             <th></th>
-                                                                            <th>그룹명</th>
-                                                                            <th>신청상태</th>
+                                                                            <th>세미나명</th>
+                                                                            <th>가격</th>
+                                                                            <th>세미나 장소</th>
+                                                                            <th>모집인원</th>
                                                                             <th>신청기간</th>
-                                                                            <th>모임기간</th>
+                                                                            <th>세미나기간</th>
                                                                         </thead>
                                                                    
                                                                             <tbody>
                                                                                 <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
                                                                                 <td>아이디어조</td>
-                                                                                <td>모집마감</td>
+                                                                                <td>10,000</td>
+                                                                                <td>강원도 원주시 63빌딩</td>
+                                                                                <td>100</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 </tr>

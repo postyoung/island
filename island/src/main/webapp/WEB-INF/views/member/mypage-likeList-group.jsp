@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISLAND 회원가입 | ISLAND</title>
+    <title>ISLAND 관심내역|소모임 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypageLikeList.css">
 </head>
@@ -43,7 +43,8 @@
                                                                         <thead>
                                                                             <th></th>
                                                                             <th>그룹명</th>
-                                                                            <th>신청상태</th>
+                                                                            <th>모임장소</th>
+                                                                            <th>모집인원</th>
                                                                             <th>신청기간</th>
                                                                             <th>모임기간</th>
                                                                         </thead>
@@ -51,7 +52,8 @@
                                                                             <tbody>
                                                                                 <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
                                                                                 <td>아이디어조</td>
-                                                                                <td>모집마감</td>
+                                                                                <td>강남구 역삼동</td>
+                                                                                <td>10</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 </tr>
@@ -71,6 +73,7 @@
                                     </section>
 
                                 </div>
+                                
                         </div>
                     </div>
                                        
