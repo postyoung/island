@@ -44,6 +44,9 @@ place-items: center center;
 	margin-top: 50px;
 }
 
+tbody tr{
+	cursor: pointer;
+}
 
 /* 이미지 배경화면  */
 .back-area{
