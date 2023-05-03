@@ -19,6 +19,7 @@
 					<div class="sb-sidenav-menu-heading">신고 관리</div>
 					<a class="nav-link" href="index.html">회원</a> <a class="nav-link"
 						href="index.html">소모임</a> <a class="nav-link" href="index.html">세미나</a>
+					<a class="nav-link" href="index.html">세미나 리뷰</a>
 					<a class="nav-link" href="index.html">댓글</a>
 					<div class="sb-sidenav-menu-heading">게시판</div>
 					<a class="nav-link" href="index.html">공지사항 작성</a> <a
