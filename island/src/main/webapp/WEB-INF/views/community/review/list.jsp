@@ -24,9 +24,9 @@
 	
 	<nav id="communication-menu">
 	  <a href="#" class="menu-title">공지사항</a>
-	  <a href="#">자주하는질문</a>
+	  <a href="${root}/community/faq/list">자주하는질문</a>
 	  <a href="#">1:1 문의하기</a>
-	  <a href="#"><b>세미나 리뷰</b></a>
+	  <a href="${root}/communication/seminarReview/list"><b>세미나 리뷰</b></a>
 	</nav>
 	
 	<!-- 검색영역 -->
