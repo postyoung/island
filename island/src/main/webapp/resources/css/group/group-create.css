@@ -1,0 +1,136 @@
+section.contact .contact-me::after{
+    content:"";
+    display: block;
+    clear:both;
+}
+
+section.contact .contact-me .left{
+    width : 30%;
+    float : left;
+}
+
+section.contact .contact-me .right{
+    width : 65%;
+    margin-left : 5%;
+    float : left;
+}
+
+section.contact .contact-me .left .card{
+    border:1px solid #ccc;
+    padding : 1rem;
+    display : flex;
+    align-items : center;
+    margin-bottom:1.25rem;
+}
+
+section.contact .contact-me .left .card .icon i{
+    font-size:2rem;
+    margin-right:15px;
+}
+
+section.contact .contact-me .right{
+    float:left;
+    width:65%;
+    margin-left : 5%;
+    margin-bottom : 2rem;
+    border:1px solid #ccc;
+    padding:1rem;
+}
+
+section.contact .contact-me .right .form-group{
+    margin-bottom:1.25rem;
+}
+
+/* label(인라인성격)태그에 외부 여백을 적용하기 위해 block으로 변경 */
+section.contact .contact-me .right .form-group label{
+    display:block;
+    margin-bottom:0.85rem;
+}
+
+section.contact .contact-me .right .form-group input{
+    padding:0.625rem;
+    width:100%;
+    outline:none;
+    border:1px solid #ccc;
+    border-radius : 10px;
+}
+
+/* input에 커서가 활성화되면 파란 테두리와 그림자 효과 추가 */
+section.contact .contact-me .right .form-group input:focus{
+    border:1px solid #719ECE;
+    box-shadow:0 0 10px #719ECE;
+}
+
+section.contact .contact-me .right .form-group textarea{
+    height:300px;
+    width:100%;
+    resize:none;
+    border:1px solid #ccc;
+    border-radius: 10px;
+}
+
+section.contact .contact-me .right .form-group textarea:focus{
+    outline:none;
+    border:1px solid #719ECE;
+    box-shadow:0 0 10px #719ECE;
+}
+
+section.contact .contact-me .right button{
+    width:100%;
+    padding:1rem;
+    background-color:#f78b00;
+    border:none;
+    color:white;
+}
+.input {
+    border-radius: 10px;
+    outline: 2px solid #FEBF00;
+    border: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #e2e2e2;
+    outline-offset: 3px;
+    padding: 10px 1rem;
+    transition: 0.25s;
+}
+
+.input:focus {
+    outline-offset: 5px;
+    background-color: #fff
+}
+.profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+}
+
+#preview {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    object-fit: cover;
+}
+.date-selector {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+input[type="date"] {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+}
+input[type="file"] {
+    display: none;
+}
