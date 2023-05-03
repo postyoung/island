@@ -1,0 +1,297 @@
+@charset "UTF-8";
+body {
+    background-color: #ffffff;
+}
+#wrap{
+    width: 1200px;
+    height: 643px;
+    border: 1px solid white;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10%;
+    background-color: white;
+   
+}
+a{
+    text-decoration: none;
+}
+ul li {
+    list-style: none;
+}
+
+#content {
+    padding: 20px 0;
+}
+figcaption, figure, main {
+    display: block;
+}
+.main_content {
+    border: solid 1px #d8d8d8;
+    background-color: #ffffff;
+    padding: 20px;
+    
+}
+.max_width_area {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 980px;
+    margin: 0 auto;
+}
+h3.title {
+    margin-bottom: 11px;
+    font-size: 14px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+.edit_wrap {
+    display: table;
+    width: 100%;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    min-height: 50px;
+}
+.edit_wrap>div[class^="edit_"]:first-child {
+    border-top: none;
+}
+.edit_wrap>div[class^="edit_"] {
+    width: 100%;
+    border-top: 1px solid #d8d8d8;
+}
+h4.label {
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table-cell;
+    width: 200px;
+    border-right: 1px solid #d8d8d8;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    font-weight: normal;
+    vertical-align: top;
+}
+.input_wrap {
+    padding: 20px;
+    display: table-cell;
+    font-size: 12px;
+}
+.input_wrap .tip_txt {
+    color: #4195f5;
+}
+.tip_txt {
+    font-size: 11px;
+    letter-spacing: -1px;
+}
+.reason_lists {
+    padding-top: 12px;
+    padding-bottom: 4px;
+}
+.reason_lists>li:first-child {
+    padding-top: 0;
+}
+.reason_lists input[type="radio"] {
+    vertical-align: middle;
+}
+input[type="checkbox"], input[type="radio"] {
+    vertical-align: middle;
+    cursor: pointer;
+}
+[type="checkbox"], [type="radio"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+.reason_lists input[type="radio"]+label {
+    display: inline-block;
+    height: 19px;
+    padding-left: 6px;
+    line-height: 19px;
+    cursor: pointer;
+}
+input[type="checkbox"]+label, input[type="radio"]+label {
+    vertical-align: middle;
+}
+.reason_lists input[type="radio"] {
+    vertical-align: middle;
+}
+input[type="checkbox"], input[type="radio"] {
+    vertical-align: middle;
+    cursor: pointer;
+}
+[type="checkbox"], [type="radio"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+input[type="password"] {
+    padding: 0 9px;
+    width: 296px;
+    height: 24px;
+    font-size: 12px;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"] {
+    padding: 0 6px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    color: #333333;
+    background-color: #f8f8f8;
+    font-size: 12px;
+    vertical-align: middle;
+}
+.edit_pw .check_msg li {
+    color: #4195f5;
+}
+.edit_pw .check_msg li, .edit_pw .error_msg.filled li {
+    padding-left: 10px;
+    padding-top: 0;
+}
+.edit_pw .check_msg, .edit_pw .error_msg.filled {
+    display: inline-block;
+}
+.check_msg li, .parsley-errors-list li {
+    padding-top: 9px;
+    color: red;
+    font-size: 11px;
+    letter-spacing: -1px;
+}
+.msg_wrap {
+    margin-top: 10px;
+    font-size: 12px;
+}
+.msg_wrap .msg_content {
+    position: relative;
+    min-height: 54px;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+    background-color: #f2f2f2;
+}
+.msg_wrap .msg_title {
+    padding: 19px 0 19px 38px;
+    font-weight: bold;
+    background: url(/images/pc/icon/info.png) no-repeat 20px 18px;
+}
+.msg_wrap .link_move {
+    position: absolute;
+    top: 19px;
+    right: 20px;
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+.bottom_btn_area {
+    padding: 26px 0 10px;
+    text-align: center;
+}
+.btn_wrap {
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn_wrap .btn_again {
+    width: 120px;
+    height: 36px;
+    line-height: 34px;
+}
+.btn_wrap>*[class^="btn_"] {
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.btn_wrap>*[class^="btn_"] {
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: normal;
+}
+.btn_wrap .btn_again {
+    border: 1px solid #3187e9;
+    color: #ffffff;
+    background-color: #4195f5;
+}
+.btn_wrap .btn_again, .btn_wrap .btn_submit {
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid transparent;
+    border-radius: 3px 3px 3px 3px;
+    background: none;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+a[class^="btn_"], button[class^="btn_"], input[class^="btn_"], span[class^="btn_"] {
+    cursor: pointer;
+}
+.btn_wrap .btn_submit.disabled, .btn_wrap .btn_submit[disabled="disabled"] {
+    border-color: #b8b8b8;
+    background-color: #dfdfdf;
+    cursor: no-drop;
+    color: #c8c8c8;
+}
+.btn_wrap .btn_submit {
+    width: 120px;
+    height: 36px;
+    line-height: 34px;
+}
+.btn_wrap>*[class^="btn_"] {
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+.btn_wrap>*[class^="btn_"] {
+    float: left;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: normal;
+}
+.btn_wrap .btn_submit {
+    border: 1px solid #888;
+    color: #ffffff;
+    background-color: #999;
+}
+.btn_wrap .btn_again, .btn_wrap .btn_submit {
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid transparent;
+    border-radius: 3px 3px 3px 3px;
+    background: none;
+    letter-spacing: -1px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+ol, ul {
+    padding-left: 2px;
+}
+.input_wrap .tip_txt {
+    color: #4195f5;
+}
+.tip_txt {
+    font-size: 11px;
+    letter-spacing: -1px;
+}
+h4{
+    font-size: 14px;
+}
+.bottom_btn_area{
+    margin-bottom: 10%;
+}
+.msg_content{
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+
+}
+.bi.flex-shrink-0.me-2{
+    width: 20px;
+    height: 20px;
+}

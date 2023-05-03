@@ -24,12 +24,18 @@
                     </li>                
                   <li class="menu_like"><a href="${root}/member/mypage/likeList/group">관심내역</a>
                     <ul class="sub_menu">
-                        <li><a href="${root}/mypage/likeList/group">소모임</a></li>
-                        <li><a class="seminar-nav" href="${root}/mypage/likeList/seminar">세미나</a></li>
+                        <li><a href="${root}/member/mypage/likeList/group">소모임</a></li>
+                        <li><a class="seminar-nav" href="${root}/member/mypage/likeList/seminar">세미나</a></li>
                       </ul>
                     </li>      
-                  <li class="menu_write"><a href="${root}/member/mypage/madeList/group">개설내역</a></li>
-                  <li class="menu_quit"><a href="">회원탈퇴</a></li>
+                  <li class="menu_write"><a href="${root}/member/mypage/madeList/group">개설내역</a>
+                  	<ul class="sub_menu">
+                        <li><a href="${root}/member/mypage/madeList/group">소모임</a></li>
+                        <li><a class="seminar-nav" href="${root}/member/mypage/madeList/seminar">세미나</a></li>
+                      </ul>
+                    </li>   
+                  <li class="menu_write"><a href="${root}/member/mypage/writeList">작성내역</a></li>
+                  <li class="menu_quit"><a href="${root}/member/mypage/quit">회원탈퇴</a></li>
               </ul>
               <!-- 마이페이지 메뉴바 끝 -->
 
