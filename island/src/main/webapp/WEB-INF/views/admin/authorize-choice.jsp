@@ -13,6 +13,10 @@
 #cardBox {
 	text-align: center;
 }
+
+.admin-info {
+	text-align: center;
+}
 </style>
 </head>
 <body>
@@ -32,7 +36,7 @@
 						<div class="card-body">
 							<!--  -->
 							<h2 class="mt-4">선택한 관리자 정보</h2>
-							<table class="table table-borderless mt-4">
+							<table class="admin-info table table-border mt-4">
 								<thead>
 									<tr>
 										<th>관리자 이름</th>
