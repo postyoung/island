@@ -19,7 +19,7 @@
 <section id = "contact" class="contact">
     <div class = "container">
         <div class = "title">
-            <h2>개설하기</h2>
+            <h2>모임수정하기</h2>
         </div>
         <div class = "contact-me">
             <div class="left">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="info-text">
                         <h3>담당자명</h3>
-                        <input type="text" placeholder="" name="text" class="input">
+                        <input type="text" placeholder="" name="text" class="input" value="권순영">
                     </div>
                 </div>
                 <div class="card">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="info-text">
                         <h3>전화번호</h3>
-                        <input type="text" placeholder="" name="text" class="input">
+                        <input type="text" placeholder="" name="text" class="input" value="010-1234-5678">
                     </div>
                 </div>
                 <div class="card">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="info-text">
                         <h3>이메일</h3>
-                        <input type="email" placeholder="" name="text" class="input">
+                        <input type="email" placeholder="" name="text" class="input" value="ppp@gmail.com">
                     </div>
                 </div>
                 <div class="card">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="info-text">
                         <h3>소속</h3>
-                        <input type="email" placeholder="" name="text" class="input">
+                        <input type="email" placeholder="" name="text" class="input" value="소속">
                     </div>
                 </div>
 
@@ -77,16 +77,16 @@
                 <form action="#">
                     <div class = "form-group">
                         <label for="name">모임명</label>
-                        <input type="text" id="name">
+                        <input type="text" id="name" value="모임">
                     </div>
                     <div class = "form-group">
                         <label for="email">간단한 모임 소개</label>
-                        <input type="text" id="email">
+                        <input type="text" id="email" value="간단한 모임소개">
                     </div>
                     <div class = "form-group">
                         <label for="msg">상세정보</label>
                         <div class="description-container">
-                            <textarea id="description" name="description"></textarea>
+                            <textarea id="description" name="description">상세내용</textarea>
                         </div>
                         <div class = "form-group">
                             <div class="date-selector">
@@ -113,4 +113,6 @@
 </section>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
+
+
 </html>
