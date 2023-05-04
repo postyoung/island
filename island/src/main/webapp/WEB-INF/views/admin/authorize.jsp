@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ISLAND 관리자-권한수정 | ISLAND</title>
 </head>
 <body>
 	<!-- header -->

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ISLAND 관리자-정보수정 | ISLAND</title>
 <style>
 #edit-submit {
 	width: 100%
@@ -31,8 +31,7 @@
 								<form role="form">
 									<div class="form-group">
 										<label for="inputName"><h4>관리자 이름</h4></label> <input
-											type="text" class="form-control" id="inputName"
-											placeholder="이름을 입력해 주세요">
+											type="text" class="form-control" id="inputName" value="박재욱" disabled>
 									</div>
 									<div class="form-group">
 										<label for="InputId" class="mt-4"><h4>아이디</h4></label> <input
@@ -53,19 +52,19 @@
 									<label for="radioBox" class="mt-4"><h4>권한 설정</h4></label> <br>
 									<div class="form-check form-check-inline" id="radioBox">
 										<input class="form-check-input" type="radio"
-											name="inlineRadioOptions" id="inlineRadio1" value="option1">
+											name="inlineRadioOptions" id="inlineRadio1" value="option1" checked disabled>
 										<label class="form-check-label" for="inlineRadio1">권한
 											레벨 : 1</label>
 									</div>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
-											name="inlineRadioOptions" id="inlineRadio2" value="option2">
+											name="inlineRadioOptions" id="inlineRadio2" value="option2" disabled>
 										<label class="form-check-label" for="inlineRadio2">권한
 											레벨 : 2</label>
 									</div>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
-											name="inlineRadioOptions" id="inlineRadio3" value="option3">
+											name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
 										<label class="form-check-label" for="inlineRadio3">권한
 											레벨 : 3</label>
 									</div>

@@ -4,12 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ISLAND 관리자-회원 신고 목록 | ISLAND</title>
-<style type="text/css">
-.table {
-	margin-top: 5px;
-}
-</style>
+<title>ISLAND 관리자-리뷰 신고 목록 | ISLAND</title>
 </head>
 <body>
 	<!-- header -->
@@ -23,7 +18,7 @@
 			<div id="wrap">
 				<!-- 본인 작업 영역 -->
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">회원 신고 목록</h1>
+					<h1 class="mt-4">세미나 리뷰 신고 목록</h1>
 					<div class="card mb-4 mt-4">
 						<div class="card-body">
 							<nav class="navbar navbar-light bg-light">
@@ -49,70 +44,70 @@
 								<thead>
 									<tr>
 										<th>신고 번호</th>
-										<th>신고 회원</th>
+										<th>리뷰 제목</th>
 										<th>카테고리</th>
 										<th>신고 처리 여부</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr class="align-middle">
-										<td>10</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>9</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>8</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>7</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>6</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>5</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>4</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>3</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
-										<td>신고 처리 대기</td>
-									</tr>
-									<tr class="align-middle">
-										<td>2</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
 										<td>신고 처리 대기</td>
 									</tr>
 									<tr class="align-middle">
 										<td>1</td>
-										<td>wodnr1225</td>
-										<td>홍보/광고글 작성</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>여기 망해라 ㅋㅋ</td>
+										<td>홍보/광고글</td>
 										<td>신고 처리 대기</td>
 									</tr>
 								</tbody>

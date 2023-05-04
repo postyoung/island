@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ISLAND 관리자-세미나 신고 목록 | ISLAND</title>
 </head>
 <body>
 	<!-- header -->
@@ -20,22 +20,33 @@
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">세미나 신고 목록</h1>
 					<div class="card mb-4 mt-4">
-						<div class="dropdown" style="margin-left: 15px; margin-top: 20px">
-							<button class="btn btn-secondary dropdown-toggle" type="button"
-								data-bs-toggle="dropdown" aria-expanded="false">카테고리</button>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">이상함</a></li>
-								<li><a class="dropdown-item" href="#">걍별로임</a></li>
-							</ul>
-						</div>
 						<div class="card-body">
+							<nav class="navbar navbar-light bg-light">
+								<div class="container-fluid">
+									<div class="dropdown">
+										<button class="btn btn-secondary dropdown-toggle"
+											type="button" data-bs-toggle="dropdown" aria-expanded="false">신고
+											처리 여부</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#">전체 조회</a></li>
+											<li><a class="dropdown-item" href="#">신고 처리 대기</a></li>
+											<li><a class="dropdown-item" href="#">신고 처리 완료</a></li>
+										</ul>
+									</div>
+									<form class="d-flex">
+										<input class="form-control me-2" type="search"
+											placeholder="Search" aria-label="Search">
+										<button class="btn btn-outline-secondary" type="submit">Search</button>
+									</form>
+								</div>
+							</nav>
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
 										<th>신고 번호</th>
 										<th>세미나 이름</th>
 										<th>카테고리</th>
-										<th>제목</th>
+										<th>신고 처리 여부</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -43,31 +54,61 @@
 										<td>1</td>
 										<td>이상한 세미나</td>
 										<td>홍보/광고글</td>
-										<td>여기 사이비임</td>
+										<td>신고 처리 대기</td>
 									</tr>
 									<tr class="align-middle">
 										<td>1</td>
 										<td>이상한 세미나</td>
 										<td>홍보/광고글</td>
-										<td>여기 사이비임</td>
+										<td>신고 처리 대기</td>
 									</tr>
 									<tr class="align-middle">
 										<td>1</td>
 										<td>이상한 세미나</td>
 										<td>홍보/광고글</td>
-										<td>여기 사이비임</td>
+										<td>신고 처리 대기</td>
 									</tr>
 									<tr class="align-middle">
 										<td>1</td>
 										<td>이상한 세미나</td>
 										<td>홍보/광고글</td>
-										<td>여기 사이비임</td>
+										<td>신고 처리 대기</td>
 									</tr>
 									<tr class="align-middle">
 										<td>1</td>
 										<td>이상한 세미나</td>
 										<td>홍보/광고글</td>
-										<td>여기 사이비임</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>이상한 세미나</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>이상한 세미나</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>이상한 세미나</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>이상한 세미나</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
+									</tr>
+									<tr class="align-middle">
+										<td>1</td>
+										<td>이상한 세미나</td>
+										<td>홍보/광고글</td>
+										<td>신고 처리 대기</td>
 									</tr>
 								</tbody>
 							</table>

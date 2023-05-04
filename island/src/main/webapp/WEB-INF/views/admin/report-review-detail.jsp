@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ISLAND 관리자-세미나 신고 상세 | ISLAND</title>
+<title>ISLAND 관리자-리뷰 신고 상세 | ISLAND</title>
 <style>
 .report-content {
 	resize: none;
@@ -29,7 +29,7 @@
 			<div id="wrap">
 				<!-- 본인 작업 영역 -->
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">세미나 신고 상세 조회</h1>
+					<h1 class="mt-4">세미나 리뷰 신고 상세 조회</h1>
 					<div class="card mb-4 mt-4">
 						<div class="card-body">
 							<div class="mb-3 row">
@@ -44,7 +44,7 @@
 									</div>
 									<button type="button" class="btn btn-secondary btn-lg groupBtn"
 										style="height: 50px; margin-top: 10px; margin-right: 10px;">해당
-										세미나 조회</button>
+										리뷰 조회</button>
 								</div>
 							</div>
 							<div class="mb-3">
@@ -56,10 +56,10 @@
 							<div class="d-flex justify-content-evenly">
 								<button type="button" class="btn btn-secondary btn-lg">신고
 									취소</button>
-								<button type="button" class="btn btn-danger btn-lg">세미나
+								<button type="button" class="btn btn-danger btn-lg">리뷰
 									삭제</button>
-								<button type="button" class="btn btn-danger btn-lg">세미나
-									삭제 및 개설자 정지</button>
+								<button type="button" class="btn btn-danger btn-lg">리뷰
+									삭제 및 작성 회원 정지</button>
 							</div>
 						</div>
 					</div>
