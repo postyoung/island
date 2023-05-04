@@ -30,7 +30,7 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
-				<form class="noticeWriteform" action="${root}/admin/notice/list" method="get">
+				<form class="noticeWriteform" action="${root}/admin/notice/edit" method="get">
 					<div class="container">
 						<h2>공지사항 상세페이지</h2>
 						<form class="form-horizontal">

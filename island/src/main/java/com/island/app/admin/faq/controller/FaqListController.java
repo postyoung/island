@@ -22,4 +22,9 @@ public class FaqListController {
 	public String faqDetail() {
 		return "admin/faq-detail";
 	}
+	
+	@GetMapping("faq/edit")
+	public String faqEdit() {
+		return "admin/faq-edit";
+	}
 }

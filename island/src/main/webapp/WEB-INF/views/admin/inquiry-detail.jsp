@@ -32,7 +32,7 @@
 			<div id="wrap">
 				<!-- 메뉴바 -->
 				<div id="wrap">
-					<form action="" class="inquiryWriteform">
+					<form action="${root}/admin/inquiry/write" class="inquiryDetailform"	method="get">
 
 						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 							<div class="col-md-0 px-0">
@@ -42,8 +42,7 @@
 
 						<!-- 문의하기 양식  -->
 						<div id="wrap">
-							<form class="inquiryWriteform" style="margin-left: 225px;"
-								action="${root}/admin/inquiry/list" method="post">
+							<%-- <form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/write" method="get"> --%>
 								<div class="container">
 									<h2>문의하기</h2>
 									<br>
@@ -68,16 +67,14 @@
 											</tr>
 										</table>
 			
-									</form>
-									
-									<div class="form-group">
-										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-											<button type="submit" class="btn btn-info btn-md"style="margin-right: 5px;">답변등록</button>
-											<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
-											
+										<div class="form-group">
+											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
+												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
+												<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+	
+											</div>
 										</div>
-									</div>
-											
+									</form>		
 								</div>
 							</form>
 						</div>
