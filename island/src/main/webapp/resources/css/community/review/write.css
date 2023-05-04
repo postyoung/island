@@ -1,0 +1,70 @@
+
+.back-area{
+  background: url("/app/resources/img/community/common/review.png") no-repeat center center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  color: white;
+}
+
+#review-write-area{
+  width: 1200px;
+  height: 900px;
+  margin-left: 400px;
+
+}
+
+#btn-area{
+  width: 1200px;
+  height: 40px;
+  margin: auto;
+  margin-top: 60px;
+  padding-left: 450px;
+}
+
+.cancle{
+  margin-left: 40px;
+}
+
+#top-area{
+  font-size: 26px;
+
+}
+
+#line{
+  height: 2px;
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: rgb(223, 223, 223);
+}
+
+#seminar{
+  padding: 10px 30px;
+  font-size: 18px;
+  font-weight: 700;
+  width: 90%;
+  height: 50px;
+  border: 1px solid rgb(223, 223, 223);
+  margin-bottom: 20px;
+}
+
+.text-content{
+  padding-left: 50px;
+}
+.bean{
+  margin-left: 30px;
+}
+
+th{
+  font-size: 18px;
+}
+
+td{
+  padding-left: 20px;
+  border-left: 1px solid rgb(223, 223, 223);
+}
+
+tr{
+  height: 50px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
