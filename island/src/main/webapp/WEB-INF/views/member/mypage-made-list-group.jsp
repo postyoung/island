@@ -49,6 +49,7 @@
                                                                             <th>참여확정</th>
                                                                             <th>신청기간</th>
                                                                             <th>모임기간</th>
+                                                                            <th>모임수정</th>
                                                                         </thead>
                                                                    
                                                                             <tbody>
@@ -60,6 +61,7 @@
                                                                                 <td>1</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기"></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                     </table>

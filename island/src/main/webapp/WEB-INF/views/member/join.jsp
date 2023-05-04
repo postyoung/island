@@ -7,8 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISLAND 회원가입 | ISLAND</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- 헤더연결 -->
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
+    <!-- css연결 -->
     <link rel="stylesheet" href="${root}/resources/css/member/join.css">
+    <!-- js연결 -->
+    <script src="${root}/resources/js/member/join.js" defer></script>
 	
 </head>
 <body>
@@ -18,49 +23,54 @@
             <fieldset class="area_required" style="padding-left: 13%;">
                 <legend class="sub_title">필수정보</legend>
 
-                    <div id="name" class="">
+                    <div id="name_area" class="">
                         <label for="">이름</label>
-                        <input type="text" class="form-control" id="validationServer01" value="" required >
+                        <input type="text" class="form-control" id="name" value="" required >
                       </div>
                       
-                      
-                      <div id="id" style="width: 500px;">
+                      <div id="id_area" style="width: 500px;">
                         <label for="">아이디</label>
-                        <input type="text" class="form-control is-valid" id="validationServer01" value="" required>
+                        <input type="text" class="form-control" id="id" value="" required>
                         <span><input type="submit" class="btn btn-light" value="중복확인" spellcheck="false"></span>
+                        <div id="validationFeedback_Id" class="validationFeedback_Id">
+                          최소 2 자 대문자,소문자,숫자,_ 만 사용하실 수 있습니다.
+                        </div>
                       </div>
                     
-                      <div id="pwd">
+                      <div id="pwd_area">
                         <label for="">비밀번호</label>
-                        <input type="password" class="form-control is-valid" id="validationServer01" value="" required >
+                        <input type="password" class="form-control" id="pwd" value="" required aria-describedby="validationServer04Feedback">
+                      </div>
+                      <div id="validationFeedback_Pwd" class="validationFeedback_Pwd">
+                        최소 8 자 대문자,소문자,숫자,특수문자 각 하나이상을 포함하여 작성하시오.
                       </div>
 
-                      <div id="pwd2">
+                      <div id="pwd2_area">
                         <label for="">비밀번호 확인</label>
-                        <input type="password" class="form-control is-valid" id="validationServer01" value="" required>
+                        <input type="password" class="form-control" id="pwd2" value="" required >
                       </div>
 
-                      <div id="nick">
+                      <div id="nick_area">
                         <label for="">닉네임</label>
-                        <input type="text" class="form-control is-valid" id="validationServer01" value="" required >
+                        <input type="text" class="form-control" id="nick" value="" required >
                       </div>
 
-                      <div id="phone">
+                      <div id="phone_area">
                         <label for="">전화번호</label>
-                        <input type="text" class="form-control is-valid" id="validationServer01" value="" required >
+                        <input type="text" class="form-control" id="phone" value="" required >
                       </div>
 
-                      <div id="id_num">
+                      <div id="id_num_area">
                         <label for="">주민번호</label>
-                        <input type="text" class="form-control is-valid" id="idNumber01" value="" required style="width: 130px;">
+                        <input type="text" class="form-control" id="id_num" value="" required style="width: 130px;">
                         -
-                        <input type="password" class="form-control is-valid" id="idNumber02" value="" required style="width: 130px;">
+                        <input type="password" class="form-control" id="id_num2" value="" required style="width: 130px;">
                       </div>
 
-                      <div id="email">
+                      <div id="email_area">
                         <label for="">이메일</label>
-                        <input type="text" class="form-control is-valid" id="validationServer01" value="" required style="width: 140px;">
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" style="width: 140px;">
+                        <input type="text" class="form-control" id="email" value="" required style="width: 140px;">
+                        <select class="form-select is-invalid" id="email_address" aria-describedby="validationServer04Feedback" style="width: 140px;" required>
                           <option selected disabled value="">email.com</option>
                           <option>naver.com</option>
                           <option>daum.net</option>
@@ -69,21 +79,21 @@
                         </select>
                       </div>
 
-                      <div id="gender">
+                      <div id="gender_area">
                         <label for="">성별</label>
-                        <input type="radio" name="gender" value="F" id="F"><label for="F">여성</label>
-                        <input type="radio" name="gender" value="M" id="M"><label for="M">남성</label>
+                        <input type="radio" name="gender" value="F" id="F" class="gender"><label for="F">여성</label>
+                        <input type="radio" name="gender" value="M" id="M" class="gender"><label for="M">남성</label>
 
                 </fieldset>
                 <fieldset class="area_plus" style="padding-left: 15%;">
                     <legend class="sub_title">추가정보</legend>
                     <div id="company" class="">
                         <label for="">소속</label>
-                        <input type="text" class="form-control is-valid" id="validationServer01" value="" style="width: 250px;">
+                        <input type="text" class="form-control" id="validationServer01" value="" style="width: 250px;">
                       </div>
                       <div id="like_place" class="">
                         <label for="">선호지역</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback">
+                        <select class="form-select is-invalid" id="like_region" aria-describedby="validationServer04Feedback">
                             <option selected disabled value="">지역</option>
                             <option>서울</option>
                             <option>경기</option>
@@ -109,23 +119,23 @@
                       <div class="agree_box">
                       <div class="all_check_area">
                         <input type="checkbox" id="all" class="all_check" >
-                        <label for="" style="font-size: 16px;">전체동의</label>
+                        <label for="all" style="font-size: 16px;">전체동의</label>
                         </div>
                         
                         <div>
                           <input type="checkbox" id="chk1" required>
-                          <label >(필수) 만 14세 이상입니다.</label>
+                          <label for="chk1">(필수) 만 14세 이상입니다.</label>
 
                         </div>
 
                         <div>
                           <input type="checkbox" id="chk2" required>
-                          <label >(필수) 이용약관 동의</label>
+                          <label for="chk2">(필수) 이용약관 동의</label>
                         </div>
 
                           <div>
                           <input type="checkbox" id="chk3" required>
-                          <label>(필수) 개인정보 수집및 이용 동의</label>
+                          <label for="chk3">(필수) 개인정보 수집및 이용 동의</label>
                         </div>
                           <div>
                           <dl>
@@ -148,7 +158,7 @@
                       </div>
                       <div class="agree_plus" style="padding-bottom: 10%;">
                         <input type="checkbox" id="chk4">
-                        <label>(선택) 이메일 수신</label>
+                        <label for="chk4">(선택) 이메일 수신</label>
                         <div></div>
                         <dl>
                           <dt>선택정보 수집</dt>
