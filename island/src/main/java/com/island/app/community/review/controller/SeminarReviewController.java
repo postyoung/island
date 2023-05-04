@@ -18,4 +18,24 @@ public class SeminarReviewController {
 	public String seminarReviewList() {
 		return "community/review/list";
 	}
+	
+	
+	//세미나 리뷰 작성하기 (화면)
+	@GetMapping("seminarReview/write")
+	public String seminarReviewWrite() {
+		return "community/review/write";
+	}
+	
+	
+	//세미나 리뷰 상세조회 (화면)
+	@GetMapping("seminarReview/detail")
+	public String seminarReviewDetail() {
+		return "community/review/detail";
+	}
+	
+	//세미나 리뷰 내용수정 (화면)
+	@GetMapping("seminarReview/edit")
+	public String seminarReviewEdit() {
+		return "community/review/edit";
+	}
 }
