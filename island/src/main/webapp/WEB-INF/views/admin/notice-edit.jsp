@@ -32,7 +32,7 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
-				<form action="" class="noticeeditform">
+				<form action="${root}/admin/notice/list" class="noticeeditform">
 					<div class="container">
 						<h2>공지사항 수정페이지</h2>
 								<form action="" method="post">

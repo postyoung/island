@@ -32,7 +32,7 @@
 		<div id="layoutSidenav_content">
 			<div id="wrap">
 				<!-- 메뉴바 -->
-				<form action="" class="inquiryListform">
+				<form action="${root}/admin/inquiry/detail" class="inquiryListform"	method="get">
 					<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 						<div class="col-md-0 px-0">
 							<h1 class="text-center">1 : 1 문의하기</h1>
@@ -41,13 +41,13 @@
 					<form action="" class="inquiry-list">
 						<div class="container mt-5">
 							<div class="btn-group" role="group">
-							    <select type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							    	<option>전체</option>
-							    	<option>답변대기</option>
-							    	<option>답변완료</option>
-							    </select>
+								<select type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+									<option>전체</option>
+									<option>답변대기</option>
+									<option>답변완료</option>
+								</select>
 							</div>
-							
+
 							<br> <br>
 							<div id="board-list">
 								<div class="container">
@@ -112,8 +112,13 @@
 										</c:forEach> --%>
 										</tbody>
 									</table>
+									<div class="form-group">
+										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
+											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
 
-									<table>
+										</div>
+									</div>
+									<%-- <table>
 										<tr>
 											<td><c:if test="${sessionScope.id!=null }">
 													<div class="wrap">
@@ -134,14 +139,13 @@
 											<br>
 
 										</tr>
-									</table>
+									</table> --%>
 								</div>
 							</div>
 						</div>
+					</form>
+				</form>
 			</div>
 		</div>
-
-		</form>
-	
 </body>
 </html>

@@ -32,7 +32,7 @@
 			<div id="wrap">
 				<!-- 메뉴바 -->
 				<div id="wrap">
-					<form action="" class="inquiryWriteform">
+					<form action="${root}/admin/faq/edit" class="inquiryWriteform">
 
 						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 							<div class="col-md-0 px-0">
@@ -43,7 +43,7 @@
 						<!-- 문의하기 양식  -->
 						<div id="wrap">
 							<form class="inquiryWriteform" style="margin-left: 225px;"
-								action="${root}/admin/inquiry/list" method="post">
+								action="${root}/admin/faq/list" method="post">
 								<div class="container">
 									<h2>FAQ</h2>
 									<br>
