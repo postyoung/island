@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISLAND 작성내역 | ISLAND</title>
+    <title>ISLAND 문의내역 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
-    <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList.css">
+    <link rel="stylesheet" href="${root}/resources/css/member/mypagewritelist.css">
 </head>
 <body>
     <div id="wrap">
@@ -23,53 +23,28 @@
                         <div class="main_content">
                                     <!-- 마이페이지 콘텐츠 시작 -->
                                 <div class="main_content" >
-                                    <!-- 개설한 내역 -->
+                                    <!-- 작성 내역 -->
                                     <section class="main_content">
-                                        <h3 class="title">작성내역</h3>
-                                        <div class="sub_content">
-                                            <h4 class="data_enrolldate">2022.04.04</h4> 
-                                            <div class="enroll_content">
-                                                <div>
-
-                                                
-                                                <ul>
-                                                    <li>
-                                                        <article class="event_area">
-                                                           <div class="enroll_area">
-                                                                <div class="type_info">
-                                                                       
-                                                                <table class="group_info" >
-                                                                    
-                                                                        <thead>
-                                                                            <th></th>
-                                                                            <th>세미나명</th>
-                                                                            <th>가격</th>
-                                                                            <th>세미나 장소</th>
-                                                                            <th>모집인원</th>
-                                                                            <th>신청기간</th>
-                                                                            <th>세미나기간</th>
-                                                                        </thead>
-                                                                   
-                                                                            <tbody>
-                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
-                                                                                <td>아이디어조</td>
-                                                                                <td>10,000</td>
-                                                                                <td>강원도 원주시 63빌딩</td>
-                                                                                <td>100</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                        </article>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
+                                        <h3 class="title">문의내역</h3>
+                                        <div class="container notice-area">
+                                            <table class="table table-hover table-bordered" style="text-align: center;">
+                                              <thead>
+                                                <tr class="table-light">
+                                                  <th>글번호</th>
+                                                  <th>제목</th>
+                                                  <th>작성일</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody class="table-group-divider">
+                                                <tr>
+                                                  <td>01</td>
+                                                  <td>아이디 찾기가 안돼요..</td>
+                                                  <td>2021/03/21</td>
+                                                </tr>
+                                          
+                                              </tbody>
+                                            </table>
+                                          </div>
 
 
                                     </section>

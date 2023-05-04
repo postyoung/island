@@ -29,6 +29,7 @@
         .join_form input[type = "text"], input[type="password"] {
             display: inline-block;
             width: 280px;
+            margin-right: 5px;
         }
         .join_form label {
             --float: left;
@@ -72,7 +73,14 @@
             margin-left: 10px;
             margin-right: 10px;
         }
-        .form-select.is-invalid {
+        .gender{
+            margin-right: 10px;
+        }
+
+        #email_address{
+            width: 120px; display: inline;
+        }
+        #like_region{
             width: 120px; display: inline;
         }
         .invalid-feedback {
@@ -156,11 +164,19 @@
         .join_form fieldset.area_agree {
             border-bottom: white;
         }
-        .form-control.is-valid {
-            width: 280px; margin-right: 5px;
-        }
         .btn btn-light {
             width: 90px; font-size: 14px;
         }
+        /* 비밀번호 안내 영역 */
+    
+        div[class^="validationFeedback_"]  {
+            width: 378px;
+            --display: none;
+            --width: 100%;
+            margin-top: 0.25rem;
+            font-size: .875em;
+            color: #dc3545;
+            
+            }
         
         

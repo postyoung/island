@@ -51,7 +51,7 @@
                   <li><a class="dropdown-item" href="#">회원 정보 수정</a></li>
                   <li><a class="dropdown-item" href="#">신청 내역</a></li>
                   <li><a class="dropdown-item" href="#">관심 내역</a></li>
-                  <li><a class="dropdown-item" href="#">작성 내역</a></li>
+                  <li><a class="dropdown-item" href="#">문의 내역</a></li>
                 </ul>
               </li>
 

@@ -19,13 +19,8 @@
 	    <h1 class="text-center" id="title">공지사항</h1>
 	    <h5 class="text-center">아일랜드에서 알려드립니다.</h5>
 	</div>
-	
-	<nav id="communication-menu">
-	  <a href="#"><b>공지사항</b></a>
-	  <a href="${root}/community/faq/list">자주하는질문</a>
-	  <a href="#">1:1 문의하기</a>
-	  <a href="${root}/community/seminarReview/list">세미나 리뷰</a>
-	</nav>
+	<!-- 고객센터 메뉴바 -->
+	<%@ include file="/WEB-INF/views/community/commu-nav.jsp" %>
 	
 	
 	<div class="container notice-area">
