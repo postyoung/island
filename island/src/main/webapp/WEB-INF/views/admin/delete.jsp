@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ISLAND 관리자-계정삭제 | ISLAND</title>
 <style>
 td {
 	

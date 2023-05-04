@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ISLAND 관리자-회원 신고 상세 | ISLAND</title>
 <style>
 .report-content {
 	resize: none;
@@ -40,14 +40,15 @@
 										aria-label="Sizing example input"
 										aria-describedby="inputGroup-sizing-default" readonly>
 								</div>
+								<div
+									class="input-group input-group-default w-25 p-3 categoryBox">
+									<span class="input-group-text" id="inputGroup-sizing-default">신고
+										처리 여부</span> <input type="text" class="form-control"
+										aria-label="Sizing example input"
+										aria-describedby="inputGroup-sizing-default" readonly
+										value="신고 처리 대기" style="text-align: center">
+								</div>
 							</div>
-							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">
-									<h3>제목</h3>
-								</label> <input type="text" class="form-control form-control-lg"
-									id="exampleFormControlInput1" readonly>
-							</div>
-
 							<div class="mb-3">
 								<label for="exampleFormControlTextarea1" class="form-label"><h3>상세
 										내용</h3></label>
@@ -55,8 +56,10 @@
 									id="exampleFormControlTextarea1" rows="3" readonly></textarea>
 							</div>
 							<div class="d-flex justify-content-evenly">
-							<button type="button" class="btn btn-secondary btn-lg">신고 취소</button>
-							<button type="button" class="btn btn-danger btn-lg">회원 정지</button>
+								<button type="button" class="btn btn-secondary btn-lg">신고
+									확인</button>
+								<button type="button" class="btn btn-danger btn-lg">회원
+									정지</button>
 							</div>
 						</div>
 					</div>

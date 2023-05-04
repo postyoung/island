@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ISLAND 관리자-소모임 신고 상세 | ISLAND</title>
 <style>
 .report-content {
 	resize: none;
@@ -42,17 +42,11 @@
 											aria-describedby="inputGroup-sizing-default" readonly
 											value="불건전">
 									</div>
-									<button type="button" class="btn btn-secondary btn-lg groupBtn" style="height:50px; margin-top:10px; margin-right:10px;">해당 소모임
-										조회</button>
+									<button type="button" class="btn btn-secondary btn-lg groupBtn"
+										style="height: 50px; margin-top: 10px; margin-right: 10px;">해당
+										소모임 조회</button>
 								</div>
 							</div>
-							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">
-									<h3>제목</h3>
-								</label> <input type="text" class="form-control form-control-lg"
-									id="exampleFormControlInput1" readonly value="불건전한 소모임입니다.">
-							</div>
-
 							<div class="mb-3">
 								<label for="exampleFormControlTextarea1" class="form-label"><h3>상세
 										내용</h3></label>
@@ -64,8 +58,8 @@
 									취소</button>
 								<button type="button" class="btn btn-danger btn-lg">소모임
 									삭제</button>
-								<button type="button" class="btn btn-danger btn-sm">소모임
-									삭제 및 개설자 정지</button>
+								<button type="button" class="btn btn-danger btn-lg">
+									소모임 삭제 및 개설자 정지</button>
 							</div>
 						</div>
 					</div>
