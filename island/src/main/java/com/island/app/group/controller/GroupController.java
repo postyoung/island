@@ -26,6 +26,9 @@ public class GroupController {
 
 		@GetMapping("create")
 		public String create()  {return "group/group-create";}
+
+	@GetMapping("edit")
+	public String edit()  {return "group/group-edit";}
 	}
 
 
