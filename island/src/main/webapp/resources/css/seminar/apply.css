@@ -11,6 +11,7 @@
   margin: auto;
   background-color: white;
   padding: 50px 120px 30px 120px;
+  border: 1px solid rgb(208, 208, 208);
 }
 
 #line{

@@ -22,7 +22,7 @@
     <h2><b>ISLAND</b> | 모집중인 세미나</h2>
   </div>
   <div id="seminar-serch-area">
-    <form class="d-flex" role="search" id="search-box">
+    <form action="${root}/seminar/search" class="d-flex" role="search" id="search-box">
       <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="select-size">
         <option selected>지역</option>
         <option value="1">서울</option>
@@ -43,7 +43,9 @@
   </div>
 
   <div id="select-menu">
-    <a href="#" class="ms-3 me-3">최신순</a>|<a href="#" class="ms-3 me-3">인기순</a>|<a href="#" class="ms-3 me-3">종료된 세미나</a>
+    <a href="#" class="ms-3 me-3">최신순</a>
+    |<a href="#" class="ms-3 me-3">인기순</a>
+    |<a href="#" class="ms-3 me-3">종료된 세미나</a>
     <button type="button" class="btn btn-outline-secondary" onclick="location.href='${root}/seminar/create'">개설하기</button>
   </div>
 
@@ -67,7 +69,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${root}/seminar/detail'">상세보기</button>
                   </div>
                   <small class="text-muted">유료</small>
                 </div>

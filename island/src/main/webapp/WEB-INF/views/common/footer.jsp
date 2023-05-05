@@ -15,19 +15,20 @@
         <div class="col-6 col-md-2 mb-3">
           <h5 class="footer-part">고객센터</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">1:1문의</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQ</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">공지사항</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/notice/list" class="nav-link p-0 text-body-secondary">공지사항</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/faq/list" class="nav-link p-0 text-body-secondary">FAQ</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/qna/list" class="nav-link p-0 text-body-secondary">1:1문의</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/seminarReview/list" class="nav-link p-0 text-body-secondary">세미나 리뷰</a></li>
+            <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">서비스약관 및 정책</a></li> -->
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">개인정보처리방침</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">서비스약관 및 정책</a></li>
           </ul>
         </div>
   
         <div class="col-6 col-md-2 mb-3" style="text-align: center;">
           <h5  class="footer-part">메뉴</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">소모임</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">세미나</a></li>
+            <li class="nav-item mb-2"><a href="${root}/group/list" class="nav-link p-0 text-body-secondary">소모임</a></li>
+            <li class="nav-item mb-2"><a href="${root}/seminar/list" class="nav-link p-0 text-body-secondary">세미나</a></li>
           </ul>
         </div>
   

@@ -223,6 +223,7 @@ table td{
   text-decoration: none;
   color: black;
   padding: 10px 10px;
+  cursor: pointer;
 }
 
 #line-third{
@@ -244,7 +245,7 @@ table td{
 }
 
 #reply-write-date{
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 #writed-content{
@@ -292,6 +293,10 @@ table td{
   padding-top: -10px;
   display:block;
   border: 1px solid black;
+}
+
+#member-report{
+  margin-left : 30px;
 }
 
 /* 모달창 영역 */

@@ -23,7 +23,7 @@
       <div class="title-area">
         <div class="title">SEMINAR</div>
         <div id="siren-area">
-          <button id="siren-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button id="siren-btn" data-bs-toggle="modal" data-bs-target="#seminarReport">
             <img src="${root}/resources/img/seminar/siren-icon.png" alt="신고아이콘" id="siren-icon">
           </button>
         </div>
@@ -109,7 +109,7 @@
                 모집마감일 : 2023.04.25 (화) 16:00 까지
               </div>
               <span id="free-or-pay"><b>유료</b></span> 21,000원
-              <button type="button" class="btn btn-info" onclick="location.href='/seminar-apply.html'">신청하기</button>
+              <button type="button" class="btn btn-info" onclick="location.href='${root}/seminar/apply'">신청하기</button>
             </div>
           </div>
         </div>
@@ -253,7 +253,7 @@
         <div id="reply-form">
           <form action="#" method="post">
             <img src="${root}/resources/img/seminar/upload/member-profile1.jpg" alt="프로필사진" id="member-photo"> 
-            <textarea class="form-control reply-textarea" id="exampleFormControlTextarea1" rows="3" placeholder="기대평이나 문의사항을 댓글에 남겨주세요. 부적절한 내용시 제재받을 수 있습니다."></textarea>
+            <textarea class="form-control reply-textarea" id="exampleFormControlTextarea1" rows="3" placeholder="기대평이나 문의사항을 댓글에 남겨주세요. 부적절한 내용시 제재받을 수 있습니다." style="resize: none;"></textarea>
             <input class="btn btn-outline-secondary" id="reply-write" type="submit" value="등록">
           </form>
           <div id="line-third"></div>
@@ -263,9 +263,14 @@
             <div id="reply-box">
               <span><b>박정*</b></span>
               <span id="reply-write-date">2023/04/12 13:40</span>
+              <span id="member-report">
+                <button id="siren-btn" data-bs-toggle="modal" data-bs-target="#memberReport">
+                  신고하기
+                </button>
+              </span>
               <span id="edit-and-delete-area">
                 <a href="#" class="reply-btn">수정</a>|
-                <a href="#" class="reply-btn">삭제</a>
+                <a class="reply-btn" onclick="replyDelete()">삭제</a>
               </span>
               <div id="writed-content">
                 세미나 참여 원하는데 참여 연령 조건이 따로 있을까요?
@@ -298,16 +303,16 @@
         </div>
       </div>
       <div id="btn-zone">
-        <button type="button" class="btn btn-dark" onclick="${root}/seminar/list">목록</button>
-        <button type="button" id="edit-btn" class="btn btn-light" onclick="${root}/seminar/edit">수정</button>
+        <button type="button" class="btn btn-dark" onclick="location.href='${root}/seminar/list'">목록</button>
+        <button type="button" id="edit-btn" class="btn btn-light" onclick="location.href='${root}/seminar/edit'">수정</button>
         <button type="button" id="delete-btn" class="btn btn-danger" onclick="seminarDelete()">삭제</button>
       </div>
     </div>
 
   </div>
 
-	<!-- 신고 모달 영역 -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<!-- 세미나 신고 모달 영역 -->
+	<div class="modal fade" id="seminarReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -321,30 +326,97 @@
 	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
 	          주의하시기 바랍니다.
 	        </div>
-	        <form>
+	        <form action="{root}/seminar/report" method="POST">
 	          <div class="mb-3">
-	            <label for="recipient-name" class="col-form-label">신고사유 카테고리</label>
-	            <select class="form-select">
-	              <option value="00" selected>선택하기</option>
-	              <option value="1">부적절한 컨텐츠로 선정적이거나, 음란물, 폭력적 컨텐츠를 포함</option>
-	              <option value="2">내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함</option>
-	              <option value="3">저작권을 침해하는 내용</option>
-	              <option value="4">기타</option>
-	            </select>
+	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
+	            <div id="category">
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1" style="font-size:15px;">
+	                부적절한 컨텐츠로 선정적이거나, 음란물, 폭력적 컨텐츠를 포함
+	              </label><br>
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함 
+	              </label><br>
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                저작권을 침해하는 내용
+	              </label><br> 
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                기타
+	              </label>
+	            </div>
 	          </div>
 	          <div class="mb-3">
 	            <label for="message-text" class="col-form-label">상세사유</label>
-	            <textarea class="form-control" id="message-text"></textarea>
+	            <textarea class="form-control" id="message-text" style="resize: none;"></textarea>
 	          </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		        <button type="submit" class="btn btn-danger">신고하기</button>
+		      </div>
 	        </form>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
+	<!-- 회원 신고 모달 영역 -->
+	<div class="modal fade" id="memberReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">회원 신고하기</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-	        <button type="button" class="btn btn-danger">신고하기</button>
+	      <div class="modal-body">
+	        <div class="caution">
+	          해당 회원의 활동이 부적절한 경우 신고를 할 수 있습니다.<br>
+	          신고된 내용이 부적절한지의 여부를 결정하여 회원 블락처리 및 댓글 삭제 조치가 주어지며
+	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
+	          주의하시기 바랍니다.
+	        </div>
+	        <form action="" method="POST">
+	          <div class="mb-3">
+	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
+	            <div id="category">
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                욕설/비방/혐오 발언으로 다른회원에게 공격적인 언행
+	              </label><br>
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                광고, 홍보, 중복 등록 등 스팸/도배 행위 
+	              </label><br>
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                성적/폭력적인 내용으로 불법적인 행동
+	              </label><br> 
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+	              <label class="form-check-label" for="flexRadioDefault1">
+	                기타
+	            </div>
+	            </label>
+	          </div>
+	          <div class="mb-3">
+	            <label for="message-text" class="col-form-label">상세사유</label>
+	            <textarea class="form-control" id="message-text" style="resize: none;"></textarea>
+	          </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		        <button type="submit" class="btn btn-danger">신고하기</button>
+		      </div>
+	        </form>
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	
+	
+	
 
 
 

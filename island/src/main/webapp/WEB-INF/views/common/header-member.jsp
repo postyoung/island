@@ -18,40 +18,40 @@
       <div class="px-3 py-2 text-bg-white" style="background-color: white">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" id="header-menu">
-            <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <a href="${root}/main" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
               <img src="${root}/resources/img/common-logo/main-logo.png" alt="로고" width="200px" height="100px">
             </a>
   
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
              
               <li>
-                <a href="#" class="nav-link text-black">
+                <a href="${root}/group/list" class="nav-link text-black">
                   <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
                   모임
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link text-black">
+                <a href="${root}/seminar/list" class="nav-link text-black">
                   <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
                   세미나
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link text-black">
+                <a href="${root}/community/notice/list" class="nav-link text-black">
                   <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
                   커뮤니티
                 </a>
               </li>
 
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 33px;">
+                <a class="nav-link dropdown-toggle" href="${root}/mypage/home" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 33px;">
                   마이페이지
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">회원 정보 수정</a></li>
-                  <li><a class="dropdown-item" href="#">신청 내역</a></li>
-                  <li><a class="dropdown-item" href="#">관심 내역</a></li>
-                  <li><a class="dropdown-item" href="#">문의 내역</a></li>
+                  <li><a class="dropdown-item" href="${root}/mypage/edit">회원 정보 수정</a></li>
+                  <li><a class="dropdown-item" href="${root}/mypage/list/enrollList/group">신청 내역</a></li>
+                  <li><a class="dropdown-item" href="${root}/mypage/list/likeList/group">관심 내역</a></li>
+                  <li><a class="dropdown-item" href="${root}/mypage/list/writeList">문의 내역</a></li>
                 </ul>
               </li>
 
@@ -66,8 +66,8 @@
               </li>
             </ul>
             <div class="text-end">
-              <button type="button" class="btn btn-outline-success" id="header-btn-login">LOGIN</button>
-              <button type="button" class="btn btn-outline-primary" id="header-btn-signup">SIGN-UP</button>
+              <button type="button" class="btn btn-outline-success" id="header-btn-login" onclick="location.href='${root}/member/login'">LOGIN</button>
+              <button type="button" class="btn btn-outline-primary" id="header-btn-signup" onclick="location.href='${root}/member/join'">SIGN-UP</button>
             </div>
           </div>
         </div>
