@@ -50,7 +50,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="align-middle">
+									<tr class="align-middle" onclick="location.href='${root}/admin/report/group/detail'">
 										<td>1</td>
 										<td>이상한 소모임</td>
 										<td>홍보/광고글</td>

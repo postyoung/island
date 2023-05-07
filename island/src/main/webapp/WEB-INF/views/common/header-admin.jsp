@@ -31,7 +31,7 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- 왼쪽 상단 로고 -->
-		<a class="navbar-brand ps-3" href="index.html">ISLAND</a>
+		<a class="navbar-brand ps-3" href="${root}/admin/main">ISLAND</a>
 		<!-- 왼쪽 nav 버튼 -->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -50,7 +50,7 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!"
+					<li><a class="dropdown-item" href="${root}/admin/edit"
 						style="text-align: center;">정보 수정</a></li>
 					<li><a class="dropdown-item" href="#!"
 						style="text-align: center;">로그아웃</a></li>

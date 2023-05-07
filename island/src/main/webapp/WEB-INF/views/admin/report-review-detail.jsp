@@ -43,7 +43,8 @@
 											value="불건전">
 									</div>
 									<button type="button" class="btn btn-secondary btn-lg groupBtn"
-										style="height: 50px; margin-top: 10px; margin-right: 10px;">해당
+										style="height: 50px; margin-top: 10px; margin-right: 10px;"
+										onclick="window.open('${root}/community/seminarReview/detail')">해당
 										리뷰 조회</button>
 								</div>
 							</div>

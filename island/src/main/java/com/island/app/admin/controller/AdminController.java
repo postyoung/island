@@ -37,9 +37,9 @@ public class AdminController {
 	}
 
 	// 권한 상세 설정
-	@RequestMapping("authorize/choice")
+	@RequestMapping("authorize/detail")
 	public String authorizeChoice() {
-		return "admin/authorize-choice";
+		return "admin/authorize-detail";
 	}
 
 	// 계정 삭제
