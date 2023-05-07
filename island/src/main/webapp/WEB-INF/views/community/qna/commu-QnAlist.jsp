@@ -72,7 +72,7 @@
         </tbody>
       </table>
     </div>
-  <form action="${root}/qna/write">
+  <form action="${root}/community/qna/write">
     <div>
       <input type="submit" class="btn btn-outline-primary" value="작성하기" style="margin-left: 79%;">
     </div>

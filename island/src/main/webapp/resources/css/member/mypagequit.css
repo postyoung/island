@@ -21,7 +21,7 @@ ul li {
 }
 
 #content {
-    padding: 20px 0;
+    --padding: 20px 0;
 }
 figcaption, figure, main {
     display: block;
@@ -294,4 +294,9 @@ h4{
 .bi.flex-shrink-0.me-2{
     width: 20px;
     height: 20px;
+}
+#content h2.main_title {
+    padding: 7px 0;
+    font-size: 26px;
+    font-weight: normal;
 }

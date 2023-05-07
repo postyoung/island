@@ -82,7 +82,7 @@
 
 /* 이미지 배경화면  */
 .back-area{
-	background: url("/img/예시1.jpg") no-repeat center center;
+	background: url("/app/resources/img/community/common/notice.jpg") no-repeat center center;
   /* background-repeat: no-repeat; */
   background-size: cover;
   color: rgb(0, 0, 0);

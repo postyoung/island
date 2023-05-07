@@ -196,6 +196,9 @@ a {
 #validationServer01 {
     width: 170px;
 }
+#validationFeedback_Pwd{
+    color: red;
+}
 
 
 

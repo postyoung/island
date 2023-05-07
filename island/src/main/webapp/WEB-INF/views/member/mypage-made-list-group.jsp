@@ -61,7 +61,7 @@
                                                                                 <td>1</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기"></td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기" onclick="location.href='${root}/group/edit'"></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                     </table>

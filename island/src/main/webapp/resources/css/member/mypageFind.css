@@ -141,7 +141,10 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     font-size: 26px;
     font-weight: normal;
 }
-
+ol, ul {
+    /* padding-left: 2rem; */
+    padding-left: 0;
+}
 
 
 

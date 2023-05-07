@@ -10,10 +10,10 @@
 </head>
 <body>
  <nav id="communication-menu">
-      <a href="${root}/notice/list"><b>공지사항</b></a>
-      <a href="#">자주하는질문</a>
-      <a href="${root}/qna/list">1:1 문의하기</a>
-      <a href="/commu-seminar-review copy.html">세미나 리뷰</a>
+      <a href="${root}/community/notice/list"><b>공지사항</b></a>
+      <a href="${root}/community/faq/list">자주하는질문</a>
+      <a href="${root}/community/qna/list">1:1 문의하기</a>
+      <a href="${root}/community/seminarReview/list">세미나 리뷰</a>
     </nav>
 
 </body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ISLAND 공지사항 내용 | ISLAND</title>
+<title>ISLAND 1:1 공지사항 | ISLAND</title>
 
 <!-- header -->
 <%@ include file="/WEB-INF/views/common/header-member.jsp"%>
@@ -27,14 +27,13 @@
 		
 		<!-- 고객센터 메뉴바 -->
 	   <%@ include file="/WEB-INF/views/community/commu-nav.jsp" %>
-			<!-- 상세내역  -->
+			<!-- 공지사항 양식  -->
 			<div id="wrap">
 				
-			<form class="inquiryWriteform" style="margin-left: 225px;" action="${root}/admin/inquiry/list" method="post">
+			<div class="inquiryWriteform" style="margin-left: 225px;" action="${root}/admin/inquiry/list" method="post">
 				<div class="container">
-					<h2 class="title">공지사항 내용</h2>
+					<h2 class="title">공지사항</h2>
 					<br>
-					<form class="form-horizontal" >
 						<div class="form-group">
 						<div class="row_wrap">
 						<div class="input_title">
@@ -42,59 +41,48 @@
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" name="name" id="name"  required> 
+									<div  class="form-control" name="name" id="name"></div>
 								</div>
 							</div>
-							
-							
-							
-							<!-- 카테고리 드롭다운 -->
-							<div class="search_cate_area">
-
+						<div class="form-group">
 							<label for="title">제목</label>
-							
-							<select class="form-select" aria-label="Default select example">
-							<option selected>카테고리</option>
-							<option value="1">회원</option>
-							<option value="2">소모임</option>
-							<option value="3">세미나</option>
-							<option value="3">결제/환불</option>
-							<option value="3">기타</option>
-						</select>
-							<div class="col-lg-4">
-								<input type="text" class="form-control" name="title" id="title_input"  required>
+							<div>
+								<div class="form-control" name="title" id="title_input" ></div>
 							</div>
+						</div>
 						</div>
 						<div class="form-group">
 	
 							<label for="content">내용</label>
 	
 							<div>
-								<textarea class="form-control" name="content" id="content" rows="16"  required></textarea>
+								<div class="form-control" name="content" id="content" ></div>
 							</div>
 						
 						</div>
 						
 					
 						
-					</div>
-					<br>
-					<br>
-					<!-- 버튼영역 -->
-					<div class="btn_area">
-						<a  class="btn btn-primary" style="line-height: 2;" href="${root}/notice/list">목록</a>
-					</div>
 				
+					<br>
+					<br>
+						<!-- 버튼영역 --> 
+					<div class="btn_area">
+						<a  class="btn btn-primary" style="line-height: 2;" href="${root}/community/notice/list">목록</a>
+					</div>
+					
 					
 				
+					
+				</div>
 				</div>
 						
-					</form>
-				</div>
-			
 			</div>
 			
-			</div>
+		</div>
+			
+	</div>
+
 
 			
 			
