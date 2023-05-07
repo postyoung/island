@@ -73,7 +73,7 @@
 
 														<div class="col-lg-12">
 															<textarea class="form-control" name="content"
-																id="content" rows="16"
+																id="content" rows="10"
 																placeholder="로그인 시도를 하였지만 관리자에게 문의하라는 메시지 창이 뜹니다."></textarea>
 														</div>
 

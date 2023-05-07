@@ -42,7 +42,7 @@
 
 						<!-- 문의하기 양식  -->
 						<div id="wrap">
-							<%-- <form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/write" method="get"> --%>
+							<form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/write" method="get">
 								<div class="container">
 									<h2>문의하기</h2>
 									<br>
@@ -68,12 +68,12 @@
 										</table>
 			
 										<div class="form-group">
-											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
-												<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
-	
-											</div>
+										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
+											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
+											<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+
 										</div>
+									</div>
 									</form>		
 								</div>
 							</form>

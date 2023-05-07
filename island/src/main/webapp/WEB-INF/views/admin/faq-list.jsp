@@ -59,7 +59,7 @@ div>h2 {
 							<tbody>
 								<tr> 
 									<td>00</td>
-									<td>회원가입의 조건이 있나요?</td>
+									<td onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/detail'">회원가입의 조건이 있나요?</td>
 									<td>관리자</td>
 									<td>20210321</td>
 								</tr>

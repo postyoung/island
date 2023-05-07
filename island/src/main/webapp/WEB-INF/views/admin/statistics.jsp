@@ -71,7 +71,7 @@ to {
 						<div class="card mb-4">
 							<div class="card-header">
 								<i class="fas fa-chart-bar me-1"></i>
-								 Bar Chart Example
+								 월별 모임 참여도
 							</div>
 							<div class="card-body">
 								<canvas id="myBarChart" width="572" height="285" style="display: blasck; height: 325px; width: 651px;" class="chart-render-monitor"></canvas>
@@ -83,7 +83,7 @@ to {
 						<div class="card mb-4">
 							<div class="card-header">
 								<i class="fas fa-chart-pie me-1"></i> 
-								Pie Chart Example
+								모임조회수
 							</div>
 							<div class="card-body">
 								<canvas id="myPieChart" width="572" height="285" style="display: blasck; height: 325px; width: 651px;" class="chart-render-monitor"></canvas>
@@ -95,7 +95,7 @@ to {
 						<div class="card mb-4">
 							<div class="card-header">
 								<i class="fas fa-chart-bar me-1"></i>
-								 세미나
+								 세미나 Top5
 							</div>
 							<div class="card-body">
 								
@@ -128,6 +128,11 @@ to {
 										<td>[무료강의] 여기저기 다 같은 인테리어 어떤게 문제일까? </td>
 										<td>60</td>
 									</tr>
+									<tr>
+										<td>5</td>
+										<td>인공지능&로봇 개발직무 취업특강 및 과정 설명회 </td>
+										<td>37</td>
+									</tr>
 								</tbody>
 							</table>
 							
@@ -139,7 +144,7 @@ to {
 						<div class="card mb-4">
 							<div class="card-header">
 								<i class="fas fa-chart-bar me-1"></i>
-								 소모임
+								 소모임 Top5
 							</div>
 							<div class="card-body">
 								
@@ -159,7 +164,7 @@ to {
 									</tr>
 									<tr>
 										<td>2</td>
-										<td>유튜브 ahorts로 무작정 시작하기!!</td>
+										<td>유튜브 shorts로 무작정 시작하기!!</td>
 										<td>77</td>
 									</tr>
 									<tr>
@@ -171,6 +176,11 @@ to {
 										<td>4</td>
 										<td>안국일요독서모임(5/21)이토록 굉장한 세계 </td>
 										<td>55</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>광교호수공원에서 같이 뛰어요! Healthier Life 크루모집</td>
+										<td>30</td>
 									</tr>
 								</tbody>
 							</table>

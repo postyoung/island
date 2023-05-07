@@ -64,7 +64,7 @@
 										<tbody>
 											<tr>
 												<td class="text-center">회원</td>
-												<td class="text-center">로그인되지 않습니다.</td>
+												<td class="text-center" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/detail'">로그인되지 않습니다.</td>
 												<td class="text-center">내가그린기린</td>
 												<td class="text-center">20221007</td>
 												<td class="text-center">답변대기</td>
@@ -112,12 +112,16 @@
 										</c:forEach> --%>
 										</tbody>
 									</table>
+									
+									<!-- 버튼 잠시 주석처리..
 									<div class="form-group">
 										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
 											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
 
 										</div>
-									</div>
+									</div> -->
+									
+									
 									<%-- <table>
 										<tr>
 											<td><c:if test="${sessionScope.id!=null }">
