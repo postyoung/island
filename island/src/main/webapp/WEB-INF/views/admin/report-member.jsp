@@ -55,7 +55,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="align-middle">
+									<tr class="align-middle" onclick="location.href='${root}/admin/report/member/detail'">
 										<td>10</td>
 										<td>wodnr1225</td>
 										<td>홍보/광고글 작성</td>
@@ -126,3 +126,6 @@
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+
+</script>

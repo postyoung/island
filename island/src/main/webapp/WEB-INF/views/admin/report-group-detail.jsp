@@ -43,8 +43,9 @@
 											value="불건전">
 									</div>
 									<button type="button" class="btn btn-secondary btn-lg groupBtn"
-										style="height: 50px; margin-top: 10px; margin-right: 10px;">해당
-										소모임 조회</button>
+										style="height: 50px; margin-top: 10px; margin-right: 10px;"
+										onclick="window.open('${root}/group/detail')">해당 소모임
+										조회</button>
 								</div>
 							</div>
 							<div class="mb-3">
