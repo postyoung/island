@@ -49,7 +49,7 @@
 							<tbody>
 								<tr>
 									<td>00</td>
-									<td>[약관] 개인정보취급방침 변경, 취소 및 환불약관 추가에 따른 안내</td>
+									<td onclick=" location.href='http://127.0.0.1:8888/app/admin/notice/detail'"/>[약관] 개인정보취급방침 변경, 취소 및 환불약관 추가에 따른 안내</td>
 									<td>관리자</td>
 									<td>20210321</td>
 								</tr>
