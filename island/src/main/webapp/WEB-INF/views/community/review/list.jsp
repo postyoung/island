@@ -23,16 +23,16 @@
 	</div>
 	
 	<nav id="communication-menu">
-	  <a href="#" class="menu-title">공지사항</a>
+	  <a href="${root}/community/notice/list" class="menu-title">공지사항</a>
 	  <a href="${root}/community/faq/list">자주하는질문</a>
-	  <a href="#">1:1 문의하기</a>
-	  <a href="${root}/communication/seminarReview/list"><b>세미나 리뷰</b></a>
+	  <a href="${root}/community/qna/list">1:1 문의하기</a>
+	  <a href="${root}/community/seminarReview/list"><b>세미나 리뷰</b></a>
 	</nav>
 	
 	<!-- 검색영역 -->
 	<div id="search-area">
 	  <div>
-	    <form action="" id="search">
+	    <form action="${root}/community/seminarReview/search" id="search">
 	        <input type=text class="form-control search-box"  name="fd" placeholder="리뷰에 해당하는 세미나명을 검색어로 입력해주세요.">
 	        <button type="submit" class="btn btn-dark search-btn">검색</button>
 	    </form>
@@ -61,7 +61,7 @@
 	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
 	              </div>
 	            </div>
-	            <a href="" class="review-detail-btn">
+	            <a href="${root}/community/seminarReview/detail" class="review-detail-btn">
 	              <i class="bi bi-caret-right"></i>
 	              상세보기
 	            </a>

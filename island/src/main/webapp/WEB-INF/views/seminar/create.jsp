@@ -23,7 +23,7 @@
       <div id="line"></div>
   
   
-      <form action="" method="POST">
+      <form action="${root}/seminar/create" method="POST">
         <article id="photo-file-area">
           <div id="image_container"></div>
           <div class="mb-3">
@@ -376,7 +376,7 @@
 
         <div id="btn-area">
           <input class="btn btn-success" type="submit" value="개설하기">
-          <button class="btn btn-light" id="cancle-btn" type="button" onclick="${root}/seminar/list">취소하기</button>
+          <button class="btn btn-light" id="cancle-btn" type="button" onclick="history.back();">취소하기</button>
         </div>
 
       

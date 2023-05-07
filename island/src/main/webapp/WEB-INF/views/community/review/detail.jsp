@@ -26,10 +26,10 @@
 	</div>
 	
 	<nav id="communication-menu">
-	  <a href="#" class="menu-title">공지사항</a>
-	  <a href="#">자주하는질문</a>
-	  <a href="#">1:1 문의하기</a>
-	  <a href="#"><b>세미나 리뷰</b></a>
+	  <a href="${root}/community/notice/list" class="menu-title">공지사항</a>
+	  <a href="${root}/community/faq/list">자주하는질문</a>
+	  <a href="${root}/community/qna/list">1:1 문의하기</a>
+	  <a href="${root}/community/seminarReview/list"><b>세미나 리뷰</b></a>
 	</nav>
 	
 	<!-- 타이틀영역 -->
@@ -89,9 +89,9 @@
 	        </tr>
 	      </table>
 	      <div id="btn-area">
-	        <button type="button" type="submit" class="btn btn-success">수정하기</button>
+	        <button type="button" type="submit" class="btn btn-success" onclick="location.href='${root}/community/seminarReview/edit'">수정하기</button>
 	        <button type="button" type="submit" class="btn btn-danger box" onclick="reviewDelete()">삭제</button>
-	        <button type="button" class="btn btn-secondary box">목록</button>
+	        <button type="button" class="btn btn-secondary box" onclick="location.href='${root}/community/seminarReview/list'">목록</button>
 	      </div>
 	  </div>
 	</div>
@@ -113,7 +113,7 @@
 	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
 	          주의하시기 바랍니다.
 	        </div>
-	        <form>
+	        <form action="" method="POST">
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
 	            <div id="category">
@@ -145,12 +145,12 @@
 	            <label for="message-text" class="col-form-label">상세사유</label>
 	            <textarea class="form-control" id="message-text" style="resize: none;"></textarea>
 	          </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+		        <button type="submit" class="btn btn-danger">신고하기</button>
+		      </div>
 	        </form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-	        <button type="button" class="btn btn-danger">신고하기</button>
-	      </div>
 	    </div>
 	  </div>
 	</div>

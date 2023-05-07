@@ -69,36 +69,38 @@
         <div class="px-3 py-2 text-bg-white">
           <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start" id="header-menu">
-              <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+              <a href="${root}/main" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                 <img src="${root}/resources/img/common-logo/main-logo.png" alt="로고" width="200px" height="100px">
               </a>
     
               <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                
                 <li>
-                  <a href="#" class="nav-link text-white">
+                  <a href="${root}/group/list" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>
                     모임
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link text-white">
+                  <a href="${root}/seminar/list" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
                     세미나
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="nav-link text-white">
+                  <a href="${root}/community/notice/list" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"/></svg>
                     커뮤니티
                   </a>
                 </li>
+                
                 <li>
-                  <a href="#" class="nav-link text-white">
+                  <a href="${root}/mypage/home" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
                     마이페이지
                   </a>
                 </li>
+                
                 <li>
                   <a href="#" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
@@ -109,8 +111,8 @@
                 </li>
               </ul>
               <div class="text-end">
-                <button type="button" class="btn btn-light text-white me-2 btn-lg" id="header-btn-text">Login</button>
-                <button type="button" class="btn btn-primary">Sign-up</button>
+                <button type="button" class="btn btn-light text-white me-2 btn-lg" id="header-btn-text" onclick="location.href='${root}/member/login'">Login</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='${root}/member/join'">Sign-up</button>
               </div>
             </div>
           </div>
@@ -246,19 +248,20 @@
       <div class="col-6 col-md-2 mb-3">
         <h5 class="footer-part">고객센터</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">1:1문의</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQ</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">공지사항</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">개인정보처리방침</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">서비스약관 및 정책</a></li>
+          <li class="nav-item mb-2"><a href="${root}/community/notice/list" class="nav-link p-0 text-body-secondary">공지사항</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/faq/list" class="nav-link p-0 text-body-secondary">FAQ</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/qna/list" class="nav-link p-0 text-body-secondary">1:1문의</a></li>
+            <li class="nav-item mb-2"><a href="${root}/community/seminarReview/list" class="nav-link p-0 text-body-secondary">세미나 리뷰</a></li>
+            <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">서비스약관 및 정책</a></li> -->
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">개인정보처리방침</a></li>
         </ul>
       </div>
 
       <div class="col-6 col-md-2 mb-3" style="text-align: center;">
         <h5  class="footer-part">메뉴</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">소모임</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">세미나</a></li>
+          <li class="nav-item mb-2"><a href="${root}/group/list" class="nav-link p-0 text-body-secondary">소모임</a></li>
+            <li class="nav-item mb-2"><a href="${root}/seminar/list" class="nav-link p-0 text-body-secondary">세미나</a></li>
         </ul>
       </div>
 
@@ -274,7 +277,7 @@
       </div>
 
       <div class="col-6 col-md-2 mb-3">
-        <img id="footer-logo" src="/img/메인로고.png" alt="이미지" width="200px" height="100px" >
+        <img id="footer-logo" src="${root}/resources/img/common-logo/main-logo.png" alt="이미지" width="200px" height="100px" >
       </div>
     </div>
 

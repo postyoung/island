@@ -21,9 +21,9 @@
 	</div>
 	
 	<nav id="communication-menu">
-	  <a href="#">공지사항</a>
+	  <a href="${root}/community/notice/list">공지사항</a>
 	  <a href="${root}/community/faq/list"><b>자주하는질문</b></a>
-	  <a href="#">1:1 문의하기</a>
+	  <a href="${root}/community/qna/list">1:1 문의하기</a>
 	  <a href="${root}/community/seminarReview/list">세미나 리뷰</a>
 	</nav>
 	

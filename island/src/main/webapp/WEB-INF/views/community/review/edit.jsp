@@ -33,7 +33,7 @@
 	      [세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span>
 	    </div>
 	
-	      <form action="" method="post">
+	      <form action="${root}/community/seminarReview/edit" method="post">
 	        <table>
 	          <tr>
 	            <th class="text-center">제목</th>
@@ -84,8 +84,8 @@
 	          </tr>
 	        </table>
 	        <div id="btn-area">
-	          <button type="button" type="submit" class="btn btn-primary">수정</button>
-	          <button type="button" class="btn btn-secondary cancle">취소</button>
+	          <button type="submit" type="submit" class="btn btn-primary">수정</button>
+	          <button type="button" class="btn btn-secondary cancle" onclick="history.back();">취소</button>
 	        </div>
 	      </form>
 	  </div>

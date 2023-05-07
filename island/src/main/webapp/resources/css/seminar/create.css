@@ -5,6 +5,7 @@
   margin: auto;
   background-color: white;
   padding: 50px 50px 30px 60px;
+  border: 1px solid rgb(208, 208, 208);
 }
 
 #seminar-create-title{

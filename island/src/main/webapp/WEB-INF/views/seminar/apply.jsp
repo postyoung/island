@@ -154,7 +154,7 @@
 
         <div id="btn-area">
           <button type="button" class="btn btn-primary">결제하기</button>
-          <button type="button" class="btn btn-secondary" id="cancle">취소하기</button>
+          <button type="button" class="btn btn-secondary" id="cancle" onclick="history.back();">취소하기</button>
         </div>
 
       </div>

@@ -20,3 +20,11 @@
 
       
     }
+    
+    
+    //댓글 삭제버튼
+    function replyDelete(){
+      if(confirm("작성하신 댓글을 삭제하시겠습니까?")){
+        location.href="${root}/";
+      }
+    }
