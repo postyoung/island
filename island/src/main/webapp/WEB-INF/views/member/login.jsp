@@ -29,11 +29,11 @@
 
                       <ul class="check_area">
                           <li>
-                              <input type="checkbox">
-                              <label for="" style="margin-right: 158px;">아이디 저장</label>
+                              <input type="checkbox" id="save_id">
+                              <label for="save_id" style="margin-right: 158px;">아이디 저장</label>
                             </li>
                             <li class="find">
-                                <a href="/WEB-INF/views/member/account/find" style="margin-right: 10px;">아이디 / 비밀번호찾기</a>
+                                <a href="${root}/mypage/find" style="margin-right: 10px;">아이디 / 비밀번호찾기</a>
                             </li>
                             <li class="join">
                                 <a href="${root}/member/join">회원가입</a>

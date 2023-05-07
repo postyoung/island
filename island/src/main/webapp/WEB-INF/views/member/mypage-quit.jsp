@@ -91,7 +91,7 @@
                                         <!-- 버튼영역시작 -->
                                         <div class="bottom_btn_area">
                                             <div class="btn_wrap">
-                                                <button type="button" class="btn btn-primary" >취소하기<a href="${root}/member/mypage/home"></a></button>
+                                               
                                                 <button type="submit" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">탈퇴하기</button>
                                             </div>
                                             <!-- Modal -->
@@ -103,13 +103,13 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                소모임/세미나 관련 데이터가 모두 삭제됩니다. <br>
+                                                <h3>소모임/세미나 관련 데이터가 <br> 모두 삭제됩니다.</h3> <br>
                                                 동일한 아이디로 재가입이 불가능합니다. <br>
                                                 탈퇴하시겠습니까?
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
-                                                <button type="button" class="btn btn-primary">취소</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >확인</button>
+                                                <button type="button" class="btn btn-primary" onclick="location.href='${root}/mypage/quit'">취소</button>
                                                 </div>
                                             </div>
                                             </div>

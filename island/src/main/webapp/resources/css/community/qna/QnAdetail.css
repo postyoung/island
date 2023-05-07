@@ -93,6 +93,7 @@
 	.form-control {
 		display: block;
 		width: 840px;
+		height: 40px;
 		margin-bottom: 13px;
 		padding: 0.375rem 0.75rem;
 		font-size: 1rem;
@@ -130,6 +131,13 @@
     margin-top: 7%;
     margin-bottom: 7%;
 	}
+	#content{
+		height: 400px;
+	}
+	#category{
+		width: 128px;
+		margin-right: 10px;
+	}
 	
 
 
@@ -140,7 +148,7 @@
 
 /* 이미지 배경화면  */
 .back-area{
-	background: url("/img/예시1.jpg") no-repeat center center;
+	background: url("/app/resources/img/community/common/notice.jpg") no-repeat center center;
   /* background-repeat: no-repeat; */
   background-size: cover;
   color: rgb(0, 0, 0);

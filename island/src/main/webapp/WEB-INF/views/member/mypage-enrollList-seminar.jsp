@@ -59,7 +59,7 @@
                                                                                 <td>100</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td><input type="submit" class="btn btn-outline-primary" value="리뷰작성"></td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="리뷰작성" onclick="location.href='${root}/community/seminarReview/write'"></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                     </table>

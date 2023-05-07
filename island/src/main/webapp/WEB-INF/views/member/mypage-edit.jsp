@@ -8,7 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISLAND 마이페이지|회원정보수정 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- css연결 -->
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEdit.css">
+    <!-- js연결 -->
+    <script src="${root}/resources/js/member/edit.js" defer></script>
 </head>
 <body>
     <div id="wrap">
@@ -80,11 +84,15 @@
                                             <div class="channel_home">
                                                 <li class="homepage">
                                                     <span class="label">비밀번호 변경</span>
-                                                    <span class="value"><input type="password" value="abc123!" class="form-control"></span>
+                                                    <span class="value"><input type="password"  class="form-control" id="pwd"></span>
+                                                    <br>
+                                                    <div id="validationFeedback_Pwd" class="validationFeedback_Pwd">
+                                                        최소 8 자 대문자,소문자,숫자,특수문자 각 하나이상을 포함하여 작성하시오.
+                                                      </div>
                                                 </li>
                                                 <li class="homepage">
                                                     <span class="label">비밀번호 변경확인</span>
-                                                    <span class="value"><input type="password" value="abc123!" class="form-control is-invalid"></span>
+                                                    <span class="value"><input type="password" class="form-control " id="pwd2"></span>
                                                 </li>
                                                 
                                             </div>
