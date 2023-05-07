@@ -105,7 +105,7 @@
                             <input type="text" id="sample4_detailAddress" placeholder="상세주소">
                             <input type="text" id="sample4_extraAddress" placeholder="참고항목">
                         </div>
-                        <button type="submit">개설하기</button>
+                        <a href="${root}/group/detail"><button type="submit">수정하기</button></a>
                 </form>
             </div>
         </div>

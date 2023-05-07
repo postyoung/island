@@ -82,8 +82,8 @@
     </tbody>
   </table>
   <div class="find-btn">
-    <button class="btn btn-primary">신청하기</button>
-    <button class="btn btn-primary">취소하기</button>
+    <a href="${root}/group/detail"> <button class="btn btn-primary">신청하기</button></a>
+    <a href="${root}/group/detail"> <button class="btn btn-primary">취소하기</button></a>
   </div>
 
 
