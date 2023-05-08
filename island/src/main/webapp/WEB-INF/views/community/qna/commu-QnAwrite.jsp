@@ -42,19 +42,19 @@
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요" required> 
+									<input type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요" required value="샴푸의요정" readonly> 
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="phone">전화번호</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" name="phone" id="phone" placeholder="연락처를 입력해주세요" required>
+									<input type="text" class="form-control" name="phone" id="phone" placeholder="연락처를 입력해주세요" required value="01012345678" readonly>
 								</div>
 							</div>
 							<div class="form-group">
 								<label  for="email">이메일</label>
 								<div class="col-sm-4">
-									<input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요" required >
+									<input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요" required value="abc@email.com" readonly>
 								</div>
 							</div>
 							 
@@ -105,7 +105,7 @@
 					<br>
 					<!-- 버튼영역 -->
 					<div class="btn_area">
-						<input type="submit" class="btn btn-outline-primary" value="등록"></input>
+						<input type="submit" class="btn btn-outline-primary" value="등록" onclick="location.href='${root}/community/qna/list'"></input>
 						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/list">취소</a>
 					</div>
 					

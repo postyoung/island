@@ -45,8 +45,9 @@
                                                                             <th>그룹명</th>
                                                                             <th>모임장소</th>
                                                                             <th>모집인원</th>
-                                                                            <th>신청기간</th>
-                                                                            <th>모임기간</th>
+                                                                            <th>신청마감일시</th>
+                                                                            <th>모임일시</th>
+                                                                            <th>관심취소</th>
                                                                         </thead>
                                                                    
                                                                             <tbody>
@@ -54,8 +55,9 @@
                                                                                 <td>아이디어조</td>
                                                                                 <td>강남구 역삼동</td>
                                                                                 <td>10</td>
+                                                                                <td>2023-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="관심취소" ></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                     </table>

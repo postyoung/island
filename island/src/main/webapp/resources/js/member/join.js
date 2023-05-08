@@ -17,13 +17,18 @@ $(document).ready(function() {
   //이름
   $(document).ready(function() {
     $('#name').on('input', function() {
-      if ($(this).val() !== '') {
-        $(this).removeClass('form-control').addClass('form-control is-valid');
+      const name = $(this).val();
+       //특수문자제외 2글자이상
+      const regex = /^[a-zA-Z0-9가-힣\s_]{2,}$/;
+  
+      if (regex.test(name)) {
+        $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
       } else {
-        $(this).removeClass('form-control is-valid').addClass('form-control');
+        $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
       }
     });
   });
+  
 
   //아이디 정규식/유효성검사
   $(document).ready(function() {
@@ -46,10 +51,14 @@ $(document).ready(function() {
   //닉네임
   $(document).ready(function() {
     $('#nick').on('input', function() {
-      if ($(this).val() !== '') {
-        $(this).removeClass('form-control').addClass('form-control is-valid');
+      const nick = $(this).val();
+      //2글자이상 자음,모음, 특수문자제외 
+      const regex = /^[a-zA-Z0-9가-힣\s_]{2,}$/;
+  
+      if (regex.test(nick)) {
+        $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
       } else {
-        $(this).removeClass('form-control is-valid').addClass('form-control');
+        $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
       }
     });
   });

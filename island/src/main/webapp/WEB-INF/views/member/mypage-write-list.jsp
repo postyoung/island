@@ -33,13 +33,15 @@
                                                   <th>글번호</th>
                                                   <th>제목</th>
                                                   <th>작성일</th>
+                                                  <th>답변여부</th>
                                                 </tr>
                                               </thead>
                                               <tbody class="table-group-divider">
                                                 <tr>
                                                   <td>01</td>
-                                                  <td>아이디 찾기가 안돼요..</td>
+                                                  <td><a href="${root}/community/qna/detail">아이디 찾기가 안돼요..</a></td>
                                                   <td>2021/03/21</td>
+                                                  <td>N</td>
                                                 </tr>
                                           
                                               </tbody>

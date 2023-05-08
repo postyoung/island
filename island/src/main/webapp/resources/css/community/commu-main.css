@@ -13,6 +13,11 @@ grid-template-columns: repeat(4, 1fr);
 grid-template-rows: 1fr;
 place-items: center center;
 }
+
+a{
+	text-decoration: none;
+	color: black;
+}
 	
 	nav a {
 		text-decoration: none;
