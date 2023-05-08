@@ -52,8 +52,9 @@
 										</tr>
 									</table>
 									<div id="btn-area" style="text-align: right; margin-top: 10px;">
-										<button type="submit" class="btn btn-md btn-primary" >수정</button>
-										<a href="boardRemove.do?idx=${vo.idx}"><button type="button" class="btn btn-md btn-warning">삭제</button></a>
+										<button type="submit" class="btn btn-md btn-warning" >수정</button>
+										<%-- <a href="boardRemove.do?idx=${vo.idx}"> --%>
+										<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-danger">삭제</button></a>
 										<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-info">목록</button></a>
 									</div>
 		

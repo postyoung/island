@@ -64,8 +64,8 @@
 							</div>
 
 							<div id="btn-area" style="text-align: right; margin-top:10px;">
-										<button type="submit" class="btn btn-md btn-primary" >수정</button>
-										<a href="${root}/admin/faq/list"><button type="button" class="btn btn-md btn-warning">취소</button></a>
+										<button type="submit" class="btn btn-md btn-warning" >수정</button>
+										<a href="${root}/admin/faq/list"><button type="button" class="btn btn-md btn-info">취소</button></a>
 									</div>
 						</form>
 					</div>

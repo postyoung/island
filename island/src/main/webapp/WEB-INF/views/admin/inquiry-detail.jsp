@@ -70,7 +70,7 @@
 										<div class="form-group">
 										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
 											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
-											<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
 
 										</div>
 									</div>
