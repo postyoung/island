@@ -61,8 +61,8 @@
 							</table>
 
 							<div id="btn-area" style="text-align: right; margin-top:10px;">
-								<button type="submit" class="btn btn-md btn-primary" >수정</button>
-								<a href="boardRemove.do?idx=${vo.idx}"><button type="button" class="btn btn-md btn-warning">취소</button></a>
+								<button type="submit" class="btn btn-md btn-warning" >수정</button>
+								<%-- <a href="boardRemove.do?idx=${vo.idx}"> --%><button type="button"  onclick=" location.href='http://127.0.0.1:8888/app/admin/notice/list'"class="btn btn-md btn-info">취소</button></a>
 							</div>
 						</form>
 					</div>

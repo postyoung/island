@@ -50,13 +50,13 @@
 												<div class="input_title">
 													<div class="row">
 														<div class="col">
-															닉네임 : <input type="text" class="form-control"placeholder="내가그린기린" aria-label="First name">
+															닉네임 : <input type="text" class="form-control"placeholder="내가그린기린" aria-label="First name" readonly>
 														</div>
 													</div>
 													<br>
 													<div class="row-md-8">
 														<select class="form-select">
-															<option value="" selected="selected" class="inquire_group">문의분류</option>
+															<option value="" selected="selected" class="inquire_group" readonly>문의분류</option>
 															<option value="01">회원</option>
 															<option value="02">모임</option>
 															<option value="03">세미나</option>
@@ -64,7 +64,7 @@
 															<option value="05">기타</option>
 														</select>
 														<div class="col">
-															제목 : <input type="text" class="form-control" placeholder="로그인되지 않습니다." aria-label="Last name">
+															제목 : <input type="text" class="form-control" placeholder="로그인되지 않습니다." aria-label="Last name" readonly>
 														</div>
 													</div>
 													<div class="form-group">
@@ -74,23 +74,11 @@
 														<div class="col-lg-12">
 															<textarea class="form-control" name="content"
 																id="content" rows="10"
-																placeholder="로그인 시도를 하였지만 관리자에게 문의하라는 메시지 창이 뜹니다."></textarea>
+																placeholder="로그인 시도를 하였지만 관리자에게 문의하라는 메시지 창이 뜹니다." readonly></textarea>
 														</div>
 
 													</div>
-
-													<div class="input_agreement">
-														<h6 class="label">개인정보수집 및 이용 동의 *</h6>
-														<label> 
-															<input class="privacy_check" type="checkbox" name="privacy" value="1"> 작성해주신이메일, 전화번호는 문의내용 확인 및 답변처리 용도로 쓰이며 3년간 보관 후 파기합니다. <span
-															class="check_box"></span>
-														</label>
-													</div>
-													<p class="info_message">
-														이 사이트는 reCAPTCHA에 의해 보호되며 Google
-														 <a	href="https://policies.google.com/privacy"	target="_blank">개인정보 취급 방침</a> 및 
-															<a href="https://policies.google.com/terms" target="_blank">서비스 약관</a>이 적용됩니다.
-													</p>
+													<br>
 													<hr>
 													<div class="form-group">
 
@@ -103,7 +91,7 @@
 													<div class="form-group">
 														<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
 															<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변등록</button>
-															<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+															<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'"class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
 				
 														</div>
 													</div>

@@ -69,8 +69,9 @@
 									
 									<div class="form-group">
 										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-											<button type="submit" class="btn btn-info btn-md"style="margin-right: 5px;">수정</button>
-											<button type="reset" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+											<button type="submit" class="btn btn-warning btn-md"style="margin-right: 5px;">수정</button>
+											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/list'"class="btn btn-danger btn-md" style="margin-right: 5px;">삭제</button>
+											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/list'"class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
 											
 										</div>
 									</div>
