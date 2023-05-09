@@ -42,19 +42,19 @@
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" name="name" id="name"  required> 
+									<input type="text" class="form-control" name="name" id="name"  required readonly value="샴푸의요정"> 
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="phone">전화번호</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" name="phone" id="phone"  required>
+									<input type="text" class="form-control" name="phone" id="phone"  required readonly value="01012345678">
 								</div>
 							</div>
 							<div class="form-group">
 								<label  for="email">이메일</label>
 								<div class="col-sm-4">
-									<input type="email" class="form-control" name="email" id="email"  required >
+									<input type="email" class="form-control" name="email" id="email"  required readonly value="abc@email.com">
 								</div>
 							</div>
 							 
@@ -94,7 +94,7 @@
 					<!-- 버튼영역 -->
 					<form method="post">
 					<div class="btn_area">
-						<a  class="btn btn-outline-primary" style="line-height: 2;">수정</a>
+						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/list">수정</a>
 						<a  class="btn btn-primary" style="line-height: 2;" href="${root}/community/qna/list">목록</a>
 					</div>
 					</form>

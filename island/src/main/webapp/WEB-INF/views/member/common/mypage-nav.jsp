@@ -15,7 +15,6 @@
           <ul class="menu_bar">
               <li class="menu_home"><a href="${root}/mypage/home">마이페이지 홈</a> </li>
                   <li class="menu_edit"><a href="${root}/mypage/edit">회원정보 수정</a></li>
-                  <li class="menu_findaccount"><a href="${root}/mypage/find">아이디/비밀번호 찾기</a></li>
                   <li class="menu_participant"><a href="${root}/mypage/list/enrollList/group">신청내역</a>
                     <ul class="sub_menu">
                         <li><a href="${root}/mypage/list/enrollList/group">소모임</a></li>

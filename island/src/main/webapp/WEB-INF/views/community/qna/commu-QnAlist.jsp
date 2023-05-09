@@ -64,7 +64,7 @@
         <tbody class="table-group-divider">
           <tr>
             <td>01</td>
-            <td>아이디 찾기가 안돼요..</td>
+            <td><a href="${root}/community/qna/detail">아이디 찾기가 안돼요..</a></td>
             <td>소모임</td>
             <td>2021/03/21</td>
           </tr>

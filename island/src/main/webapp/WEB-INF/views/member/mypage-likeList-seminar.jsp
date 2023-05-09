@@ -46,8 +46,9 @@
                                                                             <th>가격</th>
                                                                             <th>세미나 장소</th>
                                                                             <th>모집인원</th>
-                                                                            <th>신청기간</th>
-                                                                            <th>세미나기간</th>
+                                                                            <th>신청마감일시</th>
+                                                                            <th>세미나 일시</th>
+                                                                            <th>관심취소</th>
                                                                         </thead>
                                                                    
                                                                             <tbody>
@@ -56,8 +57,9 @@
                                                                                 <td>10,000</td>
                                                                                 <td>강원도 원주시 63빌딩</td>
                                                                                 <td>100</td>
+                                                                                <td>2023-12-01</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="관심취소" ></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                     </table>

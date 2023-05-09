@@ -17,13 +17,18 @@ $(document).ready(function() {
   //이름
   $(document).ready(function() {
     $('#name').on('input', function() {
-      if ($(this).val() !== '') {
-        $(this).removeClass('form-control').addClass('form-control is-valid');
+      const name = $(this).val();
+       //특수문자제외 2글자이상
+      const regex = /^[a-zA-Z0-9가-힣\s_]{2,}$/;
+  
+      if (regex.test(name)) {
+        $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
       } else {
-        $(this).removeClass('form-control is-valid').addClass('form-control');
+        $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
       }
     });
   });
+  
 
   //아이디 정규식/유효성검사
   $(document).ready(function() {
@@ -46,10 +51,14 @@ $(document).ready(function() {
   //닉네임
   $(document).ready(function() {
     $('#nick').on('input', function() {
-      if ($(this).val() !== '') {
-        $(this).removeClass('form-control').addClass('form-control is-valid');
+      const nick = $(this).val();
+      //2글자이상 자음,모음, 특수문자제외 
+      const regex = /^[a-zA-Z0-9가-힣\s_]{2,}$/;
+  
+      if (regex.test(nick)) {
+        $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
       } else {
-        $(this).removeClass('form-control is-valid').addClass('form-control');
+        $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
       }
     });
   });
@@ -170,8 +179,50 @@ likePlace.addEventListener('change', function() {
         $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
       }
     });
-  
 
+    //아이디 중복확인
+    function checkDup(){
+      //1. 현재 입력된 아이디 준비
+      //2. 서버한테 아이디 전달
+      //3. 결과 받아오기 (isDup , notDup)
+      //4. 결과에 따라 , 중복 여부를 알려주기
+      
+      const id = document.querySelector("input[name=id]").value;
+      $.ajax({
+          url : '/app/member/id-check' ,
+          type : 'POST' ,
+          data : {
+              'id' : id
+          } ,
+          success : function(data){
+              if(data == 'notDup'){
+                  alert("사용 가능한 아이디 입니다.");
+              }else{
+                  alert("사용 불가한 아이디 입니다.");
+              }
+          } ,
+          error : function(e){
+              console.log(e);
+          } ,
+      });
+  }
+//비밀번호1과 비밀번호2 일치해야지만 제출되게
+  function checkValidation(){
+    if(!isPwdOk()){
+        alert("비밀번호가 일치하지 않습니다.");
+        document.querySelector("main input[name=pwd]").focus();
+        return false;
+    }
+    return true;
+}
+function isPwdOk(){
+    const pwd1 = document.querySelector("main input[name=pwd]").value;
+    const pwd2 = document.querySelector("main input[name=pwd2]").value;
+    if(pwd1 != pwd2) return false;
+    return true;
+}
+
+    
 
 
 

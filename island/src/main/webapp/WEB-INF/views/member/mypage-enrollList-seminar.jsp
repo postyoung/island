@@ -46,8 +46,9 @@
                                                                             <th>가격</th>
                                                                             <th>세미나 장소</th>
                                                                             <th>모집인원</th>
-                                                                            <th>신청기간</th>
-                                                                            <th>세미나기간</th>
+                                                                            <th>세미나일시</th>
+                                                                            <th>결제상태</th>
+                                                                            <th>신청취소</th>
                                                                             <th>리뷰</th>
                                                                         </thead>
                                                                    
@@ -58,7 +59,8 @@
                                                                                 <td>강원도 원주시 63빌딩</td>
                                                                                 <td>100</td>
                                                                                 <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
+                                                                                <td>입금대기</td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="신청취소"></td>
                                                                                 <td><input type="submit" class="btn btn-outline-primary" value="리뷰작성" onclick="location.href='${root}/community/seminarReview/write'"></td>
                                                                                 </tr>
                                                                             </tbody>

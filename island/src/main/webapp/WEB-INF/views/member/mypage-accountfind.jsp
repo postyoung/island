@@ -15,10 +15,10 @@
         <main class="mypage" id="content">
             <div class="content_wrapping max_width_area">
                 <div class="top_area">
-                    <h2 class="main_title">마이페이지</h2>
+                    <h2 class="main_title"></h2>
                     <div class="main_area">              
                             <!-- 마이페이지 메뉴바 시작 -->
-                           	<%@include file="/WEB-INF/views/member/common/mypage-nav.jsp" %>
+                          
                                 <!-- 마이페이지 메뉴바 끝 -->
                                 <div class="main_content">
                                     <!-- 마이페이지 콘텐츠 시작 -->

@@ -83,7 +83,7 @@
                                             <div class="msg_content">
                                                
                                                 <span> <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg></span><h4 class="msg_title" style="padding: 0px; padding-top: 3px;">현재 회원님은 개설하여 진행 중인 모임/세미나가 있으므로 탈퇴가 불가능합니다.
-                                                    <a href="${root}/member/mypage/madeList/group" class="link_move">개설내역 바로가기</a>
+                                                    <a href="${root}/mypage/list/madeList/group" class="link_move">개설내역 바로가기</a>
                                                 </h4>
                                                 </div>
                                             </div>

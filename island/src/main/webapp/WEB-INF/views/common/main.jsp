@@ -9,7 +9,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISLAND 소개 | ISLAND</title>
-  <script defer src="${root}/resources/js/common/main.js"></script>
+  <script defer src="${root}/resources/js/common/main.js">
+  </script>
+  
+  <c:if test="${not empty alertMsg}">
+  	<script type="text/javascript">
+	  alert('${sessionScope.alertMsg}');
+  	</script>
+  </c:if>
+  
+  <c:remove var="alertMsg" scope="session"/>
 
   
   <!-- CSS only -->
@@ -19,6 +28,7 @@
 
 
     <link rel="stylesheet" href="${root}/resources/css/common/mainStyle.css" />
+    
     
     <style>
       /* 헤더 */

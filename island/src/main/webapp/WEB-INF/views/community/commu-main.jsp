@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ISLAND 세미나 고겍센터 | ISLAND</title>
+<title>ISLAND 공지사항 | ISLAND</title>
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 
@@ -35,7 +35,7 @@
 	    <tbody class="table-group-divider">
 	      <tr>
 	        <td>01</td>
-	        <td>[공지]개인정보</td>
+	        <td><a href="${root}/community/notice/detail">[공지]개인정보</a></td>
 	        <td>2021/03/21</td>
 	      </tr>
 	      <tr>
