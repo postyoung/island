@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,7 +12,7 @@
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <!-- 헤더 -->
   <%@ include file="/WEB-INF/views/common/header-member.jsp" %>
-  <title>Hello, world!</title>
+  <title>island</title>
   <link rel="stylesheet" href="${root}/resources/css/group/group-join.css">
 </head>
 

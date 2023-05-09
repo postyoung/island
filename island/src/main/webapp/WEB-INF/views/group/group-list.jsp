@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 
@@ -9,7 +10,6 @@
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
 	<script defer src="${root}/resources/js/group/group-list.js"></script>
 	<link rel="stylesheet" href="${root}/resources/css/group/group-list.css">
-
 </head>
 <body>
 <main>
@@ -125,7 +125,67 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="card">
+			<div class="card-image">
+				<img src="예시 이미지.jpeg" alt="">
+			</div>
+			<div class="category">모임제목</div>
+			<div class="heading">
+				모임내용
+				<div class="author">
+					작성날짜 <span class="name"></span>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="예시 이미지.jpeg" alt="">
+			</div>
+			<div class="category">모임제목</div>
+			<div class="heading">
+				모임내용
+				<div class="author">
+					작성날짜 <span class="name"></span>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="예시 이미지.jpeg" alt="">
+			</div>
+			<div class="category">모임제목</div>
+			<div class="heading">
+				모임내용
+				<div class="author">
+					작성날짜 <span class="name"></span>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="예시 이미지.jpeg" alt="">
+			</div>
+			<div class="category">모임제목</div>
+			<div class="heading">
+				모임내용
+				<div class="author">
+					작성날짜 <span class="name"></span>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="예시 이미지.jpeg" alt="">
+			</div>
+			<div class="category">모임제목</div>
+			<div class="heading">
+				모임내용
+				<div class="author">
+					작성날짜 <span class="name"></span>
+				</div>
+			</div>
+		</div>
+		<a href="${root}/group/create"><button type="button" class="btn_keyword_search">개설하기</button></a>
 	</div>
 </main>
 </body>
