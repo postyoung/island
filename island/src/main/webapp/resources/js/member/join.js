@@ -179,8 +179,50 @@ likePlace.addEventListener('change', function() {
         $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
       }
     });
-  
 
+    //아이디 중복확인
+    function checkDup(){
+      //1. 현재 입력된 아이디 준비
+      //2. 서버한테 아이디 전달
+      //3. 결과 받아오기 (isDup , notDup)
+      //4. 결과에 따라 , 중복 여부를 알려주기
+      
+      const id = document.querySelector("input[name=id]").value;
+      $.ajax({
+          url : '/app/member/id-check' ,
+          type : 'POST' ,
+          data : {
+              'id' : id
+          } ,
+          success : function(data){
+              if(data == 'notDup'){
+                  alert("사용 가능한 아이디 입니다.");
+              }else{
+                  alert("사용 불가한 아이디 입니다.");
+              }
+          } ,
+          error : function(e){
+              console.log(e);
+          } ,
+      });
+  }
+//비밀번호1과 비밀번호2 일치해야지만 제출되게
+  function checkValidation(){
+    if(!isPwdOk()){
+        alert("비밀번호가 일치하지 않습니다.");
+        document.querySelector("main input[name=pwd]").focus();
+        return false;
+    }
+    return true;
+}
+function isPwdOk(){
+    const pwd1 = document.querySelector("main input[name=pwd]").value;
+    const pwd2 = document.querySelector("main input[name=pwd2]").value;
+    if(pwd1 != pwd2) return false;
+    return true;
+}
+
+    
 
 
 

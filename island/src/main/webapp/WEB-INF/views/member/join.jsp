@@ -18,20 +18,20 @@
 </head>
 <body>
     <div id="wrap">
-        <form action="" class="join_form">
+        <form action="${root}/member/join" class="join_form" method="POST"> 
             <h1 class="title">회원가입</h1>
             <fieldset class="area_required" style="padding-left: 13%;">
                 <legend class="sub_title">필수정보</legend>
 
                     <div id="name_area" class="">
                         <label for="">이름</label>
-                        <input type="text" class="form-control" id="name" value="" required >
+                        <input type="text" class="form-control" id="name" value="" required name="name">
                       </div>
                       
                       <div id="id_area" style="width: 500px;">
                         <label for="">아이디</label>
-                        <input type="text" class="form-control" id="id" value="" required>
-                        <span><input type="submit" class="btn btn-light" value="중복확인" spellcheck="false"></span>
+                        <input type="text" class="form-control" id="id" value="" required name="id">
+                        <span><input type="button" class="btn btn-light" value="중복확인" spellcheck="false" onclick="checkDup();"></span>
                         <div id="validationFeedback_Id" class="validationFeedback_Id">
                           최소 2 자 대문자,소문자,숫자,_ 만 사용하실 수 있습니다.
                         </div>
@@ -39,7 +39,7 @@
                     
                       <div id="pwd_area">
                         <label for="">비밀번호</label>
-                        <input type="password" class="form-control" id="pwd" value="" required aria-describedby="validationServer04Feedback">
+                        <input type="password" class="form-control" id="pwd" name="pwd" value="" required aria-describedby="validationServer04Feedback">
                       </div>
                       <div id="validationFeedback_Pwd" class="validationFeedback_Pwd">
                         최소 8 자 대문자,소문자,숫자,특수문자 각 하나이상을 포함하여 작성하시오.
@@ -52,30 +52,30 @@
 
                       <div id="nick_area">
                         <label for="">닉네임</label>
-                        <input type="text" class="form-control" id="nick" value="" required >
+                        <input type="text" class="form-control" id="nick" value="" name="nick" required >
                       </div>
 
                       <div id="phone_area">
                         <label for="">전화번호</label>
-                        <input type="text" class="form-control" id="phone" value="" required >
+                        <input type="text" class="form-control" id="phone" name="phone" value="" required >
                       </div>
 
                       <div id="id_num_area">
                         <label for="">주민번호</label>
-                        <input type="text" class="form-control" id="id_num" value="" required style="width: 130px;">
+                        <input type="text" class="form-control" id="id_num" value="" name="resident" required style="width: 130px;">
                         -
-                        <input type="password" class="form-control" id="id_num2" value="" required style="width: 130px;">
+                        <input type="password" class="form-control" id="id_num2" name="resident2" value="" required style="width: 130px;">
                       </div>
 
                       <div id="email_area">
                         <label for="">이메일</label>
-                        <input type="text" class="form-control" id="email" value="" required style="width: 140px;">
-                        <select class="form-select is-invalid" id="email_address" aria-describedby="validationServer04Feedback" style="width: 140px;" required>
-                          <option selected disabled value="">email.com</option>
-                          <option>naver.com</option>
-                          <option>daum.net</option>
-                          <option>google.com</option>
-                          <option>kakao.com</option>
+                        <input type="text" class="form-control" id="email" value="" name="email" required style="width: 140px;">
+                        <select class="form-select is-invalid" id="email_address" name="email2" aria-describedby="validationServer04Feedback" style="width: 140px;" required>
+                          <option selected disabled value="10">email.com</option>
+                          <option value="20">naver.com</option>
+                          <option value="30">daum.net</option>
+                          <option value="40">google.com</option>
+                          <option value="50">kakao.com</option>
                         </select>
                       </div>
 
@@ -89,19 +89,19 @@
                     <legend class="sub_title">추가정보</legend>
                     <div id="company" class="">
                         <label for="">소속</label>
-                        <input type="text" class="form-control" id="validationServer01" value="" style="width: 250px;">
+                        <input type="text" class="form-control" id="attach" value="" style="width: 250px;" name="attach">
                       </div>
                       <div id="like_place" class="">
                         <label for="">선호지역</label>
-                        <select class="form-select is-invalid" id="like_region" aria-describedby="validationServer04Feedback">
+                        <select class="form-select is-invalid" id="like_region" name="local" aria-describedby="validationServer04Feedback">
                             <option selected disabled value="">지역</option>
-                            <option>서울</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>부산</option>
-                            <option>제주</option>
-                            <option>기타</option>
+                            <option value="10">서울</option>
+                            <option value="20">경기</option>
+                            <option value="30">인천</option>
+                            <option value="40">강원</option>
+                            <option value="50">부산</option>
+                            <option value="60">제주</option>
+                            <option value="70">기타</option>
                           </select>
                           <div id="validationServer04Feedback" class="invalid-feedback">
                             선호지역을 선택하세요.
@@ -109,7 +109,7 @@
                       </div>
                       <div id="profile">
                         <label for="">프로필 사진</label>
-                        <input type="file" name="profile" class="form-control" style="width: 430px;" >
+                        <input type="file" name="profile" class="form-control" style="width: 430px;">
                         </div>
 
                 </fieldset>

@@ -3,6 +3,47 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-
+	<insert id="join">
+	INSERT INTO MEMBER
+	(
+		NO
+		,LOCAL
+		,EMAIL2
+		,ID
+		,PWD
+		,NAME
+		,PHONE
+		,NICK
+		,GENDER
+		,EMAIL
+		,RESIDENT
+		,RESIDENT2
+		,ATTACH
+		,PROFILE
+	)
+	VALUES
+	(
+		SEQ_MEMBER_NO.NEXTVAL
+		,#{local}
+		,#{email2}
+		,#{id}
+		,#{pwd}
+		,#{name}
+		,#{phone}
+		,#{nick}
+		,#{gender}
+		,#{email}
+		,#{resident}
+		,#{resident2}
+		,#{attach}
+		,#{profile}	
+	)
+	</insert>
+	
+	 <select id="checkId" resultType="int"> 
+	  	SELECT COUNT(*)
+	  	FROM MEMBER
+	  	WHERE ID = #{id}
+ 	</select>
  	
 </mapper>
