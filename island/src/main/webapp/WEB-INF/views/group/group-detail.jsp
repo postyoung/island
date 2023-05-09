@@ -60,6 +60,8 @@
                         <div class="mb-2 width">이메일 : postsoonyoung@gmail.com</div>
                         <div class="mb-2 width">전화번호 : 010-1234-5678</div>
                         <div class="mb-2 width">소속 : 없음</div>
+                        <a href="${root}/group/edit"><button class="btn btn-primary">수정하기</button></a></a>
+                        <button class="btn btn-primary">삭제하기</button>
                     </div>
                 </div>
             </div>
@@ -95,6 +97,8 @@
                 </div>
             </div>
         </div>
-                    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    </div>
+</div>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

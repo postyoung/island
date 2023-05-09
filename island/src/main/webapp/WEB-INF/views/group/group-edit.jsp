@@ -41,7 +41,7 @@
                     </div>
                     <div class="info-text">
                         <h3>담당자명</h3>
-                        <input type="text" placeholder="" name="text" class="input" value="권순영">
+                        <input type="text" placeholder="" name="text" class="input" value="권순영" disabled>
                     </div>
                 </div>
                 <div class="card">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="info-text">
                         <h3>전화번호</h3>
-                        <input type="text" placeholder="" name="text" class="input" value="010-1234-5678">
+                        <input type="text" placeholder="" name="text" class="input" value="010-1234-5678" disabled>
                     </div>
                 </div>
                 <div class="card">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="info-text">
                         <h3>이메일</h3>
-                        <input type="email" placeholder="" name="text" class="input" value="ppp@gmail.com">
+                        <input type="email" placeholder="" name="text" class="input" value="ppp@gmail.com" disabled>
                     </div>
                 </div>
                 <div class="card">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="info-text">
                         <h3>소속</h3>
-                        <input type="email" placeholder="" name="text" class="input" value="소속">
+                        <input type="email" placeholder="" name="text" class="input" value="소속" disabled>
                     </div>
                 </div>
 
