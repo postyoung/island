@@ -64,7 +64,7 @@
 											<p class="card-text">
 												<br> 공지사항 작성<br> FAQ<br> Q&A<br> <br>
 											</p>
-											<a href="#" id="editBtn" class="btn btn-primary">설정하기</a>
+											<button href="#" id="editBtn" class="btn btn-primary">설정하기</button>
 										</div>
 									</div>
 								</div>
@@ -76,7 +76,7 @@
 												<br>공지사항 작성<br> FAQ<br> Q&A<br> 신고 관리<br>
 
 											</p>
-											<a href="#" id="editBtn" class="btn btn-primary">설정하기</a>
+											<button href="#" id="editBtn" class="btn btn-primary">설정하기</button>
 										</div>
 									</div>
 								</div>
@@ -88,7 +88,7 @@
 												공지사항 작성<br> FAQ<br> Q&A<br> 신고 관리<br> 계정
 												생성 및 권한 설정
 											</p>
-											<a href="#" id="editBtn" class="btn btn-primary">설정하기</a>
+											<button href="#" id="editBtn" class="btn btn-primary" disabled>설정하기</button>
 										</div>
 									</div>
 								</div>
