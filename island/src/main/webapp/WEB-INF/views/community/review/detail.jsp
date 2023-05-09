@@ -46,7 +46,7 @@
 	    <div id="line"></div>
 	
 	    <div id="seminar">
-	      <a href="#">[세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span></a>
+	      <a href="${root}/seminar/detail">[세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span></a>
 	    </div>
 	      <table>
 	        <tr>

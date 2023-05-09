@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ISLAND 세미나 고겍센터 | ISLAND</title>
+<title>ISLAND 세미나 리뷰 | ISLAND</title>
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 	
@@ -52,7 +52,7 @@
 	              <b>도리도리</b>
 	            </div>
 	            <div class="seminar-name">
-	              <input class="seminar-title" type="text" value="나에게 딱 맞는 착업아이템 온라인 특강 3회차">
+	              <input class="seminar-title" type="text" value="나에게 딱 맞는 착업아이템 온라인 특강 3회차" readonly="readonly">
 	            </div>
 	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review1.jpg"width="100%" height="250" >
 	            <div class="card-body">
