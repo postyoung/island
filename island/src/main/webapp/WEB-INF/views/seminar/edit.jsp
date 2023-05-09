@@ -9,7 +9,29 @@
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	
 <link rel="stylesheet" href="${root}/resources/css/seminar/edit.css">
+<script>
+
+$(document).ready(function() {
+  $('#summernote').summernote({
+    placeholder: '내용을 입력해주세요.',
+        tabsize: 2,
+        height: 500,
+        width : 1300
+  });
+
+});
+</script>
+
 </head>
 <body>
 
@@ -70,7 +92,9 @@
          
         <div class="detail-info-area">
           <div class="detail-title">상세내용</div><span class="essential">(필수)</span>
-          <textarea class="detail-context" aria-label="With textarea" rows="30" placeholder="내용을 입력하세요." style="resize: none;"></textarea>
+          <div id="detail-info-box">
+	          	<textarea id="summernote" name="editordata"></textarea>
+          </div>
         </div>
   
         <!-- 신청 영역  -->
@@ -83,7 +107,7 @@
         <!-- 세미나 일시 -->
         <div class="detail-apply-area">
             <b>세미나 일시 </b><input type="date" class="form-control input-box" min="오늘이후" max="최대날짜"> 
-            <select class="form-select">
+            <select class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -110,7 +134,7 @@
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -121,7 +145,7 @@
             
             <div id="range">~</div>
             
-            <select class="form-select">
+            <select class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -148,7 +172,7 @@
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -235,7 +259,7 @@
          <!-- 카카오 지도 api 영역  -->
           <div id="map" style="width:1000px;height:400px; margin: auto; margin-top: 20px;"></div>
 
-          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5a9bd87958dd4bc286274881ed8c36d3&libraries=services"></script>
+          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값&libraries=services"></script>
           <script>
           var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
               mapOption = {
@@ -308,7 +332,7 @@
 
           <!-- 신청마감 기간 -->
           <b>세미나 신청 마감일 </b><input type="date" class="form-control input-box" value="2023/04/11" min="오늘이후" max="최대날짜"> 
-            <select class="form-select">
+            <select class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -335,7 +359,7 @@
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -360,7 +384,7 @@
               <span id="seminar-pay">비용<input type="text" id="pay-area" class="form-control">원</span>
               <span id="seminar-pay">
                 은행명
-                <select class="form-select" aria-label="multiple select example" id="bank-select">
+                <select class="form-select select-box-size" aria-label="multiple select example" id="bank-select">
                   <option value="은행" selected>선택</option>
                   <option value="농협">농협은행</option>
                   <option value="국민">국민은행</option>

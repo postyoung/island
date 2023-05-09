@@ -1,6 +1,7 @@
+@charset "UTF-8";
 #seminar-create-area{
   width: 1400px;
-  height: 2200px;
+  height: 100%;
   margin: auto;
   background-color: white;
   padding: 50px 50px 30px 60px;
@@ -91,7 +92,7 @@
 
 .col-form-label {
   line-height: 1.0;
-  width: 130px;
+  width: 140px;
 }
 
 #line-second{
@@ -131,6 +132,7 @@
 
 #address-btn{
   width: 140px;
+  border: 1px solid rgb(255, 214, 90);
 }
 
 #person-area{
@@ -161,6 +163,7 @@
 }
 
 #bank-select{
+  height:34px;
   width: 160px;
   margin-left: 10px;
 }
@@ -178,4 +181,31 @@
 
 #apply-title{
   display: inline-block;
+}
+
+#detail-info-box{
+	margin-bottom: 60px;
+}
+
+option{
+	font-size: 15px
+}
+
+.select-box-size{
+	height:34px;
+	font-size: 15px;
+}
+
+.nav>li>a {
+    /* position: relative; */
+    /* display: block; */
+    /* padding: 10px 15px; */
+}
+.nav>li>a:focus, .nav>li>a:hover {
+ background-color: white;
+ color: blue;
+}
+
+.btn-default{
+	width: 75px;
 }

@@ -123,9 +123,9 @@
   <div class="text_box" data-trigger>
     <span class="text"></span>
   </div>
-  <div class="sub-title">저희는 다양한 취미와 관심사를 가진 사람들이 모여 즐겁게 활동하며 교류하는 아일랜드입니다. 
-    새로운 친구들과 함께 취미 생활을 즐기고, 서로의 경험과 지식을 나누며 소통하는 공간이에요. 
-    함께하는 시간이 더욱 풍요로워지는 소모임, 참여해보세요!"
+  <div class="sub-title">저희는 다양한 취미와 관심사를 가진 사람들이 모여 즐겁게 활동하며 교류하는 아일랜드입니다.<br>
+    새로운 친구들과 함께 취미 생활을 즐기고, 서로의 경험과 지식을 나누며 소통하는 공간이에요. <br>	
+    함께하는 시간이 더욱 풍요로워지는 소모임, 참여해보세요 !
   </div>
 
 
@@ -252,7 +252,6 @@
             <li class="nav-item mb-2"><a href="${root}/community/faq/list" class="nav-link p-0 text-body-secondary">FAQ</a></li>
             <li class="nav-item mb-2"><a href="${root}/community/qna/list" class="nav-link p-0 text-body-secondary">1:1문의</a></li>
             <li class="nav-item mb-2"><a href="${root}/community/seminarReview/list" class="nav-link p-0 text-body-secondary">세미나 리뷰</a></li>
-            <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">서비스약관 및 정책</a></li> -->
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">개인정보처리방침</a></li>
         </ul>
       </div>

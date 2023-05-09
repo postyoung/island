@@ -7,10 +7,35 @@
 <title>ISLAND 세미나 개설 | ISLAND</title>
 
 	<!-- 헤더 -->
-	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
+	<%@ include file="/WEB-INF/views/common/header-member-textarea.jsp" %>
 	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+	
+
 	<link rel="stylesheet" href="${root}/resources/css/seminar/create.css">
 	<script defer src="${root}/resources/js/seminar/create.js"></script>
+<script>
+
+$(document).ready(function() {
+  $('#summernote').summernote({
+    placeholder: '내용을 입력해주세요.',
+        tabsize: 2,
+        height: 500,
+        width : 1300
+  });
+
+});
+</script>
+	
+	
 </head>
 <body>
 	<!-- 세미나 개설 영역 -->
@@ -48,16 +73,16 @@
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">전화번호</label></td>
                 </tr>
                 <tr>
-                  <td><input type="password" class="form-control" id="inputPassword3"></td>
-                  <td><input type="password" class="form-control input-box" id="inputPassword3"></td>
+                  <td><input type="text" class="form-control" id="inputPassword3" value="김땡땡" readonly="readonly"></td>
+                  <td><input type="tel" class="form-control input-box" id="inputPassword3" value="010-1234-1234" readonly="readonly"></td>
                 </tr>
                 <tr>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label></td>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">소속</label></td>
                 </tr>
                 <tr>
-                  <td><input type="password" class="form-control" id="inputPassword3"></td>
-                  <td><input type="password" class="form-control input-box" id="inputPassword3"></td>
+                  <td><input type="email" class="form-control" id="inputPassword3" value="asdf@nate.com" readonly="readonly"></td>
+                  <td><input type="text" class="form-control input-box" id="inputPassword3" ></td>
                 </tr>
               </table>
             </div>
@@ -70,7 +95,10 @@
          
         <div class="detail-info-area">
           <div class="detail-title">상세내용</div><span class="essential">(필수)</span>
-          <textarea class="detail-context" aria-label="With textarea" rows="30" placeholder="내용을 입력하세요." style="resize: none;"></textarea>
+          	<div id="detail-info-box">
+	          	<textarea id="summernote" name="editordata"></textarea>
+          	</div>
+         <!--  <textarea class="detail-context" aria-label="With textarea" rows="30" placeholder="내용을 입력하세요." style="resize: none;"></textarea> -->
         </div>
   
         <!-- 신청 영역  -->
@@ -83,7 +111,7 @@
         <!-- 세미나 일시 -->
         <div class="detail-apply-area">
             <b>세미나 일시 </b><input type="date" class="form-control input-box"> 
-            <select class="form-select">
+            <select class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -110,7 +138,7 @@
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -121,7 +149,7 @@
             
             <div id="range">~</div>
             
-            <select class="form-select">
+            <select class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -148,7 +176,7 @@
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -308,7 +336,7 @@
 
           <!-- 신청마감 기간 -->
           <b>세미나 신청 마감일 </b><input type="date" class="form-control input-box"> 
-            <select class="form-select">
+            <select class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -335,7 +363,7 @@
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -360,7 +388,7 @@
               <span id="seminar-pay">비용<input type="text" id="pay-area" class="form-control">원</span>
               <span id="seminar-pay">
                 은행명
-                <select class="form-select" aria-label="multiple select example" id="bank-select">
+                <select class="form-select select-box-size" aria-label="multiple select example" id="bank-select">
                   <option value="은행" selected>선택</option>
                   <option value="농협">농협은행</option>
                   <option value="국민">국민은행</option>

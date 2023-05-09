@@ -8,7 +8,31 @@
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 	
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	<!-- include summernote css/js -->
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	
+	
 <link rel="stylesheet" href="${root}/resources/css/community/review/edit.css">
+
+<script>
+
+$(document).ready(function() {
+  $('#summernote').summernote({
+    placeholder: '내용을 입력해주세요.',
+        tabsize: 2,
+        height: 500,
+        width : 1080
+  });
+
+});
+</script>
+
 </head>
 <body>
 
@@ -59,27 +83,13 @@
 	          </tr>
 	          <tr>
 	            <th colspan="2">
-	              <textarea style="resize: none;" name="content" class="form-control" id="" cols="140" rows="15">
-창업아이템 세미나에 참석하고 나서, 다양한 창업 아이디어와 경험을 공유받았습니다.
-세미나에서는 성공적인 창업을 위한 기본 원칙과 함께, 창업을 위한 아이디어 도출 
-방법, 마케팅 전략 등에 대한 내용이 다루어졌습니다.
-
-특히, 다른 참가자들과 함께 공유한 경험들은 매우 유익했습니다.
-세미나를 통해 새로운 아이디어를 발견하고, 그 아이디어를 발전시키는 방법들을 
-배울 수 있었습니다. 세미나의 강사분들은 창업 경험이 많으셨기 때문에, 
-우리에게 실제적인 조언과 해결책을 제시해주셨습니다.
-
-또한, 세미나는 다양한 팀 프로젝트 및 토론 활동을 포함하여 진행되었습니다. 
-이를 통해 참가자들은 아이디어를 더욱 발전시키기 위한 협업의 중요성과, 
-다른 의견을 수렴하고 존중하는 방법을 배웠습니다.
-
-마지막으로, 이번 창업아이템 세미나는 나에게 큰 도전과 기회를 제공해주었습니다. 세미나를 통해 배운 내용을 실제로 적용하여, 나의 창업 아이디어를 발전시키는 데 큰 도움이 되었습니다. 나는 이번 세미나를 통해, 나의 창업 경험을 더욱 확장하고, 창업에 대한 열정을 더욱 강화시키게 되었습니다.
-	              
-	              </textarea>
+		            <textarea id="summernote" name="editordata">
+		           		 <p><span style="font-weight: 400;">창업아이템 세미나에 참석하고 나서, 다양한 창업 아이디어와 경험을 공유받았습니다.</span></p><p><span style="font-weight: 400;">세미나에서는 성공적인 창업을 위한 기본 원칙과 함께, 창업을 위한 아이디어 도출&nbsp;</span></p><p><span style="font-weight: 400;">방법, 마케팅 전략 등에 대한 내용이 다루어졌습니다.</span></p><p><span style="font-weight: 400;"><br></span></p><p><span style="font-weight: 400;">특히, 다른 참가자들과 함께 공유한 경험들은 매우 유익했습니다.</span></p><p><span style="font-weight: 400;">세미나를 통해 새로운 아이디어를 발견하고, 그 아이디어를 발전시키는 방법들을&nbsp;</span></p><p><span style="font-weight: 400;">배울 수 있었습니다. 세미나의 강사분들은 창업 경험이 많으셨기 때문에,&nbsp;</span></p><p><span style="font-weight: 400;">우리에게 실제적인 조언과 해결책을 제시해주셨습니다.</span></p><p><span style="font-weight: 400;"><br></span></p><p><span style="font-weight: 400;">또한, 세미나는 다양한 팀 프로젝트 및 토론 활동을 포함하여 진행되었습니다.&nbsp;</span></p><p><span style="font-weight: 400;">이를 통해 참가자들은 아이디어를 더욱 발전시키기 위한 협업의 중요성과,&nbsp;</span></p><p><span style="font-weight: 400;">다른 의견을 수렴하고 존중하는 방법을 배웠습니다.</span></p><p><span style="font-weight: 400;"><br></span></p><p><span style="font-weight: 400;">마지막으로, 이번 창업아이템 세미나는 나에게 큰 도전과 기회를 제공해주었습니다. 세미나를 통해 배운 내용을 실제로 적용하여, 나의 창업 아이디어를 발전시키는 데 큰 도움이 되었습니다. 나는 이번 세미나를 통해, 나의 창업 경험을 더욱 확장하고, 창업에 대한 열정을 더욱 강화시키게 되었습니다.</span></p>
+		            </textarea>
 	            </th>
 	          </tr>
 	          <tr>
-	            <th class="text-center">첨부파일</th>
+	            <th class="text-center">썸네일</th>
 	            <td><input type="file" name="title" class="form-control" accept=".png,.jpg"></td>
 	          </tr>
 	        </table>
