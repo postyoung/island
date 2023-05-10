@@ -32,7 +32,7 @@
 		<div id="layoutSidenav_content">
 			<div id="wrap">
 				<!-- 메뉴바 -->
-				<form action="${root}/admin/inquiry/detail" class="inquiryListform"	method="get">
+				<form action="${root}/admin/inquiry/write" class="inquiryListform"	method="get">
 					<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 						<div class="col-md-0 px-0">
 							<h1 class="text-center">1 : 1 문의하기</h1>
@@ -64,7 +64,7 @@
 										<tbody>
 											<tr>
 												<td class="text-center">회원</td>
-												<td class="text-center" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/detail'">로그인되지 않습니다.</td>
+												<td class="text-center" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/write'">비밀번호를 변경하고 싶어요</td>
 												<td class="text-center">내가그린기린</td>
 												<td class="text-center">20221007</td>
 												<td class="text-center">답변대기</td>
