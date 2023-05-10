@@ -16,6 +16,12 @@
 	justify-content: center;
 	font-size: 20px;
 }
+#tableTitle {
+	margin-bottom: 30px;
+}
+#tableAnswer{
+	margin-top: 30px;
+}
 </style>
 
 
@@ -32,7 +38,7 @@
 			<div id="wrap">
 				<!-- 메뉴바 -->
 				<div id="wrap">
-					<form action="${root}/admin/inquiry/write" class="inquiryDetailform"	method="get">
+					<form action="${root}/admin/inquiry/edit" class="inquiryDetailform"	method="get">
 
 						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 							<div class="col-md-0 px-0">
@@ -42,7 +48,7 @@
 
 						<!-- 문의하기 양식  -->
 						<div id="wrap">
-							<form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/write" method="get">
+							<form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/edit" method="get">
 								<div class="container">
 									<h2>문의하기</h2>
 									<br>
@@ -50,26 +56,37 @@
 									<form class="form-horizontal">
 										<table id="tableTitle" class="table table-bordered table" style="">
 											<tr>
-												<td>닉네임</td>
-												<td>내가그린기린</td>
-											</tr>
-											<tr>
 												<td>분류</td>
 												<td>회원</td>
 											</tr>
+											<tr>
+												<td>닉네임</td>
+												<td>내가그린기린</td>
+											</tr>
 											<tr>	
 												<td>제목</td>
-												<td>로그인 되지 않습니다.</td>
+												<td>비밀번호를 변경하고 싶어요</td>
 											</tr>
 											<tr>
-												<td width="300px;" height="300px;">내용</td>
-												<td >로그인 시도를 하였지만 관리자에게 문의하라는 메시지 창이 뜹니다.</td>
+												<td width="200px;" height="200px;">내용</td>
+												<td >비밀번호를 변경하고 싶은데 오류가 납니다. </td>
 											</tr>
+											
+											
+										</table>
+										<hr>
+										<table id="tableAnswer" class="table table-bordered table">
+											<tr>
+												<td width="200px;" height="200px;">답변내용</td>
+												<td>비밀번호는 마이페이지에서 수정이 가능하시며 비밀번호 입력 후 반복되는 에러시 02-1588-5244 고객센터로 문의바랍니다. </td>
+											</tr>
+											
 										</table>
 			
 										<div class="form-group">
 										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
+											<button type="submit" class="btn btn-warning btn-md" style="margin-right: 5px;">답변수정</button>
+											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-danger btn-md" style="margin-right: 5px;">삭제</button>
 											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
 
 										</div>

@@ -21,4 +21,8 @@ public class InquiryController {
 	public String inquiryDetail() {
 		return "admin/inquiry-detail";
 	}
+	@GetMapping("inquiry/edit")
+	public String inquiryEdit() {
+		return "admin/inquiry-edit";
+	}
 }

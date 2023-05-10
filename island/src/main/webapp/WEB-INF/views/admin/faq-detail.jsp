@@ -51,6 +51,10 @@
 									<form class="form-horizontal">
 										<table id="tableTitle" class="table table-bordered table" style="">
 											<tr>
+												<td>분류</td>
+												<td>회원</td>
+											</tr>
+											<tr>
 												<td>제목</td>
 												<td>회원가입의 조건이 있나요?</td>
 											</tr>

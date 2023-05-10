@@ -51,6 +51,7 @@ div>h2 {
 							<thead>
 								<tr class="info">
 									<td>글번호</td>
+									<td>분류</td>
 									<td>제목</td>
 									<td>작성자</td>
 									<td>작성일</td>
@@ -59,37 +60,43 @@ div>h2 {
 							<tbody>
 								<tr> 
 									<td>00</td>
+									<td>회원</td>
 									<td onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/detail'">회원가입의 조건이 있나요?</td>
 									<td>관리자</td>
 									<td>20210321</td>
 								</tr>
 								<tr>
 									<td>01</td>
+									<td>회원</td>
 									<td>비밀번호를 잊어버렸습니다.</td>
 									<td>관리자</td>
 									<td>20220322</td>
 								</tr>
 								<tr>
 									<td>02</td>
-									<td>가입 아이디(이메일)을 잊어버렸습니다.</td>
+									<td>모임</td>
+									<td>신청한 모임 내역은 어디서 확인하나요?</td>
 									<td>관리자</td>
 									<td>20220630</td>
 								</tr>
 								<tr>
 									<td>03</td>
-									<td>가입 이름, 아이디(이메일)를 변경하고 싶습니다.</td>
+									<td>세미나</td>
+									<td>세미나 관련된 문의는 어디서 할 수 있나요?</td>
 									<td>관리자</td>
 									<td>20230101</td>
 								</tr>
 								<tr>
 									<td>04</td>
-									<td>회원정보 수정은 어디에서 하나요?</td>
+									<td>결제/환불</td>
+									<td>결제가 되지 않는데 어떻게 해야할까요?</td>
 									<td>관리자</td>
 									<td>20220828</td>
 								</tr>
 								<tr>
 									<td>05</td>
-									<td>이메일 인증을 반드시 해야하나요?</td>
+									<td>기타</td>
+									<td>ISLAND 이용에 문의가 있어요</td>
 									<td>관리자</td>
 									<td>20211001</td>
 								</tr>
