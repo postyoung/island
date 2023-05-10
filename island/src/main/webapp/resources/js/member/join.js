@@ -19,7 +19,7 @@ $(document).ready(function() {
     $('#name').on('input', function() {
       const name = $(this).val();
        //특수문자제외 2글자이상
-      const regex = /^[a-zA-Z0-9가-힣\s_]{2,}$/;
+      const regex = /^[a-zA-Z가-힣\s_]{2,}$/;
   
       if (regex.test(name)) {
         $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
@@ -63,19 +63,24 @@ $(document).ready(function() {
     });
   });
   
-  //전화번호 숫자만 입력되게 정규식검사
+  //전화번호 숫자만 입력되게 정규식검사 및 경고창 보이게
   $(document).ready(function() {
     $('#phone').on('input', function() {
+      const phonearea = document.querySelector("#validationFeedback_Phone");
       const phoneNumber = $(this).val();
       const regex = /^[0-9]*$/;
 
       if (regex.test(phoneNumber)) {
         $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
+        phonearea.hidden = true; 
       } else {
         $(this).removeClass('form-control is-valid').addClass('form-control is-invalid');
+        phonearea.hidden = false; 
       }
     });
   });
+
+
 
 
   // 이메일 주소 유효성 검사 함수
@@ -206,23 +211,64 @@ likePlace.addEventListener('change', function() {
           } ,
       });
   }
-//비밀번호1과 비밀번호2 일치해야지만 제출되게
-  function checkValidation(){
-    if(!isPwdOk()){
-        alert("비밀번호가 일치하지 않습니다.");
-        document.querySelector("main input[name=pwd]").focus();
-        return false;
-    }
-    return true;
+
+  //닉네임 중복확인
+  function checkDupNick(){
+    
+    const nick = document.querySelector("input[name=nick]").value;
+    $.ajax({
+        url : '/app/member/nick-check' ,
+        type : 'POST' ,
+        data : {
+            'nick' : nick
+        } ,
+        success : function(data){
+            if(data == 'notDup'){
+                alert("사용 가능한 닉네임 입니다.");
+            }else{
+                alert("사용 불가한 닉네임 입니다.");
+            }
+        } ,
+        error : function(e){
+            console.log(e);
+        } ,
+    });
 }
+function checkValidation() {
+//필수인풋태그 클래스가 is-vaild 일때에만 제출활성화
+//필수 select 태그가 입력되야지만 제출활성화
+const inputFields = document.querySelectorAll('input[type="text"].is-valid, input[type="password"].is-valid');
+console.log(inputFields);
+
+for (let i = 0; i < inputFields.length; ++i) {
+  if (inputFields[i].id !== "attach" && !inputFields[i].classList.contains("is-valid")) {
+    alert("모든 항목을 입력해주세요.");
+    inputFields[i].focus();
+    return false;
+  }
+}
+//비밀번호1과 비밀번호2 일치해야지만 제출되게
+  if (!isPwdOk()) {
+    alert("비밀번호가 일치하지 않습니다.");
+    document.querySelector("input[name=pwd]").focus();
+    return false;
+  }
+
+
+  }
+
+//비밀번호 일치시 제출
 function isPwdOk(){
-    const pwd1 = document.querySelector("main input[name=pwd]").value;
-    const pwd2 = document.querySelector("main input[name=pwd2]").value;
+    const pwd1 = document.querySelector("input[id=pwd]").value;
+    const pwd2 = document.querySelector("input[id=pwd2]").value;
     if(pwd1 != pwd2) return false;
     return true;
 }
 
-    
+
+
+
+
 
 
 

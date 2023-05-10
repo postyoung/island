@@ -10,7 +10,7 @@
 	</settings>
 	
 	<typeAliases>
-	
+		<typeAlias type="com.island.app.member.vo.MemberVo" alias="memberVo"/>
 	</typeAliases>
 	
 

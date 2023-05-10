@@ -2,6 +2,7 @@ package com.island.app.member.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,17 +19,23 @@ public class MemberService {
 	
 	private final SqlSessionTemplate sst;
 	private final MemberDao dao;
+	private final BCryptPasswordEncoder enc;
 	
 	@Autowired
-	public MemberService(SqlSessionTemplate sst , MemberDao dao) {
+	public MemberService(SqlSessionTemplate sst , MemberDao dao, BCryptPasswordEncoder enc) {
 		this.sst = sst;
 		this.dao = dao;
+		this.enc = enc;
 
 	}
 	//회원가입
 	public int join(MemberVo vo) throws Exception{
-		//sql
-		System.out.println(vo);
+		
+		String pwd = vo.getPwd();
+		String newPwd = enc.encode(pwd);
+		
+		vo.setPwd(newPwd);
+		
 		return dao.join(sst, vo);
 	}
 	//아이디 중복확인
@@ -36,4 +43,23 @@ public class MemberService {
 		return dao.checkId(sst , id);
 	}
 	
-}
+	//닉네임 중복확인
+	public int checkNick(String nick) {
+		return dao.checkNick(sst, nick);
+	}
+	//로그인
+	public MemberVo login(MemberVo vo) {
+		MemberVo memberVo = dao.login(sst,vo);
+		
+		String userPwd = vo.getPwd();
+		String dbPwd = memberVo.getPwd();
+		
+		boolean result = enc.matches(userPwd, dbPwd);
+		if(result) {
+			return memberVo;
+		}else {
+			return null;
+		}
+	}
+	
+}//class

@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="wrap">
-        <form action="${root}/member/join" class="join_form" method="POST"> 
+        <form action="${root}/member/join" class="join_form" method="POST"  onsubmit="return checkValidation();"> 
             <h1 class="title">회원가입</h1>
             <fieldset class="area_required" style="padding-left: 13%;">
                 <legend class="sub_title">필수정보</legend>
@@ -50,14 +50,18 @@
                         <input type="password" class="form-control" id="pwd2" value="" required >
                       </div>
 
-                      <div id="nick_area">
+                      <div id="nick_area" style="width: 500px;">
                         <label for="">닉네임</label>
                         <input type="text" class="form-control" id="nick" value="" name="nick" required >
-                      </div>
+                        <span><input type="button" class="btn btn-light" value="중복확인" spellcheck="false" onclick="checkDupNick();"></span>
+                    </div>
 
                       <div id="phone_area">
                         <label for="">전화번호</label>
                         <input type="text" class="form-control" id="phone" name="phone" value="" required >
+                        <div id="validationFeedback_Phone" class="validationFeedback_Phone" hidden>
+                          숫자만 입력하세요.
+                        </div>
                       </div>
 
                       <div id="id_num_area">
@@ -69,13 +73,13 @@
 
                       <div id="email_area">
                         <label for="">이메일</label>
-                        <input type="text" class="form-control" id="email" value="" name="email" required style="width: 140px;">
+                        <input type="text" class="form-control" id="email" name="email" required style="width: 140px;">
                         <select class="form-select is-invalid" id="email_address" name="email2" aria-describedby="validationServer04Feedback" style="width: 140px;" required>
-                          <option selected disabled value="10">email.com</option>
-                          <option value="20">naver.com</option>
-                          <option value="30">daum.net</option>
-                          <option value="40">google.com</option>
-                          <option value="50">kakao.com</option>
+                          <option selected disabled>email.com</option>
+                          <option value="10">naver.com</option>
+                          <option value="20">daum.net</option>
+                          <option value="30">google.com</option>
+                          <option value="40">kakao.com</option>
                         </select>
                       </div>
 

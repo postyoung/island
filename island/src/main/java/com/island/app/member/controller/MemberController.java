@@ -68,6 +68,22 @@ public class MemberController {
 			}
 			
 		}
+		
+		
+	//닉네임 중복확인
+		@RequestMapping("nick-check")
+		@ResponseBody
+		public String nickCheck(String nick) {
+			
+			int result = ms.checkNick(nick);
+			
+			if(result > 0) {
+				return "isDup";
+			}else {
+				return "notDup";
+			}
+			
+		}
 	
 	//로그인 (화면)
 	@GetMapping("login")
@@ -75,8 +91,24 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	//로그인
+	@PostMapping("login")
+	public String login(MemberVo vo, HttpSession session) {
+		
+		//서비스
+		MemberVo loginMember = ms.login(vo);
+		
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 실패 ... ");
+		}
+		
+		//화면
+		session.setAttribute("loginMember", loginMember);
+		return "redirect:/main";
+		
+	}
 	
 	
 
 
-}
+}//class

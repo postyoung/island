@@ -14,5 +14,13 @@ public class MemberDao{
 	public int checkId(SqlSessionTemplate sst, String id) {
 		return sst.selectOne("member.checkId" , id);
 	}
+	//닉네임 중복확인
+	public int checkNick(SqlSessionTemplate sst, String nick) {
+		return sst.selectOne("member.checkNick" , nick);
+	}
+	//로그인
+	public MemberVo login(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.selectOne("member.login" , vo);
+	}
 
 }

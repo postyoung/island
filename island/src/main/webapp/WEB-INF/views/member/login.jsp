@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="wrap">
-    <form action="" class="login_form">
+    <form action="${root}/member/login" class="login_form" method="POST">
         <h1 class="title">로그인</h1>
         <fieldset class="area_required" style="padding-left: 17%;">
             <div>
@@ -23,7 +23,7 @@
                   
                   
                   <div id="id" style="width: 500px;">
-                    <input type="text"  class="form-control" id="validationServer01" value="" required placeholder="비밀번호를 입력하세요">
+                    <input type="password"  class="form-control" id="validationServer01" value="" required placeholder="비밀번호를 입력하세요">
                   </div>
                   
 
