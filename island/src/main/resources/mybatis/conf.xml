@@ -10,7 +10,11 @@
 	</settings>
 	
 	<typeAliases>
+
 		<typeAlias type="com.island.app.member.vo.MemberVo" alias="memberVo"/>
+
+		<typeAlias type="com.island.app.seminar.bank.vo.BankVo" alias="bankVo"/>
+
 	</typeAliases>
 	
 

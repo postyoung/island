@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,7 @@ $(document).ready(function() {
           <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">세미나명</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="세미나명을 입력해주세요."  maxlength="35">
+              <input type="type" class="form-control" id="inputEmail3" name="name" placeholder="세미나명을 입력해주세요."  maxlength="35" required>
             </div>
           </div>
           <div class="row mb-3">
@@ -73,30 +74,30 @@ $(document).ready(function() {
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">전화번호</label></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" id="inputPassword3" value="김땡땡" readonly="readonly"></td>
-                  <td><input type="tel" class="form-control input-box" id="inputPassword3" value="010-1234-1234" readonly="readonly"></td>
+                  <td><input type="text" class="form-control" id="inputPassword3" value="김땡땡" readonly></td>
+                  <td><input type="tel" class="form-control input-box" id="inputPassword3" value="010-1234-1234" readonly></td>
                 </tr>
                 <tr>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label></td>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">소속</label></td>
                 </tr>
                 <tr>
-                  <td><input type="email" class="form-control" id="inputPassword3" value="asdf@nate.com" readonly="readonly"></td>
-                  <td><input type="text" class="form-control input-box" id="inputPassword3" ></td>
+                  <td><input type="email" class="form-control" id="inputPassword3" value="asdf@nate.com" readonly></td>
+                  <td><input type="text" class="form-control input-box" id="inputPassword3" value="서울대학교 경영학 공동협의" readonly></td>
                 </tr>
               </table>
             </div>
           </div>
           <div class="input-group">
             <label for="inputPassword3" class="col-sm-2 col-form-label">세미나 간단 소개</label>
-            <input type="text" class="form-control" placeholder="내용을 입력하세요." id="seminar-meet">
+            <input type="text" name ="intro" class="form-control" placeholder="50자 이내로 내용을 입력하세요." maxlength="50" id="seminar-meet" required>
           </div>
         </article> 
          
         <div class="detail-info-area">
           <div class="detail-title">상세내용</div><span class="essential">(필수)</span>
           	<div id="detail-info-box">
-	          	<textarea id="summernote" name="editordata"></textarea>
+	          	<textarea id="summernote" name="exintro" required></textarea>
           	</div>
          <!--  <textarea class="detail-context" aria-label="With textarea" rows="30" placeholder="내용을 입력하세요." style="resize: none;"></textarea> -->
         </div>
@@ -110,8 +111,8 @@ $(document).ready(function() {
   
         <!-- 세미나 일시 -->
         <div class="detail-apply-area">
-            <b>세미나 일시 </b><input type="date" class="form-control input-box"> 
-            <select class="form-select select-box-size">
+            <b>세미나 일시 </b><input type="date" name="startDay" class="form-control input-box"> 
+            <select class="form-select select-box-size" name="sHour">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -139,7 +140,7 @@ $(document).ready(function() {
             </select>시
     
             <select class="form-select select-box-size" aria-label="multiple select example">
-              <option value="00" selected>00</option>
+              <option value="00" selected name="sMinute">00</option>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
@@ -191,10 +192,10 @@ $(document).ready(function() {
          <!-- 주소 검색창 영역  -->
         <input type="text" class="form-control input-box" id="sample4_postcode" placeholder="우편번호">
         <input type="button" id="address-btn" class="btn btn-outline-warning" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br><br>
-        <input type="text" class="form-control input-box" id="sample4_roadAddress" placeholder="도로명주소">
-        <input type="text" class="form-control input-box" id="sample4_jibunAddress" placeholder="지번주소">
+        <input type="text" name="roadName" class="form-control input-box" id="sample4_roadAddress" placeholder="도로명주소">
+        <input type="text" name="roadNum" class="form-control input-box" id="sample4_jibunAddress" placeholder="지번주소">
         <span id="guide" style="color:#999;display:none"></span>
-        <input type="text" class="form-control input-box" id="sample4_detailAddress" placeholder="상세주소">
+        <input type="text" name="roadDetail" class="form-control input-box" id="sample4_detailAddress" placeholder="상세주소">
         <input type="text" class="form-control input-box" id="sample4_extraAddress" placeholder="참고항목"> <br>
         
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -332,11 +333,11 @@ $(document).ready(function() {
 
           <br><br>
           <!-- 모집정원 -->
-          <b>모집 정원 </b><input type="text" class="form-control input-box" id="person-area" placeholder="00"> 명 <br><br>
+          <b>모집 정원 </b><input type="text" name="maxCapacity" class="form-control input-box" id="person-area" placeholder="00"> 명 <br><br>
 
           <!-- 신청마감 기간 -->
-          <b>세미나 신청 마감일 </b><input type="date" class="form-control input-box"> 
-            <select class="form-select select-box-size">
+          <b>세미나 신청 마감일 </b><input name="finishDay" type="date" class="form-control input-box"> 
+            <select name="fHour" class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -363,7 +364,7 @@ $(document).ready(function() {
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select select-box-size" aria-label="multiple select example">
+            <select name="fMinute" class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -375,29 +376,28 @@ $(document).ready(function() {
             <!-- 유무료 -->
             <b>유무료 선택 </b>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <input class="form-check-input" type="radio" name="payYn" value="무료" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
                 무료
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <input class="form-check-input" type="radio" name="payYn" value="유료" id="flexRadioDefault2" checked>
               <label class="form-check-label" for="flexRadioDefault2">
                 유료
               </label>
-              <span id="seminar-pay">비용<input type="text" id="pay-area" class="form-control">원</span>
+              <span id="seminar-pay">비용<input type="number" name="expense" id="pay-area" class="form-control">원</span>
               <span id="seminar-pay">
                 은행명
                 <select class="form-select select-box-size" aria-label="multiple select example" id="bank-select">
-                  <option value="은행" selected>선택</option>
-                  <option value="농협">농협은행</option>
-                  <option value="국민">국민은행</option>
-                  <option value="카카오">카카오뱅크</option>
-                  <option value="기업">기업은행</option>
-                  <option value="하나">하나은행</option>
+                  
+                  <c:forEach items="${bankList}" var="bvo">
+	                  <option value="${bvo.no}" selected>${bvo.bankName}</option>
+                  </c:forEach>
+                 
                 </select>
               </span>
-              <span id="seminar-pay">계좌번호<input type="text" id="account-number" class="form-control">('-')포함 입력</span>
+              <span id="seminar-pay">계좌번호<input type="text"  name="accountnum" id="account-number" class="form-control">('-')포함 입력</span>
               <div>※ 실시간 계좌입금, 카드결제 두 수단으로 비용결제가 진행됩니다.</div>
             </div>
         </div>

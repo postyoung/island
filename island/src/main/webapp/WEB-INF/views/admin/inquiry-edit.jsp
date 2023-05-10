@@ -32,7 +32,7 @@
 			<div id="wrap">
 				<!-- 메뉴바 -->
 				<div id="wrap">
-					<form action="${root}/admin/inquiry/detail" class="inquiryDetailform"	method="get">
+					<form action="${root}/admin/inquiry/list" class="inquiryDetailform"	method="get">
 
 						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 							<div class="col-md-0 px-0">
@@ -43,7 +43,7 @@
 						<!-- 문의하기 양식  -->
 
 						<div class="container">
-							<h2>문의작성하기</h2>
+							<h2>문의답변 수정하기</h2>
 							<br>
 							<div class="form-group">
 								<div class="row_wrap">
@@ -74,14 +74,14 @@
 												<label id="content" class="control-label col-lg-2"	for="content">답변내용 : </label>
 
 												<div class="col-lg-12" style="margin-bottom: 10px;">
-													<textarea class="form-control" name="content" id="content" rows="16" placeholder=" 문의한 내용에 대해 답변을 작성하시오"></textarea>
+													<textarea class="form-control" name="content" id="content" rows="16" placeholder=" 비밀번호는 마이페이지에서 수정이 가능하시며 비밀번호 입력 후 반복되는 에러시 02-1588-5244 고객센터로 문의바랍니다. "></textarea>
 												</div>
 											</div>
 										</form>
 										<div class="form-group">
 											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변등록</button>
-												<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/detail'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+												<button type="submit" class="btn btn-warning btn-md" style="margin-right: 5px;">수정완료</button>
+												<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
 
 											</div>
 										</div>

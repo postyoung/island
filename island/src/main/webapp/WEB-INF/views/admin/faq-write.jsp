@@ -34,6 +34,16 @@
 					<div class="container">
 						<h2>FAQ 질문&답변</h2>
 						<form class="form-horizontal">
+							<div class="btn-group" role="group">
+								<select type="button" class="btn btn-primary dropdown-toggle" style="margin-bottom: 10px;" data-bs-toggle="dropdown" aria-expanded="false">
+									<option>전체</option>
+									<option>회원</option>
+									<option>모임</option>
+									<option>세미나</option>
+									<option>결제/환불</option>
+									<option>기타</option>
+								</select>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="title">질문 : </label>
 								<div class="col-lg-12">

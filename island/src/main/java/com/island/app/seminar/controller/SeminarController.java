@@ -1,8 +1,15 @@
 package com.island.app.seminar.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.island.app.seminar.Service.SeminarService;
+import com.island.app.seminar.bank.vo.BankVo;
 
 /**
  * 
@@ -12,7 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("seminar")
 public class SeminarController {
+	private final SeminarService ss;	
 	
+	@Autowired
+	public SeminarController(SeminarService ss) {
+		this.ss = ss;
+	}
+
 	//세미나 목록 조회(+페이징)
 	@GetMapping("list")
 	public String seminarList() {
@@ -21,8 +34,14 @@ public class SeminarController {
 	
 	//세미나 개설하기(화면)
 	@GetMapping("create")
-	public String seminarCreate() {
-		return "seminar/create";
+	public String seminarCreate(Model m) {
+		List<BankVo> bankList = ss.bankCategorySelect();
+
+		if(bankList != null) {
+			m.addAttribute("bankList", bankList);
+			return "seminar/create";
+		}
+		return "eroor-page";
 	}
 	
 	

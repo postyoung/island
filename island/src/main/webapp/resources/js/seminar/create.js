@@ -1,15 +1,17 @@
 
-  function setThumbnail(event) {
-    var reader = new FileReader();
+function setThumbnail(event) {
+  var reader = new FileReader();
 
-    reader.onload = function(event) {
-      var img = document.createElement("img");
-      img.setAttribute("src", event.target.result);
-      img.classList.add('seminar-photo');
-      document.querySelector("div#image_container").appendChild(img);
-    };
+  reader.onload = function(event) {
+    var img = document.createElement("img");
+    img.setAttribute("src", event.target.result);
+    img.classList.add('seminar-photo');
+    var imageContainer = document.querySelector("div#image_container");
+    imageContainer.innerHTML = "";
+    imageContainer.appendChild(img);
+  };
 
-    reader.readAsDataURL(event.target.files[0]);
-  }
+  reader.readAsDataURL(event.target.files[0]);
+}
 
 
