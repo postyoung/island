@@ -7,35 +7,35 @@
 	INSERT INTO MEMBER
 	(
 		NO
-		,LOCAL
-		,EMAIL2
+		,NAME
 		,ID
 		,PWD
-		,NAME
-		,PHONE
 		,NICK
-		,GENDER
-		,EMAIL
+		,PHONE
 		,RESIDENT
 		,RESIDENT2
+		,EMAIL
+		,EMAIL2
+		,GENDER
 		,ATTACH
+		,LOCAL
 		,PROFILE
 	)
 	VALUES
 	(
 		SEQ_MEMBER_NO.NEXTVAL
-		,#{local}
-		,#{email2}
-		,#{id}
-		,#{pwd}
 		,#{name}
+		,#{id}
+		,#{pwd}	
+		,#{nick}	
 		,#{phone}
-		,#{nick}
-		,#{gender}
-		,#{email}
 		,#{resident}
 		,#{resident2}
+		,#{email}
+		,#{email2}
+		,#{gender}
 		,#{attach}
+		,#{local}
 		,#{profile}	
 	)
 	</insert>
@@ -44,6 +44,39 @@
 	  	SELECT COUNT(*)
 	  	FROM MEMBER
 	  	WHERE ID = #{id}
+ 	</select>
+ 	
+ 	 <select id="checkNick" resultType="int"> 
+	  	SELECT COUNT(*)
+	  	FROM MEMBER
+	  	WHERE NICK = #{nick}
+ 	</select>
+ 	
+ 	<select id="login" resultType="memberVo">
+ 	SELECT
+ 		NO
+		,NAME
+		,ID
+		,PWD
+		,NICK
+		,PHONE
+		,RESIDENT
+		,RESIDENT2
+		,EMAIL
+		,EMAIL2
+		,GENDER
+		,ATTACH
+		,LOCAL
+		,PROFILE
+		,QUIT_YN
+		,REPORT_YN
+		,BLOCK_YN
+		,JOIN_DATE
+		
+		FROM MEMBER
+		WHERE ID = #{id}
+		AND	PWD = #{pwd}
+		AND QUIT_YN = 'N'
  	</select>
  	
 </mapper>

@@ -121,8 +121,13 @@
                 </li>
               </ul>
               <div class="text-end">
+              <c:if test="${empty loginMember}">
                 <button type="button" class="btn btn-light text-white me-2 btn-lg" id="header-btn-text" onclick="location.href='${root}/member/login'">Login</button>
                 <button type="button" class="btn btn-primary" onclick="location.href='${root}/member/join'">Sign-up</button>
+              </c:if>
+              <c:if test="${not empty loginMember}">
+                <button type="button" class="btn btn-light text-white me-2 btn-lg" id="header-btn-text" onclick="location.href='${root}/member/logout'">Logout</button>
+              </c:if>
               </div>
             </div>
           </div>
