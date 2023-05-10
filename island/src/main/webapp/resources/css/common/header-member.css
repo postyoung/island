@@ -50,5 +50,15 @@
 .paging-area{
  margin-bottom: 5%;
 }
+#memberWelcomProfile {
+  width: 55px;
+  height: 55px;
+  border-radius: 100px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.profile-welcomeArea{
+  margin-top: 20px;
+}
 
 

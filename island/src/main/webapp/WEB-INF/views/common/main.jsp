@@ -47,6 +47,17 @@
 #header-btn-text{
   margin-left: 30px;
 }
+#profile {
+  width: 55px;
+  height: 55px;
+  border-radius: 100px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.profile-welcomeArea{
+  margin-top: 20px;
+  display: contents;
+}
 
 /* 푸터 */
 .row{
@@ -103,14 +114,13 @@
                     커뮤니티
                   </a>
                 </li>
-                
+                <c:if test="${not empty loginMember}">
                 <li>
                   <a href="${root}/mypage/home" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>
                     마이페이지
                   </a>
                 </li>
-                
                 <li>
                   <a href="#" class="nav-link text-white">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>
@@ -120,8 +130,19 @@
                   </a>
                 </li>
               </ul>
+             </c:if>
+
+             <c:if test="${not empty loginMember}">
+              <div class="profile-welcomeArea">
+               <img src="${root}/resources/img/member/sample.jpg" alt="프로필사진" id="profile">
+               <span style="color: white;">
+                 ${loginMember.nick} 님 환영합니다
+               </span>
+             </div>
+           </c:if>
+              
+           <c:if test="${empty loginMember}">
               <div class="text-end">
-              <c:if test="${empty loginMember}">
                 <button type="button" class="btn btn-light text-white me-2 btn-lg" id="header-btn-text" onclick="location.href='${root}/member/login'">Login</button>
                 <button type="button" class="btn btn-primary" onclick="location.href='${root}/member/join'">Sign-up</button>
               </c:if>

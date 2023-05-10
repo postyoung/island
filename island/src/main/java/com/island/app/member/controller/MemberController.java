@@ -94,10 +94,8 @@ public class MemberController {
 	//로그인
 	@PostMapping("login")
 	public String login(MemberVo vo, HttpSession session) {
-		
 		//서비스
 		MemberVo loginMember = ms.login(vo);
-		
 		if(loginMember == null) {
 			session.setAttribute("alertMsg", "로그인 실패 ... ");
 		}
@@ -106,6 +104,12 @@ public class MemberController {
 		session.setAttribute("loginMember", loginMember);
 		return "redirect:/main";
 		
+	}
+	//로그아웃
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 	
 	

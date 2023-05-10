@@ -31,7 +31,7 @@
                       <div id="id_area" style="width: 500px;">
                         <label for="">아이디</label>
                         <input type="text" class="form-control" id="id" value="" required name="id">
-                        <span><input type="button" class="btn btn-light" value="중복확인" spellcheck="false" onclick="checkDup();"></span>
+                        <span><input type="button" class="btn btn-light" value="중복확인" spellcheck="false" onclick="checkDupId();"></span>
                         <div id="validationFeedback_Id" class="validationFeedback_Id">
                           최소 2 자 대문자,소문자,숫자,_ 만 사용하실 수 있습니다.
                         </div>
@@ -47,12 +47,12 @@
 
                       <div id="pwd2_area">
                         <label for="">비밀번호 확인</label>
-                        <input type="password" class="form-control" id="pwd2" value="" required >
+                        <input type="password" class="form-control" id="pwd2" value="" >
                       </div>
 
                       <div id="nick_area" style="width: 500px;">
                         <label for="">닉네임</label>
-                        <input type="text" class="form-control" id="nick" value="" name="nick" required >
+                        <input type="text" class="form-control" id="nick" value="" name="nick" >
                         <span><input type="button" class="btn btn-light" value="중복확인" spellcheck="false" onclick="checkDupNick();"></span>
                     </div>
 
