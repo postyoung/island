@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>ISLAND 세미나 리뷰작성 | ISLAND</title>
 	<!-- 헤더 -->
-	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
+	<%@ include file="/WEB-INF/views/common/header-member-textarea.jsp" %>
 	
 	<!-- include libraries(jQuery, bootstrap) -->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
