@@ -44,9 +44,16 @@ window.onclick= (e)=>{
 }
 function list()
 {
-    var str = "개설하시겠습니까?";
+    var str = " 개설하시겠습니까?";
     var type;
 
     type = confirm(str);
+
+    if(type== true)
+    {
+        location.replace('${root}/group/create');
+    }else {
+
+    }
 
 }
