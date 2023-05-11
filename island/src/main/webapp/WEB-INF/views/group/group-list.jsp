@@ -65,127 +65,97 @@
 		<button type="button" class="btn_keyword_search">검색</button>
 	</fieldset>
 	<div class="card_list">
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/274639/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/274620/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/275716/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/268393/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/267736/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/254150/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/251858/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/275031/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/275393/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<div class="card">
-			<div class="card-image">
-				<img src="예시 이미지.jpeg" alt="">
-			</div>
-			<div class="category">모임제목</div>
-			<div class="heading">
-				모임내용
-				<div class="author">
-					작성날짜 <span class="name"></span>
-				</div>
+		<div class="card" style="width: 15rem;">
+			<img src="https://cfile1.onoffmix.com/images/event/274137/s" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">모임 제목</h5>
+				<p class="card-text">모임내용</p>
+				<p class="card-text">작성날짜</p>
+				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
 			</div>
 		</div>
-		<a href="${root}/group/create"><button type="button" class="btn_keyword_search">개설하기</button></a>
+		<a href="${root}/group/create"><button type="button" class="btn_keyword_search" onclick="list()">개설하기</button></a>
 	</div>
 </main>
 </body>
