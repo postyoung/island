@@ -20,7 +20,12 @@ public class MemberDao{
 	}
 	//로그인
 	public MemberVo login(SqlSessionTemplate sst, MemberVo vo) {
+		
 		return sst.selectOne("member.login",vo);
+	}
+	//회원탈퇴
+	public int quit(SqlSessionTemplate sst, String no) {
+		return sst.update("member.quit",no);
 	}
 
 }

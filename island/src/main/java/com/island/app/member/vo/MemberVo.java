@@ -1,5 +1,7 @@
 package com.island.app.member.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -18,10 +20,11 @@ public class MemberVo {
 	private String resident;
 	private String resident2;
 	private String attach;
-	private String profile;
-	private String quit_yn;
-	private String report_yn;
-	private String block_yn;
-	private String join_date;
+	private MultipartFile profile;
+	private String profileName;
+	private String quitYn;
+	private String reportYn;
+	private String blockYn;
+	private String joinDate;
 
 }

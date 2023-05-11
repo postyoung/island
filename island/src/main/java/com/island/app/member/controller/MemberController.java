@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.island.app.common.file.FileUploader;
 import com.island.app.member.service.MemberService;
 import com.island.app.member.vo.MemberVo;
 /**
@@ -43,8 +44,9 @@ public class MemberController {
 	public String join(MemberVo vo, HttpServletRequest req, HttpSession session, Model model) throws Exception{
 		
 		//파일업로드
-		
-		
+		String path = req.getServletContext().getRealPath("/resources/img/member/profile/load/");
+		String changeName = FileUploader.upload(vo.getProfile() , path);
+		vo.setProfileName(changeName);
 		
 		//서비스
 		int result = ms.join(vo);
@@ -97,7 +99,8 @@ public class MemberController {
 	
 	//로그인
 	@PostMapping("login")
-	public String login(MemberVo vo, HttpSession session) {
+	public String login(MemberVo vo, HttpSession session, HttpServletRequest req) {
+		
 		//서비스
 		MemberVo loginMember = ms.login(vo);
 		if(loginMember == null) {

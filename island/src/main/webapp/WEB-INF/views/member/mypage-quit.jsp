@@ -22,7 +22,7 @@
                                     <!-- 마이페이지 콘텐츠 시작 -->
                         <section class="main_content" >
                                     <!-- 개설한 내역 -->
-                            <form action="">
+                            <form action="${root}/mypage/quit" method="post">
                                         <h3 class="title">회원탈퇴</h3>
                                         <!-- 인풋 입력시작 -->
                                 <div class="edit_wrap">
@@ -54,20 +54,21 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    
+                                        <c:if test="${not empty loginMember}">
                                         <div class="edit_id">
-                                            <h4 class="label">탈퇴할 이메일 아이디</h4>
+                                            <h4 class="label">탈퇴할 아이디</h4>
                                             <div class="input_wrap">
-                                                <span class="user_id">ckdn0123@naver.com</span>
-                                                <input type="hidden" name="user_id" id="user_id" value="">
+                                                <span class="user_id">${loginMember.id}</span>
+                                               
                                             </div>
                                         </div>
+                                    </c:if>
                                         <div class="edit_pw">
                                             <h4 class="label">
                                                 <label for="pw">비밀번호 입력</label>
                                             </h4>
                                             <div class="input_wrap">
-                                                <input type="password" id="pw" name="pw" required>
+                                                <input type="password" id="pw" name="pwd" required>
                                                 <!-- 에러메시지 -->
                                                 <ul class="check_msg">
                                                     <li>
@@ -92,7 +93,7 @@
                                         <div class="bottom_btn_area">
                                             <div class="btn_wrap">
                                                
-                                                <button type="submit" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">탈퇴하기</button>
+                                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">탈퇴하기</button>
                                             </div>
                                             <!-- Modal -->
                                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -108,7 +109,7 @@
                                                 탈퇴하시겠습니까?
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >확인</button>
+                                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
                                                 <button type="button" class="btn btn-primary" onclick="location.href='${root}/mypage/quit'">취소</button>
                                                 </div>
                                             </div>
