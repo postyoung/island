@@ -40,9 +40,8 @@
 		<div class="ms-auto me-0 me-md-3 my-2 my-md-0"></div>
 		<!-- 상단 nav -->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-			<!--관리자 이름 (loginMember로 수정하기)-->
 			<div
-				style="font-size: 15px; color: rgba(155, 157, 158); margin: auto; margin-right: 15px;">박재욱
+				style="font-size: 15px; color: rgba(155, 157, 158); margin: auto; margin-right: 15px;">${loginAdmin.name}
 				관리자님</div>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
@@ -52,7 +51,7 @@
 					aria-labelledby="navbarDropdown">
 					<li><a class="dropdown-item" href="${root}/admin/edit"
 						style="text-align: center;">정보 수정</a></li>
-					<li><a class="dropdown-item" href="#!"
+					<li><a class="dropdown-item" href="${root}/admin/logout"
 						style="text-align: center;">로그아웃</a></li>
 				</ul></li>
 		</ul>

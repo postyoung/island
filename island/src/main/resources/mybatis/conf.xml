@@ -15,6 +15,10 @@
 
 		<typeAlias type="com.island.app.seminar.bank.vo.BankVo" alias="bankVo"/>
 
+		<typeAlias type="com.island.app.admin.vo.AdminVo" alias="adminVo"/>
+
+		<typeAlias type="com.island.app.admin.faq.vo.FaqVo" alias="faqVo"/>
+
 	</typeAliases>
 	
 
