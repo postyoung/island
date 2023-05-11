@@ -28,50 +28,47 @@
 						<div class="card-body col-sm-12 d-flex justify-content-center">
 							<div
 								class="col-sm-8 col-md-offset-3 d-flex justify-content-center">
-								<form role="form">
+								<form role="form" action="${root}/admin/create" method="post">
 									<div class="form-group">
 										<label for="inputName"><h4>관리자 이름</h4></label> <input
-											type="text" class="form-control" id="inputName"
+											type="text" class="form-control" name="name" id="inputName"
 											placeholder="이름을 입력해 주세요">
 									</div>
 									<div class="form-group">
 										<label for="InputId" class="mt-4"><h4>아이디</h4></label> <input
-											type="text" class="form-control" id="InputId"
+											type="text" class="form-control" name="id" id="InputId"
 											placeholder="아이디를 입력해주세요">
 									</div>
 									<div class="form-group">
 										<label for="inputPassword" class="mt-4"><h4>비밀번호</h4></label>
-										<input type="password" class="form-control" id="inputPassword"
-											placeholder="비밀번호를 입력해주세요">
+										<input type="password" class="form-control" name="pwd"
+											id="inputPassword" placeholder="비밀번호를 입력해주세요">
 									</div>
 									<div class="form-group">
 										<label for="inputPasswordCheck" class="mt-4"><h4>비밀번호
-												확인</h4></label> <input type="password" class="form-control"
+												확인</h4></label> <input type="password" class="form-control" name="pwd2"
 											id="inputPasswordCheck"
 											placeholder="비밀번호 확인을 위해 다시 한번 입력 해 주세요">
 									</div>
 									<label for="radioBox" class="mt-4"><h4>권한 설정</h4></label> <br>
 									<div class="form-check form-check-inline" id="radioBox">
-										<input class="form-check-input" type="radio"
-											name="inlineRadioOptions" id="inlineRadio1" value="option1">
-										<label class="form-check-label" for="inlineRadio1">권한
-											레벨 : 1</label>
+										<input class="form-check-input" type="radio" name="pmNo"
+											id="inlineRadio1" value="1"> <label
+											class="form-check-label" for="inlineRadio1">권한 레벨 : 1</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio"
-											name="inlineRadioOptions" id="inlineRadio2" value="option2">
-										<label class="form-check-label" for="inlineRadio2">권한
-											레벨 : 2</label>
+										<input class="form-check-input" type="radio" name="pmNo"
+											id="inlineRadio2" value="2"> <label
+											class="form-check-label" for="inlineRadio2">권한 레벨 : 2</label>
 									</div>
 									<div class="form-check form-check-inline">
-										<input class="form-check-input" type="radio"
-											name="inlineRadioOptions" id="inlineRadio3" value="option3">
-										<label class="form-check-label" for="inlineRadio3">권한
-											레벨 : 3</label>
+										<input class="form-check-input" type="radio" name="pmNo"
+											id="inlineRadio3" value="3"> <label
+											class="form-check-label" for="inlineRadio3">권한 레벨 : 3</label>
 									</div>
 									<div class="form-group text-center mt-4">
-										<button type="submit" id="join-submit" class="btn btn-primary">
-											계정 생성</button>
+										<input type="submit" id="join-submit" value="계정 생성"
+											class="btn btn-primary">
 									</div>
 								</form>
 							</div>

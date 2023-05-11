@@ -3,6 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="root" value="${pageContext.request.contextPath}"
 	scope="page" />
+<!-- 
+<%
+	if (session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/app/admin/login"); // 로그인 페이지로 이동
+	}
+%>
+
+ -->
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />

@@ -28,14 +28,25 @@ public class AdminController {
 	// 로그인
 	@PostMapping("login")
 	public String login(AdminVo vo, HttpSession session) {
-		System.out.println(vo);
 		AdminVo loginAdmin = as.login(vo);
-		System.out.println("a:" + loginAdmin);
 		if (loginAdmin == null) {
 			return "redirect:/admin/login";
 		}
 		session.setAttribute("loginAdmin", loginAdmin);
 		return "redirect:/admin/main";
+	}
+
+	// 계정 생성 (화면)
+	@GetMapping("create")
+	public String create() {
+		return "admin/create";
+	}
+
+	// 계정 생성
+	@PostMapping("create")
+	public String create(AdminVo vo, HttpSession session) {
+		int result = as.create(vo);
+		return "admin/main";
 	}
 
 	// 메인
@@ -48,12 +59,6 @@ public class AdminController {
 	@RequestMapping("edit")
 	public String edit() {
 		return "admin/edit";
-	}
-
-	// 계정 생성
-	@RequestMapping("create")
-	public String create() {
-		return "admin/create";
 	}
 
 	// 권한 설정
@@ -73,7 +78,7 @@ public class AdminController {
 	public String delete() {
 		return "admin/delete";
 	}
-	
+
 	// 로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
