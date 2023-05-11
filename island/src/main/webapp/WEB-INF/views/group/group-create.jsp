@@ -106,9 +106,9 @@
                             <input type="text" id="sample4_extraAddress" placeholder="참고항목">
                         </div>
 
-                            <a href="${root}/group/list"><button type="submit">개설하기</button></a>
+                            <a href="${root}/group/list"><button type="submit" onclick="groupcreate()">개설하기</button></a>
                             <hr>
-                            <a href="${root}/group/list"><button type="submit">취소하기</button></a>
+                            <a href="${root}/group/list"><button type="submit" onclick="groupcancel()">취소하기</button></a>
 
 
                     </div>

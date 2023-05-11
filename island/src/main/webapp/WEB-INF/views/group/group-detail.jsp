@@ -36,7 +36,7 @@
                                 class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                         </svg>모임장소</p>
-                        <a href="${root}/group/join"><button class="btn btn-primary">신청하기</button></a></a>
+                        <a href="${root}/group/join"><button class="btn btn-primary" onclick="ask()">신청하기</button></a></a>
                     </div>
                 </div>
             </div>
@@ -60,8 +60,8 @@
                         <div class="mb-2 width">이메일 : postsoonyoung@gmail.com</div>
                         <div class="mb-2 width">전화번호 : 010-1234-5678</div>
                         <div class="mb-2 width">소속 : 없음</div>
-                        <a href="${root}/group/edit"><button class="btn btn-primary">수정하기</button></a></a>
-                        <button class="btn btn-primary">삭제하기</button>
+                        <a href="${root}/group/edit"><button class="btn btn-primary" onclick="modify()">수정하기</button></a>
+                        <a href="${root}/group/list"><button class="btn btn-primary" onclick="detaildelete()">삭제하기</button></a>
                     </div>
                 </div>
             </div>
