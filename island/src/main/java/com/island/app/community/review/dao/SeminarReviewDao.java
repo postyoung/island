@@ -28,7 +28,7 @@ public class SeminarReviewDao {
 	
 	//세미나 리뷰 갯수 조회
 	public int getCnt(SqlSessionTemplate sst) {
-		return sst.selectOne("community.getCnt");
+		return sst.selectOne("community.SeminarReviewGetCnt");
 	}
 
 	//세미나 리뷰 리스트 조회

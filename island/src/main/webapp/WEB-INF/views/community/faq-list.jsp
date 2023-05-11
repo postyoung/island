@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,13 +43,41 @@
 	  <div id="faq-area">
 	    <!-- faq 리스트 -->
 	    <div class="accordion accordion-flush" id="accordionFlushExample">
+	    
+	     	<c:forEach items="${faqList}" var="fvo" >
+	    		<div class="accordion-item">
+			        <h2 class="accordion-header" id="flush-headingOne">
+			
+			          <button class="accordion-button collapsed" type="button"
+			            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+			            aria-expanded="false" aria-controls="flush-collapseOne">
+			            <b>${fvo.categoryName}</b> | 
+			            ${fvo.title}
+			          </button>
+			        </h2>
+			        <div id="flush-collapseOne" class="accordion-collapse collapse"
+			          aria-labelledby="flush-headingOne"
+			          data-bs-parent="#accordionFlushExample">
+			          <div class="accordion-body">
+			            ${fvo.content} 
+			          </div>
+			        </div>
+	      		</div>
+	    	
+	    	</c:forEach> 
+	    	
+	    	
+	    	
+	    <!--  
 	      <div class="accordion-item">
 	        <h2 class="accordion-header" id="flush-headingOne">
 	
 	          <button class="accordion-button collapsed" type="button"
 	            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
 	            aria-expanded="false" aria-controls="flush-collapseOne">
-	            회원가입의 조건이 있나요?</button>
+	            <b>회원</b> | 
+	            회원가입의 조건이 있나요?
+	          </button>
 	        </h2>
 	        <div id="flush-collapseOne" class="accordion-collapse collapse"
 	          aria-labelledby="flush-headingOne"
@@ -61,6 +90,9 @@
 	          </div>
 	        </div>
 	      </div>
+	      
+	      
+	      
 	      <div class="accordion-item">
 	        <h2 class="accordion-header" id="flush-headingTwo">
 	          <button class="accordion-button collapsed" type="button"
@@ -125,7 +157,7 @@
 	            <!-- <a href="http://onoffmix.com/account/find" target="_self" style="color: rgb(65, 149, 245);">회원가입 여부 확인(PC)</a>
 	                    <font color="#4195f5"><br></font>☞
 	                    <a href="http://m.onoffmix.com/account/find/id" target="_self">
-	                    <span style="background-color: rgb(119, 119, 119);"></span> -->
+	                    <span style="background-color: rgb(119, 119, 119);"></span> 
 	            <span style="color: rgb(65, 149, 245);">회원가입 여부 확인(모바일) 
 	          </div>
 	        </div>
@@ -233,6 +265,8 @@
 	          </span>
 	        </div>
 	      </div>
+	      -->
+	      
 	    </div>
 	  </div>
 	</div>

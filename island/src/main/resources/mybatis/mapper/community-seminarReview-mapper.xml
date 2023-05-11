@@ -46,7 +46,7 @@
  			)
  	</insert>
  	
- 	<select id="getCnt" resultType="int">
+ 	<select id="SeminarReviewGetCnt" resultType="int">
  		SELECT 
 		    COUNT(NO)
 		FROM REVIEW
