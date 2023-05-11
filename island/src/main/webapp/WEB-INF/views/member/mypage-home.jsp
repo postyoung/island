@@ -20,6 +20,8 @@
                      <!-- 마이페이지 메뉴바 시작 -->              
                          <%@include file="/WEB-INF/views/member/common/mypage-nav.jsp" %>
                          	<!-- 마이페이지 메뉴바 끝 -->
+
+                             <c:if test="${not empty loginMember}">
                                 <div class="main_content">
                                     <!-- 마이페이지 콘텐츠 시작 -->
                                         <!-- 프로필 정보 영역시작 -->
@@ -28,38 +30,38 @@
                                         
                                         <div class="profile_img">
                                             <!-- <div class="thumbnail"> -->
-                                                <img class="img_thumbnail" src="${root}/resources/img/member/eximg.jpeg" alt="프로필사진" style="width: 280px;">
+                                                <img class="img_thumbnail" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" style="width: 210px;">
                                             </div>
-                                            <!-- 프로필 이미지 업로드 버튼 -->
-                                            <!-- <button type="button" class="btn_change">사진변경</button> -->
+                                      
 
                                     </div>
                                     <!-- 프로필 정보 시작 -->
                                     <div class="profile_info">
                                         <div class="left_area">
-                                            <h3 class="title">김수진</h3>
+                                            <h3 class="title">${loginMember.name}</h3>
                                             <ul class="information">
                                                 <li class="email"><span class="label">이메일</span>
-                                                <span class="value">abc@naver.com</span>
+                                                <span class="value">${loginMember.email}@${loginMember.email2}</span>
                                                 </li>
                                                 <li class="phone">
                                                     <span class="label">휴대전화</span>
-                                                    <span class="value">01089430864</span>
+                                                    <span class="value">${loginMember.phone}</span>
                                                 </li>
                                                 <li class="company">
                                                     <span class="label">소속</span>
-                                                    <span class="value">정보가 입력되지 않았습니다.</span>
+                                                    <span class="value">${loginMember.attach}</span>
                                                 </li>
                                                 <li class="joindate">
                                                     <span class="label">가입일</span>
-                                                    <span class="value">2023.04.04</span>
+                                                    <span class="value">${loginMember.joinDate}</span>
                                                 </li>
                                                 <li class="homepage">
                                                     <span class="label">닉네임</span>
-                                                    <span class="value">샴푸의 요정</span>
+                                                    <span class="value">${loginMember.nick}</span>
                                                 </li>
                                             </ul>
                                         </div>
+                                    </c:if>
                                         <div class="right_area">
                                             <div class="channel_home">
                                                 <h4 class="title">마이피드</h4>

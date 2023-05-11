@@ -36,7 +36,7 @@
 		,#{gender}
 		,#{attach}
 		,#{local}
-		,#{profile}	
+		,#{profileName}	
 	)
 	</insert>
 	
@@ -67,7 +67,7 @@
 		,GENDER
 		,ATTACH
 		,LOCAL
-		,PROFILE
+		,PROFILE AS profileName
 		,QUIT_YN
 		,REPORT_YN
 		,BLOCK_YN

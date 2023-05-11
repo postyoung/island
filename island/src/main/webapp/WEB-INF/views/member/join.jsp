@@ -76,10 +76,10 @@
                         <input type="text" class="form-control" id="email" name="email" required style="width: 140px;">
                         <select class="form-select is-invalid" id="email_address" name="email2" aria-describedby="validationServer04Feedback" style="width: 140px;" required>
                           <option selected disabled>email.com</option>
-                          <option value="10">naver.com</option>
-                          <option value="20">daum.net</option>
-                          <option value="30">google.com</option>
-                          <option value="40">kakao.com</option>
+                          <option value="naver.com">naver.com</option>
+                          <option value="daum.net">daum.net</option>
+                          <option value="google.com">google.com</option>
+                          <option value="kakao.com">kakao.com</option>
                         </select>
                       </div>
 

@@ -69,9 +69,9 @@
            
            <c:if test="${not empty loginMember}">
            <div class="profile-welcomeArea">
-            <img src="${root}/resources/img/member/sample.jpg" alt="프로필사진" id="memberWelcomProfile">
+            <img src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" id="memberWelcomProfile">
             <span>
-              ${loginMember.nick} 님 환영합니다
+              ${loginMember.nick}님
             </span>
           </div>
         </c:if>
