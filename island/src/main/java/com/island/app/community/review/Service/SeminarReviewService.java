@@ -1,11 +1,14 @@
 package com.island.app.community.review.Service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.island.app.common.file.FileVo;
+import com.island.app.common.page.PageVo;
 import com.island.app.community.review.dao.SeminarReviewDao;
 import com.island.app.community.review.vo.SeminarReviewVo;
 
@@ -30,5 +33,20 @@ public class SeminarReviewService {
 		
 		return dao.insertReviewAttach(sst, fvo);
 	}
-
+	
+	//세미나 리뷰 갯수 조회 
+	public int getCnt() {
+		return dao.getCnt(sst);
+	}
+	
+	//세미나 리뷰 목록 조회
+	public List<SeminarReviewVo> getSeminarReviewList(PageVo pv) {
+		return dao.getSeminarReviewList(sst, pv);
+	}
+	
+	
+	//세미나 리뷰 상세 조회
+	public SeminarReviewVo getSeminarReviewDetail(String no) {
+		return dao.getSeminarReviewDetail(sst, no);
+	}
 }

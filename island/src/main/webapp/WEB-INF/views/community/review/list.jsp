@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +44,56 @@
 	<main>
 	  <main class="album py-5 ">
 	    <div class="container">
-	      <!-- row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 -->
 	      <div class="row">
+	      	
+	      	<c:forEach items="${srList}" var="srvo">
+	      	
+		        <div class="col-md-3">
+		          <div class="shadow-sm box">
+		            <div class="member-info-area">
+		              <img src="${root}/resources/img/member/${srvo.memberProfile}" alt="프로필사진" class="member-profile" >
+		              <b>${srvo.memberNick}</b>
+		            </div>
+		            <div class="seminar-name">
+		              <input class="seminar-title" type="text" value="${srvo.seminarName}" readonly="readonly">
+		            </div>
+		            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/${srvo.reviewThumbnail}"width="100%" height="250" >
+		            <div class="card-body">
+		              <div class="seminar-review">
+		                ${srvo.content}
+		              </div>
+		            </div>
+		            <a href="${root}/community/seminarReview/detail?no=${srvo.no}" class="review-detail-btn">
+		              <i class="bi bi-caret-right"></i>
+		              상세보기
+		            </a>
+		          </div>
+		        </div>
+	      	
+	      	</c:forEach>
+	    <!-- 
+	        <div class="col-md-3">
+	          <div class="shadow-sm box">
+	            <div class="member-info-area">
+	              <img src="${root}/resources/img/member/profile/load/photo2.jpg" alt="프로필사진" class="member-profile" >
+	              <b>사라</b>
+	            </div>
+	            <div class="seminar-name">
+	              <input class="seminar-title" type="text" value="클래식 음악 전문 양성 세미나">
+	            </div>
+	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review2.jpg"width="100%" height="250" >
+	            <div class="card-body">
+	              <div class="seminar-review">
+	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
+	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
+	              </div>
+	            </div>
+	            <a href="" class="review-detail-btn">
+	              <i class="bi bi-caret-right"></i>
+	              상세보기
+	            </a>
+	          </div>
+	        </div>
 	        <div class="col-md-3">
 	          <div class="shadow-sm box">
 	            <div class="member-info-area">
@@ -52,7 +101,7 @@
 	              <b>도리도리</b>
 	            </div>
 	            <div class="seminar-name">
-	              <input class="seminar-title" type="text" value="나에게 딱 맞는 착업아이템 온라인 특강 3회차" readonly="readonly">
+	              <input class="seminar-title" type="text" value="나에게 딱 맞는 착업아이템 온라인 특강 3회차">
 	            </div>
 	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review1.jpg"width="100%" height="250" >
 	            <div class="card-body">
@@ -61,7 +110,29 @@
 	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
 	              </div>
 	            </div>
-	            <a href="${root}/community/seminarReview/detail" class="review-detail-btn">
+	            <a href="" class="review-detail-btn">
+	              <i class="bi bi-caret-right"></i>
+	              상세보기
+	            </a>
+	          </div>
+	        </div>
+	        <div class="col-md-3">
+	          <div class="shadow-sm box">
+	            <div class="member-info-area">
+	              <img src="${root}/resources/img/member/profile/load/photo2.jpg" alt="프로필사진" class="member-profile" >
+	              <b>사라</b>
+	            </div>
+	            <div class="seminar-name">
+	              <input class="seminar-title" type="text" value="클래식 음악 전문 양성 세미나">
+	            </div>
+	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review2.jpg"width="100%" height="250" >
+	            <div class="card-body">
+	              <div class="seminar-review">
+	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
+	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
+	              </div>
+	            </div>
+	            <a href="" class="review-detail-btn">
 	              <i class="bi bi-caret-right"></i>
 	              상세보기
 	            </a>
@@ -136,28 +207,6 @@
 	        <div class="col-md-3">
 	          <div class="shadow-sm box">
 	            <div class="member-info-area">
-	              <img src="${root}/resources/img/member/profile/load/photo2.jpg" alt="프로필사진" class="member-profile" >
-	              <b>사라</b>
-	            </div>
-	            <div class="seminar-name">
-	              <input class="seminar-title" type="text" value="클래식 음악 전문 양성 세미나">
-	            </div>
-	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review2.jpg"width="100%" height="250" >
-	            <div class="card-body">
-	              <div class="seminar-review">
-	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
-	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
-	              </div>
-	            </div>
-	            <a href="" class="review-detail-btn">
-	              <i class="bi bi-caret-right"></i>
-	              상세보기
-	            </a>
-	          </div>
-	        </div>
-	        <div class="col-md-3">
-	          <div class="shadow-sm box">
-	            <div class="member-info-area">
 	              <img src="${root}/resources/img/member/profile/load/photo1.jpg" alt="프로필사진" class="member-profile" >
 	              <b>도리도리</b>
 	            </div>
@@ -176,50 +225,8 @@
 	              상세보기
 	            </a>
 	          </div>
-	        </div>
-	        <div class="col-md-3">
-	          <div class="shadow-sm box">
-	            <div class="member-info-area">
-	              <img src="${root}/resources/img/member/profile/load/photo2.jpg" alt="프로필사진" class="member-profile" >
-	              <b>사라</b>
-	            </div>
-	            <div class="seminar-name">
-	              <input class="seminar-title" type="text" value="클래식 음악 전문 양성 세미나">
-	            </div>
-	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review2.jpg"width="100%" height="250" >
-	            <div class="card-body">
-	              <div class="seminar-review">
-	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
-	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
-	              </div>
-	            </div>
-	            <a href="" class="review-detail-btn">
-	              <i class="bi bi-caret-right"></i>
-	              상세보기
-	            </a>
-	          </div>
-	        </div>
-	        <div class="col-md-3">
-	          <div class="shadow-sm box">
-	            <div class="member-info-area">
-	              <img src="${root}/resources/img/member/profile/load/photo1.jpg" alt="프로필사진" class="member-profile" >
-	              <b>도리도리</b>
-	            </div>
-	            <div class="seminar-name">
-	              <input class="seminar-title" type="text" value="나에게 딱 맞는 착업아이템 온라인 특강 3회차">
-	            </div>
-	            <img class="bd-placeholder-img card-img-top seminar-photo" src="${root}/resources/img/community/review/upload/review1.jpg"width="100%" height="250" >
-	            <div class="card-body">
-	              <div class="seminar-review">
-	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
-	                세미나 처음 참석하는데 정말 많은 지식을 얻어갑니다..! 다음 세미나 회차에도 참석하고 싶네요 강추합니다.
-	              </div>
-	            </div>
-	            <a href="" class="review-detail-btn">
-	              <i class="bi bi-caret-right"></i>
-	              상세보기
-	            </a>
-	          </div>
+	          
+	          -->  	 
 	        </div>
 	      </div>
 	    </div>
@@ -230,7 +237,7 @@
 
 
 	<!-- 페이징 -->
-	<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+	<%@ include file="/WEB-INF/views/common/seminar-review-paging.jsp" %>
 
 	<!-- 푸터 -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>

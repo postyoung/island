@@ -14,6 +14,7 @@
 	 			,TITLE
 	 			,CONTENT
 	 			,POINT
+	 			,REVIEW_THUMBNAIL
 	 		) 
 			VALUES
 			(
@@ -23,6 +24,7 @@
 				, #{title}
 				, #{content}
 				, #{point}
+				, #{reviewThumbnail}
 			)
  	</insert>
  	
@@ -43,5 +45,43 @@
  				,#{changeName}
  			)
  	</insert>
+ 	
+ 	<select id="getCnt" resultType="int">
+ 		SELECT 
+		    COUNT(NO)
+		FROM REVIEW
+		WHERE RE_DEL='N'
+ 	</select>
+ 	
+ 	<select id="getSeminarReviewList" resultType="seminarReviewVo">
+ 		SELECT 
+		    R.NO
+		    ,S.NAME AS SEMINAR_NAME
+		    ,R.CONTENT
+		    ,R.REVIEW_THUMBNAIL
+		    ,M.NICK AS MEMBER_NICK
+		    ,M.PROFILE MEMBER_PROFILE
+		FROM REVIEW R
+		JOIN MEMBER M ON R.MEMBER_NO = M.NO
+		JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
+		WHERE R.RE_DEL='N'
+ 	</select>
+ 	
+ 	
+ 	<select id="getSeminarReviewDetail" resultType="seminarReviewVo">
+ 		SELECT
+		    S.NO AS SEMINAR_NO
+		    ,S.NAME AS SEMINAR_NAME
+		    ,M.NICK AS MEMBER_NICK
+		    ,R.TITLE
+		    ,R.POINT
+		    ,R.CONTENT
+		FROM REVIEW R
+		JOIN SEMINAR S
+		ON (R.SEMINAR_NO=S.NO)
+		JOIN MEMBER M
+		ON (R.MEMBER_NO=M.NO)
+		WHERE R.NO = #{no}
+ 	</select>
  	
 </mapper>

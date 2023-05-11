@@ -16,5 +16,8 @@ public class SeminarReviewVo {
 	private String title;
 	private String content;
 	private String point;
-	private MultipartFile reviewThumbnail; //리뷰 썸네일 사진파일
+	private String reviewThumbnail; //리뷰 썸네일 사진파일
+	private String seminarName; //세미나명
+	private String memberNick; //리뷰 작성회원
+	private String memberProfile; //리뷰 작성회원의 프로필
 }

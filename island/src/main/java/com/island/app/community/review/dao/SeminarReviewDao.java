@@ -1,9 +1,13 @@
 package com.island.app.community.review.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.island.app.common.file.FileVo;
+import com.island.app.common.page.PageVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
 
 @Repository
@@ -21,4 +25,22 @@ public class SeminarReviewDao {
 		return sst.insert("community.reviewAttach", fvo);
 	}
 	
+	
+	//세미나 리뷰 갯수 조회
+	public int getCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("community.getCnt");
+	}
+
+	//세미나 리뷰 리스트 조회
+	public List<SeminarReviewVo> getSeminarReviewList(SqlSessionTemplate sst, PageVo pv) {
+		int limit = pv.getBoardLimit();
+		int offset = (pv.getCurrentPage()-1) * limit;
+		RowBounds rb = new RowBounds(offset , limit);
+		return sst.selectList("community.getSeminarReviewList", null, rb);
+	}
+	
+	//세미나 리뷰 상세 조회
+	public SeminarReviewVo getSeminarReviewDetail(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("community.getSeminarReviewDetail", no);
+	}
 }
