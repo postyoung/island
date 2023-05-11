@@ -41,19 +41,19 @@ main {
 										ADMINISTRATOR</h3>
 								</div>
 								<div class="card-body">
-									<form>
+									<form action="${root}/admin/login" method="POST">
 										<div class="form-floating mb-3">
-											<input class="form-control" id="memberId" type="text"
-												placeholder="아이디" /> <label for="memberId">아이디</label>
+											<input class="form-control" id="id" name="id" type="text"
+												placeholder="아이디" /> <label for="id">아이디</label>
 										</div>
 										<div class="form-floating mb-3">
-											<input class="form-control" id="memberPwd" type="password"
-												placeholder="비밀번호" /> <label for="memberPwd">비밀번호</label>
+											<input class="form-control" id="pwd" name="pwd"
+												type="password" placeholder="비밀번호" /> <label for="pwd">비밀번호</label>
 										</div>
 										<div
 											class="d-flex align-items-center justify-content-center mt-4 mb-0">
-											<a id="loginBtn" class="btn btn-secondary"
-												href="${root}/admin/main">로그인</a>
+											<input id="loginBtn" type="submit" value="로그인"
+												class="btn btn-secondary">
 										</div>
 									</form>
 								</div>
