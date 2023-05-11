@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("community")
-public class FaqController {
+public class CommunityFaqController {
 	
 	//고객센터 faq 목록 화면
 	@GetMapping("faq/list")
