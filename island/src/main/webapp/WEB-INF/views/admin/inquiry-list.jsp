@@ -144,6 +144,11 @@
 
 										</tr>
 									</table> --%>
+									<br>
+									<div id="page-area">
+									<!-- 페이징 -->
+									<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+									</div>
 								</div>
 							</div>
 						</div>

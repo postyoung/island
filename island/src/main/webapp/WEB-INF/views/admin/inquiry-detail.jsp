@@ -38,7 +38,7 @@
 			<div id="wrap">
 				<!-- 메뉴바 -->
 				<div id="wrap">
-					<form action="${root}/admin/inquiry/edit" class="inquiryDetailform"	method="get">
+					<form action="${root}/admin/inquiry/list" class="inquiryDetailform"	method="get">
 
 						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 							<div class="col-md-0 px-0">
@@ -48,7 +48,7 @@
 
 						<!-- 문의하기 양식  -->
 						<div id="wrap">
-							<form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/edit" method="get">
+							<form class="inquiryDetailform" style="margin-left: 225px;" action="${root}/admin/inquiry/list" method="get">
 								<div class="container">
 									<h2>문의하기</h2>
 									<br>
@@ -85,9 +85,10 @@
 			
 										<div class="form-group">
 										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-											<button type="submit" class="btn btn-warning btn-md" style="margin-right: 5px;">답변수정</button>
+											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변완료</button>
+											<button type="button" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/edit'" class="btn btn-warning btn-md" style="margin-right: 5px;">답변수정</button>
 											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-danger btn-md" style="margin-right: 5px;">삭제</button>
-											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+											<button type="button" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
 
 										</div>
 									</div>

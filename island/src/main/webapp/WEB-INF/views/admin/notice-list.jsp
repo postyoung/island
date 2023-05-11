@@ -11,6 +11,13 @@
 </head>
 <style>
 	/* 추가한 css */
+	#page-area {
+		width: 600px;
+		margin: auto;
+		display: flex;
+		justify-content: center;
+		font-size: 20px;
+	}
 	div>h2 {
 		line-height: 3.3;
 		margin-top: 40px;
@@ -114,11 +121,14 @@
 						</div>
 
 						<br>
-
+						<div id="page-area">
+						<!-- 페이징 -->
+						<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+						</div>
 						<!-- 페이징처리 -->
 						<br>
 
-						<div id="page-area" style="text-align: center;">
+						<%-- <div id="page-area" style="text-align: center;">
 							<c:if test="${pv.currentPage > 1}">
 								<a class="btn btn-primary btn-md" href="${root}/notice/list?page=${pv.currentPage-1}">이전</a>
 							</c:if>
@@ -133,7 +143,7 @@
 							<c:if test="${pv.currentPage < pv.maxPage}">
 								<a class="btn btn-primary btn-md" href="${root}/notice/list?page=${pv.currentPage+1}">다음</a>
 							</c:if>
-						</div>
+						</div> --%>
 
 					</div>
 			</div>

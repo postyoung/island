@@ -36,7 +36,7 @@ div>h2 {
 		<div id="layoutSidenav_content">
 			<div id="wrap">
 				<!-- faq 리스트 -->
-				<form action="${root}/admin/faq/write" class="faqlistform">
+				<form action="${root}/admin/faq/write" class="faqlistform" method="get">
 					<div class="container">
 						<h2 style="margin-left: 40px; margin-top: 40px;">자주하는 질문 FAQ</h2>
 						<hr>
@@ -50,20 +50,20 @@ div>h2 {
 							style="text-align: center;">
 							<thead>
 								<tr class="info">
-									<td>글번호</td>
-									<td>분류</td>
-									<td>제목</td>
-									<td>작성자</td>
-									<td>작성일</td>
+									<th>글번호</th>
+									<th>분류</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr> 
-									<td>00</td>
+									<td>${fvoList[0].no}</td>
 									<td>회원</td>
-									<td onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/detail'">회원가입의 조건이 있나요?</td>
+									<td ${fvoList[0].title}onclick="location.href='${root}/admin/faq/detail'">회원가입의 조건이 있나요?</td>
 									<td>관리자</td>
-									<td>20210321</td>
+									<td>${fvoList[0].enroll}</td>
 								</tr>
 								<tr>
 									<td>01</td>
@@ -103,14 +103,16 @@ div>h2 {
 
 							</tbody>
 						</table>
-
-
-
-
+						
+						<br>
+						<div id="page-area">
+						<!-- 페이징 -->
+						<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+						</div>
 						<!-- 페이징처리 -->
 						<br>
 
-						<div id="page-area">
+						<%-- <div id="page-area">
 							<c:if test="${pv.currentPage > 1}">
 								<a class="btn btn-primary btn-lg"
 									href="${root}/faq/list?page=${pv.currentPage-1}">이전</a>
@@ -129,7 +131,7 @@ div>h2 {
 								<a class="btn btn-primary btn-lg"
 									href="${root}/faq/list?page=${pv.currentPage+1}">다음</a>
 							</c:if>
-						</div>
+						</div> --%>
 					</div>
 				</from>
 			</div>
