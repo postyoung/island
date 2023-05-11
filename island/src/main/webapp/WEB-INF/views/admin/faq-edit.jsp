@@ -37,6 +37,16 @@
 					<div class="container">
 						<h2>FAQ 수정페이지</h2>
 						<form class="form-horizontal">
+							<div class="btn-group" role="group">
+								<select type="button" class="btn btn-primary dropdown-toggle" style="margin-bottom: 10px;" data-bs-toggle="dropdown" aria-expanded="false">
+									<option>전체</option>
+									<option>회원</option>
+									<option>모임</option>
+									<option>세미나</option>
+									<option>결제/환불</option>
+									<option>기타</option>
+								</select>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="title">질문 : </label>
 								<div class="col-lg-12">
@@ -64,9 +74,9 @@
 							</div>
 
 							<div id="btn-area" style="text-align: right; margin-top:10px;">
-										<button type="submit" class="btn btn-md btn-warning" >수정</button>
-										<a href="${root}/admin/faq/list"><button type="button" class="btn btn-md btn-info">취소</button></a>
-									</div>
+								<button type="submit" class="btn btn-md btn-warning" >수정</button>
+								<a href="${root}/admin/faq/list"><button type="button" class="btn btn-md btn-info">취소</button></a>
+							</div>
 						</form>
 					</div>
 			</div>
