@@ -23,4 +23,9 @@ public class AdminService {
 	public AdminVo login(AdminVo vo) {
 		return dao.login(sst, vo);
 	}
+
+	// 계정 생성
+	public int create(AdminVo vo) {
+		return dao.create(sst, vo);
+	}
 }

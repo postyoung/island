@@ -20,4 +20,27 @@
 		QUIT_YN
 		= 'N'
 	</select>
+
+	<insert id="create">
+		INSERT
+		INTO
+		ADMIN
+		(
+		NO,
+		PM_NO,
+		ID,
+		PWD,
+		NAME,
+		ENROLL_DATE
+		)
+		VALUES
+		(
+		SEQ_ADMIN_NO.NEXTVAL,
+		#{pmNo},
+		#{id},
+		#{pwd},
+		#{name},
+		SYSDATE
+		)
+	</insert>
 </mapper>

@@ -8,8 +8,11 @@ import com.island.app.admin.vo.AdminVo;
 public class AdminDao {
 	// 로그인
 	public AdminVo login(SqlSessionTemplate sst, AdminVo vo) {
-		AdminVo test = sst.selectOne("admin.login", vo);
-		System.out.println(test);
 		return sst.selectOne("admin.login", vo);
+	}
+
+	// 계정 생성
+	public int create(SqlSessionTemplate sst, AdminVo vo) {
+		return sst.insert("admin.create", vo);
 	}
 }
