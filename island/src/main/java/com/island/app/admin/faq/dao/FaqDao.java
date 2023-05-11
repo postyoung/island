@@ -11,12 +11,12 @@ import com.island.app.admin.faq.vo.FaqVo;
 public class FaqDao {
 	public List<FaqVo> getFaqList(SqlSessionTemplate sst ){
 		
-		return sst.selectList("adminfaq.getfaqList" );
+		return sst.selectList("adminfaq.getFaqList");
 	}
 
 	public int faqWrite(SqlSessionTemplate sst, FaqVo vo) {
 		
-		return sst.insert("adminfaq.write" , vo);
+		return sst.insert("adminfaq.faqwrite" , vo);
 	}
 	
 	public FaqVo getFaq(SqlSessionTemplate sst, String num) {
@@ -24,12 +24,12 @@ public class FaqDao {
 		return sst.selectOne("adminfaq.getFaq" , num);
 	}
 
-	public int edit(SqlSessionTemplate sst, FaqVo vo) {
+	public int faqedit(SqlSessionTemplate sst, FaqVo vo) {
 		
 		return sst.update("adminfaq.edit" , vo);
 	}
 	
-	public int delete(SqlSessionTemplate sst, String num) {
+	public int faqdelete(SqlSessionTemplate sst, String num) {
 		return sst.update("adminfaq.delete" , num);
 	}
 

@@ -33,7 +33,7 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
-				<form class="noticeWriteform" action="${root}/admin/faq/list" method="get">
+				<form class="faqEditform" action="${root}/admin/faq/edit" method="POST">
 					<div class="container">
 						<h2>FAQ 수정페이지</h2>
 						<form class="form-horizontal">
@@ -50,7 +50,7 @@
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="title">질문 : </label>
 								<div class="col-lg-12">
-									<input type="text" class="form-control" name="title" id="title"	placeholder="회원가입의 조건이 있나요?">
+									<input type="text" class="form-control" name="title" id="title"	value="${vo.title}">
 								</div>
 							</div>
 							
@@ -60,14 +60,7 @@
 
 								<div class="col-lg-12">
 									
-									<textarea class="form-control" name="content" id="content-an" rows="16" style="text-align: left;">
-									이름과 이메일, 전화번호 입력만으로 간편하게 온오프믹스에 가입하실 수 있습니다.
-									회원가입에 드는 비용 없이 만 14세 이상이라면 누구나 회원가입이 가능합니다.
-									[회원가입 방법]
-									- PC : 메인페이지 오른쪽 상단 → 회원가입 메뉴 선택
-									- 모바일 : 왼쪽 상단 메뉴 → 로그인 →회원가입 메뉴 선택
-									- SNS : 로그인 페이지 → SNS 로그인 → 회원가입"
-									</textarea>
+									<textarea class="form-control" name="content" id="content-an" rows="16" style="text-align: left;">${vo.content}</textarea>
 									
 								</div>
 

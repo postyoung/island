@@ -35,8 +35,8 @@ public class FaqController {
 	
 	//Faq목록조회
 	@GetMapping("faq/list")
-	//public String faqList(Model model, @RequestParam(defaultValue = "1") int page) {
-	public String faqList() {
+	public String faqList(Model model) {
+//	public String faqList(@RequestParam(defaultValue = "1") int page) {
 		
 		//서비스 
 		List<FaqVo> fvoList = fs.getFaqList();
@@ -46,7 +46,8 @@ public class FaqController {
 //		int boardLimit = 10; 
 		
 		//화면
-		//model.addAttribute("nvoList", nvoList);
+		System.out.println(fvoList);
+		model.addAttribute("fvoList", fvoList);
 		return "admin/faq-list";
 	}
 	
@@ -69,6 +70,7 @@ public class FaqController {
 	}
 	
 	//faq 작성하기 (관리자만)
+	@PostMapping("faq/write")
 	public String faqWrite(FaqVo vo ,  HttpSession session) {
 		int result = fs.faqWrite(vo);
 		
@@ -100,7 +102,7 @@ public class FaqController {
 	//Faq수정하기 (관리자만)
 	@PostMapping ("faq/edit")
 	public String faqEdit(FaqVo vo , Model model , HttpSession session) {
-		int result = fs.edit(vo);
+		int result = fs.faqedit(vo);
 		
 		if(result != 1) {
 			model.addAttribute("alertMsg" , "수정실패..");
@@ -113,9 +115,9 @@ public class FaqController {
 	}
 	
 	//Faq 삭제하기 (관리자만)
-	@GetMapping("delete")
-	public String delete(String num) throws Exception {
-		int result = fs.delete(num);
+	@GetMapping("faq/delete")
+	public String faqdelete(String num) throws Exception {
+		int result = fs.faqdelete(num);
 		
 		if(result != 1) {
 			throw new Exception("공지사항 삭제 실패 ...");
