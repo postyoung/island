@@ -42,7 +42,7 @@
                   커뮤니티
                 </a>
               </li>
-
+		  <c:if test="${not empty loginMember}">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="${root}/mypage/home" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-top: 33px;">
                   마이페이지
@@ -65,9 +65,26 @@
                 </a>
               </li>
             </ul>
+           </c:if>
+           
+           <c:if test="${not empty loginMember}">
+           <div class="profile-welcomeArea">
+            <img src="${root}/resources/img/member/sample.jpg" alt="프로필사진" id="memberWelcomProfile">
+            <span>
+              ${loginMember.nick} 님 환영합니다
+            </span>
+          </div>
+        </c:if>
+           
+           
+           <c:if test="${empty loginMember}">
             <div class="text-end">
               <button type="button" class="btn btn-outline-success" id="header-btn-login" onclick="location.href='${root}/member/login'">LOGIN</button>
               <button type="button" class="btn btn-outline-primary" id="header-btn-signup" onclick="location.href='${root}/member/join'">SIGN-UP</button>
+              </c:if>
+               <c:if test="${not empty loginMember}">
+                <button type="button" class="btn btn-outline-success" id="header-btn-login" onclick="location.href='${root}/member/logout'">LOGOUT</button>
+              </c:if>
             </div>
           </div>
         </div>

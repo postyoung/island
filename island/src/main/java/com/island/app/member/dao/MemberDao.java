@@ -20,7 +20,7 @@ public class MemberDao{
 	}
 	//로그인
 	public MemberVo login(SqlSessionTemplate sst, MemberVo vo) {
-		return sst.selectOne("member.login" , vo);
+		return sst.selectOne("member.login",vo);
 	}
 
 }

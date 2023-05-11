@@ -18,12 +18,12 @@
         <fieldset class="area_required" style="padding-left: 17%;">
             <div>
                 <div id="name" class="">
-                    <input type="text" class="form-control" id="validationServer01" value="" required placeholder="아이디를 입력하세요">
+                    <input type="text" name="id" class="form-control" id="validationServer01" value="" required placeholder="아이디를 입력하세요">
                   </div>
                   
                   
                   <div id="id" style="width: 500px;">
-                    <input type="password"  class="form-control" id="validationServer01" value="" required placeholder="비밀번호를 입력하세요">
+                    <input type="password" name="pwd"  class="form-control" id="validationServer01" value="" required placeholder="비밀번호를 입력하세요">
                   </div>
                   
 

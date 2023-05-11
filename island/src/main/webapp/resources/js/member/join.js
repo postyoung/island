@@ -52,8 +52,8 @@ $(document).ready(function() {
   $(document).ready(function() {
     $('#nick').on('input', function() {
       const nick = $(this).val();
-      //2글자이상 자음,모음, 특수문자제외 
-      const regex = /^[a-zA-Z0-9가-힣\s_]{2,}$/;
+      //1글자이상 자음,모음, 특수문자제외 
+      const regex = /^[a-zA-Z0-9가-힣\s_]{1,}$/;
   
       if (regex.test(nick)) {
         $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
@@ -141,11 +141,11 @@ likePlace.addEventListener('change', function() {
   });
   
 
-    //주민번호2 숫자6자리만 입력되게
+    //주민번호2 숫자7자리만 입력되게
     $(document).ready(function() {
         $('#id_num2').on('input', function() {
           const phoneNumber = $(this).val();
-          const regex = /^[0-9]{6}$/;
+          const regex = /^[0-9]{7}$/;
     
           if (regex.test(phoneNumber)) {
             $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');
@@ -185,13 +185,16 @@ likePlace.addEventListener('change', function() {
       }
     });
 
-    //아이디 중복확인
-    function checkDup(){
+ 
+    let isIdDuplicated = false;
+    let isNickDuplicated = false;
+    
+    function checkDupId() {
+      // 중복확인 로직 추가
       //1. 현재 입력된 아이디 준비
       //2. 서버한테 아이디 전달
       //3. 결과 받아오기 (isDup , notDup)
       //4. 결과에 따라 , 중복 여부를 알려주기
-      
       const id = document.querySelector("input[name=id]").value;
       $.ajax({
           url : '/app/member/id-check' ,
@@ -210,12 +213,14 @@ likePlace.addEventListener('change', function() {
               console.log(e);
           } ,
       });
-  }
-
-  //닉네임 중복확인
-  function checkDupNick(){
     
-    const nick = document.querySelector("input[name=nick]").value;
+      // 중복확인 완료 후 중복확인 여부 업데이트
+      isIdDuplicated = true;
+    }
+    
+    function checkDupNick() {
+      // 중복확인 로직 추가
+      const nick = document.querySelector("input[name=nick]").value;
     $.ajax({
         url : '/app/member/nick-check' ,
         type : 'POST' ,
@@ -233,37 +238,74 @@ likePlace.addEventListener('change', function() {
             console.log(e);
         } ,
     });
-}
-function checkValidation() {
-//필수인풋태그 클래스가 is-vaild 일때에만 제출활성화
-//필수 select 태그가 입력되야지만 제출활성화
-const inputFields = document.querySelectorAll('input[type="text"].is-valid, input[type="password"].is-valid');
-console.log(inputFields);
+      // 중복확인 완료 후 중복확인 여부 업데이트
+      isNickDuplicated = true;
+    }
+    
 
-for (let i = 0; i < inputFields.length; ++i) {
-  if (inputFields[i].id !== "attach" && !inputFields[i].classList.contains("is-valid")) {
-    alert("모든 항목을 입력해주세요.");
-    inputFields[i].focus();
+function checkValidation() {
+
+//비밀번호1과 비밀번호2 일치해야지만 제출되게
+  function isPwdOk() {
+    const pwd1 = document.querySelector('input[id="pwd"]').value;
+    const pwd2 = document.querySelector('input[id="pwd2"]').value;
+    if (pwd1 !== pwd2) return false;
+    return true;
+  }
+  //성별을 선택해야만 제출
+  function isGenderSelected() {
+    const genderInputs = document.querySelectorAll('input[type="radio"][name="gender"]');
+    for (let i = 0; i < genderInputs.length; i++) {
+      if (genderInputs[i].checked) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+/// 필수 입력 사항 중 타입이 텍스트 또는 비밀번호인 모든 태그찾기
+const requiredInputs = document.querySelectorAll('input[type="text"][required], input[type="password"][required]');
+
+// 모든 필수 입력 사항이 "is-valid" 클래스를 가지고 있는지 확인
+for (let i = 0; i < requiredInputs.length; i++) {
+  const input = requiredInputs[i];
+  if (!input.classList.contains('is-valid')) {
+    alert('모든 필수 입력 항목을 완료해주세요.');
+    input.focus();
     return false;
   }
 }
+
+// 아이디 중복확인 여부를 확인
+  if (!isIdDuplicated) {
+    alert('아이디 중복확인을 해주세요.');
+    return false;
+  }
+ 
+  // 닉네임 중복확인 여부를 확인
+  if (!isNickDuplicated) {
+    alert('닉네임 중복확인을 해주세요.');
+    return false;
+  }
+
 //비밀번호1과 비밀번호2 일치해야지만 제출되게
   if (!isPwdOk()) {
     alert("비밀번호가 일치하지 않습니다.");
     document.querySelector("input[name=pwd]").focus();
     return false;
   }
-
-
+//성별을 선택해야만 제출
+  if (!isGenderSelected()) {
+    alert('성별을 선택해주세요.');
+    return false;
   }
 
-//비밀번호 일치시 제출
-function isPwdOk(){
-    const pwd1 = document.querySelector("input[id=pwd]").value;
-    const pwd2 = document.querySelector("input[id=pwd2]").value;
-    if(pwd1 != pwd2) return false;
-    return true;
+  return true;
 }
+
+
+
 
 
 
