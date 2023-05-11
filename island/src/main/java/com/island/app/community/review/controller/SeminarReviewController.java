@@ -1,16 +1,21 @@
 package com.island.app.community.review.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
+import com.island.app.common.page.PageVo;
 import com.island.app.community.review.Service.SeminarReviewService;
 import com.island.app.community.review.vo.SeminarReviewVo;
 
@@ -33,7 +38,19 @@ public class SeminarReviewController {
 
 	//세미나 리뷰 목록 (화면)
 	@GetMapping("seminarReview/list")
-	public String seminarReviewList() {
+	public String getSeminarReviewList(@RequestParam(defaultValue = "1")int page, Model m) {
+		//페이징
+		int listCount = srs.getCnt();
+		int currentPage = page;
+		int pageLimit = 5;
+		int boardLimit = 8;
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		//서비스
+		List<SeminarReviewVo> srList = srs.getSeminarReviewList(pv);
+		
+		m.addAttribute("srList", srList);
+		m.addAttribute("pv", pv);
 		return "community/review/list";
 	}
 	
@@ -47,15 +64,14 @@ public class SeminarReviewController {
 	//세미나 리뷰 작성하기
 	@PostMapping("seminarReview/write")
 	public String seminarReviewWrite(SeminarReviewVo srvo, MultipartFile thumbnailFile, HttpServletRequest req) throws Exception {
-		System.out.println(thumbnailFile);
 		//로그인 여부 체크
 		
 		//세미나 게시글번호 가져오기 (임시코드)
-		String seminarNo = "1";
+		String seminarNo = "4";
 		srvo.setSeminarNo(seminarNo);
 		
 		//회원 번호 가져오기 (loginMember에서 getNo해오기 임시코드)
-		String memberNo = "1";
+		String memberNo = "6";
 		srvo.setMemberNo(memberNo);
 		
 		//데이터 준비(파일)
@@ -68,13 +84,15 @@ public class SeminarReviewController {
 		fvo.setChangeName(changeName);
 		fvo.setOriginName(originName);
 		
+		srvo.setReviewThumbnail(changeName);
+		
 		//서비스
 		int result = srs.seminarReviewWrite(srvo, fvo);
 		
 		if(result != 1) {
 			throw new Exception("세미나 리뷰 작성 실패");
 		}
-		return "community/review/detail";
+		return "redirect:/community/seminarReview/list";
 	}
 	
 	
@@ -83,7 +101,14 @@ public class SeminarReviewController {
 	
 	//세미나 리뷰 상세조회 (화면)
 	@GetMapping("seminarReview/detail")
-	public String seminarReviewDetail() {
+	public String getSeminarReviewDetail(String no, Model m) throws Exception {
+		
+		SeminarReviewVo srDetail = srs.getSeminarReviewDetail(no);
+		
+		if(srDetail == null) {
+			throw new Exception("세미나 리뷰 상세 조회 실패");
+		}
+		m.addAttribute("srDetail", srDetail);
 		return "community/review/detail";
 	}
 	

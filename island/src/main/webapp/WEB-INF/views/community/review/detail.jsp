@@ -46,21 +46,21 @@
 	    <div id="line"></div>
 	
 	    <div id="seminar">
-	      <a href="${root}/seminar/detail">[세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span></a>
+	      <a href="${root}/seminar/detail">[세미나] <span> ${srDetail.seminarName}</span></a>
 	    </div>
 	      <table>
 	        <tr>
-	          <th class="text-center">작성자</th>
-	          <td class="left-line">도리도리</td>
+	          <th class="text-center box-size">작성자</th>
+	          <td class="left-line">${srDetail.memberNick}</td>
 	        </tr>
 	        <tr>
-	          <th class="text-center">제목</th>
-	          <td class="left-line">이런 세미나가 자주 열렸으면 좋겠습니다. 추천합니다!</td>
+	          <th class="text-center box-size">제목</th>
+	          <td class="left-line">${srDetail.title}</td>
 	        </tr>
 	        <tr>
-	          <th class="text-center">평점</th>
+	          <th class="text-center box-size">평점</th>
 	          <td class="left-line">
-	            <label for="point0">★★★★★</label>
+	            <label for="point0">${srDetail.point}</label>
 	          </td>
 	        </tr>
 	        <tr>
@@ -69,21 +69,7 @@
 	        <tr>
 	          <td colspan="2">
 	            <div id="content-text-img">
-	            창업아이템 세미나에 참석하고 나서, 다양한 창업 아이디어와 경험을 공유받았습니다.
-	             세미나에서는 성공적인 창업을 위한 기본 원칙과 함께, 창업을 위한 아이디어 도출 
-	             방법, 마케팅 전략 등에 대한 내용이 다루어졌습니다.<br>
-	
-	            특히, 다른 참가자들과 함께 공유한 경험들은 매우 유익했습니다.<br>
-	            세미나를 통해 새로운 아이디어를 발견하고, 그 아이디어를 발전시키는 방법들을 
-	            배울 수 있었습니다. 세미나의 강사분들은 창업 경험이 많으셨기 때문에, 
-	            우리에게 실제적인 조언과 해결책을 제시해주셨습니다.<br>
-	
-	            또한, 세미나는 다양한 팀 프로젝트 및 토론 활동을 포함하여 진행되었습니다. <br>
-	            이를 통해 참가자들은 아이디어를 더욱 발전시키기 위한 협업의 중요성과, 
-	            다른 의견을 수렴하고 존중하는 방법을 배웠습니다.<br>
-	
-	            마지막으로, 이번 창업아이템 세미나는 나에게 큰 도전과 기회를 제공해주었습니다. 세미나를 통해 배운 내용을 실제로 적용하여, 나의 창업 아이디어를 발전시키는 데 큰 도움이 되었습니다. 나는 이번 세미나를 통해, 나의 창업 경험을 더욱 확장하고, 창업에 대한 열정을 더욱 강화시키게 되었습니다.
-	            <img id="review-photo" src="${root}/resources/img/community/review/upload/review1.jpg" alt="리뷰사진">
+	            	${srDetail.content}
 	            </div>
 	          </td>
 	        </tr>
