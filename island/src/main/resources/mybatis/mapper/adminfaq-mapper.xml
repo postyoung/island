@@ -7,11 +7,60 @@
 	
 	
 	<select id="getFaqList" resultType="faqVo">
-		SELECT *
-		FROM FAQ
-		WHERE STATUS = 'O'
-		ORDER BY NO DESC
+		SELECT 
+		    F.NO
+		    , C.NAME AS CATEGORYNAME
+		    , F.TITLE
+		    , F.CONTENT
+		    , F.ENROLL_DATE
+		    , A.NAME AS WRITERNAME
+		FROM FAQ F
+		JOIN FAQ_CATEGORY C
+		ON (F.CATEGORY_NO=C.NO)
+		JOIN ADMIN A
+		ON (F.WRITER_NO=A.NO)
 	</select>
 	
+	<insert id="faqwrite">
+		INSERT INTO FAQ
+		(
+			NO
+			,TITLE
+			,CONTENT
+			,WRITER_NAME
+			,CATEGORY_NAME
+		)
+		VALUES
+		(
+			SEQ_FAQ_NO.NEXTVAL
+			, #{title}
+			, #{content}
+			, #{writerName}
+			, #{categoryName}
+		)
+	</insert>
+	
+	<select id="getFaq" resultType="faqVo">
+		SELECT *
+			NO
+			, TITLE
+			, CONTENT
+			, ENROLL
+			, DEL_YN
+			, CATEGORY_NO
+		FROM FAQ
+	</select>
+	
+	<update id="faqedit">
+		UPDATE FAQ
+	    SET TITLE = #{title},
+	        CONTENT = #{content},
+	        DEL_YN = #{delYn}
+	    WHERE NO = #{no}
+	</update>
 
+	<delete id="faqdelete">
+		DELETE FROM FAQ
+    	WHERE NO = #{no}
+	</delete>
 </mapper>

@@ -23,24 +23,8 @@ public class FaqService {
 		this.sst = sst;
 	}
 
-		public List<FaqVo> getFaqList(){
-			return dao.getFaqList(sst);
-		}
-
-
-	public int getFaqListCnt() {
-
-		return dao.getFaqListCnt(sst);
-	}
-
-	public FaqVo getFaq(String num) throws Exception {
-		int result = dao.increaseHit(sst , num);
-	
-		if(result != 1){
-			throw new Exception();
-	
-		}
-		return dao.getFaq(sst , num);
+	public List<FaqVo> getFaqList(){
+		return dao.getFaqList(sst);
 	}
 
 	public int faqWrite(FaqVo vo) {
@@ -48,15 +32,29 @@ public class FaqService {
 		return dao.faqWrite(sst, vo);
 	}
 
-	public int edit(FaqVo vo) {
+	public FaqVo getFaq(String num) throws Exception {
+		int result = dao.increaseHit(sst , num);
 		
-		return dao.edit(sst , vo);
+		if(result != 1){
+			throw new Exception();
+			
+		}
+		return dao.getFaq(sst , num);
+	}
+	
+	public int faqedit(FaqVo vo) {
+		
+		return dao.faqedit(sst , vo);
 	}
 
-	public int delete(String num) {
-		return  dao.delete(sst , num);
+	public int faqdelete(String num) {
+		return  dao.faqdelete(sst , num);
 	}
 
+	public int getFaqListCnt() {
+		
+		return dao.getFaqListCnt(sst);
+	}
 
 
 }

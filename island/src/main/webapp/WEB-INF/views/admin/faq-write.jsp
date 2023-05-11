@@ -30,7 +30,7 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
-				<form class="noticeWriteform" action="${root}/admin/faq/list" method="get">
+				<form class="faqWriteform" action="${root}/admin/faq/write" method="POST">
 					<div class="container">
 						<h2>FAQ 질문&답변</h2>
 						<form class="form-horizontal">
