@@ -56,7 +56,7 @@ $(document).ready(function() {
 	      [세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span>
 	    </div>
 	
-	      <form action="${root}/community/seminarReview/write" method="post">
+	      <form action="${root}/community/seminarReview/write" method="post" enctype="multipart/form-data">
 	        <table>
 	          <tr>
 	            <th class="text-center">제목</th>
@@ -65,15 +65,15 @@ $(document).ready(function() {
 	          <tr>
 	            <th class="text-center">평점</th>
 	            <td>
-	              <input type="radio" class="form-check-input" name="point" id="point0">
+	              <input type="radio" class="form-check-input" name="point" id="point0" value="★★★★★">
 	              <label for="point0">★★★★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point1">
+	              <input type="radio" class="form-check-input bean" name="point" id="point1" value="★★★★">
 	              <label for="point1">★★★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point2">
+	              <input type="radio" class="form-check-input bean" name="point" id="point2" value="★★★">
 	              <label for="point2">★★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point3">
+	              <input type="radio" class="form-check-input bean" name="point" id="point3"  value="★★">
 	              <label for="point3">★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point4">
+	              <input type="radio" class="form-check-input bean" name="point" id="point4" value="★">
 	              <label for="point4">★</label>
 	            </td>
 	          </tr>
@@ -82,13 +82,13 @@ $(document).ready(function() {
 	          </tr>
 	          <tr>
 	            <th colspan="2">
-	            	<textarea id="summernote" name="editordata"></textarea>
+	            	<textarea id="summernote" name="content"></textarea>
 	              
 	            </th>
 	          </tr>
 	          <tr>
 	            <th class="text-center">썸네일</th>
-	            <td><input type="file" name="title" class="form-control" accept=".png,.jpg"></td>
+	            <td><input type="file" name="thumbnailFile" class="form-control" accept=".png,.jpg,.jpeg"></td>
 	          </tr>
 	        </table>
 	        <div id="btn-area">

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="community">
+ 	<insert id="seminarReviewWrite">
+ 		INSERT INTO 
+	 		REVIEW
+	 		(
+	 			NO
+	 			,SEMINAR_NO
+	 			,MEMBER_NO
+	 			,TITLE
+	 			,CONTENT
+	 			,POINT
+	 		) 
+			VALUES
+			(
+				SEQ_REVIEW_NO.NEXTVAL
+				, #{seminarNo}
+				, #{memberNo}
+				, #{title}
+				, #{content}
+				, #{point}
+			)
+ 	</insert>
+ 	
+ 	<insert id="reviewAttach">
+ 		INSERT INTO
+ 			REVIEW_ATTACH
+ 			(
+ 				NO
+ 				,REVIEW_NO
+ 				,ORIGIN_NAME
+				,CHANGE_NAME
+ 			)
+ 			VALUES
+ 			(
+ 				SEQ_REVIEW_ATTACH_NO.NEXTVAL
+ 				,SEQ_REVIEW_NO.CURRVAL
+ 				,#{originName}
+ 				,#{changeName}
+ 			)
+ 	</insert>
+ 	
+</mapper>
