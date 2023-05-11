@@ -42,3 +42,11 @@ window.onclick= (e)=>{
         }
     }
 }
+function list()
+{
+    var str = "개설하시겠습니까?";
+    var type;
+
+    type = confirm(str);
+
+}
