@@ -23,5 +23,9 @@ public class MemberDao{
 		
 		return sst.selectOne("member.login",vo);
 	}
+	//회원탈퇴
+	public int quit(SqlSessionTemplate sst, String no) {
+		return sst.update("member.quit",no);
+	}
 
 }

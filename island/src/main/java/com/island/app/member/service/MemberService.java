@@ -61,5 +61,9 @@ public class MemberService {
 			return null;
 		}
 	}
+	public int quit(String no) {
+		return dao.quit(sst , no);
+	}
+	
 	
 }//class
