@@ -42,6 +42,10 @@ public class MemberController {
 	@PostMapping("join")
 	public String join(MemberVo vo, HttpServletRequest req, HttpSession session, Model model) throws Exception{
 		
+		//파일업로드
+		
+		
+		
 		//서비스
 		int result = ms.join(vo);
 		

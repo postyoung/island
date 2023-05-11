@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="wrap">
-        <form action="${root}/member/join" class="join_form" method="POST"  onsubmit="return checkValidation();"> 
+        <form action="${root}/member/join" class="join_form" method="POST" enctype="multipart/form-data" onsubmit="return checkValidation();"> 
             <h1 class="title">회원가입</h1>
             <fieldset class="area_required" style="padding-left: 13%;">
                 <legend class="sub_title">필수정보</legend>
