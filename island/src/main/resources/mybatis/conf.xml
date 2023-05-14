@@ -20,7 +20,9 @@
 		<typeAlias type="com.island.app.admin.faq.vo.FaqVo" alias="faqVo"/>
 		
 		<typeAlias type="com.island.app.community.review.vo.SeminarReviewVo" alias="seminarReviewVo"/>
-
+		
+		<typeAlias type="com.island.app.community.qna.vo.QnaVo" alias="qnaVo"/>
+		
 	</typeAliases>
 	
 

@@ -61,9 +61,20 @@ public class MemberService {
 			return null;
 		}
 	}
-	public int quit(String no) {
-		return dao.quit(sst , no);
-	}
 	
+	//회원정보수정
+	public MemberVo edit(MemberVo vo) throws Exception {
+		
+		String pwd = vo.getPwd();
+		String newPwd = enc.encode(pwd);
+		
+		vo.setPwd(newPwd);
+		
+		int result = dao.edit(sst , vo);
+		if(result != 1) {
+			throw new Exception();
+		}
+		return dao.selectOneByNo(sst , vo);
+	}
 	
 }//class

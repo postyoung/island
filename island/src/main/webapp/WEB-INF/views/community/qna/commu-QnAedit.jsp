@@ -12,7 +12,7 @@
 <!-- css연결 -->
 
 <link rel="stylesheet" href="${root}/resources/css/community/qna/QnAdetail.css">
-	
+
 
 </head>
 <body>
@@ -30,7 +30,8 @@
 			<!-- 문의하기 양식  -->
 			<div id="wrap">
 				
-			<form class="inquiryWriteform" style="margin-left: 225px;" action="${root}/admin/inquiry/list" method="post">
+			<form class="inquiryWriteform" style="margin-left: 225px;" action="${root}/community/qna/edit" method="post">
+			
 				<div class="container">
 					<h2 class="title">문의내용</h2>
 					<br>
@@ -38,23 +39,28 @@
 						<div class="form-group">
 						<div class="row_wrap">
 						<div class="input_title">
+							<!--  -->
 							
+									<input type="hidden" class="form-control" name="no" id="no"  required readonly value="${qvo.no}"> 
+				
+							<!--  -->
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" name="name" id="name"  required readonly value="샴푸의요정"> 
+									<input type="text" class="form-control" name="nick" id="name"  required readonly value="${qvo.writerName}"> 
 								</div>
 							</div>
+
 							<div class="form-group">
 								<label for="phone">전화번호</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" name="phone" id="phone"  required readonly value="01012345678">
+									<input type="text" class="form-control" name="phone" id="phone"  required readonly value="${qvo.writerPhone}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label  for="email">이메일</label>
 								<div class="col-sm-4">
-									<input type="email" class="form-control" name="email" id="email"  required readonly value="abc@email.com">
+									<input type="email" class="form-control" name="email" id="email"  required readonly value="${qvo.writerEmail}@${qvo.writerEmail2}">
 								</div>
 							</div>
 							 
@@ -64,16 +70,16 @@
 
 							<label for="title">제목</label>
 							
-							<select class="form-select" aria-label="Default select example">
+							<select class="form-select" aria-label="Default select example" value="${qvo.categoryNo}" name="categoryNo">
 							<option selected>카테고리</option>
-							<option value="1">회원</option>
-							<option value="2">소모임</option>
-							<option value="3">세미나</option>
-							<option value="3">결제/환불</option>
-							<option value="3">기타</option>
+							<option value="10">회원</option>
+							<option value="20">소모임</option>
+							<option value="30">세미나</option>
+							<option value="40">결제/환불</option>
+							<option value="50">기타</option>
 						</select>
 							<div class="col-lg-4">
-								<input type="text" class="form-control" name="title" id="title_input"  required>
+								<input type="text" class="form-control" name="title" id="title_input" value="${qvo.title}" name="title">
 							</div>
 						</div>
 						<div class="form-group">
@@ -81,7 +87,7 @@
 							<label for="content">내용</label>
 	
 							<div>
-								<textarea class="form-control" name="content" id="content" rows="16"  required></textarea>
+								<textarea class="form-control" name="content" id="content" rows="16"  name="content">${qvo.content}</textarea>
 							</div>
 						
 						</div>
@@ -94,7 +100,7 @@
 					<!-- 버튼영역 -->
 					<form method="post">
 					<div class="btn_area">
-						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/list">수정</a>
+						<input type="submit"  class="btn btn-outline-primary" style="line-height: 2;" value="수정"></input>
 						<a  class="btn btn-primary" style="line-height: 2;" href="${root}/community/qna/list">목록</a>
 					</div>
 					</form>

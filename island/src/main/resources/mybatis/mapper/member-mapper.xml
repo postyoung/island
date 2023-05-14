@@ -76,14 +76,48 @@
 		FROM MEMBER
 		WHERE ID = #{id}
 		AND QUIT_YN = 'N'
+		AND BLOCK_YN = 'N'
      
  	</select>
  	
-<!--  	 <update id="quit">
-  	UPDATE MEMBER
-  		SET
-  			QUIT_YN = 'Y'
-  		WHERE NO = #{no}
-  </update> -->
+ 	<update id="edit">
+ 		UPDATE MEMBER
+    SET
+         PROFILE=#{profileName}
+        ,EMAIL=#{email}
+        ,EMAIL2=#{email2}
+        ,PHONE=#{phone}
+        ,ATTACH=#{attach}
+        ,NICK=#{nick}
+        ,PWD=#{pwd}
+    WHERE
+        NO = #{no}
+ 	
+ 	</update>
+ 	
+ 	<select id="getMember" resultType="memberVo">
+ 		SELECT
+ 		NO 
+ 		,NAME
+		,ID
+		,PWD
+		,NICK
+		,PHONE
+		,RESIDENT
+		,RESIDENT2
+		,EMAIL
+		,EMAIL2
+		,GENDER
+		,ATTACH
+		,LOCAL
+		,PROFILE AS profileName
+		,QUIT_YN
+		,REPORT_YN
+		,BLOCK_YN
+		,JOIN_DATE
+		
+ 		FROM MEMBER
+ 		WHERE NO= #{no}
+ 	</select>
  	
 </mapper>

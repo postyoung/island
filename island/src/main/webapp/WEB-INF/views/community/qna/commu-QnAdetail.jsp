@@ -13,6 +13,13 @@
 
 <link rel="stylesheet" href="${root}/resources/css/community/qna/QnAdetail.css">
 	
+<c:if test="${not empty alertMsg}">
+  	<script type="text/javascript">
+	  alert('${sessionScope.alertMsg}');
+  	</script>
+  </c:if>
+  
+  <c:remove var="alertMsg" scope="session"/>
 
 </head>
 <body>
@@ -30,7 +37,7 @@
 			<!-- 문의하기 양식  -->
 			<div id="wrap">
 				
-			<div class="inquiryWriteform" style="margin-left: 225px;" action="${root}/admin/inquiry/list" method="post">
+			<div class="inquiryWriteform" style="margin-left: 225px;" method="get">
 				<div class="container">
 					<h2 class="title">문의내용</h2>
 					<br>
@@ -38,23 +45,33 @@
 						<div class="form-group">
 						<div class="row_wrap">
 						<div class="input_title">
+
+							<input type="hidden" name="no" value="${qvo.no}">
+<!-- 
+							<div class="form-group">
+								<label  for="no">no</label>
+								<div class="col-lg-4">
+									<div  class="form-control" name="no" id="no">${qvo.no}</div>
+								</div>
+							</div> -->
+							
 							
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<div  class="form-control" name="name" id="name"></div>
+									<div  class="form-control" name="name" id="name">${qvo.writerName}</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="phone">전화번호</label>
 								<div class="col-sm-4">
-									<div  class="form-control" name="phone" id="phone" ></div>
+									<div  class="form-control" name="phone" id="phone">${qvo.writerPhone}</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label  for="email">이메일</label>
 								<div class="col-sm-4">
-									<div class="form-control" name="email" id="email"  ></div>
+									<div class="form-control" name="email" id="email">${qvo.writerEmail}@${qvo.writerEmail2}</div>
 								</div>
 							</div>
 							 
@@ -64,10 +81,10 @@
 
 							<label for="title">제목</label>
 							
-							<div class="form-control" id="category"></div>
+							<div class="form-control" id="category" >${qvo.categoryName}</div>
 							
 							<div>
-								<div class="form-control" name="title" id="title_input" ></div>
+								<div class="form-control" name="title" id="title_input" >${qvo.title}</div>
 							</div>
 						</div>
 						</div>
@@ -76,7 +93,7 @@
 							<label for="content">내용</label>
 	
 							<div>
-								<div class="form-control" name="content" id="content" ></div>
+								<div class="form-control" name="content" id="content" >${qvo.content}</div>
 							</div>
 						
 						</div>
@@ -89,10 +106,15 @@
 					<br>
 					<br>
 					<!-- 버튼영역 --> 
-				<div class="btn_area">
-						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/edit">수정</a>
+					<c:if test="${loginMember.no == qvo.writerNo}">
+						<div class="btn_area">
+						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/edit?no=${qvo.no}">수정</a>
+						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/delete?no=${qvo.no}">삭제</a>
 						<a  class="btn btn-primary" style="line-height: 2;" href="${root}/community/qna/list">목록</a>
 					</div>
+					</c:if>
+					
+					
 					
 				
 				</div>
