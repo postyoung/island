@@ -30,7 +30,7 @@
 			<!-- 문의하기 양식  -->
 			<div id="wrap">
 				
-			<form class="inquiryWriteform" style="margin-left: 225px;" action="${root}/admin/inquiry/list" method="post">
+			<form class="inquiryWriteform" style="margin-left: 225px;" action="${root}/community/qna/write" method="post">
 				<div class="container">
 					<h2 class="title">문의작성하기</h2>
 					<br>
@@ -39,22 +39,23 @@
 						<div class="row_wrap">
 						<div class="input_title">
 							
+							
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<input type="text" class="form-control" name="name" id="name" placeholder="이름을 입력해주세요" required value="샴푸의요정" readonly> 
+									<input type="text" class="form-control" name="name" id="name"  required value="${loginMember.nick}" readonly> 
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="phone">전화번호</label>
 								<div class="col-sm-4">
-									<input type="text" class="form-control" name="phone" id="phone" placeholder="연락처를 입력해주세요" required value="01012345678" readonly>
+									<input type="text" class="form-control" name="phone" id="phone"  required value="${loginMember.phone}" readonly>
 								</div>
 							</div>
 							<div class="form-group">
 								<label  for="email">이메일</label>
 								<div class="col-sm-4">
-									<input type="email" class="form-control" name="email" id="email" placeholder="이메일을 입력해주세요" required value="abc@email.com" readonly>
+									<input type="email" class="form-control" name="email" id="email"  required value="${loginMember.email}@${loginMember.email2}" readonly>
 								</div>
 							</div>
 							 
@@ -64,13 +65,13 @@
 
 							<label for="title">제목</label>
 							
-							<select class="form-select" aria-label="Default select example">
+							<select class="form-select" aria-label="Default select example" name="categoryNo">
 							<option selected>카테고리</option>
-							<option value="1">회원</option>
-							<option value="2">소모임</option>
-							<option value="3">세미나</option>
-							<option value="3">결제/환불</option>
-							<option value="3">기타</option>
+							<option value="10">회원</option>
+							<option value="20">소모임</option>
+							<option value="30">세미나</option>
+							<option value="40">결제/환불</option>
+							<option value="50">기타</option>
 						</select>
 							<div class="col-lg-4">
 								<input type="text" class="form-control" name="title" id="title_input" placeholder="제목을 입력해주세요" required>
@@ -105,7 +106,7 @@
 					<br>
 					<!-- 버튼영역 -->
 					<div class="btn_area">
-						<input type="submit" class="btn btn-outline-primary" value="등록" onclick="location.href='${root}/community/qna/list'"></input>
+						<input type="submit" class="btn btn-outline-primary" value="등록"></input>
 						<a  class="btn btn-outline-primary" style="line-height: 2;" href="${root}/community/qna/list">취소</a>
 					</div>
 					

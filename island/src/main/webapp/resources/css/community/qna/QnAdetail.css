@@ -138,6 +138,10 @@
 		width: 128px;
 		margin-right: 10px;
 	}
+	tbody>tr:hover {
+		background-color: #e7e7e7;
+		cursor: pointer;
+	}
 	
 
 

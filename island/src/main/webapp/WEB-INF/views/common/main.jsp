@@ -12,7 +12,7 @@
   <script defer src="${root}/resources/js/common/main.js">
   </script>
   
-  <c:if test="${not empty alertMsg}">
+<c:if test="${not empty alertMsg}">
   	<script type="text/javascript">
 	  alert('${sessionScope.alertMsg}');
   	</script>

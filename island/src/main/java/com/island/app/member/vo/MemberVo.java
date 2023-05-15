@@ -26,5 +26,6 @@ public class MemberVo {
 	private String reportYn;
 	private String blockYn;
 	private String joinDate;
+	private String qReason;
 
 }

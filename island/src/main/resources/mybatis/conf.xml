@@ -22,7 +22,9 @@
 		<typeAlias type="com.island.app.community.review.vo.SeminarReviewVo" alias="seminarReviewVo"/>
 
 		<typeAlias type="com.island.app.group.vo.GroupVo" alias="groupVo"/>
-
+		
+		<typeAlias type="com.island.app.community.qna.vo.QnaVo" alias="qnaVo"/>
+		
 	</typeAliases>
 	
 

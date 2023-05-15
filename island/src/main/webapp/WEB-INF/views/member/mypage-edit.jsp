@@ -12,7 +12,10 @@
     <!-- css연결 -->
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEdit.css">
     <!-- js연결 -->
-    <script src="${root}/resources/js/member/edit.js" defer></script>
+    <script src="${root}/resources/js/member/edit.js" defer>
+     var root = '${root}';
+    </script>
+    
 </head>
 <body>
     <div id="wrap">
@@ -27,19 +30,21 @@
                                 <div class="main_content">
                                     <!-- 마이페이지 콘텐츠 시작 -->
                                         <!-- 프로필 정보 영역시작 -->
-                                        <form action="">
+                                <form action="${root}/mypage/edit" method="post" enctype="multipart/form-data" >
+                                    <input type="hidden" name="no" value="${loginMember.no}">
                                     <div name="" id="" class="profile_summary">
                                         
                                         
                                         <div class="profile_img">
                                             <!-- <div class="thumbnail"> -->
-                                                <img class="img_thumbnail" src="${root}/resources/img/member/eximg.jpeg" alt="프로필사진" >
+                                                <img class="img_thumbnail" name="profile" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" onerror= "this.onerror=null; this.src = root+'/resources/img/member/noimage.jpg'"
+                                                style="width: 210px; height: 210px;">
                                                 
                                                 <br>
                                                 <br>
                                                 <br>
                                                 <!-- 프로필 이미지 업로드 버튼 -->
-                                                <input type="file" class="form-control" value="사진변경" >
+                                                <input type="file" class="form-control" value="사진변경" name="profile">
                                            
                                          
                                             </div>
@@ -49,33 +54,27 @@
                                     <!-- 프로필 정보 시작 -->
                                     <div class="profile_info">
                                         <div class="left_area">
-                                            <h3 class="title">김수진</h3>
+                                            <h3 class="title">${loginMember.name}</h3>
                                             <ul class="information">
                                                 <li class="email"><span class="label">이메일</span>
-                                                <span class="value"><input type="text" value="abcde"></span>
-                                                   <span><select class="form-select is-valid" id="validationServer01" aria-describedby="validationServer04Feedback">
-                                                        <option selected disabled value="">abc.com</option>
-                                                        <option>naver.com</option>
-                                                        <option>daum.net</option>
-                                                        <option>google.com</option>
-                                                        <option>kakao.com</option>
-                                                      </select></span>
+                                                <span class="value"><input type="text" value="${loginMember.email}" name="email"></span>
+                                                <span class="value">@<input type="text" value="${loginMember.email2}" name="email2"></span>
                                                 </li>
                                                 <li class="phone">
                                                     <span class="label">휴대전화</span>
-                                                    <span class="value"><input type="text" value="01012341234"></span>
+                                                    <span class="value"><input type="text" value="${loginMember.phone}" name="phone"></span>
                                                 </li>
                                                 <li class="company">
                                                     <span class="label">소속</span>
-                                                    <span class="value"><input type="text" value=""></span>
+                                                    <span class="value"><input type="text" value="${loginMember.attach}" name="attach"></span>
                                                 </li>
                                                 <li class="joindate">
                                                     <span class="label">가입일</span>
-                                                    <span class="value">2023.04.04</span>
+                                                    <span class="value">${loginMember.joinDate}</span>
                                                 </li>
                                                 <li class="homepage">
                                                     <span class="label">닉네임</span>
-                                                    <span class="value"><input type="text" value="샴푸의 요정"></span>
+                                                    <span class="value"><input type="text" value="${loginMember.nick}" name="nick"></span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -84,7 +83,7 @@
                                             <div class="channel_home">
                                                 <li class="homepage">
                                                     <span class="label">비밀번호 변경</span>
-                                                    <span class="value"><input type="password"  class="form-control" id="pwd"></span>
+                                                    <span class="value"><input type="password"  class="form-control" id="pwd" name="pwd"></span>
                                                     <br>
                                                     <div id="validationFeedback_Pwd" class="validationFeedback_Pwd">
                                                         최소 8 자 대문자,소문자,숫자,특수문자 각 하나이상을 포함하여 작성하시오.
@@ -92,7 +91,7 @@
                                                 </li>
                                                 <li class="homepage">
                                                     <span class="label">비밀번호 변경확인</span>
-                                                    <span class="value"><input type="password" class="form-control " id="pwd2"></span>
+                                                    <span class="value"><input type="password" class="form-control " id="pwd2" name="pwd2"></span>
                                                 </li>
                                                 
                                             </div>

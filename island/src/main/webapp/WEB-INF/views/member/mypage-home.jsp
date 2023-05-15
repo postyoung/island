@@ -9,6 +9,14 @@
     <title>ISLAND 마이페이지|홈 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypage.css">
+    
+    <c:if test="${not empty alertMsg}">
+  	<script type="text/javascript">
+	  alert('${sessionScope.alertMsg}');
+  	</script>
+  </c:if>
+  
+  <c:remove var="alertMsg" scope="session"/>
 </head>
 <body>
     <div id="wrap">
@@ -30,7 +38,8 @@
                                         
                                         <div class="profile_img">
                                             <!-- <div class="thumbnail"> -->
-                                                <img class="img_thumbnail" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" style="width: 210px;">
+                                                <img class="img_thumbnail" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" style="width: 210px;
+                                                height: 210px;">
                                             </div>
                                       
 
