@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
 
 @Repository
@@ -43,4 +44,36 @@ public class SeminarReviewDao {
 	public SeminarReviewVo getSeminarReviewDetail(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("community.getSeminarReviewDetail", no);
 	}
+	
+	//세미나 리뷰 상세내용 (리뷰내용 + 썸네일 이름) 수정 
+	public int modifySeminarReview(SqlSessionTemplate sst, SeminarReviewVo srvo) {
+		return sst.update("community.modifySeminarReviewAndTumbnail", srvo);
+	}
+	
+	//세미나 리뷰 상세내용 수정 (썸네일 테이블 수정)
+	public int modifySeminarReviewWithThumbnail(SqlSessionTemplate sst, FileVo fvo) {
+		return sst.update("community.modifyReviewAttach", fvo);
+	}
+	
+	//세미나 리뷰 상세내용(제목,내용만,별점) 수정 
+	public int modifySeminarReviewOnlyDetail(SqlSessionTemplate sst, SeminarReviewVo srvo) {
+		return sst.update("community.modifySeminarReviewOnlyDetail", srvo);
+	}
+
+	//세미나 리뷰 삭제
+	public int deleteSeminarReview(SqlSessionTemplate sst, String no) {
+		return sst.update("community.deleteSeminarReview", no);
+	}
+	
+	//세미나 리뷰 검색
+	public List<SeminarReviewVo> searchSeminarReviewList(SqlSessionTemplate sst, String seminarName) {
+		return sst.selectList("community.searchSeminarReviewList", seminarName);
+		
+	}
+	
+	//세미나 리뷰 신고하기
+	public int reportSeminarReview(SqlSessionTemplate sst, ReviewReportVo rrvo) {
+		return sst.insert("community.reportSeminarReview", rrvo);
+	}
+	
 }
