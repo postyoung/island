@@ -43,4 +43,27 @@
 		SYSDATE
 		)
 	</insert>
+
+	<update id="edit">
+		UPDATE ADMIN
+		SET
+		ID = #{id},
+		PWD = #{pwd}
+		WHERE
+		NO = #{no}
+	</update>
+
+	<select id="getAdmin" resultType="adminVo">
+		SELECT
+		NO,
+		PM_NO,
+		ID,
+		PWD,
+		NAME,
+		ENROLL_DATE,
+		QUIT_YN
+		FROM
+		ADMIN
+		WHERE NO = #{no}
+	</select>
 </mapper>

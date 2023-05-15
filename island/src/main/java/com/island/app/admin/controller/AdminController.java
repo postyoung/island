@@ -3,6 +3,7 @@ package com.island.app.admin.controller;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class AdminController {
 	@PostMapping("create")
 	public String create(AdminVo vo, HttpSession session) {
 		int result = as.create(vo);
-		return "admin/main";
+		return "redirect:/admin/main";
 	}
 
 	// 메인
@@ -55,10 +56,18 @@ public class AdminController {
 		return "admin/main-admin";
 	}
 
-	// 정보 수정
-	@RequestMapping("edit")
+	// 정보 수정 (화면)
+	@GetMapping("edit")
 	public String edit() {
 		return "admin/edit";
+	}
+
+	// 정보 수정
+	@PostMapping("edit")
+	public String edit(AdminVo vo, Model model, HttpSession session) throws Exception {
+		AdminVo updatedAdmin = as.edit(vo);
+		session.setAttribute("loginAdmin", updatedAdmin);
+		return "redirect:/admin/main";
 	}
 
 	// 권한 설정
