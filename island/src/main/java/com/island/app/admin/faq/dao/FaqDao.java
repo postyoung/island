@@ -6,12 +6,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.island.app.admin.faq.vo.FaqVo;
+import com.island.app.common.page.PageVo;
 
 @Repository
 public class FaqDao {
-	public List<FaqVo> getFaqList(SqlSessionTemplate sst ){
+	public List<FaqVo> getFaqList(SqlSessionTemplate sst, PageVo pv){
 		
-		return sst.selectList("adminfaq.getFaqList");
+		return sst.selectList("adminfaq.getFaqList" , pv);
 	}
 
 	public int faqWrite(SqlSessionTemplate sst, FaqVo vo) {
@@ -19,9 +20,9 @@ public class FaqDao {
 		return sst.insert("adminfaq.faqwrite" , vo);
 	}
 	
-	public FaqVo getFaq(SqlSessionTemplate sst, String num) {
+	public FaqVo getFaq(SqlSessionTemplate sst ,String no) {
 
-		return sst.selectOne("adminfaq.getFaq" , num);
+		return sst.selectOne("adminfaq.getFaq" , no );
 	}
 
 	public int faqedit(SqlSessionTemplate sst, FaqVo vo) {
@@ -29,19 +30,21 @@ public class FaqDao {
 		return sst.update("adminfaq.edit" , vo);
 	}
 	
-	public int faqdelete(SqlSessionTemplate sst, String num) {
-		return sst.update("adminfaq.delete" , num);
+	public int faqdelete(SqlSessionTemplate sst, String no) {
+		return sst.update("adminfaq.delete" , no);
+	}
+	//게시글 갯수 조회 
+	public int getCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("adminfaq.getCnt");
 	}
 
 	public int getFaqListCnt(SqlSessionTemplate sst) {
 		
-		return sst.selectOne("faq.getFaqListCnt");
+		return sst.selectOne("adminfaq.getFaqListCnt");
 	}
 
-	public int increaseHit(SqlSessionTemplate sst, String num) {
-		
-		return sst.update("faq.increaseHit" , num);
-	}
+	
+
 
 
 

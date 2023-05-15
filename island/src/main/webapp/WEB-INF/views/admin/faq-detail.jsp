@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +35,7 @@
 				<!-- 메뉴바 -->
 				<div id="wrap">
 					<main>
-						<form action="${root}/admin/faq/edit" class="inquiryWriteform">
+						<form action="${root}/admin/faq/edit" class="faqDetailform" method="get">
 	
 							<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 								<div class="col-md-0 px-0">
@@ -43,46 +45,44 @@
 	
 							<!-- 문의하기 양식  -->
 							<div id="wrap">
-								<form class="inquiryWriteform" style="margin-left: 225px;" action="${root}/admin/faq/list" method="post">
+								<form class="FaqDetailform" style="margin-left: 225px;" action="${root}/admin/faq/write" method="POST">
 									<div class="container">
 										<h2>FAQ</h2>
 										<br>
 										<!-- 테이블양식 -->
 										<form class="form-horizontal">
 											<table id="tableTitle" class="table table-bordered table" >
-											<input type="hidden" name="no" value="${vo.no}">
+											<input type="hidden" name="no" value="${fvo.no}">
 												<tr>
 													<td>분류</td>
-													<td>${vo.category}</td>
+													<td>${fvo.categoryNo}</td>
 												</tr>
 												<tr>
 													<td>제목</td>
-													<td>${vo.title}</td>
-													<!-- <td>회원가입의 조건이 있나요?</td> -->
+													<td>${fvo.title}</td>
+													
 												</tr>
 												<tr>
 													<td>작성일시</td>
-													<td>${vo.enroll}</td>
-													<!-- <td>20210321</td> -->
+													<td>${fvo.enrollDate}</td>
+													
 												</tr>											
 												<tr>
-													<td width="300px;" height="300px;">${vo.content}</td>
-													<!-- <td width="300px;" height="300px;">내용</td> -->
-													<!-- <td >이름과 이메일, 전화번호 입력만으로 간편하게 온오프믹스에 가입하실 수 있습니다.<br> 회원가입에 드는	비용 없이 만 14세 이상이라면 누구나 회원가입이 가능합니다.<br>
-													<br>[회원가입 방법]<br>-	PC : 메인페이지 오른쪽 상단 → 회원가입 메뉴 선택<br>- 모바일 : 왼쪽 상단 메뉴 → 로그인 →회원가입 메뉴 선택<br>- SNS : 로그인 페이지 → SNS 로그인 → 회원가입</td> -->
+													<td width="300px;" height="300px;">내용</td>
+													<td>${fvo.content}</td>
 												</tr>
 											</table>
 				
 										</form>
-										<c:if test="${loginMember.id eq 'ADMIN'}">
-										<div class="form-group">
-											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-												<button onclick="location.href='${root}/admin/faq/edit?num=${vo.no}" class="btn btn-warning btn-md"style="margin-right: 5px;">수정</button>
-												<button onclick=" location.href='${root}/admin/faq/delete?num=${vo.no}'" class="btn btn-danger btn-md" style="margin-right: 5px;">삭제</button>
-												<button onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/list'"class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
-												
+										<c:if test="${loginMember.id != 'admin'}">
+											<div class="form-group">
+												<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
+													<button onclick="location.href='${root}/admin/faq/edit?num=${fvo.no}" class="btn btn-warning btn-md"style="margin-right: 5px;">수정</button>
+													<button onclick=" location.href='${root}/admin/faq/delete?num=${fvo.no}'" class="btn btn-danger btn-md" style="margin-right: 5px;">삭제</button>
+													<button onclick=" location.href='http://127.0.0.1:8888/app/admin/faq/list'"class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
+													
+												</div>
 											</div>
-										</div>
 										</c:if>
 									</div>
 								</form>
