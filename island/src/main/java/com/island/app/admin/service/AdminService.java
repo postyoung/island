@@ -28,4 +28,13 @@ public class AdminService {
 	public int create(AdminVo vo) {
 		return dao.create(sst, vo);
 	}
+
+	// 정보 수정
+	public AdminVo edit(AdminVo vo) throws Exception {
+		int result = dao.edit(sst, vo);
+		if (result != 1) {
+			throw new Exception();
+		}
+		return dao.selectOneByNo(sst, vo);
+	}
 }
