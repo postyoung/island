@@ -14,6 +14,7 @@
 <body>
 <main>
 	<h1>소모임 목록</h1>
+	<form name="search" method="get">
 	<div class="search_form_top">
 		<h3 class="sub_title">상세검색</h3>
 	</div>
@@ -64,102 +65,24 @@
 		</div>
 		<button type="button" class="btn_keyword_search">검색</button>
 	</fieldset>
+	</form>
 	<div class="card_list">
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/274639/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
+		<c:forEach items="${groupList}" var="group">
+			<div class="card" style="width: 15rem;">
+				<img src="https://cfile1.onoffmix.com/images/event/274639/s" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">${group.name}</h5>
+					<p class="card-text">${group.intro}</p>
+					<p class="card-text">${group.enrollDate}</p>
+					<a href="${root}/group/detail?no=${group.no}" class="btn btn-danger">상세보기</a>
+				</div>
 			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/274620/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/275716/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/268393/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/267736/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/254150/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/251858/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/275031/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/275393/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
-		<div class="card" style="width: 15rem;">
-			<img src="https://cfile1.onoffmix.com/images/event/274137/s" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">모임 제목</h5>
-				<p class="card-text">모임내용</p>
-				<p class="card-text">작성날짜</p>
-				<a href="${root}/group/detail" class="btn btn-danger">상세보기</a>
-			</div>
-		</div>
+		</c:forEach>
 		<a href="${root}/group/create"><button type="button" class="btn_keyword_search" onclick="list()">개설하기</button></a>
 	</div>
 </main>
 </body>
-<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+<%@ include file="/WEB-INF/views/group/group-listpage.jsp" %>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </html>
