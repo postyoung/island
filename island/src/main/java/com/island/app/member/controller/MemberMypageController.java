@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.island.app.common.file.FileUploader;
 import com.island.app.member.service.MemberService;
 import com.island.app.member.vo.MemberVo;
-
+/**
+ * 
+ * @author 김수진
+ *
+ */
 @Controller
 @RequestMapping("mypage")
 public class MemberMypageController {
@@ -65,10 +69,19 @@ public class MemberMypageController {
 			return "member/mypage-accountfind";
 		}
 		
-		//마이페이지 회원탈퇴
+		//마이페이지 회원탈퇴 화면
 		@GetMapping("quit")
 		public String mypagequit() {
+			
 			return "member/mypage-quit";
+		}
+		//마이페이지 회원탈퇴 
+		public String mypagequit(MemberVo vo, HttpSession session) {
+			
+			
+			
+			
+			return "redirect:/main";
 		}
 
 		

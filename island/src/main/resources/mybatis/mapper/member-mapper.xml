@@ -68,6 +68,7 @@
 		,ATTACH
 		,LOCAL
 		,PROFILE AS profileName
+		,Q_REASON
 		,QUIT_YN
 		,REPORT_YN
 		,BLOCK_YN
@@ -111,6 +112,7 @@
 		,ATTACH
 		,LOCAL
 		,PROFILE AS profileName
+		,Q_REASON
 		,QUIT_YN
 		,REPORT_YN
 		,BLOCK_YN
