@@ -11,5 +11,6 @@ public class FaqVo {
 	private String enrollDate;
 	private String delYn;
 	private String categoryName;
+	private String categoryNo;
 	private String writerName;
 }

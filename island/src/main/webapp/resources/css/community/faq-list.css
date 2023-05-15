@@ -79,6 +79,19 @@ a:hover{
   margin-right: 30px;
 }
 
+.faq-top-line{
+	border-top: 1px solid black;
+}
+
+#line{
+	width: 1px;
+	height: 20px;
+	border: 1px solid black;
+	background: black;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
 /* 자주묻는질문 영역 */
 #faq-area{
   width: 1002px;
@@ -93,3 +106,4 @@ a:hover{
   background-size: cover;
   color: rgb(0, 0, 0);
 }
+
