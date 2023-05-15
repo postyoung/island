@@ -3,8 +3,10 @@ package com.island.app.community.review.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,10 @@ import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.community.review.Service.SeminarReviewService;
+import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 /**
  * 
@@ -55,6 +60,19 @@ public class SeminarReviewController {
 	}
 	
 	
+	//세미나 리뷰 검색
+	@PostMapping("seminarReview/search")
+	public String searchSeminarReviewList(String seminarName ,Model m) throws Exception {
+		List<SeminarReviewVo> srList = srs.searchSeminarReviewList(seminarName);
+		if(srList == null) {
+			throw new Exception("세미나 리뷰 검색중 예외 발생");
+		}
+		m.addAttribute("srList", srList);
+		return "community/review/list";
+	}
+	
+	
+	
 	//세미나 리뷰 작성하기 (화면)
 	@GetMapping("seminarReview/write")
 	public String seminarReviewWrite() {
@@ -67,7 +85,7 @@ public class SeminarReviewController {
 		//로그인 여부 체크
 		
 		//세미나 게시글번호 가져오기 (임시코드)
-		String seminarNo = "4";
+		String seminarNo = "5";
 		srvo.setSeminarNo(seminarNo);
 		
 		//회원 번호 가져오기 (loginMember에서 getNo해오기 임시코드)
@@ -108,17 +126,85 @@ public class SeminarReviewController {
 		if(srDetail == null) {
 			throw new Exception("세미나 리뷰 상세 조회 실패");
 		}
+		
 		m.addAttribute("srDetail", srDetail);
 		return "community/review/detail";
 	}
 	
 	
-	
+	//세미나 리뷰 신고하기
+	@PostMapping("seminarReview/report")
+	public String reportSeminarReview(ReviewReportVo rrvo, HttpSession session) throws Exception {//리뷰번호 가져와야함
+		int result = srs.reportSeminarReview(rrvo);
+		if(result != 1) {
+			throw new Exception("세미나 리뷰 신고 실패");
+		}
+		session.setAttribute("alertMsg", "신고가 접수되었습니다!");
+		return "redirect:/community/seminarReview/detail?no="+ rrvo.getReviewNo();
+	}
 	
 	
 	//세미나 리뷰 내용수정 (화면)
 	@GetMapping("seminarReview/edit")
-	public String seminarReviewEdit() {
+	public String seminarReviewEdit(String no, Model m) throws Exception {
+		SeminarReviewVo srDetail = srs.getSeminarReviewDetail(no);
+		
+		if(srDetail == null) {
+			throw new Exception("세미나 리뷰 상세 조회 실패");
+		}
+		m.addAttribute("srDetail", srDetail);
 		return "community/review/edit";
 	}
+	
+	
+	//세미나 리뷰 내용 수정하기
+	@PostMapping("seminarReview/edit")
+	public String seminarReviewEdit(SeminarReviewVo srvo, MultipartFile thumbnailFile,HttpServletRequest req, HttpSession session) throws Exception {
+		
+		System.out.println(thumbnailFile);
+		//썸네일 파일 검사
+		if(thumbnailFile == null) {
+			System.out.println("파일없음");
+			int result = srs.modifySeminarReviewOnlyDetail(srvo);
+			
+			return "redirect:/community/seminarReview/detail?no=" + srvo.getNo();
+		}
+		
+		System.out.println("파일있음");
+		String path = req.getServletContext().getRealPath("/resources/img/community/review/upload/");
+		String changeName = FileUploader.upload(thumbnailFile, path);
+		
+		String originName = FileUploader.getOriginName(thumbnailFile);
+		
+		//FileVo 뭉치기
+		FileVo fvo = new FileVo();
+		fvo.setChangeName(changeName);
+		fvo.setOriginName(originName);
+		fvo.setReviewNo(srvo.getNo());
+		
+		srvo.setReviewThumbnail(changeName);
+		
+		int result = srs.modifySeminarReviewWithThumbnail(fvo, srvo);
+		
+		if(result != 1) {
+			throw new Exception("세미나 리뷰 상세내용, 썸네일파일 수정 실패");
+		}
+		session.setAttribute("alertMsg", "리뷰가 수정되었습니다.");
+		return "redirect:/community/seminarReview/detail?no="+ srvo.getNo();
+		
+	}
+	
+	//세미나 리뷰 삭제하기
+	@GetMapping("seminarReview/delete")
+	public String seminarReviewDelete(String no, HttpSession session) throws Exception {
+
+		int result = srs.deleteSeminarReview(no);
+		if(result != 1) {
+			throw new Exception("세미나 리뷰 삭제 실패");
+		}
+		session.setAttribute("alertMsg", "리뷰가 삭제되었습니다.");
+		return "redirect:/community/seminarReview/list";
+		
+	}
+	
 }

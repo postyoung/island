@@ -71,15 +71,15 @@ $(document).ready(function() {
                 </tr>
                 <tr>
                   <td><input type="text" class="form-control" id="name" value="김땡땡" readonly></td>
-                  <td><input type="tel" class="form-control input-box" id="telNum" value="010-1234-1234"></td>
+                  <td><input type="tel" class="form-control input-box" id="telNum" value="010-1234-1234" readonly></td>
                 </tr>
                 <tr>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label></td>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">소속</label></td>
                 </tr>
                 <tr>
-                  <td><input type="email" class="form-control" id="email" value="abc12@nate.com"></td>
-                  <td><input type="text" class="form-control input-box" id="attach" value="서울대학교 경영학과 공동협의"></td>
+                  <td><input type="email" class="form-control" id="email" value="abc12@nate.com" readonly></td>
+                  <td><input type="text" class="form-control input-box" id="attach" value="서울대학교 경영학과 공동협의" readonly></td>
                 </tr>
               </table>
             </div>

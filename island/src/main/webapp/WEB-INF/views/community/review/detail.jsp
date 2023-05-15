@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,10 +9,15 @@
 <title>ISLAND 세미나 리뷰상세 | ISLAND</title>
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
+	<c:if test="${not empty alertMsg }">
+		<script type="text/javascript">
+			alert('${alertMsg}');
+		</script>
+	</c:if>
+	<c:remove var="alertMsg" scope="session"/>
 	
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${root}/resources/css/community/review/detail.css">
-<script defer src="${root}/resources/js/community/review/detail.js"></script>
 
 </head>
 <body>
@@ -75,8 +82,9 @@
 	        </tr>
 	      </table>
 	      <div id="btn-area">
-	        <button type="button" type="submit" class="btn btn-success" onclick="location.href='${root}/community/seminarReview/edit'">수정하기</button>
-	        <button type="button" type="submit" class="btn btn-danger box" onclick="reviewDelete()">삭제</button>
+	        <button type="button" type="submit" class="btn btn-success" 
+	        onclick="location.href='${root}/community/seminarReview/edit?no=${srDetail.no}'">수정하기</button>
+	        <button type="button" type="button" class="btn btn-danger box" onclick="reviewDelete()">삭제</button>
 	        <button type="button" class="btn btn-secondary box" onclick="location.href='${root}/community/seminarReview/list'">목록</button>
 	      </div>
 	  </div>
@@ -99,42 +107,38 @@
 	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
 	          주의하시기 바랍니다.
 	        </div>
-	        <form action="" method="POST">
+	        <form action="${root}/community/seminarReview/report" method="POST" onsubmit="return validateForm()">
 	          <div class="mb-3">
+							<input type="hidden" name="reviewNo" value="${srDetail.no}">
 	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
 	            <div id="category">
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="reReCategoryNo" value="1" id="reReCategoryName1" >
+	              <label class="form-check-label" for="reReCategoryName1">
 	                내용이 선정적이거나, 음란물, 폭력적 컨텐츠를 포함
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio"  name="reReCategoryNo" value="2" id="reReCategoryName2">
+	              <label class="form-check-label" for="reReCategoryName2">
 	                내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함 
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio"  name="reReCategoryNo" value="3" id="reReCategoryName3">
+	              <label class="form-check-label" for="reReCategoryName3">
 	                개인정보 누출 위험
 	              </label><br> 
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio"  name="reReCategoryNo" value="4" id="reReCategoryName4">
+	              <label class="form-check-label" for="reReCategoryName4">
 	                기타
 	            </div>
 	            </label>
-	            <!-- <select class="form-select">
-	              <option value="0" selected>선택하기</option>
-	              <option value="1"></option>
-	              <option value="2">내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함</option>
-	              <option value="3">기타</option>
-	            </select> -->
+	      
 	          </div>
 	          <div class="mb-3">
 	            <label for="message-text" class="col-form-label">상세사유</label>
-	            <textarea class="form-control" id="message-text" style="resize: none;"></textarea>
+	            <textarea class="form-control" id="message-text" name="reportDetail" style="resize: none;"></textarea>
 	          </div>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-		        <button type="submit" class="btn btn-danger">신고하기</button>
+		        <button type="submit" class="btn btn-danger" >신고하기</button>
 		      </div>
 	        </form>
 	    </div>
@@ -149,3 +153,27 @@
 
 </body>
 </html>
+
+<script>
+
+	//리뷰 삭제버튼
+	function reviewDelete(){
+			if(confirm("정말로 리뷰를 삭제하시겠습니까? 삭제시 데이터 복구는 불가합니다.")){
+				location.href="${root}/community/seminarReview/delete?no=${srDetail.no}";
+			}
+		}
+	
+	
+	//신고 상세사유 입력체크
+	const radioBtn = document.querySelector("#reReCategoryName4");
+	const detailEx = document.querySelector("#message-text");
+	
+	
+	function validateForm(){
+		if(document.getElementById("reReCategoryName4").checked && document.getElementById("message-text").value == ""){
+			alert("신고 상세사유를 입력해주세요.");
+			return false;
+		}
+	}
+	
+	</script>

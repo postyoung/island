@@ -31,6 +31,15 @@ $(document).ready(function() {
   });
 
 });
+
+function validateForm() {
+	  const fileInput = document.querySelector('input[type="file"]');
+	  if (fileInput.value === '') {
+	    alert('리뷰 썸네일 파일을 선택해주세요.');
+	    return false;
+	  }
+	  return true;
+	}
 </script>
 </head>
 <body>
@@ -56,7 +65,7 @@ $(document).ready(function() {
 	      [세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span>
 	    </div>
 	
-	      <form action="${root}/community/seminarReview/write" method="post" enctype="multipart/form-data">
+	      <form action="${root}/community/seminarReview/write" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
 	        <table>
 	          <tr>
 	            <th class="text-center">제목</th>

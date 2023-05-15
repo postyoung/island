@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.community.review.dao.SeminarReviewDao;
+import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
 
 @Service
@@ -48,5 +49,34 @@ public class SeminarReviewService {
 	//세미나 리뷰 상세 조회
 	public SeminarReviewVo getSeminarReviewDetail(String no) {
 		return dao.getSeminarReviewDetail(sst, no);
+	}
+	
+	//세미나 리뷰 상세내용 (리뷰내용 + 썸네일 이름) 수정 
+	public int modifySeminarReviewWithThumbnail(FileVo fvo, SeminarReviewVo srvo) throws Exception {
+		int ReviewEditResult =  dao.modifySeminarReview(sst, srvo);
+		if(ReviewEditResult != 1) {
+			throw new Exception("상세내용 수정 실패");
+		}
+		return dao.modifySeminarReviewWithThumbnail(sst,fvo);
+	}
+
+	//세미나 리뷰 상세내용(제목,내용만,별점) 수정 
+	public int modifySeminarReviewOnlyDetail(SeminarReviewVo srvo) {
+		return dao.modifySeminarReviewOnlyDetail(sst,srvo);
+	}
+	
+	//세미나 리뷰 삭제
+	public int deleteSeminarReview(String no) {
+		return dao.deleteSeminarReview(sst,no);
+	}
+	
+	//세미나 리뷰 검색
+	public List<SeminarReviewVo> searchSeminarReviewList(String seminarName) {
+		return dao.searchSeminarReviewList(sst, seminarName);
+	}
+	
+	//세미나 리뷰 신고하기
+	public int reportSeminarReview(ReviewReportVo rrvo) {
+		return dao.reportSeminarReview(sst, rrvo);
 	}
 }

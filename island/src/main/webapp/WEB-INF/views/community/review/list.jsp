@@ -8,12 +8,18 @@
 <title>ISLAND 세미나 리뷰 | ISLAND</title>
 	<!-- 헤더 -->
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
+	<c:if test="${not empty alertMsg}">
+		<script type="text/javascript">
+		 	alert('${alertMsg}');
+		</script>
+	</c:if>
+	<c:remove var="alertMsg" scope="session"/>
 	
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="${root}/resources/css/community/review/list.css">
+
 </head>
 <body>
-	
 	<!-- 고객센터 전체 -->
 	<!-- 메뉴바 -->
 	<div id="wrap">
@@ -33,8 +39,8 @@
 	<!-- 검색영역 -->
 	<div id="search-area">
 	  <div>
-	    <form action="${root}/community/seminarReview/search" id="search">
-	        <input type=text class="form-control search-box"  name="fd" placeholder="리뷰에 해당하는 세미나명을 검색어로 입력해주세요.">
+	    <form action="${root}/community/seminarReview/search" id="search" method="post">
+	        <input type=text class="form-control search-box"  name="seminarName" placeholder="리뷰에 해당하는 세미나명을 검색어로 입력해주세요.">
 	        <button type="submit" class="btn btn-dark search-btn">검색</button>
 	    </form>
 	  </div>
@@ -88,3 +94,4 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
+

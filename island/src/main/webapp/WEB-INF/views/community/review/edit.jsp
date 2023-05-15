@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,43 +56,51 @@ $(document).ready(function() {
 	    <div id="line"></div>
 	
 	    <div id="seminar">
-	      [세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span>
+	      [세미나] <span> ${srDetail.seminarName}</span>
 	    </div>
 	
-	      <form action="${root}/community/seminarReview/edit" method="post">
+	      <form action="${root}/community/seminarReview/edit" method="post" enctype="multipart/form-data">
+	      	<input type="hidden" name="no" value="${srDetail.no}">
 	        <table>
 	          <tr>
 	            <th class="text-center">제목</th>
-	            <td><input type="text" name="title" class="form-control" value="이런 세미나가 자주 열렸으면 좋겠습니다. 추천합니다!" required></td>
+	            <td><input type="text" name="title" class="form-control" value="${srDetail.title}" required></td>
 	          </tr>
 	          <tr>
 	            <th class="text-center">평점</th>
-	            <td>
-	              <input type="radio" class="form-check-input" name="point" id="point0">
-	              <label for="point0">★★★★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point1" checked>
-	              <label for="point1">★★★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point2">
-	              <label for="point2">★★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point3">
-	              <label for="point3">★★</label>
-	              <input type="radio" class="form-check-input bean" name="point" id="point4">
-	              <label for="point4">★</label>
-	            </td>
+		            <td>
+		            	<c:set var="checkedStars" value="${fn:length(srDetail.point)}" />
+
+							<input type="radio" class="form-check-input" value="★★★★★" name="point" id="point0" ${checkedStars == 5 ? "checked" : ""}>
+							<label for="point0">★★★★★</label>
+							
+							<input type="radio" class="form-check-input bean" value="★★★★" name="point" id="point1" ${checkedStars == 4 ? "checked" : ""}>
+							<label for="point1">★★★★</label>
+							
+							<input type="radio" class="form-check-input bean" value="★★★" name="point" id="point2" ${checkedStars == 3 ? "checked" : ""}>
+							<label for="point2">★★★</label>
+							
+							<input type="radio" class="form-check-input bean" value="★★" name="point" id="point3" ${checkedStars == 2 ? "checked" : ""}>
+							<label for="point3">★★</label>
+							
+							<input type="radio" class="form-check-input bean" value="★" name="point" id="point4" ${checkedStars == 1 ? "checked" : ""}>
+							<label for="point4">★</label>
+			         
+		            </td>
 	          </tr>
 	          <tr>
 	            <th colspan="2" class="text-content" required>내용</th>
 	          </tr>
 	          <tr>
 	            <th colspan="2">
-		            <textarea id="summernote" name="editordata">
-		           		 <p><span style="font-weight: 400;">창업아이템 세미나에 참석하고 나서, 다양한 창업 아이디어와 경험을 공유받았습니다.</span></p><p><span style="font-weight: 400;">세미나에서는 성공적인 창업을 위한 기본 원칙과 함께, 창업을 위한 아이디어 도출&nbsp;</span></p><p><span style="font-weight: 400;">방법, 마케팅 전략 등에 대한 내용이 다루어졌습니다.</span></p><p><span style="font-weight: 400;"><br></span></p><p><span style="font-weight: 400;">특히, 다른 참가자들과 함께 공유한 경험들은 매우 유익했습니다.</span></p><p><span style="font-weight: 400;">세미나를 통해 새로운 아이디어를 발견하고, 그 아이디어를 발전시키는 방법들을&nbsp;</span></p><p><span style="font-weight: 400;">배울 수 있었습니다. 세미나의 강사분들은 창업 경험이 많으셨기 때문에,&nbsp;</span></p><p><span style="font-weight: 400;">우리에게 실제적인 조언과 해결책을 제시해주셨습니다.</span></p><p><span style="font-weight: 400;"><br></span></p><p><span style="font-weight: 400;">또한, 세미나는 다양한 팀 프로젝트 및 토론 활동을 포함하여 진행되었습니다.&nbsp;</span></p><p><span style="font-weight: 400;">이를 통해 참가자들은 아이디어를 더욱 발전시키기 위한 협업의 중요성과,&nbsp;</span></p><p><span style="font-weight: 400;">다른 의견을 수렴하고 존중하는 방법을 배웠습니다.</span></p><p><span style="font-weight: 400;"><br></span></p><p><span style="font-weight: 400;">마지막으로, 이번 창업아이템 세미나는 나에게 큰 도전과 기회를 제공해주었습니다. 세미나를 통해 배운 내용을 실제로 적용하여, 나의 창업 아이디어를 발전시키는 데 큰 도움이 되었습니다. 나는 이번 세미나를 통해, 나의 창업 경험을 더욱 확장하고, 창업에 대한 열정을 더욱 강화시키게 되었습니다.</span></p>
+		            <textarea id="summernote" name="content">
+		            	${srDetail.content }
 		            </textarea>
 	            </th>
 	          </tr>
 	          <tr>
 	            <th class="text-center">썸네일</th>
-	            <td><input type="file" name="title" class="form-control" accept=".png,.jpg"></td>
+	            <td><input type="file" name="thumbnailFile" class="form-control" accept=".png,.jpg" ></td>
 	          </tr>
 	        </table>
 	        <div id="btn-area">
