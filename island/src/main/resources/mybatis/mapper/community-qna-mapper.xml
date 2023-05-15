@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	<select id="getQnaList" resultType="qnaVo">
+	
+	SELECT 
+    Q.NO
+    ,Q.TITLE
+    ,Q.CONTENT
+    ,Q.WRITER_NO
+    ,Q.CATEGORY_NO
+    ,Q.ENROLL_DATE
+    ,Q.DEL_YN
+    ,Q.ANSWER_YN
+    ,Q.HIT
+    ,C.NAME AS CATEGORY_NAME
+    ,M.NICK AS writerName
+	FROM QNA Q
+    LEFT OUTER JOIN QNA_CATEGORY C ON (Q.CATEGORY_NO=C.NO)
+    JOIN MEMBER M ON (Q.WRITER_NO=M.NO)
+	WHERE Q.DEL_YN = 'N'
+	
+	<if test="searchType == 'title'">
+		AND Q.TITLE LIKE '%${searchValue}%'
+	</if>
+	<if test="searchType == 'content'">
+		AND Q.CONTENT LIKE '%${searchValue}%'
+	</if>
+	<if test="searchType == 'category'">
+		AND Q.CATEGORY_NO = #{searchValue}
+	</if>
+	
+	ORDER BY Q.NO DESC
+		
+	</select>
+	
+	<insert id="write">
+	INSERT INTO QNA
+	(
+	    NO
+	    ,TITLE
+	    ,CONTENT
+	    ,WRITER_NO
+	    ,CATEGORY_NO
+	)
+	VALUES
+	(
+	    SEQ_QNA_NO.NEXTVAL
+	    , #{title}
+	    , #{content}
+	    , #{writerNo}
+	    , #{categoryNo}
+	)
+	</insert>
+	
+	<select id="getQna" resultType="qnaVo">
+		SELECT 
+	    Q.NO
+	    ,Q.TITLE
+	    ,Q.CONTENT
+	    ,Q.WRITER_NO
+	    ,Q.CATEGORY_NO
+	    ,Q.ENROLL_DATE
+	    ,Q.DEL_YN
+	    ,Q.ANSWER_YN
+	    ,Q.HIT
+	    ,C.NAME	AS	categoryName
+	    ,M.NICK AS writerName
+        ,M.PHONE AS writerPhone
+        ,M.EMAIL AS writerEmail
+        ,M.EMAIL2 AS writerEmail2
+		FROM QNA Q
+	    LEFT OUTER JOIN QNA_CATEGORY C ON (Q.CATEGORY_NO=C.NO)
+	    JOIN MEMBER M ON (Q.WRITER_NO=M.NO)
+		WHERE Q.DEL_YN = 'N'
+		AND Q.NO = #{no}
+	</select>
+	
+	<update id="increaseHit">
+	UPDATE QNA
+    	SET HIT = HIT+1
+    WHERE NO=#{no}
+    AND DEL_YN = 'N'
+	</update>
+	
+	<select id="getQnaEdit" resultType="qnaVo">
+		SELECT 
+	    Q.NO
+	    ,Q.TITLE
+	    ,Q.CONTENT
+	    ,Q.WRITER_NO
+	    ,Q.CATEGORY_NO
+	    ,Q.ENROLL_DATE
+	    ,Q.DEL_YN
+	    ,Q.ANSWER_YN
+	    ,Q.HIT
+	    ,C.NAME	AS	categoryName
+	    ,M.NICK AS writerName
+        ,M.PHONE AS writerPhone
+        ,M.EMAIL AS writerEmail
+        ,M.EMAIL2 AS writerEmail2
+		FROM QNA Q
+	    LEFT OUTER JOIN QNA_CATEGORY C ON (Q.CATEGORY_NO=C.NO)
+	    JOIN MEMBER M ON (Q.WRITER_NO=M.NO)
+		WHERE Q.DEL_YN = 'N'
+		AND Q.NO = #{no}
+	</select>
+ 	
+ 	<update id="updateQna">
+	UPDATE QNA
+   	SET 
+        TITLE = #{title}
+        , CONTENT = #{content}
+        ,CATEGORY_NO = #{categoryNo}
+    WHERE NO = #{no}
+    AND DEL_YN='N'
+    AND WRITER_NO = #{writerNo}
+ 	
+ 	</update>
+ 	
+ 	<update id="delete">
+ 	UPDATE QNA
+    SET
+        DEL_YN='Y'
+    WHERE NO = #{no}
+    AND WRITER_NO = #{writerNo}
+    
+ 	</update>
+ 	
+ 	<select id="getCnt" resultType="int">
+ 		SELECT COUNT(NO)
+ 		FROM QNA Q
+ 		WHERE DEL_YN='N'
+ 		<if test="searchType == 'title'">
+			AND Q.TITLE LIKE '%${searchValue}%'
+		</if>
+		<if test="searchType == 'content'">
+			AND Q.CONTENT LIKE '%${searchValue}%'
+		</if>
+		<if test="searchType == 'category'">
+			AND Q.CATEGORY_NO = #{searchValue}
+		</if>
+ 	</select>
+ 	
+ 	<select id="getCategoryList" resultType="map">
+		SELECT 
+			NO
+			, NAME
+		FROM QNA_CATEGORY
+	</select>
+	
+</mapper>

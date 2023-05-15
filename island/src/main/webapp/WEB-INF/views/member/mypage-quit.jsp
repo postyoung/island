@@ -32,24 +32,24 @@
                                                 <p class="tip_txt">* 아일랜드의 더 나은 서비스를 위한 것이니 한가지만 선택 부탁드립니다.</p>
                                                 <ul class="reason_list">
                                                     <li>
-                                                        <input type="radio" id="c1" name="reason" checked value="다른 Email을 사용하기 위해서">
-                                                        <label for="c1">다른 Email을 사용하기 위해서</label>
+                                                        <input type="radio" id="c1" name="reason" checked value="10">
+                                                        <label for="c1" value="10">다른 Email을 사용하기 위해서</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c2" name="reason"  value="사용빈도가 낮고, 개인정보 유출이 우려되어서">
-                                                        <label for="c2">사용빈도가 낮고, 개인정보 유출이 우려되어서</label>
+                                                        <input type="radio" id="c2" name="reason"  value="20">
+                                                        <label for="c2" value="20">사용빈도가 낮고, 개인정보 유출이 우려되어서</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c3" name="reason"  value="사이트 이용시 장애가 많아서">
-                                                        <label for="c3">사이트 이용시 장애가 많아서</label>
+                                                        <input type="radio" id="c3" name="reason"  value="30">
+                                                        <label for="c3" value="30">사이트 이용시 장애가 많아서</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c4" name="reason"  value="서비스 품질 불만족">
-                                                        <label for="c4">서비스 품질 불만족</label>
+                                                        <input type="radio" id="c4" name="reason"  value="40">
+                                                        <label for="c4" value="40">서비스 품질 불만족</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c5" name="reason"  value="기타">
-                                                        <label for="c5">기타</label>
+                                                        <input type="radio" id="c5" name="reason"  value="50">
+                                                        <label for="c5" value="50">기타</label>
                                                     </li>
                                                 </ul>
                                             </div>
