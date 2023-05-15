@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="group">
+    <select id="list" parameterType="groupVo" resultType="groupVo">
+        SELECT
+            NO
+            ,NAME
+            ,INTRO
+            ,TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE
+        FROM
+            SMALL_GROUP
+        WHERE
+            1=1
+        <if test="enrollDate != null">
+            AND TO_CHAR(ENROLL_DATE, 'YYYYMMDD') = #{enrollDate}
+        </if>
+        <if test="place != null">
+            AND PLACE = #{place}
+        </if>
+        ORDER BY
+            ENROLL_DATE DESC
+    </select>
+    <select id="total" resultType="int">
+        SELECT
+            COUNT(1)
+        FROM
+            SMALL_GROUP
+        WHERE
+            1=1
+        <if test="enrollDate != null">
+            AND TO_CHAR(ENROLL_DATE, 'YYYYMMDD') = #{enrollDate}
+        </if>
+        <if test="place != null">
+            AND PLACE = #{place}
+        </if>
+    </select>
+
+</mapper>
