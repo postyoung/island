@@ -51,16 +51,14 @@ tbody > td {
 							<h2 style="margin-left: 40px; margin-top: 40px;">자주하는 질문 FAQ</h2>
 							<hr>
 							<br> <br>
-							<%-- <c:if test="${loginMember.id == 'ADMIN'}">
+							 <c:if test="${loginMember.id != 'admin'}">
 								<div id="write-btn-area">
 									<button type="submit" class="btn btn-info btn-md"style="float: right; margin-right: 5px;">
-										<a href="${root}/admin/faq/write"></a>등록</button>
+										<a href="${root}/faq/write"></a>등록</button>
 								</div>
-							</c:if> --%>
-							<div id="write-btn-area">
-								<button type="submit" class="btn btn-info btn-md"style="float: right; margin-right: 5px;">
-									<a href="${root}/admin/faq/write"></a>등록</button>
-							</div>
+							</c:if>
+							
+							
 							<br> <br>
 							<table class="table table-hover table-bordered" style="text-align: center;">
 								<thead>

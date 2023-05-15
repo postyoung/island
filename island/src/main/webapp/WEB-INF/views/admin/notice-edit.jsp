@@ -32,15 +32,15 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
-				<form action="${root}/admin/notice/list" class="noticeeditform">
+				<form action="${root}/admin/notice/list" class="noticeeditform" method="post">
 					<div class="container">
 						<h2>공지사항 수정페이지</h2>
-								<form action="" method="post">
+								<form action="${root}/admin/notice/list" method="post">
 									<input type="hidden" name="idx" value="${vo.idx }">
 									<table id="tableTitle" class="table table-bordered table-hover" style="">
 										<tr>
 											<td>제목</td>
-											<td><input name="title" type="text" style="font-size: 20px;" value="${vo.title}" class="form-control" placeholder="[공지] 5월 1일  근로자의 날 휴무"></td>
+											<td><input name="title" type="text" style="font-size: 20px;" value="${vo.title}" class="form-control" placeholder="[약관] 개인정보취급방침 변경, 취소 및 환불약관 추가에 따른 안내"></td>
 										</tr>
 										<tr>
 											<td>작성자</td>
@@ -48,7 +48,26 @@
 										</tr>
 										<tr>
 											<td>내용</td>
-											<td><textarea name="content" rows="20" cols="" class="form-control" placeholder="5월1일(월) 근로자의 날 휴무합니다. 서비스이용에 참고해주세요.">${vo.content}</textarea></td>
+											<td><textarea name="content" rows="20" cols="" class="form-control" placeholder="안녕하세요. ISLAND 입니다.
+
+ISLAND 개인정보취급방침 변경, 취소 및 환불약관 추가에 대하여 사전 안내 드립니다.
+자세한 사항은 아래 내용을 참고하여 주시기 바랍니다.
+
+1. 시행일자
+- 2023년 5월 2일
+
+2.변경사항
+[개인정보처리방침]
+
+-제 2조
+개인정보의 처리목적 내 플레이 상품 구매자에 관한 내용 추가
+
+-제6조
+개인정보의 제3자가 제공 및 위탁에 관한 사항 내 상품 공급자에 관한 내용 추가
+
+[취소 및 환불약관]
+-일반모임과 유료 모임에 관한 내용 통합
+-모임 등의 환불 수수료에 관한내용 추가">${vo.content}</textarea></td>
 										</tr>
 									</table>
 									<div id="btn-area" style="text-align: right; margin-top: 10px;">

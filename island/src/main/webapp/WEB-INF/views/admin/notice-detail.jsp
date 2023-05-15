@@ -9,12 +9,11 @@
 <title>ISLAND 공지사항상세페이지 | ISLAND</title>
 
 <style>
-	/* 추가한 css */
-	div>h2 {
-		line-height: 3.3;
-		margin-top: 40px;
-	}
-	
+/* 추가한 css */
+div>h2 {
+	line-height: 3.3;
+	margin-top: 40px;
+}
 </style>
 
 </head>
@@ -30,42 +29,37 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
-				<form class="noticeWriteform" action="${root}/admin/notice/edit" method="get">
-					<div class="container">
-						<h2>공지사항 상세페이지</h2>
-						<form class="form-horizontal">
-							<table id="tableTitle" class="table table-bordered table" style="">
-								<tr>
-									<td>제목</td>
-									<td>[약관] 개인정보취급방침 변경, 취소 및 환불약관 추가에 따른 안내</td>
-								</tr>
-								<tr>
-									<td>작성일자</td>
-									<td>2023. 05. 02</td>
-								</tr>
-								<tr>
-									<td>내용</td>
-									<td>
-										<p> 안녕하세요. ISLAND 입니다.<br> <br>ISLAND 개인정보취급방침 변경, 취소 및 환불약관 추가에 대하여 사전 안내 드립니다.
-										<br>자세한 사항은 아래 내용을 참고하여 주시기 바랍니다.<br><br>
-										1. 시행일자<br>- 2023년 5월 2일<br><br>2.변경사항<br>[개인정보처리방침]<br>
-										<br>-제 2조<br>개인정보의 처리목적 내 플레이 상품 구매자에 관한 내용 추가<br><br>-제6조<br>개인정보의 제3자가 제공 및 위탁에 관한 사항 내 상품 공급자에 관한 내용 추가<br>
-										<br>[취소 및 환불약관]<br>-일반모임과 유료 모임에 관한 내용 통합<br>-모임 등의 환불 수수료에 관한내용 추가<br><br>
-										(1) 모임 유효기간<br>a. 유효기간 내 취소 접수 시 100% 환불<br>b. 유효기간 종료 후 환불불가<br><br>(2) 기본 정책 외 상품별 취소 및 환불정책은 결제 시 동의한 취소/환불 약관을 따릅니다.<br>
-										<br>3. 참고사항<br>(1) 개정된 개인정보취급방침은 시행일 이후부터 효력이 발생합니다.<br>
-										(2) 개정된 개이정보취급방침에 대한 문의사항은 고객센터-문의하기 또는  webmaster@island.com 으로 문의하여 주시기 바랍니다.<br>
-										<br>감사합니다.<br></p>
-									
-									</td>
-								</tr>
-							</table>
+				<main>
+					<form class="noticedetailform" action="${root}/admin/notice/detail" method="get">
+						<div class="container">
+							<h2>공지사항 상세페이지</h2>
+								<table id="tableTitle" class="table table-bordered table" >
+									<tr>
+										<td>번호</td>
+										<td>${vo.no}</td>
+									</tr>
+									<tr>
+										<td>제목</td>
+										<td>${vo.title}</td>
+									</tr>
+									<tr>
+										<td>작성일자</td>
+										<td>${vo.enroll}</td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td height="200px;">${vo.content}</td>
+									</tr>
+								</table>
 
-							<div id="btn-area" style="text-align: right; margin-top:10px;">
-								<button type="submit" class="btn btn-md btn-warning" >수정</button>
-								<%-- <a href="boardRemove.do?idx=${vo.idx}"> --%><button type="button"  onclick=" location.href='http://127.0.0.1:8888/app/admin/notice/list'"class="btn btn-md btn-info">취소</button></a>
-							</div>
-						</form>
-					</div>
+								 <div id="btn-area" style="text-align: right; margin-top: 10px;">
+		                            <button onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
+		                            <button onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'" class="btn btn-md btn-danger">삭제</button>
+		                            <button onclick="location.href='${root}/admin/notice/list'" class="btn btn-md btn-info">취소</button>
+		                        </div>
+						</div>
+					</form>
+				</main>
 			</div>
 		</div>
 	</div>
