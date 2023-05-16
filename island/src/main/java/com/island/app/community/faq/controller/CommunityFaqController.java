@@ -40,7 +40,6 @@ public class CommunityFaqController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		List<FaqVo> faqList = cfs.getFaqList(pv);
-		System.out.println(pv);
 		
 		if(faqList == null) {
 			throw new Exception("FAQ 목록 조회 실패");
@@ -67,7 +66,7 @@ public class CommunityFaqController {
 		}
 		m.addAttribute("faqList", faqByCategoryList);
 		m.addAttribute("pv", pv);
-		return "community/faq-list";
+		return "community/faq-list-byCategory";
 	}
 	
 }
