@@ -22,18 +22,7 @@
 	
 <link rel="stylesheet" href="${root}/resources/css/community/review/edit.css">
 
-<script>
 
-$(document).ready(function() {
-  $('#summernote').summernote({
-    placeholder: '내용을 입력해주세요.',
-        tabsize: 2,
-        height: 500,
-        width : 1080
-  });
-
-});
-</script>
 
 </head>
 <body>
@@ -120,3 +109,61 @@ $(document).ready(function() {
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
+
+<script>
+$('#summernote').summernote({
+	placeholder: '내용을 입력해주세요.',
+	tabsize: 2,
+	height: 500,
+	width : 1080,
+	focus : true,
+	lang : 'ko-KR',	// 한글 설정
+	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+		onImageUpload : function(files) {
+			 for (var i = files.length - 1; i >= 0; i--) {
+				uploadSummernoteImageFile(files[i],this);
+			 }
+		},
+		onPaste: function (e) {
+			var clipboardData = e.originalEvent.clipboardData;
+			if (clipboardData && clipboardData.items && clipboardData.items.length) {
+				var item = clipboardData.items[0];
+				if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+					e.preventDefault();
+				}
+			}
+		}
+	}
+});
+
+
+/**
+* 이미지 파일 업로드
+*/
+function uploadSummernoteImageFile(file, editor) {
+	data = new FormData();
+	data.append("file", file);
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "${root}/community/uploadSummernoteImageFile",
+		contentType : false,
+		processData : false,
+		success : function(data) {
+        	//항상 업로드된 파일의 url이 있어야 한다.
+			//$('#summernote').summernote('insertImage', url, filename);
+			$(editor).summernote('insertImage', data.url);
+		}
+	});
+}
+
+
+//이미지 드래그 앤 드랍
+$("div.note-editable").on('drop',function(e){
+    for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+    	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+    }
+   e.preventDefault();
+})
+
+</script>

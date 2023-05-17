@@ -1,28 +1,35 @@
 package com.island.app.community.review.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.JsonObject;
 import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.community.review.Service.SeminarReviewService;
 import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
-
-import oracle.jdbc.proxy.annotation.Post;
 
 /**
  * 
@@ -89,7 +96,7 @@ public class SeminarReviewController {
 		srvo.setSeminarNo(seminarNo);
 		
 		//회원 번호 가져오기 (loginMember에서 getNo해오기 임시코드)
-		String memberNo = "6";
+		String memberNo = "7";
 		srvo.setMemberNo(memberNo);
 		
 		//데이터 준비(파일)
@@ -113,6 +120,21 @@ public class SeminarReviewController {
 		return "redirect:/community/seminarReview/list";
 	}
 	
+	
+	//세미나 리뷰 섬머노트 img태그 변환
+	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
+	@ResponseBody
+	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest req) {
+		JsonObject jsonObject = new JsonObject();
+		
+		String path = req.getServletContext().getRealPath("/resources/img/community/review/upload/summernote/");
+		String changeName = FileUploader.upload(multipartFile, path);
+		
+		jsonObject.addProperty("url", "/app/resources/img/community/review/upload/summernote/"+changeName);
+		jsonObject.addProperty("responseCode", "success");
+		
+		return jsonObject;
+	}
 	
 	
 	
@@ -161,16 +183,14 @@ public class SeminarReviewController {
 	@PostMapping("seminarReview/edit")
 	public String seminarReviewEdit(SeminarReviewVo srvo, MultipartFile thumbnailFile,HttpServletRequest req, HttpSession session) throws Exception {
 		
-		System.out.println(thumbnailFile);
-		//썸네일 파일 검사
-		if(thumbnailFile == null) {
-			System.out.println("파일없음");
+		//썸네일 파일 비었는지 검사
+		if(thumbnailFile.isEmpty()) {
 			int result = srs.modifySeminarReviewOnlyDetail(srvo);
-			
+			session.setAttribute("alertMsg", "리뷰가 수정되었습니다.");
 			return "redirect:/community/seminarReview/detail?no=" + srvo.getNo();
 		}
 		
-		System.out.println("파일있음");
+		//썸네일 파일 있을 경우
 		String path = req.getServletContext().getRealPath("/resources/img/community/review/upload/");
 		String changeName = FileUploader.upload(thumbnailFile, path);
 		
