@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.island.app.admin.notice.service.NoticeService;
 import com.island.app.admin.notice.vo.NoticeVo;
-import com.island.app.member.vo.MemberVo;
+import com.island.app.admin.vo.AdminVo;
 
 @Controller
 @RequestMapping("admin")
@@ -37,33 +37,32 @@ public class NoticeController {
 		return "admin/notice-list";
 	}
 	
-	//공지사항작성하기(화면)
+	//공지사항작성하기 화면(관리자)
 	@GetMapping ("notice/write")
-	public String noticeWrite(HttpSession session , Model model) {
-		
-		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-		
-		if(loginMember == null) {
+	public String write(HttpSession session , Model model) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		if(loginAdmin == null) {
 			model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 			return "common/error-page";
 		}
-		String id = loginMember.getId();
+		String id = loginAdmin.getId();
 		boolean isAdmin = "admin".equals(id);
 		
 		if(!isAdmin) {
 			model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 			return "common/error-page";
 		}
+		
 		return "admin/notice-write";
 	}
 	
-	//공지사항작성하기
+	//공지사항작성하기(관리자)
 	@PostMapping("notice/write")
 	public String write(NoticeVo vo , HttpSession session) {
 		int result = ns.write(vo);
 		
 		if(result == 1) {
-			session.setAttribute("alertMsg", "공지사항 작성 성공!!");
+			session.setAttribute("alertMsg", "공지사항 작성 완료 !!");
 			
 		}else {
 			session.setAttribute("alertMsg", "공지사항 작성 실패..");
@@ -87,12 +86,24 @@ public class NoticeController {
 		return "admin/notice-detail";
 	}
 	
+	//공지사항 수정하기(화면)
+	@GetMapping("notice/edit")
+	public String noticeEdit(NoticeVo vo , Model model) throws Exception {
+		int result = ns.edit(vo);
+		System.out.println(vo);
+		if(result == 1) {
+			model.addAttribute("vo" , vo);
+			throw new Exception("공지사항 수정하기 예외발생..");
+		}
+		
+		return "admin/notice-edit";
+	}
 	
 	//공지사항 수정하기
 	@PostMapping("notice/edit")
 	public String noticeEdit(NoticeVo vo , Model model, HttpSession session) {
 		int result = ns.edit(vo);
-		
+		System.out.println(vo);
 		if(result != 1) {
 			model.addAttribute("errorMsg" , "수정실패..");
 			return "common/error-page";

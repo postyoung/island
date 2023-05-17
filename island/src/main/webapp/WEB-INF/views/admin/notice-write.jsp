@@ -30,10 +30,10 @@
 		<div id="layoutSidenav_content">
 			<!-- main -->
 			<div id="wrap">
+				<main>
+					<h2>공지사항 작성하기</h2>
 				<form class="noticeWriteform" action="${root}/admin/notice/write" method="POST">
 					<div class="container">
-						<h2>공지사항 작성하기</h2>
-						<form class="form-horizontal">
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="title">제목 : </label>
 								<div class="col-lg-12">
@@ -57,11 +57,12 @@
 							</div>
 
 							<div id="btn-area" style="text-align: right; margin-top:10px;">
-										<button type="submit" class="btn btn-md btn-primary" >등록</button>
-										<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-warning">취소</button></a>
-									</div>
+								<input type="submit" class="btn btn-md btn-primary"  value="등록">
+								<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-warning">취소</button></a>
+							</div>
 						</form>
 					</div>
+				</main>
 			</div>
 		</div>
 	</div>

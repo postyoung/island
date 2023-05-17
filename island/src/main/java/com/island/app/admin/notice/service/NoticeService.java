@@ -45,4 +45,6 @@ public class NoticeService {
 		return dao.delete(sst , num);
 	}
 
+	
+
 }

@@ -41,7 +41,6 @@ main table>tbody>tr:hover {
 			<!-- main -->
 			<div id="wrap">
 				<main>
-					<form action="${root}/admin/notice/list" class="noticelistform"	method="get">
 						<div class="container">
 							<h2>공지사항 리스트</h2>
 							<table class="table table-hover table-bordered"
@@ -58,24 +57,17 @@ main table>tbody>tr:hover {
 										<tr>
 											<td>${nvo.no}</td>
 											<td>${nvo.title}</td>
-											<td>${nvo.enroll}</td>
+											<td>${nvo.enrollDate}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-							<%-- <c:if test="${loginMember.id == 'admin'}">// 로그인해도 버튼이 사라짐...ㅡㅜ
-							<div id="write-btn-area">
-								<button type="submit" class="btn btn-info btn-md" style="float: right;">
-									<a href="${root}/admin/notice/write"></a>글쓰기</button>								
-							</div>
-							</c:if> --%>
-
-							<div id="write-btn-area">
-								<button type="submit" class="btn btn-info btn-md" style="float: right;">
-									<a href="${root}/admin/notice/write"></a>글쓰기
-								</button>
-							</div>
-
+							
+							<c:if test="${loginAdmin.id == 'admin'}">
+								<div id="write-btn-area">
+									<a id="write-btn" class="btn btn-info btn-md" style="float: right;" href="${root}/admin/notice/write">글쓰기</a>								
+								</div>
+							</c:if>
 							<br>
 							<div id="page-area">
 								<!-- 페이징 -->
@@ -83,7 +75,6 @@ main table>tbody>tr:hover {
 							</div>
 							<br>
 						</div>
-					</form>
 				</main>
 			</div>
 		</div>
