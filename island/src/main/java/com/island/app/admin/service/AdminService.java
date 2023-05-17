@@ -37,4 +37,9 @@ public class AdminService {
 		}
 		return dao.selectOneByNo(sst, vo);
 	}
+
+	// 아이디 중복 여부 확인
+	public int checkId(String id) {
+		return dao.checkId(sst, id);
+	}
 }

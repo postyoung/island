@@ -27,7 +27,7 @@
 					<div class="card col-sm-12 mt-4" id="loginBox">
 						<div class="card-body col-sm-12 d-flex justify-content-center">
 							<div
-								class="col-sm-8 col-md-offset-3 d-flex justify-content-center">
+								class="col-sm-12 col-md-offset-3 d-flex justify-content-center">
 								<form role="form" action="${root}/admin/create" method="post">
 									<div class="form-group">
 										<label for="inputName"><h4>관리자 이름</h4></label> <input
@@ -37,7 +37,9 @@
 									<div class="form-group">
 										<label for="InputId" class="mt-4"><h4>아이디</h4></label> <input
 											type="text" class="form-control" name="id" id="InputId"
-											placeholder="아이디를 입력해주세요">
+											placeholder="아이디를 입력해주세요"> <input type="button"
+											class="btn btn-primary mt-4" value="아이디 중복 확인"
+											onclick="checkDup();">
 									</div>
 									<div class="form-group">
 										<label for="inputPassword" class="mt-4"><h4>비밀번호</h4></label>
@@ -68,7 +70,7 @@
 									</div>
 									<div class="form-group text-center mt-4">
 										<input type="submit" id="join-submit" value="계정 생성"
-											class="btn btn-primary">
+											class="btn btn-primary" disabled>
 									</div>
 								</form>
 							</div>
@@ -80,4 +82,67 @@
 		</div>
 	</div>
 </body>
+<script>
+const checkAll = 0;
+
+const inputName = document.querySelector('#inputName');
+const checkName = /^[가-힣]+$/;
+
+inputName.addEventListener('input', () => {
+  const name = inputName.value;
+  if (!checkName.test(name)) {
+    nameInput.setCustomValidity('한글로');
+  } else {
+    nameInput.setCustomValidity('');
+  }
+});
+
+//아이디 중복 여부 확인
+function checkDup(){
+    const id = document.querySelector("input[name=id]").value;
+    $.ajax({
+        url : '/app/admin/id-check',
+        type : 'POST',
+        data : {
+            'id' : id
+        } ,
+        success : function(data){
+            if(data == 'notDup'){
+                alert("사용 가능한 아이디 입니다.");
+                checkAll += 1;
+            }else{
+                alert("사용 불가한 아이디 입니다.");
+                document.querySelector("input[name=id]").value = "";
+            }
+        } ,
+        error : function(e) {
+            console.log(e);
+        } ,
+    });
+}
+
+//비밀번호 일치해야 제출 가능하게
+function checkValidation(){
+    if(!isPwdOk()){
+        alert("비밀번호가 일치하지 않습니다.");
+        document.querySelector("main input[name=pwd]").focus();
+        return false;
+    }
+    return true;
+}
+
+function isPwdOk(){
+    const pwd1 = document.querySelector("main input[name=pwd]").value;
+    const pwd2 = document.querySelector("main input[name=pwd2]").value;
+
+    if(pwd1 != pwd2) return false;
+    return true;
+}
+
+if(checkAll > 0) {
+	  const target = document.querySelector('#join-submit');
+	  target.disabled = false;
+}
+
+</script>
 </html>

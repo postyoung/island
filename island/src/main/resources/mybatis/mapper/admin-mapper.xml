@@ -66,4 +66,11 @@
 		ADMIN
 		WHERE NO = #{no}
 	</select>
+
+	<select id="checkId" resultType="int">
+		SELECT COUNT(*)
+		FROM ADMIN
+		WHERE
+		ID = #{id}
+	</select>
 </mapper>

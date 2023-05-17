@@ -1,12 +1,15 @@
 package com.island.app.admin.controller;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.island.app.admin.service.AdminService;
 import com.island.app.admin.vo.AdminVo;
 
@@ -47,7 +50,24 @@ public class AdminController {
 	@PostMapping("create")
 	public String create(AdminVo vo, HttpSession session) {
 		int result = as.create(vo);
+		if (result != 1) {
+			session.setAttribute("alertMsg", "계정 생성이 실패하였습니다.");
+			return "redirect:/admin/create";
+		}
+		session.setAttribute("alertMsg", "계정 생성이 완료되었습니다.");
 		return "redirect:/admin/main";
+	}
+
+	// 아이디 중복 여부 확인
+	@RequestMapping("id-check")
+	@ResponseBody
+	public String idCheck(String id) {
+		int result = as.checkId(id);
+		if (result > 0) {
+			return "isDup";
+		} else {
+			return "notDup";
+		}
 	}
 
 	// 메인
@@ -66,7 +86,12 @@ public class AdminController {
 	@PostMapping("edit")
 	public String edit(AdminVo vo, Model model, HttpSession session) throws Exception {
 		AdminVo updatedAdmin = as.edit(vo);
+		if (updatedAdmin == null) {
+			session.setAttribute("alertMsg", "정보 수정이 실패하였습니다.");
+			return "redirect:/admin/edit";
+		}
 		session.setAttribute("loginAdmin", updatedAdmin);
+		session.setAttribute("alertMsg", "정보 수정이 완료되었습니다.");
 		return "redirect:/admin/main";
 	}
 

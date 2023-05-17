@@ -25,4 +25,9 @@ public class AdminDao {
 	public AdminVo selectOneByNo(SqlSessionTemplate sst, AdminVo vo) {
 		return sst.selectOne("admin.getAdmin", vo);
 	}
+
+	// 아이디 중복 여부 확인
+	public int checkId(SqlSessionTemplate sst, String id) {
+		return sst.selectOne("admin.checkId", id);
+	}
 }
