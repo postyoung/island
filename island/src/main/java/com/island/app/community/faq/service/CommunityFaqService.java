@@ -33,5 +33,15 @@ public class CommunityFaqService {
 		return dao.getFaqList(sst, pv);
 	}
 	
+	//FAQ 카테고리별 목록 조회
+	public List<FaqVo> getFaqsByCategory(PageVo pv, String categoryNo) {
+		return dao.getFaqsByCategory(sst, pv, categoryNo);
+	}
+	
+	//FAQ 카테고리별 게시글 갯수 조회
+	public int getByCategoryCnt(String categoryNo) {
+		return dao.getByCategoryCnt(sst, categoryNo);
+	}
+	
 	
 }

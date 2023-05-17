@@ -23,4 +23,27 @@
 		WHERE DEL_YN='N'
 		 	
  	</select>
+ 	
+ 	
+ 	<select id="getFaqsByCategory" resultType="faqVo">
+ 		SELECT
+		    F.NO
+		    ,C.NAME AS CATEGORYNAME
+		    ,F.TITLE
+		    ,F.CONTENT
+		    ,C.NO AS CATEGORYNO
+		FROM FAQ F
+		JOIN FAQ_CATEGORY C
+		ON(F.CATEGORY_NO=C.NO)
+		WHERE DEL_YN='N'
+		AND C.NO = #{categoryNo}
+ 	</select>
+ 	
+ 	<select id="getByCategoryCnt" resultType="int">
+	 	SELECT 
+	        COUNT(NO)
+	    FROM FAQ
+	    WHERE DEL_YN='N'
+		AND CATEGORY_NO = #{categoryNo}
+ 	</select>
 </mapper>

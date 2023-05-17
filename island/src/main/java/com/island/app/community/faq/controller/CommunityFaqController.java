@@ -29,7 +29,7 @@ public class CommunityFaqController {
 		this.cfs = cfs;
 	}
 
-	//고객센터 faq 목록 화면
+	//커뮤니티 faq 목록 화면
 	@GetMapping("faq/list")
 	public String getFaqList(@RequestParam(defaultValue = "1")int page, Model m) throws Exception {
 		//페이징
@@ -39,16 +39,34 @@ public class CommunityFaqController {
 		int boardLimit = 10;
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		System.out.println(pv);
-		
 		List<FaqVo> faqList = cfs.getFaqList(pv);
-		System.out.println(faqList);
 		
 		if(faqList == null) {
 			throw new Exception("FAQ 목록 조회 실패");
 		}
 		m.addAttribute("faqList", faqList);
+		m.addAttribute("pv", pv);
 		return "community/faq-list";
+	}
+	
+	
+	//커뮤니티 카테고리별 목록 조회
+	@GetMapping("faq/list/category")
+	public String getFaqsByCategory(String categoryNo, @RequestParam(defaultValue = "1")int page, Model m) throws Exception {
+		//페이징
+		int listCount = cfs.getByCategoryCnt(categoryNo);
+		int currentPage = page;
+		int pageLimit = 5;
+		int boardLimit = 10;
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		
+		List<FaqVo> faqByCategoryList = cfs.getFaqsByCategory(pv, categoryNo);
+		if(faqByCategoryList == null) {
+			throw new Exception("FAQ 카테고리별 목록 조회 실패");
+		}
+		m.addAttribute("faqList", faqByCategoryList);
+		m.addAttribute("pv", pv);
+		return "community/faq-list-byCategory";
 	}
 	
 }

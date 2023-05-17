@@ -69,7 +69,7 @@
 
 
 	<!-- 페이징 -->
-	<%@ include file="/WEB-INF/views/common/community-faq-paging.jsp" %>
+	<%@ include file="/WEB-INF/views/common/community-faq-paging-byCategory.jsp" %>
 
 	<!-- 푸터 -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>

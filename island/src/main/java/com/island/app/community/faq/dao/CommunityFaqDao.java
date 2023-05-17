@@ -25,5 +25,20 @@ public class CommunityFaqDao {
 		return sst.selectList("community.getFaqList", null, rb);
 
 	}
+	
+	
+	//FAQ 카테고리별 목록 조회
+	public List<FaqVo> getFaqsByCategory(SqlSessionTemplate sst, PageVo pv, String categoryNo) {
+		int limit = pv.getBoardLimit();
+		int offset = (pv.getCurrentPage()-1) * limit;
+		RowBounds rb = new RowBounds(offset , limit);
+		return sst.selectList("community.getFaqsByCategory", categoryNo, rb);
+	}
 
+	//FAQ 카테고리별 게시글 갯수 조회
+	public int getByCategoryCnt(SqlSessionTemplate sst, String categoryNo) {
+		return sst.selectOne("community.getByCategoryCnt", categoryNo);
+	}
+	
+	
 }

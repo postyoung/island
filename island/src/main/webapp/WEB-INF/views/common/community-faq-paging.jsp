@@ -17,19 +17,19 @@
     
 	    <c:if test="${pv.currentPage > 1}">
 	      <li class="page-item disabled">
-	        <a class="page-link" href="${root}/community/seminarReview/list?page=${pv.currentPage-1}">이전</a>
+	        <a class="page-link" href="${root}/community/faq/list?page=${pv.currentPage-1}">이전</a>
 	      </li>
 	    </c:if>
 			
 		<c:forEach begin="${pv.startPage}" end="${pv.endPage}" step="1" var="i">
 	      <li class="page-item">
-	      	<a class="page-link" href="${root}/community/seminarReview/list?page=${i}">${i}</a>
+	      	<a class="page-link" href="${root}/community/faq/list?page=${i}">${i}</a>
 	      </li>
 		</c:forEach>	    
       
       	<c:if test="${pv.currentPage < pv.maxPage}">
 	      <li class="page-item">
-	        <a class="page-link" href="${root}/community/seminarReview/list?page=${pv.currentPage+1}">다음</a>
+	        <a class="page-link" href="${root}/community/faq/list?page=${pv.currentPage+1}">다음</a>
 	      </li>
       	</c:if>
   
