@@ -71,6 +71,16 @@
                         <input type="email" placeholder="" name="text" class="input" value="소속" disabled>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" type="button">모임제목</button></li>
+                        <li><button class="dropdown-item" type="button">모임제목</button></li>
+                        <li><button class="dropdown-item" type="button">모임제목</button></li>
+                    </ul>
+                </div>
 
             </div>
             <div class="right">

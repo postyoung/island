@@ -78,7 +78,31 @@
 				</div>
 			</div>
 		</c:forEach>
-		<a href="${root}/group/create"><button type="button" class="btn_keyword_search" onclick="list()">개설하기</button></a>
+		<div class="container">
+			<div class="modal-btn-box">
+				<a href="${root}/group/create"><button type="button" class="btn_keyword_search" onclick="list()">개설하기</button></a>
+			</div>
+			<div class="popup-wrap" id="popup">
+				<div class="popup">
+					<div class="popup-head">
+					</div>
+					<div class="popup-body">
+						<div class="body-content">
+							<div class="body-titlebox">
+							</div>
+							<div class="body-contentbox">
+								<p>개설하시겠습니까?</p>
+							</div>
+						</div>
+					</div>
+					<div class="popup-foot">
+						<span class="pop-btn confirm" id="confirm">확인</span>
+						<span class="pop-btn close" id="close">창 닫기</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </main>
 </body>

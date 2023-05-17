@@ -24,6 +24,12 @@ public class GroupService {
     public List<GroupVo> list(GroupVo groupVo, PageVo pageVo) {
         return dao.list(sst, groupVo, pageVo);
     }
+    public GroupVo retrieve(int no) {
+        return dao.retrieve(sst, no);
+    }
+    public void create(GroupVo groupVo) {
+       dao.create(sst, groupVo);
+    }
     public int getTotalCount(GroupVo groupVo){
         return dao.getTotalCount(sst, groupVo);
     }

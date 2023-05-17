@@ -15,9 +15,18 @@ public class GroupDao {
         int offset = (pageVo.getCurrentPage()-1) * limit;
         RowBounds rb = new RowBounds(offset , limit);
 
-        return sst.selectList("group.list", groupVo, rb); }
+        return sst.selectList("group.list", groupVo, rb);
+    }
+
+    public void create(SqlSessionTemplate sst, GroupVo groupVo) {
+        sst.insert("group.create", groupVo);
+    }
 
     public int getTotalCount(SqlSessionTemplate sst, GroupVo groupVo) {
         return sst.selectOne("group.total",groupVo);
+    }
+
+    public GroupVo retrieve(SqlSessionTemplate sst, int no) {
+        return sst.selectOne("group.retrieve", no);
     }
 }
