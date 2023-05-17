@@ -1,5 +1,6 @@
 package com.island.app.member.dao;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +29,14 @@ public class MemberDao{
 	}
 	public MemberVo selectOneByNo(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.selectOne("member.getMember" , vo);
+	}
+	//회원탈퇴
+	public int quit(SqlSession sst, MemberVo vo) {
+		return sst.update("member.quit" , vo);
+	}
+	//회원탈퇴 비번확인
+	public MemberVo quitConfirm(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.selectOne("member.quitConfirm",vo);
 	}
 
 }

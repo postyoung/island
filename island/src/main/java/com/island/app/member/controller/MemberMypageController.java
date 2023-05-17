@@ -35,6 +35,7 @@ public class MemberMypageController {
 		public String mypageHome() {
 			return "member/mypage-home";
 		}
+		
 		//마이페이지 수정(화면)
 		@GetMapping("edit")
 		public String mypageEdit() {
@@ -76,13 +77,26 @@ public class MemberMypageController {
 			return "member/mypage-quit";
 		}
 		//마이페이지 회원탈퇴 
-		public String mypagequit(MemberVo vo, HttpSession session) {
+		@PostMapping("quit")
+		public String quit(MemberVo vo, HttpSession session, Model model) {
 			
+			//데이터
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			String no = loginMember.getNo();
 			
+			//서비스
+			MemberVo result = ms.quit(vo);
 			
-			
+			//화면
+			if (result != null) {
+			   model.addAttribute("alertMsg", "회원 탈퇴되었습니다. ISLAND를 이용해주셔서 감사합니다.");
+			   session.invalidate();
+			    
+			}else {
+				session.setAttribute("alertMsg", "회원탈퇴 실패: 관리자에게 문의하세요.");
+			}
 			return "redirect:/main";
 		}
-
 		
-}
+		
+}//class
