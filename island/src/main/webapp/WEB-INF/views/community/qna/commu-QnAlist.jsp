@@ -105,7 +105,7 @@
             <br><br>
                 
           <!-- 페이징 -->
-		<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+		<%@ include file="/WEB-INF/views/common/Qna-paging.jsp" %>
     
     
                 

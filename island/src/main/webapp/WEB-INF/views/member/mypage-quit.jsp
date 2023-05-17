@@ -9,6 +9,21 @@
     <title>ISLAND 탈퇴 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypagequit.css">
+
+    <script>
+        <c:if test="${not empty alertMsg}">
+            alert('${alertMsg}');
+        </c:if>
+    </script>
+    
+    <c:if test="${not empty alertMsg}">
+        <script type="text/javascript">
+            alert('${sessionScope.alertMsg}');
+        </script>
+    </c:if>
+    
+    <c:remove var="alertMsg" scope="session"/>
+
 </head>
 <body>
     <div id="wrap">
@@ -23,6 +38,7 @@
                         <section class="main_content" >
                                     <!-- 개설한 내역 -->
                             <form action="${root}/mypage/quit" method="post">
+                                <input type="hidden" id="no" name="no" value="${loginMember.no}">
                                         <h3 class="title">회원탈퇴</h3>
                                         <!-- 인풋 입력시작 -->
                                 <div class="edit_wrap">
@@ -32,23 +48,23 @@
                                                 <p class="tip_txt">* 아일랜드의 더 나은 서비스를 위한 것이니 한가지만 선택 부탁드립니다.</p>
                                                 <ul class="reason_list">
                                                     <li>
-                                                        <input type="radio" id="c1" name="reason" checked value="10">
+                                                        <input type="radio" id="c1" name="qReason" checked value="10">
                                                         <label for="c1" value="10">다른 Email을 사용하기 위해서</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c2" name="reason"  value="20">
+                                                        <input type="radio" id="c2" name="qReason"  value="20">
                                                         <label for="c2" value="20">사용빈도가 낮고, 개인정보 유출이 우려되어서</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c3" name="reason"  value="30">
+                                                        <input type="radio" id="c3" name="qReason"  value="30">
                                                         <label for="c3" value="30">사이트 이용시 장애가 많아서</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c4" name="reason"  value="40">
+                                                        <input type="radio" id="c4" name="qReason"  value="40">
                                                         <label for="c4" value="40">서비스 품질 불만족</label>
                                                     </li>
                                                     <li>
-                                                        <input type="radio" id="c5" name="reason"  value="50">
+                                                        <input type="radio" id="c5" name="qReason"  value="50">
                                                         <label for="c5" value="50">기타</label>
                                                     </li>
                                                 </ul>
@@ -68,7 +84,7 @@
                                                 <label for="pw">비밀번호 입력</label>
                                             </h4>
                                             <div class="input_wrap">
-                                                <input type="password" id="pw" name="pwd" required>
+                                                <input type="password" id="pwd" name="pwd" required>
                                                 <!-- 에러메시지 -->
                                                 <ul class="check_msg">
                                                     <li>
@@ -109,7 +125,7 @@
                                                 탈퇴하시겠습니까?
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">확인</button>
+                                                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" >확인</button>
                                                 <button type="button" class="btn btn-primary" onclick="location.href='${root}/mypage/quit'">취소</button>
                                                 </div>
                                             </div>

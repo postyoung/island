@@ -77,4 +77,30 @@ public class MemberService {
 		return dao.selectOneByNo(sst , vo);
 	}
 	
+	//회원탈퇴
+	public MemberVo quit(MemberVo vo) {
+		
+		MemberVo memberVo = dao.quitConfirm(sst,vo);
+		
+		if (memberVo != null) {
+	        memberVo.setQReason(vo.getQReason());
+
+	        dao.quit(sst, memberVo);
+		
+		String userpwd = vo.getPwd();
+		String dbpwd = memberVo.getPwd();
+		
+		boolean result = enc.matches(userpwd, dbpwd);
+		if(result) {
+			return memberVo;
+		}else {
+			return null;
+		}
+		
+		}
+		return memberVo;
+
+
+	
+}
 }//class
