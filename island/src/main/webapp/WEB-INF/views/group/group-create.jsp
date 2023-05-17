@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <%@include file="/WEB-INF/views/common/header-member.jsp" %>
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/offcanvas-navbar/">
     <script defer src="${root}/resources/js/group/group-create.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=93e8d759aeee323f18540c3b4ad9a0aa&libraries=services"></script>
@@ -69,6 +70,29 @@
                     <div class="info-text">
                         <h3>소속</h3>
                         <input type="email" placeholder="" name="text" class="input">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h3>모집인원</h3>
+                        <input type="email" placeholder="" name="text" class="input">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="dropdown">
+                        <h3>카테고리</h3>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            모임제목
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="dropdown-item" type="button">모임제목</button></li>
+                            <li><button class="dropdown-item" type="button">모임제목</button></li>
+                            <li><button class="dropdown-item" type="button">모임제목</button></li>
+                        </ul>
                     </div>
                 </div>
 

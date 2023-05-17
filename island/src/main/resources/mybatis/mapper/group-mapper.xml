@@ -36,5 +36,74 @@
             AND PLACE = #{place}
         </if>
     </select>
+    <select id="retrieve" parameterType="groupVo" resultType="groupVo">
+        SELECT
+            NO
+            ,M_NO
+            ,C_NO
+            ,L_NO
+            ,NAME
+            ,INTRO
+            ,EXINTRO
+            ,PLACE
+            ,PEOPLENUM
+            ,STARTTIME
+            ,FINISHTIME
+            ,GR_CLOSE
+            ,TERM
+            ,APPLYDATE
+            ,HIT
+            ,DEL_YN
+            ,REPORT_YN
+            ,BLOCK_YN
+            ,ENROLL_DATE
+        FROM
+            SMALL_GROUP
+        WHERE
+            NO = #{no}
+    </select>
+    <insert id="create" parameterType="groupVo">
+        INSERT INTO SMALL_GROUP (
+            NO
+            ,M_NO
+            ,C_NO
+            ,L_NO
+            ,NAME
+            ,INTRO
+            ,EXINTRO
+            ,PLACE
+            ,PEOPLENUM
+            ,STARTTIME
+            ,FINISHTIME
+            ,GR_CLOSE
+            ,TERM
+            ,APPLYDATE
+            ,HIT
+            ,DEL_YN
+            ,REPORT_YN
+            ,BLOCK_YN
+            ,ENROLL_DATE
+        ) VALUES (
+            SMALL_GROUP_SEQ.NEXTVAL
+            ,${mNo}
+            ,#{cNo}
+            ,#{lNo}
+            ,#{name}
+            ,#{intro}
+            ,#{exintro}
+            ,#{place}
+            ,#{peoplenum}
+            ,#{starttime}
+            ,#{finishtime}
+            ,#{grClose}
+            ,#{term}
+            ,#{applydate}
+            ,#{hit}
+            ,#{delYn}
+            ,#{reportYn}
+            ,#{blockYn}
+            ,#{enrollDate}
+        )
+    </insert>
 
 </mapper>

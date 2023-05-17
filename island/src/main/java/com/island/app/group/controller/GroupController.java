@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.swing.*;
 import java.util.List;
 
 @Controller
@@ -56,13 +58,23 @@ public class GroupController {
 
 	//소모임상세페이지
 	@GetMapping("detail")
-	public String detail() {
+	public String detail(
+        Model model,
+        @RequestParam int no
+    ) {
+		// TODO: no 없는 경우 에러 처리
+		GroupVo smallGroup = groupService.retrieve(no);
+		model.addAttribute("smallGroup", smallGroup);
+
 		return "group/group-detail";
 	}
 
 	//소모임생성페이지
 	@GetMapping("create")
-	public String create()  {return "group/group-create";}
+	public String create(@RequestBody GroupVo groupVo)  {
+		groupService.create(groupVo);
+		return "group/group-create";
+	}
 
 	//소모임수정페이지
 	@GetMapping("edit")
