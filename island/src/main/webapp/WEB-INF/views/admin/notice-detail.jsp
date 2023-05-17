@@ -44,7 +44,7 @@ div>h2 {
 									</tr>
 									<tr>
 										<td>작성일자</td>
-										<td>${vo.enroll}</td>
+										<td>${vo.enrollDate}</td>
 									</tr>
 									<tr>
 										<td>내용</td>
@@ -53,7 +53,7 @@ div>h2 {
 								</table>
 
 								 <div id="btn-area" style="text-align: right; margin-top: 10px;">
-		                            <button onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
+		                            <button type="button" onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
 		                            <button onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'" class="btn btn-md btn-danger">삭제</button>
 		                            <button onclick="location.href='${root}/admin/notice/list'" class="btn btn-md btn-info">취소</button>
 		                        </div>

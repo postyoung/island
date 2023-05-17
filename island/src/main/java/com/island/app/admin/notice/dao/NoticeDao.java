@@ -30,4 +30,8 @@ public class NoticeDao {
 		return sst.delete("adminnotice.delete" , num);
 	}
 
+	public int edit(SqlSessionTemplate sst, String num) {
+		return sst.update("adminnotice.edit" , num);
+	}
+
 }
