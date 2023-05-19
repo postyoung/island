@@ -16,7 +16,7 @@
     <ul class="pagination" >
     
 	    <c:if test="${pv.currentPage > 1}">
-	      <li class="page-item disabled">
+	      <li class="page-item">
 	        <a class="page-link" href="${root}/community/faq/list?page=${pv.currentPage-1}">이전</a>
 	      </li>
 	    </c:if>
