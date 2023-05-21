@@ -137,4 +137,18 @@
 	WHERE NO= #{no}
  	</select>
  	
+ 	<select id="getQnaList" resultType="qnaVo">
+ 	
+	 SELECT 
+		NO
+		,TITLE
+		,WRITER_NO
+		,ENROLL_DATE
+		,ANSWER_YN
+		,DEL_YN
+	FROM QNA
+	WHERE WRITER_NO = #{loginMember.no}
+	ORDER BY NO DESC
+ 	</select>
+ 	
 </mapper>
