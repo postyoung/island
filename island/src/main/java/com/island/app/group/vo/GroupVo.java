@@ -22,5 +22,6 @@ public class GroupVo {
     private String reportYn;
     private String blockYn;
     private String enrollDate;
+    private String grClose;
 
 }
