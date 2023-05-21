@@ -2,6 +2,12 @@ package com.island.app.admin.notice.vo;
 
 import lombok.Data;
 
+/**
+ * 
+ * @author 김수경
+ *
+ */
+
 @Data
 public class NoticeVo {
 	
@@ -12,5 +18,6 @@ public class NoticeVo {
 	private String delYn;
 	private String writerNo;
 	private String writerName;
+	private String loginAdmin;
 	
 }

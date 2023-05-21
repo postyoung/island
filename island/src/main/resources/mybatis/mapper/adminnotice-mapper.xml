@@ -25,7 +25,6 @@
 	    , TITLE
 	    , CONTENT
 	    , WRITER_NO
-	    , DEL_YN
 	    , ENROLL_DATE
 	  )
 	  VALUES
@@ -34,18 +33,17 @@
 	    , #{title}
 	    , #{content}
 	    , #{writerNo}
-	    , 'N'
 	    , SYSDATE
 	  )
 	</insert>
 
-
+ 
 	<select id="getNotice" resultType="noticeVo">
 		SELECT *
 		FROM NOTICE
 		WHERE NO = #{num}
 	</select>
-
+<!--
 	<update id="edit">
 		UPDATE NOTICE
 		SET
@@ -57,5 +55,5 @@
 	<delete id="delete">
 		DELETE FROM NOTICE
 		WHERE NO = #{num}
-	</delete>
+	</delete> -->
 </mapper>

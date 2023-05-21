@@ -33,7 +33,8 @@ div>h2 {
 					<form class="noticedetailform" action="${root}/admin/notice/detail" method="get">
 						<div class="container">
 							<h2>공지사항 상세페이지</h2>
-								<table id="tableTitle" class="table table-bordered table" >
+							<div id="notice-area">
+								<table id="tableTitle" class="table table-bordered table">
 									<tr>
 										<td>번호</td>
 										<td>${vo.no}</td>
@@ -51,11 +52,32 @@ div>h2 {
 										<td height="200px;">${vo.content}</td>
 									</tr>
 								</table>
+							</div>
+							<div id="notice-area">
+								<table id="tableTitle" class="table table-bordered table">
+									<tr>
+										<td>번호</td>
+										<td>${vo.no}</td>
+									</tr>
+									<tr>
+										<td>제목</td>
+										<td>${vo.title}</td>
+									</tr>
+									<tr>
+										<td>작성일자</td>
+										<td>${vo.enrollDate}</td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td height="200px;">${vo.content}</td>
+									</tr>
+								</table>
+							</div>"src/main/webapp/WEB-INF/views/admin/faq-edit.jsp"
 
-								 <div id="btn-area" style="text-align: right; margin-top: 10px;">
-		                            <button type="button" onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
+
+							<div id="notice-btn-area" style="text-align: right; margin-top: 10px;">
+		                            <button onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
 		                            <button onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'" class="btn btn-md btn-danger">삭제</button>
-		                            <button onclick="location.href='${root}/admin/notice/list'" class="btn btn-md btn-info">취소</button>
 		                        </div>
 						</div>
 					</form>

@@ -16,6 +16,13 @@ import com.island.app.admin.notice.service.NoticeService;
 import com.island.app.admin.notice.vo.NoticeVo;
 import com.island.app.admin.vo.AdminVo;
 
+/**
+ * 
+ * @author 김수경
+ *
+ */
+
+
 @Controller
 @RequestMapping("admin")
 public class NoticeController {
@@ -39,12 +46,15 @@ public class NoticeController {
 	
 	//공지사항작성하기 화면(관리자)
 	@GetMapping ("notice/write")
-	public String write(HttpSession session , Model model) {
+	public String write( NoticeVo vo , HttpSession session , Model model) {
+		
 		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		vo.setWriterNo(loginAdmin.getNo());
 		if(loginAdmin == null) {
 			model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 			return "common/error-page";
 		}
+		
 		String id = loginAdmin.getId();
 		boolean isAdmin = "admin".equals(id);
 		
@@ -59,9 +69,13 @@ public class NoticeController {
 	//공지사항작성하기(관리자)
 	@PostMapping("notice/write")
 	public String write(NoticeVo vo , HttpSession session) {
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
+		System.out.println("000 : " + loginAdmin);
+		String writerNo = loginAdmin.getNo();
+		vo.setWriterNo(writerNo);
+		System.out.println("111 : " + vo);
 		int result = ns.write(vo);
-		
-		if(result == 1) {
+		if(result == 1) { 
 			session.setAttribute("alertMsg", "공지사항 작성 완료 !!");
 			
 		}else {
@@ -86,44 +100,44 @@ public class NoticeController {
 		return "admin/notice-detail";
 	}
 	
-	//공지사항 수정하기(화면)
-	@GetMapping("notice/edit")
-	public String noticeEdit(NoticeVo vo , Model model) throws Exception {
-		int result = ns.edit(vo);
-		System.out.println(vo);
-		if(result == 1) {
-			model.addAttribute("vo" , vo);
-			throw new Exception("공지사항 수정하기 예외발생..");
-		}
-		
-		return "admin/notice-edit";
-	}
+//	//공지사항 수정하기(화면)
+//	@GetMapping("notice/edit")
+//	public String noticeEdit(NoticeVo vo , Model model) throws Exception {
+//		int result = ns.edit(vo);
+//		System.out.println(vo);
+//		if(result == 1) {
+//			model.addAttribute("vo" , vo);
+//			throw new Exception("공지사항 수정하기 예외발생..");
+//		}
+//		
+//		return "admin/notice-edit";
+//	}
 	
-	//공지사항 수정하기
-	@PostMapping("notice/edit")
-	public String noticeEdit(NoticeVo vo , Model model, HttpSession session) {
-		int result = ns.edit(vo);
-		System.out.println(vo);
-		if(result != 1) {
-			model.addAttribute("errorMsg" , "수정실패..");
-			return "common/error-page";
-		}
-		session.setAttribute("alertMsg", "수정성공!!");
-		return "redirect:/admin/notice/detail?num=" +vo.getNo();
-	}
-	
-	
-	//공지사항 삭제하기
-	@GetMapping("notice/delete")
-	public String noticeDelete(String num) throws Exception {
-		int result = ns.delete(num);
-		
-		
-		if(result != 1) {
-			throw new Exception("공지사항 삭제 실패...");
-		}
-		return "redirect:/admin/notice/list?page=1";
-	}
+//	//공지사항 수정하기
+//	@PostMapping("notice/edit")
+//	public String noticeEdit(NoticeVo vo , Model model, HttpSession session) {
+//		int result = ns.edit(vo);
+//		System.out.println(vo);
+//		if(result != 1) {
+//			model.addAttribute("errorMsg" , "수정실패..");
+//			return "common/error-page";
+//		}
+//		session.setAttribute("alertMsg", "수정성공!!");
+//		return "redirect:/admin/notice/detail?num=" +vo.getNo();
+//	}
+//	
+//	
+//	//공지사항 삭제하기
+//	@GetMapping("notice/delete")
+//	public String noticeDelete(String num) throws Exception {
+//		int result = ns.delete(num);
+//		
+//		
+//		if(result != 1) {
+//			throw new Exception("공지사항 삭제 실패...");
+//		}
+//		return "redirect:/admin/notice/list?page=1";
+//	}
 
 
 }
