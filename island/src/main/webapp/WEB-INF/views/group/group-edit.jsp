@@ -71,15 +71,22 @@
                         <input type="email" placeholder="" name="text" class="input" value="소속" disabled>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="icon">
-                        <i class="fa-solid fa-envelope"></i>
+                <div class="lh-1">
+                    <h1>모임관리</h1>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            모임제목
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="dropdown-item" type="button">모임제목</button></li>
+                            <li><button class="dropdown-item" type="button">모임제목</button></li>
+                            <li><button class="dropdown-item" type="button">모임제목</button></li>
+                        </ul>
                     </div>
-                    <ul class="dropdown-menu">
-                        <li><button class="dropdown-item" type="button">모임제목</button></li>
-                        <li><button class="dropdown-item" type="button">모임제목</button></li>
-                        <li><button class="dropdown-item" type="button">모임제목</button></li>
-                    </ul>
+                    <br>
+                    <br>
+                    <hr>
                 </div>
 
             </div>

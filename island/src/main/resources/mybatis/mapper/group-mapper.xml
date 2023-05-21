@@ -36,32 +36,6 @@
             AND PLACE = #{place}
         </if>
     </select>
-    <select id="retrieve" parameterType="groupVo" resultType="groupVo">
-        SELECT
-            NO
-            ,M_NO
-            ,C_NO
-            ,L_NO
-            ,NAME
-            ,INTRO
-            ,EXINTRO
-            ,PLACE
-            ,PEOPLENUM
-            ,STARTTIME
-            ,FINISHTIME
-            ,GR_CLOSE
-            ,TERM
-            ,APPLYDATE
-            ,HIT
-            ,DEL_YN
-            ,REPORT_YN
-            ,BLOCK_YN
-            ,ENROLL_DATE
-        FROM
-            SMALL_GROUP
-        WHERE
-            NO = #{no}
-    </select>
     <insert id="create" parameterType="groupVo">
         INSERT INTO SMALL_GROUP (
             NO
@@ -105,5 +79,64 @@
             ,#{enrollDate}
         )
     </insert>
+    <update id="edit" parameterType="groupvo">
+        update SMALL_GROUP
+        set
+        C_NO = #{cNo},
+        L_NO = #{lNO},
+        NAME = #{name},
+        STARTTIME = #{starttime},
+        FINISHTIME = #{finishtime},
+        INTRO = #{intro},
+        EXINTRO = #{exintro},
+        WHERE
+            NO = #{no}
+    </update>
+    <select id="detail" resultType="groupVo">
+        SELECT
+            NO,
+            NAME,
+            INTRO,
+            PEOPLENUM,
+            TERM,
+            STARTTIME,
+            FINISHTIME,
+            DEL_YN,
+            EXINTRO
+        FROM
+        SMALL_GROUP
+        WHERE
+        NO = #{no}
+    </select>
+    <update id="hit" parameterType="int">
+        UPDATE BOARD
+        SET HIT = HIT+1
+        WHERE   NO = #{no}
+        AND     STATUS = 'O'
+    </update>
+    <update id="delete">
+        UPDATE SMALL_GROUP
+        SET
+        STATUS = 'X'
+        , MODIFY_DATE = SYSDATE
+        WHERE   NO = #{no}
+        AND     M_NO = #{mNo}
+    </update>
+    <select id="join" resultType="groupVo">
+        SELECT
+            M_NO,
+            NO,
+            NAME,
+            PEOPLENUM,
+            TERM
+        FROM
+            SMALL_GROUP
+        WHERE
+            NO = #{no}
+    </select>
+
+
+
+
 
 </mapper>

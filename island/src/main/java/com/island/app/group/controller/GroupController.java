@@ -63,7 +63,7 @@ public class GroupController {
         @RequestParam int no
     ) {
 		// TODO: no 없는 경우 에러 처리
-		GroupVo smallGroup = groupService.retrieve(no);
+		GroupVo smallGroup = groupService.detail(no);
 		model.addAttribute("smallGroup", smallGroup);
 
 		return "group/group-detail";
@@ -71,8 +71,8 @@ public class GroupController {
 
 	//소모임생성페이지
 	@GetMapping("create")
-	public String create(@RequestBody GroupVo groupVo)  {
-		groupService.create(groupVo);
+	public String create(GroupVo groupVo)  {
+//		groupService.create(groupVo);
 		return "group/group-create";
 	}
 

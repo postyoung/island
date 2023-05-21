@@ -26,7 +26,7 @@ public class GroupDao {
         return sst.selectOne("group.total",groupVo);
     }
 
-    public GroupVo retrieve(SqlSessionTemplate sst, int no) {
-        return sst.selectOne("group.retrieve", no);
+    public GroupVo detail(SqlSessionTemplate sst, int no) {
+        return sst.selectOne("group.detail", no);
     }
 }

@@ -10,6 +10,8 @@
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
 	<script defer src="${root}/resources/js/group/group-list.js"></script>
 	<link rel="stylesheet" href="${root}/resources/css/group/group-list.css">
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
 <main>
@@ -81,25 +83,6 @@
 		<div class="container">
 			<div class="modal-btn-box">
 				<a href="${root}/group/create"><button type="button" class="btn_keyword_search" onclick="list()">개설하기</button></a>
-			</div>
-			<div class="popup-wrap" id="popup">
-				<div class="popup">
-					<div class="popup-head">
-					</div>
-					<div class="popup-body">
-						<div class="body-content">
-							<div class="body-titlebox">
-							</div>
-							<div class="body-contentbox">
-								<p>개설하시겠습니까?</p>
-							</div>
-						</div>
-					</div>
-					<div class="popup-foot">
-						<span class="pop-btn confirm" id="confirm">확인</span>
-						<span class="pop-btn close" id="close">창 닫기</span>
-					</div>
-				</div>
 			</div>
 		</div>
 
