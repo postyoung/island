@@ -1,11 +1,15 @@
 package com.island.app.admin.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.island.app.admin.dao.AdminDao;
 import com.island.app.admin.vo.AdminVo;
+import com.island.app.common.page.PageVo;
 
 @Service
 @Transactional
@@ -41,5 +45,13 @@ public class AdminService {
 	// 아이디 중복 여부 확인
 	public int checkId(String id) {
 		return dao.checkId(sst, id);
+	}
+
+	public int getCnt(Map<String, String> searchMap) {
+		return dao.getCnt(sst , searchMap);
+	}
+
+	public List<AdminVo> getAdminList(PageVo pv, Map<String, String> searchMap) {
+		return dao.getAdminList(sst, pv , searchMap);
 	}
 }

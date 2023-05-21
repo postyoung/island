@@ -1,5 +1,8 @@
 package com.island.app.admin.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.island.app.admin.service.AdminService;
 import com.island.app.admin.vo.AdminVo;
+import com.island.app.common.page.PageVo;
 
 @Controller
 @RequestMapping("admin")
@@ -96,8 +101,27 @@ public class AdminController {
 	}
 
 	// 권한 설정
-	@RequestMapping("authorize")
-	public String authorize() {
+	@GetMapping("authorize")
+	public String authorize(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
+			Model model) {
+
+		// 데이터
+		int listCount = as.getCnt(searchMap);
+		int currentPage = page;
+		int pageLimit = 5;
+		int boardLimit = 10;
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+
+		// 서비스
+		List<AdminVo> bvoList = as.getAdminList(pv, searchMap);
+		// List<Map<String, String>> cvoList = as.getCategoryList();
+
+		// 화면
+		// model.addAttribute("cvoList", cvoList);
+		model.addAttribute("searchMap", searchMap);
+		model.addAttribute("pv", pv);
+		model.addAttribute("bvoList", bvoList);
+
 		return "admin/authorize";
 	}
 
