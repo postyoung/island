@@ -73,4 +73,13 @@
 		WHERE
 		ID = #{id}
 	</select>
+	
+	<select id="getBoardList" resultType="adminVo">
+	
+	</select>
+	
+	<select id="getCnt" resultType="int">
+		
+	</select>
+	
 </mapper>

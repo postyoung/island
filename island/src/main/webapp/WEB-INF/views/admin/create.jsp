@@ -83,7 +83,7 @@
 	</div>
 </body>
 <script>
-const checkAll = 0;
+const checkAll = false;
 
 const inputName = document.querySelector('#inputName');
 const checkName = /^[가-힣]+$/;
@@ -109,7 +109,7 @@ function checkDup(){
         success : function(data){
             if(data == 'notDup'){
                 alert("사용 가능한 아이디 입니다.");
-                checkAll += 1;
+                checkAll = true;
             }else{
                 alert("사용 불가한 아이디 입니다.");
                 document.querySelector("input[name=id]").value = "";
@@ -121,7 +121,7 @@ function checkDup(){
     });
 }
 
-//비밀번호 일치해야 제출 가능하게
+// 비밀번호 일치해야 제출 가능하게
 function checkValidation(){
     if(!isPwdOk()){
         alert("비밀번호가 일치하지 않습니다.");
@@ -144,5 +144,12 @@ if(checkAll > 0) {
 	  target.disabled = false;
 }
 
+const idBox = document.querySelector("main input[name=id]");
+
+idBox.addEventListener('change' , checkIdChange);
+
+function checkIdChange(){
+	checkAll = false;
+}
 </script>
 </html>
