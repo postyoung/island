@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,178 +56,34 @@
       <div class="container">
   
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        
+		
+		<c:forEach items="${svoList}" var="svo">
+		
           <div class="col">
             <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/seminar1.png" width="100%" height="250">
+              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" width="100%" height="250">
               <div class="card-body">
                 <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                <span id="good-icon">3</span>
+                <span id="good-icon">${svo.likeCount}</span>
                 <p class="card-text">
-                  <b>나에게 딱 맞는 착업아이템 온라인 특강</b>
+                  <b>${svo.name}</b>
                 </p>
                 <p class="card-text">
-                  일정 : 2023-05-12 (금) 13:00 ~ 16:00
+                  일정 : ${svo.startDay} /시간 : ${svo.seminarTime}
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${root}/seminar/detail'">상세보기</button>
                   </div>
-                  <small class="text-muted">유료</small>
+                  <small class="text-muted">${svo.payYn}</small>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/seminar2.png"width="100%" height="250">
-              <div class="card-body">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                <span id="good-icon">29</span>
-                <p class="card-text">
-                  <b>현실적인 직장인들의 투자&월급관리 세미나</b>
-                </p>
-                <p class="card-text">
-                  일정 : 2023-05-29 (토) 10:00 ~ 12:00
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">무료</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/seminar3.png"width="100%" height="250">
-              <div class="card-body">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                <span id="good-icon">174</span>
-                <p class="card-text">
-                  <b>직장인 월급관리 & 투자 포트폴리오</b>
-                </p>
-                <p class="card-text">
-                  일정 : 2023-06-01 (월) 18:30 ~ 20:00
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">무료</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/seminar4.png"width="100%" height="250">
-              <div class="card-body">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                <span id="good-icon">174</span>
-                <p class="card-text">
-                  <b>직장인 월급관리 & 투자 포트폴리오</b>
-                </p>
-                <p class="card-text">
-                  일정 : 2023-06-01 (월) 18:30 ~ 20:00
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">무료</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/seminar5.png"width="100%" height="250">
-              <div class="card-body">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                <span id="good-icon">174</span>
-                <p class="card-text">
-                  <b>직장인 월급관리 & 투자 포트폴리오</b>
-                </p>
-                <p class="card-text">
-                  일정 : 2023-06-01 (월) 18:30 ~ 20:00
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">무료</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/seminar2.png"width="100%" height="250">
-              <div class="card-body">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                <span id="good-icon">29</span>
-                <p class="card-text">
-                  <b>현실적인 직장인들의 투자&월급관리 세미나</b>
-                </p>
-                <p class="card-text">
-                  일정 : 2023-05-29 (토) 10:00 ~ 12:00
-                </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">무료</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-  
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
+		
+		</c:forEach>
+ 
           
         </div>
       </div>
@@ -239,7 +96,7 @@
 
 
 	<!-- 페이징 -->
-	<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+	<%@ include file="/WEB-INF/views/common/seminar-paging.jsp" %>
 
 	<!-- 푸터 -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -247,6 +104,13 @@
 	
 </body>
 </html>
+
+<c:if test="${not empty alertMsg}">
+	<script>
+		alert("${alertMsg}");
+	</script>
+</c:if>
+<c:remove var="alertMsg"/>
 
 <script>
 
