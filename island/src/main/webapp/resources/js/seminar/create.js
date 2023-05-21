@@ -1,4 +1,4 @@
-
+//세미나 사진 썸네일 이미지 미리보기
 function setThumbnail(event) {
   var reader = new FileReader();
 
@@ -14,4 +14,6 @@ function setThumbnail(event) {
   reader.readAsDataURL(event.target.files[0]);
 }
 
+
+//세미나 개설 폼 빈내용 체크하기
 
