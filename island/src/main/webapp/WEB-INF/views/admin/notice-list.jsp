@@ -6,17 +6,13 @@
 <meta charset="UTF-8">
 <title>ISLAND 공지사항리스트 | ISLAND</title>
 
-
-
 </head>
 <style>
 /* 추가한 css */
 #page-area {
 	width: 600px;
 	margin: auto;
-	display: flex;
-	justify-content: center;
-	font-size: 20px;
+	
 }
 
 div>h2 {
@@ -49,6 +45,7 @@ main table>tbody>tr:hover {
 									<tr class="info">
 										<th>글번호</th>
 										<th>제목</th>
+										<th>작성자</th>
 										<th>작성일</th>
 									</tr>
 								</thead>
@@ -57,6 +54,7 @@ main table>tbody>tr:hover {
 										<tr>
 											<td>${nvo.no}</td>
 											<td>${nvo.title}</td>
+											<td>${loginAdmin.name}</td>
 											<td>${nvo.enrollDate}</td>
 										</tr>
 									</c:forEach>

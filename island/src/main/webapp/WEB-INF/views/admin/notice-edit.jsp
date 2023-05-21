@@ -37,7 +37,7 @@ div>h2 {
 						<h2>공지사항 수정페이지</h2>
 						<table id="tableTitle" class="table table-bordered table-hover">
 							<tr>
-								<td>글번호</td>
+								<td style="width: 50px;">글번호</td>
 								<td><input name="no" type="text" style="font-size: 20px;" class="form-control" value="${vo.no}"></td>
 							</tr>
 							<tr>
@@ -55,7 +55,7 @@ div>h2 {
 						</table>
 							<div id="btn-area" style="text-align: right; margin-top: 10px;">
 								<button type="submit" class="btn btn-md btn-warning">수정완료</button>
-								<a href="${root}/admin/notice/delete"><button type="button"	class="btn btn-md btn-danger">삭제</button></a>
+								<%-- <a href="${root}/admin/notice/delete"><button type="button"	class="btn btn-md btn-danger">삭제</button></a> --%>
 								<a href="${root}/admin/notice/list"><button type="button" class="btn btn-md btn-info">목록</button></a>
 							</div>
 						</div>

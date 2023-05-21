@@ -10,7 +10,10 @@
 
 <style>
 	/* 추가한 css */
-	div>h2 {
+	main > h2 {
+		margin-left : 300px;
+		display: flex;
+		justify-content: flex-start;
 		line-height: 3.3;
 		margin-top: 40px;
 	}
@@ -37,13 +40,13 @@
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="title">제목 : </label>
 								<div class="col-lg-12">
-									<input type="text" class="form-control" name="title" id="title"	placeholder="제목을 작성해 주세요.">
+									<input type="text" class="form-control" name="title" id="title"	value="${vo.title}">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="control-label col-lg-2" for="writer">작성자 :</label>
 								<div class="col-lg-12">
-									<input type="text" class="form-control" name="writer" id="writer" placeholder="이름을 작성해 주세요.">
+									<input type="text" class="form-control" name="writer" id="writer" value="${loginAdmin.name}" readonly>
 								</div>
 							</div>
 							<div class="form-group">
@@ -51,7 +54,7 @@
 								<label id="content" class="control-label col-lg-2" for="content">내용	: </label>
 
 								<div class="col-lg-12">
-									<textarea class="form-control" name="content" id="content" rows="16" placeholder="내용을 작성해 주세요."></textarea>
+									<textarea class="form-control" name="content" id="content" rows="16" ${vo.content}></textarea>
 								</div>
 
 							</div>
