@@ -11,29 +11,65 @@
 	<%@ include file="/WEB-INF/views/common/header-member-textarea.jsp" %>
 	
 	<!-- include libraries(jQuery, bootstrap) -->
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	
-	<!-- include summernote css/js -->
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	
 
 	<link rel="stylesheet" href="${root}/resources/css/seminar/create.css">
 	<script defer src="${root}/resources/js/seminar/create.js"></script>
 <script>
 
-$(document).ready(function() {
-  $('#summernote').summernote({
-    placeholder: '내용을 입력해주세요.',
-        tabsize: 2,
-        height: 500,
-        width : 1300
-  });
+//세미나 일시 체크
+function validateStartDay() {
+  const selectedStartDay = new Date(document.querySelector("input[name=startDay]").value);
+  var today = new Date();
+  if (selectedStartDay < today) {
+    alert('오늘 날짜 이후로 선택해주세요.');
+  }
+}
 
-});
+//세미나 참가모집 체크 
+function validateCloseDay() {
+  const selectedStartDay = new Date(document.querySelector("input[name=startDay]").value);
+  let selectedCloseDay = new Date(document.querySelector("input[name=closeDay]").value);
+  var today = new Date();
+  if (selectedStartDay < selectedCloseDay) {
+    alert('세미나 날짜 이전으로 선택해주세요.');
+  }
+}
+
+
+function validCheck(){
+  //세미나 상세내용 비어있는지 체크
+  var textareaValue = document.getElementById('summernote').value;
+    if (textareaValue.trim() === '') {
+      alert('세미나 상세내용을 작성해주세요.');
+      return false;
+    }
+  
+  //세미나 장소 설정했는지 체크
+  let place = document.querySelector("input[name=place]");
+  if(place.value == ''){
+    alert('세미나 주소를 지정해주세요.');
+    return false;
+  }
+
+  //세미나 일시 오늘날짜 이후인지 체크
+  const selectedStartDay = new Date(document.querySelector("input[name=startDay]").value);
+  var today = new Date();
+  if (selectedDate < today) {
+    alert('세미나 일시를 오늘 날짜 이후로 선택해주세요.');
+    return false; // 제출을 막음
+  }
+
+  return false;
+  
+  
+}
+
+
 </script>
 	
 	
@@ -49,11 +85,11 @@ $(document).ready(function() {
       <div id="line"></div>
   
   
-      <form action="${root}/seminar/create" method="POST">
+      <form action="${root}/seminar/create" method="POST" enctype="multipart/form-data" onsubmit="return validCheck()">
         <article id="photo-file-area">
           <div id="image_container"></div>
           <div class="mb-3">
-            <input class="form-control" type="file" id="formFile" accept="image/*" onchange="setThumbnail(event);">
+            <input class="form-control" type="file" name="thumbnailFile" id="formFile" accept=".png,.jpg,.jpeg" onchange="setThumbnail(event);">
           </div>
         </article>
   
@@ -70,20 +106,20 @@ $(document).ready(function() {
             <div class="col-sm-10">
               <table>
                 <tr>
-                  <td><label for="inputPassword3" class="col-sm-2 col-form-label">담당자 명</label></td>
+                  <td><label for="inputPassword3" class="col-sm-2 col-form-label">담당자</label></td>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">전화번호</label></td>
                 </tr>
                 <tr>
-                  <td><input type="text" class="form-control" id="inputPassword3" value="김땡땡" readonly></td>
-                  <td><input type="tel" class="form-control input-box" id="inputPassword3" value="010-1234-1234" readonly></td>
+                  <td><input type="text" class="form-control" id="inputPassword3" value="${loginMember.nick}" readonly></td>
+                  <td><input type="tel" class="form-control input-box" id="inputPassword3" value="${loginMember.phone}" readonly></td>
                 </tr>
                 <tr>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label">이메일</label></td>
                   <td><label for="inputPassword3" class="col-sm-2 col-form-label input-box">소속</label></td>
                 </tr>
                 <tr>
-                  <td><input type="email" class="form-control" id="inputPassword3" value="asdf@nate.com" readonly></td>
-                  <td><input type="text" class="form-control input-box" id="inputPassword3" value="서울대학교 경영학 공동협의" readonly></td>
+                  <td><input type="email" class="form-control" id="inputPassword3" value="${loginMember.email}@${loginMember.email2}" readonly></td>
+                  <td><input type="text" class="form-control input-box" id="inputPassword3" value="${loginMember.attach}" readonly></td>
                 </tr>
               </table>
             </div>
@@ -99,8 +135,10 @@ $(document).ready(function() {
           	<div id="detail-info-box">
 	          	<textarea id="summernote" name="exintro" required></textarea>
           	</div>
-         <!--  <textarea class="detail-context" aria-label="With textarea" rows="30" placeholder="내용을 입력하세요." style="resize: none;"></textarea> -->
         </div>
+
+
+     
   
         <!-- 신청 영역  -->
         <div class="apply-area">
@@ -111,7 +149,7 @@ $(document).ready(function() {
   
         <!-- 세미나 일시 -->
         <div class="detail-apply-area">
-            <b>세미나 일시 </b><input type="date" name="startDay" class="form-control input-box"> 
+            <b>세미나 일시 </b><input type="date" name="startDay" class="form-control input-box" required oninput="validateStartDay()"> 
             <select class="form-select select-box-size" name="sHour">
               <option value="00" selected>00</option>
               <option value="01">01</option>
@@ -139,8 +177,8 @@ $(document).ready(function() {
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select select-box-size" aria-label="multiple select example">
-              <option value="00" selected name="sMinute">00</option>
+            <select class="form-select select-box-size" aria-label="multiple select example" name="sMinute">
+              <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
               <option value="30">30</option>
@@ -150,7 +188,7 @@ $(document).ready(function() {
             
             <div id="range">~</div>
             
-            <select class="form-select select-box-size">
+            <select class="form-select select-box-size" name="fHour">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -177,7 +215,7 @@ $(document).ready(function() {
               <option value="23">23</option>
             </select>시
     
-            <select class="form-select select-box-size" aria-label="multiple select example">
+            <select class="form-select select-box-size" aria-label="multiple select example" name="fMinute">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -187,157 +225,74 @@ $(document).ready(function() {
             </select>분 <br><br>
           
 
+     	<!-- 세미나 장소 -->
+          <b>세미나 주소</b>
+          <input type="text" class="form-control input-box place" name="place" id="sample5_address" placeholder="주소" required readonly>
+          <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색" class="btn btn-warning"><br>
+          <div id="detail-address">
+            <b>상세주소</b>
+            <input type="text" class="form-control detail-address" name="detailAddress" placeholder="상세주소">
+          </div>
+          <div id="map" style="width:100%;height:400px; margin: auto; margin-top: 20px;"></div>
+          <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값&libraries=services"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+            level: 4 // 지도의 확대 레벨
+        };
 
-            <b>세미나 주소</b>
-         <!-- 주소 검색창 영역  -->
-        <input type="text" class="form-control input-box" id="sample4_postcode" placeholder="우편번호">
-        <input type="button" id="address-btn" class="btn btn-outline-warning" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br><br>
-        <input type="text" name="roadName" class="form-control input-box" id="sample4_roadAddress" placeholder="도로명주소">
-        <input type="text" name="roadNum" class="form-control input-box" id="sample4_jibunAddress" placeholder="지번주소">
-        <span id="guide" style="color:#999;display:none"></span>
-        <input type="text" name="roadDetail" class="form-control input-box" id="sample4_detailAddress" placeholder="상세주소">
-        <input type="text" class="form-control input-box" id="sample4_extraAddress" placeholder="참고항목"> <br>
-        
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script>
-        //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-        function sample4_execDaumPostcode() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-    
-                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var roadAddr = data.roadAddress; // 도로명 주소 변수
-                    var extraRoadAddr = ''; // 참고 항목 변수
-    
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraRoadAddr += data.bname;
+    //지도를 미리 생성
+    var map = new daum.maps.Map(mapContainer, mapOption);
+    //주소-좌표 변환 객체를 생성
+    var geocoder = new daum.maps.services.Geocoder();
+    //마커를 미리 생성
+    var marker = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537187, 127.005476),
+        map: map
+    });
+
+
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        // 지도를 보여준다.
+                        mapContainer.style.display = "block";
+                        map.relayout();
+                        // 지도 중심을 변경한다.
+                        map.setCenter(coords);
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker.setPosition(coords)
                     }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                       extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraRoadAddr !== ''){
-                        extraRoadAddr = ' (' + extraRoadAddr + ')';
-                    }
-    
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                    document.getElementById('sample4_postcode').value = data.zonecode;
-                    document.getElementById("sample4_roadAddress").value = roadAddr;
-                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                    
-                    // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                    if(roadAddr !== ''){
-                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                    } else {
-                        document.getElementById("sample4_extraAddress").value = '';
-                    }
-    
-                    var guideTextBox = document.getElementById("guide");
-                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                    if(data.autoRoadAddress) {
-                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                        guideTextBox.style.display = 'block';
-    
-                    } else if(data.autoJibunAddress) {
-                        var expJibunAddr = data.autoJibunAddress;
-                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                        guideTextBox.style.display = 'block';
-                    } else {
-                        guideTextBox.innerHTML = '';
-                        guideTextBox.style.display = 'none';
-                    }
-                }
-            }).open();
-           }
-          </script>
+                });
+            }
+        }).open();
+    }
+</script>
 
-
-
-
-
-         <!-- 카카오톡 api 영역  -->
-          <div id="map" style="width:1000px;height:400px; margin: auto; margin-top: 20px;"></div>
-
-          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키입력칸&libraries=services"></script>
-          <script>
-          var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-              mapOption = {
-                  center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                  level: 3 // 지도의 확대 레벨
-              };  
-
-          // 지도를 생성합니다    
-          var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-          // 주소-좌표 변환 객체를 생성합니다
-          const geocoder = new kakao.maps.services.Geocoder();
-
-          ////////예시 코드 
-          // var juso = document.querySelector('#sample4_roadAddress');
-          // var juso ='인천 부평구 열우물로90';
-
-
-
-          // 주소로 좌표를 검색합니다
-          geocoder.addressSearch('서울특별시 강남구 테헤란로14길 6', function(result, status) {
-
-              // 정상적으로 검색이 완료됐으면 
-              if (status === kakao.maps.services.Status.OK) {
-
-                  var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                  // 결과값으로 받은 위치를 마커로 표시합니다
-                  var marker = new kakao.maps.Marker({
-                      map: map,
-                      position: coords
-                  });
-
-                  // 인포윈도우로 장소에 대한 설명을 표시합니다
-                  var infowindow = new kakao.maps.InfoWindow({
-                      content: '<div style="width:150px;text-align:center;padding:6px 0;">세미나 장소</div>'
-                  });
-                  infowindow.open(map, marker);
-
-                  // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                  map.setCenter(coords);
-              } 
-          });    
-
-
-          const input = document.querySelector('#sample4_roadAddress');
-
-            // input 값 변경 시 이벤트 핸들러 등록
-            input.addEventListener('change', () => {
-              const address = input.value; // 입력된 주소
-              console.log(address);
-              
-            
-              geocoder.addressSearch(address, (result, status) => {
-                if (status === kakao.maps.services.Status.OK) {
-                  const lat = result[0].y; // 위도
-                  const lng = result[0].x; // 경도
-                  console.log(`위도: ${lat}, 경도: ${lng}`);
-                } else {
-                  console.error(`주소 검색 실패: ${status}`);
-                }
-              });
-            });
-          </script>
 
 
           <br><br>
           <!-- 모집정원 -->
-          <b>모집 정원 </b><input type="text" name="maxCapacity" class="form-control input-box" id="person-area" placeholder="00"> 명 <br><br>
+          <b>모집 정원 </b><input type="text" name="maxCapacity" class="form-control input-box" id="person-area" placeholder="00" required> 명 <br><br>
 
           <!-- 신청마감 기간 -->
-          <b>세미나 신청 마감일 </b><input name="finishDay" type="date" class="form-control input-box"> 
-            <select name="fHour" class="form-select select-box-size">
+          <b>세미나 신청 마감일 </b><input name="closeDay" type="date" class="form-control input-box" required oninput="validateCloseDay()"> 
+            <select name="cHour" class="form-select select-box-size">
               <option value="00" selected>00</option>
               <option value="01">01</option>
               <option value="02">02</option>
@@ -364,7 +319,7 @@ $(document).ready(function() {
               <option value="23">23</option>
             </select>시
     
-            <select name="fMinute" class="form-select select-box-size" aria-label="multiple select example">
+            <select name="cMinute" class="form-select select-box-size" aria-label="multiple select example">
               <option value="00" selected>00</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -376,20 +331,20 @@ $(document).ready(function() {
             <!-- 유무료 -->
             <b>유무료 선택 </b>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="payYn" value="무료" id="flexRadioDefault1">
+              <input class="form-check-input" type="radio" name="payYn" value="무료" id="flexRadioDefault1" checked>
               <label class="form-check-label" for="flexRadioDefault1">
                 무료
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="payYn" value="유료" id="flexRadioDefault2" checked>
+              <input class="form-check-input" type="radio" name="payYn" value="유료" id="flexRadioDefault2" >
               <label class="form-check-label" for="flexRadioDefault2">
                 유료
               </label>
               <span id="seminar-pay">비용<input type="number" name="expense" id="pay-area" class="form-control">원</span>
               <span id="seminar-pay">
                 은행명
-                <select class="form-select select-box-size" aria-label="multiple select example" id="bank-select">
+                <select class="form-select select-box-size" aria-label="multiple select example" id="bank-select" name="bankNo">
                   
                   <c:forEach items="${bankList}" var="bvo">
 	                  <option value="${bvo.no}" selected>${bvo.bankName}</option>
@@ -397,13 +352,13 @@ $(document).ready(function() {
                  
                 </select>
               </span>
-              <span id="seminar-pay">계좌번호<input type="text"  name="accountnum" id="account-number" class="form-control">('-')포함 입력</span>
+              <span id="seminar-pay">계좌번호<input type="text"  name="acountnum" id="account-number" class="form-control">('-')포함 입력</span>
               <div>※ 실시간 계좌입금, 카드결제 두 수단으로 비용결제가 진행됩니다.</div>
             </div>
         </div>
 
         <div id="btn-area">
-          <input class="btn btn-success" type="submit" value="개설하기">
+          <input class="btn btn-success" type="submit" value="개설하기" onclick="check();">
           <button class="btn btn-light" id="cancle-btn" type="button" onclick="history.back();">취소하기</button>
         </div>
 
@@ -420,3 +375,59 @@ $(document).ready(function() {
 	
 </body>
 </html>
+
+<script>
+  //썸머노트 설정
+
+  $('#summernote').summernote({
+    placeholder: '내용을 입력해주세요.',
+        height: 500,
+        width : 1300,
+        maxHeight : 600,
+        minHeight : 200,
+        callbacks : {
+           onImageUpload : seminarExintroImg
+        },
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+
+
+
+
+
+//썸머노트 이미지 업로드
+function  seminarExintroImg(fileList){
+  const fd = new FormData();
+
+  for(let file of fileList){
+    fd.append('fileList', file);
+  }
+
+  $.ajax({
+    url : '${root}/seminar/upload/summernote',
+    type : 'post',
+    data : fd,
+    processData : false,
+    contentType : false,
+    dataType : 'json',
+    success : function(changeNameList){
+      for(let changeName of changeNameList){
+        $("#summernote").summernote('insertImage', '/app/resources/img/seminar/upload/summernote/' + changeName);
+      }
+    },
+    error : function(error){
+      console.log(error);
+    }
+  
+  });
+
+}
+</script>

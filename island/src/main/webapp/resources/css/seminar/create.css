@@ -210,3 +210,14 @@ option{
 .btn-default{
 	width: 75px;
 }
+
+#detail-address{
+	margin-top: 20px;
+}
+.detail-address{
+	margin-left : 50px;
+	width : 300px;
+}
+.place{
+	width: 300px;
+}
