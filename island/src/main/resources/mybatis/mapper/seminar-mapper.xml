@@ -10,6 +10,85 @@
 		FROM BANK
  	</select>
  	
+ 	<insert id="create">
+ 		INSERT INTO SEMINAR (
+		    NO
+		    ,WRITER_NO
+		    ,BANK_NO
+		    ,NAME
+		    ,INTRO
+		    ,EXINTRO
+		    ,PLACE
+		    ,DETAIL_ADDRESS
+		    ,MAX_CAPACITY
+		    ,START_DAY
+		    ,SEMINAR_TIME
+		    ,CLOSE_DAY
+		    ,CLOSE_TIME
+		    ,PAY_YN
+		    ,EXPENSE
+		    ,ACOUNTNUM
+		    ,SEMINAR_THUMBNAIL
+		)
+		VALUES(
+		    SEQ_SEMINAR_NO.NEXTVAL
+		    ,#{writerNo}
+		    ,#{bankNo}
+		    ,#{name}
+		    ,#{intro}
+		    ,#{exintro}
+		    ,#{place}
+		    ,#{detailAddress}
+		    ,#{maxCapacity}
+		    ,#{startDay}
+		    ,#{seminarTime}
+		    ,#{closeDay}
+		    ,#{closeTime}
+		    ,#{payYn}
+		    ,#{expense}
+		    ,#{acountnum}
+		    ,#{seminarThumbnail}
+		)
+ 	</insert>
  	
+ 	<insert id="semimarAttach">
+ 		INSERT INTO SEMINAR_ATTACH
+		(
+			NO
+			, SEMINAR_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+		) 
+		VALUES 
+		(
+			SEQ_SEMINAR_ATTACH_NO.NEXTVAL 
+			, SEQ_SEMINAR_NO.CURRVAL
+			, #{originName}
+			, #{changeName}
+		)
+ 	</insert>
+ 	
+ 	
+ 	<select id="getSeminarCnt" resultType="int">
+ 		SELECT COUNT(NO)
+			FROM SEMINAR
+			WHERE DEL_YN ='N' 
+			AND BLOCK_YN = 'N'
+ 	</select>
+ 	
+ 	<select id="getSeminarList" resultType="seminarVo">
+ 		SELECT 
+		    NO
+		    , LIKE_COUNT
+		    , NAME
+		    , START_DAY
+		    , SEMINAR_TIME
+		    , PAY_YN
+		    , SEMINAR_THUMBNAIL
+		FROM SEMINAR
+		WHERE DEL_YN = 'N'
+		AND BLOCK_YN = 'N'
+		ORDER BY NO DESC
+ 	</select>
  	
 </mapper>

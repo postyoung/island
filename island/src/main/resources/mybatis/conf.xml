@@ -27,6 +27,8 @@
 		
 		<typeAlias type="com.island.app.community.qna.vo.QnaVo" alias="qnaVo"/>
 		
+		<typeAlias type="com.island.app.seminar.vo.SeminarVo" alias="seminarVo"/>
+		
 	</typeAliases>
 	
 

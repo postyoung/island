@@ -70,7 +70,7 @@
                   <b>${svo.name}</b>
                 </p>
                 <p class="card-text">
-                  일정 : ${svo.startDay} /시간 : ${svo.seminarTime}
+                  <b>일정</b> : ${svo.startDay} / <b>시간</b> : ${svo.seminarTime}
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
@@ -119,6 +119,17 @@
       if(i==0){
           $(this).attr('class','bi-heart-fill');
           i++;
+          $.ajax({
+            url : '',
+            type : '',
+            data :{},
+            success : function(){
+
+            },
+            error : function(){
+              
+            }
+          });
       }else if(i==1){
           $(this).attr('class','bi-heart');
           i--;
