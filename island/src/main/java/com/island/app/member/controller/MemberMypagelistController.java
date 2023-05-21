@@ -1,11 +1,25 @@
 package com.island.app.member.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.island.app.community.qna.vo.QnaVo;
+import com.island.app.member.service.MemberService;
 @Controller
 @RequestMapping("mypage/list")
 public class MemberMypagelistController {
+	
+	private final MemberService ms;
+	
+	@Autowired
+	public MemberMypagelistController(MemberService ms) {
+		this.ms = ms;
+	}
 	//마이페이지 신청내역리스트 소모임
 		@GetMapping("enrollList/group")
 		public String mypageEnrollGroupList() {
@@ -36,9 +50,15 @@ public class MemberMypagelistController {
 		public String mypageMadeSeminarList() {
 			return "member/mypage-made-list-seminar";
 		}
-		//마이페이지 작성내역
+		//마이페이지 작성내역(화면)
 		@GetMapping("writeList")
-		public String mypageWriteList() {
+		public String mypageWriteList(Model model) {
+			//서비스
+			List<QnaVo> qvoList = ms.getWriteList();
+			
+			//화면
+			model.addAttribute("qvoList",qvoList);
 			return "member/mypage-write-list";
 		}
+	
 }

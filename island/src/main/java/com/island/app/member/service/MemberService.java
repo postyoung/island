@@ -1,11 +1,14 @@
 package com.island.app.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.island.app.community.qna.vo.QnaVo;
 import com.island.app.member.dao.MemberDao;
 import com.island.app.member.vo.MemberVo;
 /**
@@ -99,8 +102,10 @@ public class MemberService {
 		
 		}
 		return memberVo;
-
-
 	
 }
+	//마이페이지 문의내역
+	public List<QnaVo> getWriteList() {
+		return dao.getWriteList(sst);
+	}
 }//class

@@ -134,7 +134,8 @@
 
              <c:if test="${not empty loginMember}">
               <div class="profile-welcomeArea">
-               <img src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" id="profile">
+               <img src="${root}/resources/img/member/profile/load/${loginMember.profileName}" onerror= "this.onerror=null; this.src = 
+               'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" id="profile">
                <span style="color: white;">
                  ${loginMember.nick}님
                </span>

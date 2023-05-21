@@ -25,6 +25,7 @@
                                 <div class="main_content" >
                                     <!-- 작성 내역 -->
                                     <section class="main_content">
+                                        <input type="hidden" value="${loginMember.no}">
                                         <h3 class="title">문의내역</h3>
                                         <div class="container notice-area">
                                             <table class="table table-hover table-bordered" style="text-align: center;">
@@ -38,10 +39,10 @@
                                               </thead>
                                               <tbody class="table-group-divider">
                                                 <tr>
-                                                  <td>01</td>
-                                                  <td><a href="${root}/community/qna/detail">아이디 찾기가 안돼요..</a></td>
-                                                  <td>2021/03/21</td>
-                                                  <td>N</td>
+                                                  <td>${qvoList.no}</td>
+                                                  <td>${qvoList.title}</td>
+                                                  <td>${qvoList.enrollDate}</td>
+                                                  <td>${qvoList.answerYn}</td>
                                                 </tr>
                                           
                                               </tbody>

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEdit.css">
     <!-- js연결 -->
     <script src="${root}/resources/js/member/edit.js" defer>
-     var root = '${root}';
+     var root = "${root}";
     </script>
     
 </head>
@@ -37,7 +37,8 @@
                                         
                                         <div class="profile_img">
                                             <!-- <div class="thumbnail"> -->
-                                                <img class="img_thumbnail" name="profile" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" alt="프로필사진" onerror= "this.onerror=null; this.src = root+'/resources/img/member/noimage.jpg'"
+                                                <img class="img_thumbnail" name="profile" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" onerror= "this.onerror=null; this.src = 
+                                                'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'"
                                                 style="width: 210px; height: 210px;">
                                                 
                                                 <br>

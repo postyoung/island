@@ -1,9 +1,12 @@
 package com.island.app.member.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.island.app.community.qna.vo.QnaVo;
 import com.island.app.member.vo.MemberVo;
 @Repository
 public class MemberDao{
@@ -37,6 +40,10 @@ public class MemberDao{
 	//회원탈퇴 비번확인
 	public MemberVo quitConfirm(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.selectOne("member.quitConfirm",vo);
+	}
+	//마이페이지 문의내역
+	public List<QnaVo> getWriteList(SqlSessionTemplate sst) {
+		return sst.selectList("member.getQnaList");
 	}
 
 }

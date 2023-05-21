@@ -190,7 +190,7 @@ likePlace.addEventListener('change', function() {
     let isNickDuplicated = false;
     
     function checkDupId() {
-      // 중복확인 로직 추가
+      // 아이디 중복확인 로직 추가
       //1. 현재 입력된 아이디 준비
       //2. 서버한테 아이디 전달
       //3. 결과 받아오기 (isDup , notDup)
@@ -204,6 +204,9 @@ likePlace.addEventListener('change', function() {
           } ,
           success : function(data){
               if(data == 'notDup'){
+                // 중복확인 완료 후 중복확인 여부 업데이트
+                isIdDuplicated = true;
+                
                   alert("사용 가능한 아이디 입니다.");
               }else{
                   alert("사용 불가한 아이디 입니다.");
@@ -214,12 +217,10 @@ likePlace.addEventListener('change', function() {
           } ,
       });
     
-      // 중복확인 완료 후 중복확인 여부 업데이트
-      isIdDuplicated = true;
     }
     
     function checkDupNick() {
-      // 중복확인 로직 추가
+      // 닉네임 중복확인 로직 추가
       const nick = document.querySelector("input[name=nick]").value;
     $.ajax({
         url : '/app/member/nick-check' ,
@@ -229,6 +230,8 @@ likePlace.addEventListener('change', function() {
         } ,
         success : function(data){
             if(data == 'notDup'){
+              // 중복확인 완료 후 중복확인 여부 업데이트
+              isNickDuplicated = true;
                 alert("사용 가능한 닉네임 입니다.");
             }else{
                 alert("사용 불가한 닉네임 입니다.");
@@ -238,12 +241,25 @@ likePlace.addEventListener('change', function() {
             console.log(e);
         } ,
     });
-      // 중복확인 완료 후 중복확인 여부 업데이트
-      isNickDuplicated = true;
     }
     
 
 function checkValidation() {
+
+   //아이디 값이 변경되면, 중복확인 값 초기화시키기
+ const idTag = document.querySelector("input[name=id]");
+ idTag.addEventListener('change' , checkIdChange);
+ 
+ function checkIdChange(){
+  isIdDuplicated = false;
+ }
+  //닉네임 값이 변경되면, 중복확인 값 초기화시키기
+  const nickTag = document.querySelector("input[name=nick]");
+  nickTag.addEventListener('change' , checkNickChange);
+  
+  function checkNickChange(){
+    isNickDuplicated = false;
+    }
 
 //비밀번호1과 비밀번호2 일치해야지만 제출되게
   function isPwdOk() {
@@ -303,6 +319,10 @@ for (let i = 0; i < requiredInputs.length; i++) {
 
   return true;
 }
+
+
+
+
 
 
 
