@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,26 +32,26 @@
       <div id="line-second"></div>
     
       <div id="seminar-info-area">
-          <img id="seminar-apply-photo" src="${root}/resources/img/seminar/upload/seminar1.png" alt="세미나사진">
+          <img id="seminar-apply-photo" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" alt="세미나사진">
         <table class="info-text">
           <tr>
             <td id="seminar-name" class="info-table">
-             [세미나] 나에게 딱 맞는 창업아이템 온라인 특강
+             [세미나] ${svo.name}
             </td>
           </tr>
           <tr>
             <td id="introduction" class="info-table">
-              나에게 딱 맞는 창업아이템 찾고 싶다면? 이번기회에 꼭 찾아보세요.
+              ${svo.intro}
             </td>
           </tr>
           <tr>
             <td class="info-table">
-              세미나 장소 : 강남구 역삼동 테헤란로4길 남도빌딩
+              세미나 장소 : ${svo.place} ${svo.detailAddress}
             </td>
           </tr>
           <tr>
             <td class="info-table">
-              일시 : 2023-05-01 (월) 14:00 ~ 16:30
+              일시 : ${svo.startDay} | 시간 : ${svo.seminarTime}
             </td>
           </tr>
         </table>
@@ -68,24 +69,24 @@
               <table id="info-table" style="table-layout: fixed">
                 <tr>
                   <th rowspan="5">
-                    <img src="${root}/resources/img/seminar/upload/member-profile1.jpg" alt="프로필사진" id="founder-photo">
+                    <img src="${root}/resources/img/member/profile/load/${svo.profile}" alt="프로필사진" id="founder-photo">
                   </th>
                 </tr>
                 <tr>
-                  <th>이름</th>
-                  <td>김땡땡</td>
+                  <th>담당자 : </th>
+                  <td class="writer-area">${svo.writerNick}</td>
                 </tr>
                 <tr>
-                  <th>이메일</th>
-                  <td>dajl@naver.com</td>
+                  <th>이메일 : </th>
+                  <td class="writer-area">${svo.email}@${svo.email2}</td>
                 </tr>
                 <tr>
-                  <th>연락처</th>
-                  <td>010-1234-1234</td>
+                  <th>연락처 : </th>
+                  <td class="writer-area">${svo.phone}</td>
                 </tr>
                 <tr>
-                  <th>소속</th>
-                  <td>서울대학교 경영학 공동협의</td>
+                  <th>소속 : </th>
+                  <td class="writer-area">${svo.memberAttach}</td>
                 </tr>
               </table>
             </div>
@@ -95,20 +96,21 @@
           <div class="col-8">
             
             <div>
-              조회수 : 129
-              <div id="heart-icon">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
-                234
-              </div>
+              조회수 : ${svo.hit}
+              <button class="btn btn-secondary" id="interest-btn" onclick="location.href='${root}/seminar/interest?no=${svo.no}&writerNo=${svo.writerNo}'">관심내역 추가</button>
             </div>
             <div id="second-info">
               <div class="box-div">
-                모집인원 : 30명 (선착순)
+                모집인원 : ${svo.maxCapacity}명 (선착순)   |  현재 신청가능 인원 : ${svo.maxCapacity - svo.currentCapacity}명
+                <div id="heart-icon">
+                  <i class="bi-heart-fill" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
+                  ${svo.likeCount}
+                </div>
               </div>
               <div class="box-div">
-                모집마감일 : 2023.04.25 (화) 16:00 까지
+                모집마감일 : ${svo.closeDay}  ${svo.closeTime} 까지
               </div>
-              <span id="free-or-pay"><b>유료</b></span> 21,000원
+              <span id="free-or-pay"><b>${svo.payYn}</b></span> ${svo.expense}원
               <button type="button" class="btn btn-info" onclick="location.href='${root}/seminar/apply'">신청하기</button>
             </div>
           </div>
@@ -130,37 +132,7 @@
       <!-- 상세정보 -->
       <div class="detail-info-content" id="more-infomation">
         <div class="menu-title">상세정보</div>
-        제 강의는 시중에 나와있는 강의중 제일 생각이 많아지는 강의입니다. <br>
-        그래도 월 100명이상 가까이 문의 주시고
-        수강생분중 아이템 찾을 확률은 92% 이상입니다.
-        그러나 무작정 제 강의를 추천 드리지 않습니다.
-        제 강의는 일반 창업컨설팅과 다를수 있기 때문입니다.
-        저는 이 강의를 창업아이템에 대한 이론 강의가 아닌,
-        아이템 찾는 공식을 활용하여 ‘누구나 자신에게 딱 맞는 아이템 찾을수 있는 비밀’에 대해
-        초점을 두고 강의 내용을 구성했습니다.
-        강의에서 실제로 90%이상 확률을 가진
-        ‘나에게 딱 맞는 창업아이템 찾는 비밀’을 알려드립니다.
-        이제까지 500명이상 컨설팅과 교육을 하고
-        성공사례를 만들어왔습니다.
-        정말 창업아이템을 제대로 찾고 싶은 사람들이
-        이 강의를 들으셨으면 좋겠습니다.
-        아랫글을 읽는 것만으로도 충분히 레벨업 되실 겁니다.
-        지금부터
-        7일,30일,90일.. 단숨에 자신의 아이템 찾는 비밀을 공개하겠습니다.
-        *7일만에 전화통화 한번으로 아이템 찾고 음악사업하는 30대 대표님
-        *1년 고민했지만 90일만에 아이템 찾고 대체육 사업준비하는 20대 대표님
-        *대기업 영업사원에서 2달만에 사회초년생 멘토로 나선 30대 대표님
-        이런 사례들은 수강후 매번 쏟아지는
-        한국창업아이템협회의 포트폴리오의 극히 일부에 불과합니다.
-        성공의 비결을 말씀드리자면,
-        바로 방법에 집중하는것이 아닌, 본질에 중점을 두었기 때문입니다.
-        ▶︎창업아이템기본공식은 다음과 같습니다.
-        기존 창업아이템은 ‘혁신’’트렌드’’기술’이라는 
-        개념만 중시되었습니다. 
-        그러나 이제 이 3가지 기술로는 의미가 없어졌습니다.
-        3가지 기술이 있더라도 사업을 지속하지 않으면 의미가 없기 때문입니다.
-        지속하지 않으면 성공도 없습니다.
-        실패하고 싶지 않다면 기존 생각을 버려야 합니다.
+        ${svo.exintro}
 
       </div>
 
@@ -169,81 +141,51 @@
         <div class="menu-title">지도보기</div>
         <div class="location">
           <i class="bi bi-pin-map" id="map-img"></i>
-          서울특별시 강남구 테헤란로14길 6 남도빌딩 2층 204호
+          ${svo.place} ${svo.detailAddress}
         </div>
         
         <!-- 카카오 지도 api 영역  -->
         <div id="map" style="width:1200px;height:400px; margin: auto; margin-top: 20px;"></div>
-
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값&libraries=services"></script>
-        <script>
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = {
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };  
-
-        // 지도를 생성합니다    
-        var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-        // 주소-좌표 변환 객체를 생성합니다
-        const geocoder = new kakao.maps.services.Geocoder();
-
-        ////////예시 코드 
-        // var juso = document.querySelector('#sample4_roadAddress');
-        // var juso ='인천 부평구 열우물로90';
-
-
-
-        // 주소로 좌표를 검색합니다
-        geocoder.addressSearch('서울특별시 강남구 테헤란로14길 6', function(result, status) {
-
-            // 정상적으로 검색이 완료됐으면 
-            if (status === kakao.maps.services.Status.OK) {
-
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                // 결과값으로 받은 위치를 마커로 표시합니다
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-
-                // 인포윈도우로 장소에 대한 설명을 표시합니다
-                var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:6px 0;">세미나 장소</div>'
-                });
-                infowindow.open(map, marker);
-
-                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                map.setCenter(coords);
-            } 
-        });    
-
-
-        const input = document.querySelector('#sample4_roadAddress');
-
-          // input 값 변경 시 이벤트 핸들러 등록
-          input.addEventListener('change', () => {
-            const address = input.value; // 입력된 주소
-            console.log(address);
-            
-          
-            geocoder.addressSearch(address, (result, status) => {
-              if (status === kakao.maps.services.Status.OK) {
-                const lat = result[0].y; // 위도
-                const lng = result[0].x; // 경도
-                console.log(`위도: ${lat}, 경도: ${lng}`);
-              } else {
-                console.error(`주소 검색 실패: ${status}`);
-              }
-            });
-          });
-        </script>
-
-
-
-
+		
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값&libraries=services"></script>
+		<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 4 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${svo.place}', function(result, status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">세미나 장소</div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+		</script>
       </div>
 
       <!-- 문의 기대평댓글 -->
@@ -287,13 +229,13 @@
       <div class="apply-guide-area" id="guide">
         <div class="menu-title">참여신청/취소 안내</div>
         <div id="guide-content">
-          * 모임의 신청/취소/변경/환불은 참여신청 기간 내에만 가능합니다. <br>
+          * 세미나의 신청/취소/변경/환불은 참여신청 기간 내에만 가능합니다. <br>
           * 결제한 유료모임은 환불 시 결제 수단과 환불 시점에 따라 수수료가 부과될 수 있습니다. 자세한 사항은 취소/환불약관을 확인해주세요.<br>
           * 결제, 환불, 참여신청 수정/취소, 참여상태 확인, 참여내역 확인은 마이페이지에서 할 수 있습니다. <br>
           * 세미나 모집정원 초과 여부에 따라 참여신청이 제한될 수 있습니다.<br>
           * 아일랜드 결제서비스를 이용하는 세미나는 개설자의 사업자 여부에 따라 결제증빙 발행이 가능합니다.<br>
           * 개설자 통장입금 방식 및 세미나 참여/결제 확인은 개설자에게 문의 바랍니다.<br>
-          * 아일랜드는 참여신청 및 참가비 결제 기능을 제공하는 회사로 세미나 개설자(주최측)가 아닙니다. 세미나 내용과 관련한 사항은 모임 개설자에게 문의 바랍니다.<br>
+          * 아일랜드는 참여신청 및 참가비 결제 기능을 제공하는 회사로 세미나 개설자(주최측)가 아닙니다. 세미나 내용과 관련한 사항은 세미나 개설자에게 문의 바랍니다.<br>
         </div>
         <div class="top-btn-area">
           <a href="#" class="top-btn">
@@ -425,3 +367,10 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
+
+<c:if test="${not empty alertMsg}">
+	<script>
+		alert("${alertMsg}");
+	</script>
+</c:if>
+<c:remove var="alertMsg"/>

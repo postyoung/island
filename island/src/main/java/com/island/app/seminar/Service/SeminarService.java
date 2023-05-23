@@ -1,6 +1,7 @@
 package com.island.app.seminar.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.seminar.bank.vo.BankVo;
 import com.island.app.seminar.dao.SeminarDao;
 import com.island.app.seminar.vo.SeminarVo;
@@ -41,13 +43,39 @@ public class SeminarService {
 	}
 	
 	//세미나 목록 갯수 조회
-	public int getSeminarCnt() {
-		return dao.getSeminarCnt(sst);
+	public int getSeminarCnt(Map<String, String> searchMap) {
+		return dao.getSeminarCnt(sst, searchMap);
 	}
 	
 	//세미나 목록 조회
-	public List<SeminarVo> getSeminarList(PageVo pv) {
-		return dao.getSeminarList(sst,pv);
+	public List<SeminarVo> getSeminarList(Map<String, String> searchMap, PageVo pv) {
+		return dao.getSeminarList(sst, pv, searchMap);
 	}
+
+	//세미나 상세조회
+	public SeminarVo getSeminarDetail(String no) throws Exception {
+		//세미나 조회수 증가
+		int result = dao.increaseSminarHit(sst, no);
+		if(result != 1) {
+			throw new Exception("세미나 조회수 증가 실패");
+		}
+		return dao.getSeminarDetail(sst, no);
+	}
+
+	//관심내역 조회하기
+	public MemberInterestVo selectInterstSeminar(SeminarVo svo) {
+		return dao.selectInterstSeminar(sst, svo);
+	}
+	
+	//관심내역 추가 + 좋아요 업데이트
+	public int addInterestSeminar(SeminarVo svo) throws Exception {
+		int addResult = dao.addInterestSeminar(sst, svo);
+		if(addResult != 1) {
+			throw new Exception("관심내역에 세미나 추가 실패");
+		}
+		return dao.addLikeCount(sst, svo);
+	}
+	
+	
 	
 }
