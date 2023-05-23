@@ -43,10 +43,14 @@ public class NoticeService {
 	 public NoticeVo getNotice(String num) {
 		 return dao.getNotice(sst , num);
 	 }
-//	  
-//	 public int edit(NoticeVo vo) { return dao.edit(sst , vo); }
-//	 
-//	 public int delete(String num) { return dao.delete(sst , num); }
+	  
+	 public int edit(NoticeVo vo) {
+		 return dao.edit(sst , vo); 
+	 }
+	 
+	 public int delete(String num) {
+		 return dao.delete(sst , num);
+	 }
 	 
 
 	

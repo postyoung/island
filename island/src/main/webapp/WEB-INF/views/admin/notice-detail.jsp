@@ -10,12 +10,42 @@
 
 <style>
 /* 추가한 css */
-div>h2 {
-	line-height: 3.3;
-	margin-top: 40px;
+#notice-area {
+	width: 800px;
+	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(2, 300px 300px);
+	grid-template-rows: 30px 30px 300px;
 }
-</style>
+#notice-area>div:nth-child(6),
+#notice-area>div:last-child {
+	grid-column: span 3;
+}
+#notice-area>div {
+	border: 1px solid black;
+}
+#notice-area > div:not(:last-child)  {
+	text-align: center;
+}
+	
+#notice-area input, #notice-area textarea {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
 
+.view-area {
+	display: none;
+}
+
+.form-area {
+	display: none;
+}
+
+.active {
+	display: block;
+} 
+</style>
 </head>
 
 <body>
@@ -30,61 +60,65 @@ div>h2 {
 			<!-- main -->
 			<div id="wrap">
 				<main>
-					<form class="noticedetailform" action="${root}/admin/notice/detail" method="get">
+					<h2 align="center" style="margin-top: 20px; margin-bottom: 20px;">공지사항 상세페이지</h2>
+					<div class="view-area active" style="margin-left: -350px;">
 						<div class="container">
-							<h2>공지사항 상세페이지</h2>
 							<div id="notice-area">
-								<table id="tableTitle" class="table table-bordered table">
-									<tr>
-										<td>번호</td>
-										<td>${vo.no}</td>
-									</tr>
-									<tr>
-										<td>제목</td>
-										<td>${vo.title}</td>
-									</tr>
-									<tr>
-										<td>작성일자</td>
-										<td>${vo.enrollDate}</td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td height="200px;">${vo.content}</td>
-									</tr>
-								</table>
+								<div>번호</div>
+								<div>${vo.no}</div>
+								<div>작성일자</div>
+								<div>${vo.enrollDate}</div>
+								<div>제목</div>
+								<div>${vo.title}</div>
+								<div>내용</div>
+								<div>${vo.content}</div>
 							</div>
-							<div id="notice-area">
-								<table id="tableTitle" class="table table-bordered table">
-									<tr>
-										<td>번호</td>
-										<td>${vo.no}</td>
-									</tr>
-									<tr>
-										<td>제목</td>
-										<td>${vo.title}</td>
-									</tr>
-									<tr>
-										<td>작성일자</td>
-										<td>${vo.enrollDate}</td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td height="200px;">${vo.content}</td>
-									</tr>
-								</table>
-							</div>"src/main/webapp/WEB-INF/views/admin/faq-edit.jsp"
-
-
-							<div id="notice-btn-area" style="text-align: right; margin-top: 10px;">
-		                            <button onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
-		                            <button onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'" class="btn btn-md btn-danger">삭제</button>
-		                        </div>
 						</div>
-					</form>
+						
+						<c:if test="${loginAdmin.id eq 'admin'}">
+				
+							<div id="notice-btn-area" style="text-align: right; margin-top: 10px;">
+								<button class="btn btn-md btn-warning" onclick="toggleActive();">수정하기</button>
+								<button class="btn btn-md btn-danger" onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'">삭제하기</button>
+							</div>
+				
+						</c:if>
+					</div>																	
+						<div class="form-area" >
+							<form action="${root}/admin/notice/edit" method="POST">
+								<input type="hidden" name="no" value="${vo.no}">
+								<div id="notice-area" style="margin-left: 300px;">
+									<div>번호</div>
+									<div>${vo.no}</div>
+									<div>작성일자</div>
+									<div>${vo.enrollDate}</div>
+									<div>제목</div>
+									<div>
+										<input type="text" name="title" value="${vo.title}">
+									</div>
+									<div>내용</div>
+									<div>
+										<textarea name="content">${vo.content}</textarea>
+									</div>
+								</div>
+								<div style="text-align: right;">
+									<input class="btn btn-md btn-warning" type="submit" value="공지사항수정하기">
+								</div>
+							</form>
+						</div>
 				</main>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
+<script>
+    //수정하기 버튼 클릭 시 동작하는 내용
+    function toggleActive(){
+        const viewArea = document.querySelector(".view-area");
+        const formArea = document.querySelector(".form-area");
+        viewArea.classList.remove('active');
+        formArea.classList.add("active");
+    }
+</script>
+

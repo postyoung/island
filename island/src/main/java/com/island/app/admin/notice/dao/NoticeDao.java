@@ -30,14 +30,14 @@ public class NoticeDao {
 		 return sst.selectOne("adminnotice.getNotice" , num);
 	 }
 	 
-//	 public int edit(SqlSessionTemplate sst, NoticeVo vo) { return
-//	 sst.update("adminnotice.edit" , vo); }
-//	 
-//	 public int delete(SqlSessionTemplate sst, String num) { return
-//	 sst.delete("adminnotice.delete" , num); }
-//	 
-//	 public int edit(SqlSessionTemplate sst, String num) { return
-//	 sst.update("adminnotice.edit" , num); }
+	 public int edit(SqlSessionTemplate sst, NoticeVo vo) { 
+		 return sst.update("adminnotice.edit" , vo);
+	 
+	 }
+	 
+	 public int delete(SqlSessionTemplate sst, String num) {
+		 return sst.update("adminnotice.delete" , num);
+	 }
 	 
 
 }

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.island.app.admin.notice.service.NoticeService;
 import com.island.app.admin.notice.vo.NoticeVo;
@@ -69,11 +70,11 @@ public class NoticeController {
 	//공지사항작성하기(관리자)
 	@PostMapping("notice/write")
 	public String write(NoticeVo vo , HttpSession session) {
+		
 		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
-		System.out.println("000 : " + loginAdmin);
 		String writerNo = loginAdmin.getNo();
 		vo.setWriterNo(writerNo);
-		System.out.println("111 : " + vo);
+		
 		int result = ns.write(vo);
 		if(result == 1) { 
 			session.setAttribute("alertMsg", "공지사항 작성 완료 !!");
@@ -100,44 +101,46 @@ public class NoticeController {
 		return "admin/notice-detail";
 	}
 	
-//	//공지사항 수정하기(화면)
-//	@GetMapping("notice/edit")
-//	public String noticeEdit(NoticeVo vo , Model model) throws Exception {
-//		int result = ns.edit(vo);
-//		System.out.println(vo);
-//		if(result == 1) {
-//			model.addAttribute("vo" , vo);
-//			throw new Exception("공지사항 수정하기 예외발생..");
-//		}
-//		
-//		return "admin/notice-edit";
-//	}
+	//공지사항 수정하기
+	@PostMapping("notice/edit")
+	public String noticeEdit(NoticeVo vo , Model model, HttpSession session) {
+		
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
+		String id = null;
+		if(loginAdmin != null) {
+			id = loginAdmin.getId();
+		}
+		
+		if(!"admin".equalsIgnoreCase(id)) {
+			model.addAttribute("errorMsg", "잘못된 요청입니다 ...");
+			return "common/error-page";
+		}
+		
+		
+		
+		int result = ns.edit(vo);
+		if(result != 1) {
+			model.addAttribute("errorMsg" , "수정실패..");
+			return "common/error-page";
+		}
+		session.setAttribute("alertMsg", "수정성공!!");
+		return "redirect:/admin/notice/detail?num=" +vo.getNo();
+	}
 	
-//	//공지사항 수정하기
-//	@PostMapping("notice/edit")
-//	public String noticeEdit(NoticeVo vo , Model model, HttpSession session) {
-//		int result = ns.edit(vo);
-//		System.out.println(vo);
-//		if(result != 1) {
-//			model.addAttribute("errorMsg" , "수정실패..");
-//			return "common/error-page";
-//		}
-//		session.setAttribute("alertMsg", "수정성공!!");
-//		return "redirect:/admin/notice/detail?num=" +vo.getNo();
-//	}
-//	
-//	
-//	//공지사항 삭제하기
-//	@GetMapping("notice/delete")
-//	public String noticeDelete(String num) throws Exception {
-//		int result = ns.delete(num);
-//		
-//		
-//		if(result != 1) {
-//			throw new Exception("공지사항 삭제 실패...");
-//		}
-//		return "redirect:/admin/notice/list?page=1";
-//	}
+	
+	//공지사항 삭제하기
+	@GetMapping("notice/delete")
+	public String noticeDelete(@RequestParam("num") String num) throws Exception {
+		
+		int result = ns.delete(num);
+		System.out.println(num);
+		
+		if(result != 1) {
+			throw new Exception("공지사항 삭제 실패...");
+		}
+		
+		return "redirect:/admin/notice/list?page=1";
+	}
 
 
 }
