@@ -37,17 +37,18 @@
 						<div class="form-group">
 						<div class="row_wrap">
 						<div class="input_title">
+							<input type="hidden" name="no" value="${nvo.no}">
 							
 							<div class="form-group">
 								<label  for="name">작성자</label>
 								<div class="col-lg-4">
-									<div  class="form-control" name="name" id="name"></div>
+									<div  class="form-control" name="name" id="name">${nvo.writerName}</div>
 								</div>
 							</div>
 						<div class="form-group">
 							<label for="title">제목</label>
 							<div>
-								<div class="form-control" name="title" id="title_input" ></div>
+								<div class="form-control" name="title" id="title_input">${nvo.title}</div>
 							</div>
 						</div>
 						</div>
@@ -56,7 +57,7 @@
 							<label for="content">내용</label>
 	
 							<div>
-								<div class="form-control" name="content" id="content" ></div>
+								<div class="form-control" name="content" id="content">${nvo.content}</div>
 							</div>
 						
 						</div>

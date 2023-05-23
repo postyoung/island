@@ -31,7 +31,7 @@ public class QnaDao {
 		return sst.insert("qna.write" , vo);
 	}
 	
-	//상세조회(조회수)
+	//상세조회
 	public QnaVo getQna(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("qna.getQna",no);
 	}

@@ -42,8 +42,9 @@ public class MemberDao{
 		return sst.selectOne("member.quitConfirm",vo);
 	}
 	//마이페이지 문의내역
-	public List<QnaVo> getWriteList(SqlSessionTemplate sst) {
-		return sst.selectList("member.getQnaList");
+	public List<QnaVo> getWriteList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("member.getQnaList", no);
 	}
+	
 
 }

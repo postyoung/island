@@ -1,15 +1,20 @@
 package com.island.app.member.controller;
 
+import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.island.app.community.qna.vo.QnaVo;
 import com.island.app.member.service.MemberService;
+import com.island.app.member.vo.MemberVo;
 @Controller
 @RequestMapping("mypage/list")
 public class MemberMypagelistController {
@@ -52,12 +57,22 @@ public class MemberMypagelistController {
 		}
 		//마이페이지 작성내역(화면)
 		@GetMapping("writeList")
-		public String mypageWriteList(Model model) {
+		public String mypageWriteList(Model model, HttpSession session, MemberVo vo) {
+			
+			//데이터
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			String no = loginMember.getNo();
+			
 			//서비스
-			List<QnaVo> qvoList = ms.getWriteList();
+			List<QnaVo> qvoList = ms.getWriteList(no); 
 			
 			//화면
 			model.addAttribute("qvoList",qvoList);
+			for (Iterator iterator = qvoList.iterator(); iterator.hasNext();) {
+				QnaVo qnaVo = (QnaVo) iterator.next();
+				System.out.println(qnaVo);
+				
+			}
 			return "member/mypage-write-list";
 		}
 	

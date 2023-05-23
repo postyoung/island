@@ -60,7 +60,7 @@
                         <label for="">전화번호</label>
                         <input type="text" class="form-control" id="phone" name="phone" value="" required >
                         <div id="validationFeedback_Phone" class="validationFeedback_Phone" hidden>
-                          숫자만 입력하세요.
+                          전화번호 11자리를 입력하세요.
                         </div>
                       </div>
 

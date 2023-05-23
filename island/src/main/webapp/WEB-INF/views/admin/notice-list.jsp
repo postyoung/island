@@ -69,7 +69,7 @@ main table>tbody>tr:hover {
 							<br>
 							<div id="page-area">
 								<!-- 페이징 -->
-								<%@ include file="/WEB-INF/views/common/paging.jsp"%>
+								<%@ include file="/WEB-INF/views/common/notice-paging.jsp"%>
 							</div>
 							<br>
 						</div>
