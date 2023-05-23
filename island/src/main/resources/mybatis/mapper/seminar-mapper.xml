@@ -186,6 +186,22 @@
 		WHERE NO = #{no}
  	</update>
  	
+ 	<insert id="reportSeminar">
+ 		INSERT INTO SEMINAR_REPORT
+ 		(
+ 			NO
+ 			,S_NO
+ 			,RE_CATEGORY_NO 
+ 			,REPORT_DETAIL
+ 		) 
+ 		VALUES
+ 		(
+ 			SEQ_SEMINAR_REPORT_NO.NEXTVAL 
+ 			,#{sNo}
+ 			,#{reCategoryNo} 
+ 			,#{reportDetail}
+ 		)
+ 	</insert>
  	
  	
 </mapper>

@@ -27,6 +27,7 @@ import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.vo.MemberVo;
 import com.island.app.seminar.Service.SeminarService;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
 /**
@@ -219,6 +220,28 @@ public class SeminarController {
 		}
 	
 	
+	//세미나 신고하기
+	@PostMapping("report")
+	public String reportSeminar(SeminarReportVo srvo, HttpSession session) throws Exception {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + srvo.getSNo();
+		}
+		
+		int result = ss.reportSeminar(srvo);
+		if(result != 1) {
+			throw new Exception("세미나 신고 실패");
+		}
+		session.setAttribute("alertMsg", "신고가 접수되었습니다.");
+		return "redirect:/seminar/detail?no=" + srvo.getSNo();
+	}
+		
+		
+		
 	//세미나 수정 페이지(화면)
 	@GetMapping("edit")
 	public String seminarEdit() {

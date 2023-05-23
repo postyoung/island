@@ -268,31 +268,32 @@
 	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
 	          주의하시기 바랍니다.
 	        </div>
-	        <form action="{root}/seminar/report" method="POST">
+	        <form action="${root}/seminar/report" method="POST" onsubmit="return validateForm()">
 	          <div class="mb-3">
+	          <input type="hidden" name="sNo" value="${svo.no}">
 	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
 	            <div id="category">
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1" style="font-size:15px;">
+	              <input class="form-check-input" type="radio" name="reCategoryNo" value="1" id="reCategoryName1">
+	              <label class="form-check-label" for="reCategoryName1" style="font-size:15px;">
 	                부적절한 컨텐츠로 선정적이거나, 음란물, 폭력적 컨텐츠를 포함
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio"  name="reCategoryNo" value="2" id="reCategoryName2">
+	              <label class="form-check-label" for="reCategoryName2">
 	                내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함 
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="reCategoryNo" value="3" id="reCategoryName3">
+	              <label class="form-check-label" for="reCategoryName3">
 	                저작권을 침해하는 내용
 	              </label><br> 
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="reCategoryNo" value="4"  id="reCategoryName4">
+	              <label class="form-check-label" for="reCategoryName4">
 	                기타
 	              </label>
 	            </div>
 	          </div>
 	          <div class="mb-3">
 	            <label for="message-text" class="col-form-label">상세사유</label>
-	            <textarea class="form-control" id="message-text" style="resize: none;"></textarea>
+	            <textarea class="form-control" id="message-text" name="reportDetail" style="resize: none;"></textarea>
 	          </div>
 		      </div>
 		      <div class="modal-footer">
@@ -325,20 +326,20 @@
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
 	            <div id="category">
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName1">
+	              <label class="form-check-label" for="reCategoryName1">
 	                욕설/비방/혐오 발언으로 다른회원에게 공격적인 언행
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName2">
+	              <label class="form-check-label" for="reCategoryName2">
 	                광고, 홍보, 중복 등록 등 스팸/도배 행위 
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName3">
+	              <label class="form-check-label" for="reCategoryName3">
 	                성적/폭력적인 내용으로 불법적인 행동
 	              </label><br> 
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	              <label class="form-check-label" for="flexRadioDefault1">
+	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName4">
+	              <label class="form-check-label" for="reCategoryName4">
 	                기타
 	            </div>
 	            </label>
@@ -358,10 +359,6 @@
 	</div>
 	
 	
-	
-
-
-
 
 	<!-- 푸터 -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -374,3 +371,20 @@
 	</script>
 </c:if>
 <c:remove var="alertMsg"/>
+
+<script>
+
+//신고 상세사유 입력체크
+const radioBtn = document.querySelector("#reCategoryName4");
+const detailEx = document.querySelector("#message-text");
+
+
+function validateForm(){
+	if(document.getElementById("reCategoryName4").checked && document.getElementById("message-text").value == ""){
+		alert("신고 상세사유를 입력해주세요.");
+		return false;
+	}
+}
+
+</script>
+</script>

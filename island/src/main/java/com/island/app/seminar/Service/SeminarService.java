@@ -13,6 +13,7 @@ import com.island.app.common.page.PageVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.seminar.bank.vo.BankVo;
 import com.island.app.seminar.dao.SeminarDao;
+import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
 @Service
@@ -74,6 +75,11 @@ public class SeminarService {
 			throw new Exception("관심내역에 세미나 추가 실패");
 		}
 		return dao.addLikeCount(sst, svo);
+	}
+	
+	//세미나 신고하기
+	public int reportSeminar(SeminarReportVo srvo) {
+		return dao.reportSeminar(sst, srvo);
 	}
 	
 	

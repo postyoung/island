@@ -11,6 +11,7 @@ import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
 
@@ -68,5 +69,10 @@ public class SeminarDao {
 	//세미나 좋아요 업데이트
 	public int addLikeCount(SqlSessionTemplate sst, SeminarVo svo) {
 		return sst.update("seminar.addLikeCount", svo);
+	}
+	
+	//세미나 신고하기
+	public int reportSeminar(SqlSessionTemplate sst, SeminarReportVo srvo) {
+		return sst.insert("seminar.reportSeminar", srvo);
 	}
 }
