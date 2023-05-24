@@ -114,14 +114,14 @@
         WHERE   NO = #{no}
         AND     STATUS = 'O'
     </update>
-    <update id="delete">
+    <delete id="delete">
         UPDATE SMALL_GROUP
         SET
         STATUS = 'X'
         , MODIFY_DATE = SYSDATE
         WHERE   NO = #{no}
         AND     M_NO = #{mNo}
-    </update>
+    </delete>
     <select id="join" resultType="groupVo">
         SELECT
             M_NO,

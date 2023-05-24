@@ -18,6 +18,10 @@ public class GroupDao {
         return sst.selectList("group.list", groupVo, rb);
     }
 
+    //게시글 목록
+
+
+    //게시글 등록
     public void create(SqlSessionTemplate sst, GroupVo groupVo) {
         sst.insert("group.create", groupVo);
     }
@@ -29,4 +33,18 @@ public class GroupDao {
     public GroupVo detail(SqlSessionTemplate sst, int no) {
         return sst.selectOne("group.detail", no);
     }
+    public int edit(SqlSessionTemplate sst , GroupVo groupVo){
+        return sst.update("group.edit" , groupVo);
+    }
+
+    public void join(SqlSessionTemplate sst , GroupVo groupVo){
+        sst.insert("group.join" , groupVo);
+    }
+    public int hit(SqlSessionTemplate sst , String no){
+        return sst.update("group.hit" , no);
+    }
+    public int delete(SqlSessionTemplate sst , GroupVo groupVo){
+        return sst.update("group.delete" , groupVo);
+    }
+
 }

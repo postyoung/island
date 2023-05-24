@@ -22,6 +22,7 @@
         <div class = "title">
             <h2>개설하기</h2>
         </div>
+        <form class="create" method="post">
         <div class = "contact-me">
             <div class="left">
                 <div class="card">
@@ -69,7 +70,7 @@
                     </div>
                     <div class="info-text">
                         <h3>소속</h3>
-                        <input type="email" placeholder="" name="text" class="input">
+                        <input type="text" placeholder="" name="text" class="input">
                     </div>
                 </div>
                 <div class="card">
@@ -78,7 +79,7 @@
                     </div>
                     <div class="info-text">
                         <h3>모집인원</h3>
-                        <input type="email" placeholder="" name="text" class="input">
+                        <input type="text" placeholder="" name="text" class="input">
                     </div>
                 </div>
                 <div class="card">
@@ -98,14 +99,14 @@
 
             </div>
             <div class="right">
-                <form action="#">
+
                     <div class = "form-group">
                         <label for="name">모임명</label>
                         <input type="text" id="name">
                     </div>
                     <div class = "form-group">
-                        <label for="email">간단한 모임 소개</label>
-                        <input type="text" id="email">
+                        <label for="name">간단한 모임 소개</label>
+                        <input type="text" id="text">
                     </div>
                     <div class = "form-group">
                         <label for="msg">상세정보</label>
@@ -134,12 +135,14 @@
                             <hr>
                             <a href="${root}/group/list"><button type="submit" onclick="groupcancel()">취소하기</button></a>
 
-
                     </div>
-                </form>
+                    </div>
+
             </div>
+        </form>
         </div>
     </div>
+
 </section>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
