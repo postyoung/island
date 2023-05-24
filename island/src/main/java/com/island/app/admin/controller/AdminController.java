@@ -2,9 +2,7 @@ package com.island.app.admin.controller;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.island.app.admin.service.AdminService;
 import com.island.app.admin.vo.AdminVo;
 import com.island.app.common.page.PageVo;
@@ -104,7 +101,6 @@ public class AdminController {
 	@GetMapping("authorize")
 	public String authorize(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
 			Model model) {
-
 		// 데이터
 		int listCount = as.getCnt(searchMap);
 		int currentPage = page;
@@ -113,27 +109,75 @@ public class AdminController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
 		// 서비스
-		List<AdminVo> bvoList = as.getAdminList(pv, searchMap);
+		List<AdminVo> adminList = as.getAdminList(pv, searchMap);
 		// List<Map<String, String>> cvoList = as.getCategoryList();
 
 		// 화면
 		// model.addAttribute("cvoList", cvoList);
 		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
-		model.addAttribute("bvoList", bvoList);
+		model.addAttribute("adminList", adminList);
 
 		return "admin/authorize";
 	}
 
-	// 권한 상세 설정
-	@RequestMapping("authorize/detail")
-	public String authorizeChoice() {
+	// 권한 상세 설정 (화면)
+	@GetMapping("authorize/detail")
+	public String authorizeChoice(String no, Model model) {
+		AdminVo getAdmin = as.getAdmin(no);
+		System.out.println(getAdmin);
+		model.addAttribute("getAdmin", getAdmin);
 		return "admin/authorize-detail";
 	}
 
+	// 권한 상세 설정
+	@PostMapping("authorize/detail1")
+	public String authorizeChoice1(AdminVo vo, Model model, HttpSession session) {
+		int result = as.changeAuthor(vo);
+		session.setAttribute("alertMsg", "수정 성공!!!");
+		return "admin/main-admin";
+	}
+
+	// 권한 상세 설정
+	@PostMapping("authorize/detail2")
+	public String authorizeChoice2() {
+		return "";
+	}
+
+	// 권한 상세 설정
+	@PostMapping("authorize/detail3")
+	public String authorizeChoice3() {
+		return "";
+	}
+
 	// 계정 삭제
-	@RequestMapping("delete")
-	public String delete() {
+	@GetMapping("delete")
+	public String delete(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
+			Model model) {
+		// 데이터
+		int listCount = as.getCnt(searchMap);
+		int currentPage = page;
+		int pageLimit = 5;
+		int boardLimit = 10;
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+
+		// 서비스
+		List<AdminVo> adminList = as.getAdminList(pv, searchMap);
+		// List<Map<String, String>> cvoList = as.getCategoryList();
+
+		// 화면
+		// model.addAttribute("cvoList", cvoList);
+		model.addAttribute("searchMap", searchMap);
+		model.addAttribute("pv", pv);
+		model.addAttribute("adminList", adminList);
+
+		return "admin/delete";
+	}
+
+	@PostMapping("delete")
+	public String delete(Model model) {
+		AdminVo avo = (AdminVo) model.getAttribute("avo");
+		int result = as.delete(avo);
 		return "admin/delete";
 	}
 

@@ -49,4 +49,16 @@ public class AdminDao {
 		RowBounds rb = new RowBounds(offset, limit);
 		return sst.selectList("admin.getAdminList", searchMap, rb);
 	}
+
+	public AdminVo getAdmin(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("admin.getAdmin", no);
+	}
+
+	public int changeAuthor(SqlSessionTemplate sst, AdminVo vo) {
+		return sst.update("admin.changeAuthor", vo);
+	}
+
+	public int delete(SqlSessionTemplate sst, AdminVo avo) {
+		return sst.update("admin.delete",avo);
+	}
 }

@@ -46,15 +46,13 @@
 									</tr>
 								</thead>
 								<tr class="align-middle">
-									<td>박재욱</td>
-									<td>wodnr1225</td>
-									<td>2023년 4월 28일</td>
-									<td>관리자 계정 등급 : 3</td>
+									<td>${getAdmin.name}</td>
+									<td>${getAdmin.id}</td>
+									<td>${getAdmin.enrollDate}</td>
+									<td>관리자 계정 등급 : ${getAdmin.pmNo}</td>
 								</tr>
 								</tbody>
 							</table>
-
-							<!--  -->
 							<h2 class="mt-4">권한 선택</h2>
 							<div class="row mt-4">
 								<div class="col-sm-4">
@@ -64,7 +62,8 @@
 											<p class="card-text">
 												<br> 공지사항 작성<br> FAQ<br> Q&A<br> <br>
 											</p>
-											<button href="#" id="editBtn" class="btn btn-primary">설정하기</button>
+											<button href="${root}/authorize/detail1" formmethod="POST"
+												id="editBtn" class="btn btn-primary">설정하기</button>
 										</div>
 									</div>
 								</div>
@@ -76,7 +75,8 @@
 												<br>공지사항 작성<br> FAQ<br> Q&A<br> 신고 관리<br>
 
 											</p>
-											<button href="#" id="editBtn" class="btn btn-primary">설정하기</button>
+											<button href="${root}/authorize/detail2" id="editBtn"
+												class="btn btn-primary">설정하기</button>
 										</div>
 									</div>
 								</div>
@@ -88,7 +88,8 @@
 												공지사항 작성<br> FAQ<br> Q&A<br> 신고 관리<br> 계정
 												생성 및 권한 설정
 											</p>
-											<button href="#" id="editBtn" class="btn btn-primary" disabled>설정하기</button>
+											<button href="${root}/authorize/detail3" id="editBtn"
+												class="btn btn-primary">설정하기</button>
 										</div>
 									</div>
 								</div>
@@ -102,3 +103,7 @@
 	</div>
 </body>
 </html>
+<script>
+	const btn = document.querySelector("#editBtn${getAdmin.no}");
+	btn.attr("disabled", true);
+</script>
