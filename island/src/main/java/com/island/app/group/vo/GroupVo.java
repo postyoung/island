@@ -24,4 +24,5 @@ public class GroupVo {
     private String enrollDate;
     private String grClose;
 
+
 }
