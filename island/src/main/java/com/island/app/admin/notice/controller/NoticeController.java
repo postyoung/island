@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.island.app.admin.notice.service.NoticeService;
 import com.island.app.admin.notice.vo.NoticeVo;
 import com.island.app.admin.vo.AdminVo;
+import com.island.app.common.page.PageVo;
 
 /**
  * 
@@ -37,10 +38,18 @@ public class NoticeController {
 
 	//공지사항 목록조회
 	@GetMapping("notice/list")
-	public String noticeList(Model model) {
+	public String noticeList(Model model , @RequestParam(defaultValue = "1") int page) {
 		
-		List<NoticeVo> nvoList =  ns.getNoticeList();
+		//서비스
+		int listCount = ns.getNoticeListCnt();
+		int currentPage = page;
+		int pageLimit = 5;
+		int boardLimit = 10;
 		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		List<NoticeVo> nvoList = ns.getNoticeList(pv);
+		
+		model.addAttribute("pv", pv);
 		model.addAttribute("nvoList" , nvoList);
 		return "admin/notice-list";
 	}
