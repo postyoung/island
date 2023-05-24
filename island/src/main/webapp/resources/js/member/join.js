@@ -68,7 +68,7 @@ $(document).ready(function() {
     $('#phone').on('input', function() {
       const phonearea = document.querySelector("#validationFeedback_Phone");
       const phoneNumber = $(this).val();
-      const regex = /^[0-9]*$/;
+      const regex = /^[0-9]{11}$/;
 
       if (regex.test(phoneNumber)) {
         $(this).removeClass('form-control is-invalid').addClass('form-control is-valid');

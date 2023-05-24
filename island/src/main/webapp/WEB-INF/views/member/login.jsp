@@ -18,7 +18,7 @@
         <fieldset class="area_required" style="padding-left: 17%;">
             <div>
                 <div id="name" class="">
-                    <input type="text" name="id" class="form-control" id="validationServer01" value="" required placeholder="아이디를 입력하세요">
+                    <input type="text" name="id" class="form-control" id="validationServer01" value="${saved_id}" required placeholder="아이디를 입력하세요">
                   </div>
                   
                   
@@ -29,7 +29,7 @@
 
                       <ul class="check_area">
                           <li>
-                              <input type="checkbox" id="save_id">
+                              <input type="checkbox" id="save_id" name="save_id" >
                               <label for="save_id" style="margin-right: 158px;">아이디 저장</label>
                             </li>
                             <li class="find">
@@ -55,3 +55,26 @@
 
 </body>
 </html>
+
+<script>
+    window.onload = function() {
+        var savedIdCheckbox = document.querySelector("input[name=save_id]");
+        var savedId = getCookie("saved_id");
+        if (savedId !== "") {
+            savedIdCheckbox.checked = true;
+            // 아이디 필드에 저장된 아이디 값 설정
+            document.querySelector("input[name=id]").value = savedId;
+        
+        }
+    }
+
+    // 쿠키 가져오기
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length === 2) {
+            return parts.pop().split(";").shift();
+        }
+        return "";
+    }
+</script>

@@ -29,62 +29,20 @@
 	      <tr class="table-light">
 	        <th>글번호</th>
 	        <th>제목</th>
+	        <th>작성자</th>
 	        <th>작성일</th>
 	      </tr>
 	    </thead>
 	    <tbody class="table-group-divider">
-	      <tr>
-	        <td>01</td>
-	        <td><a href="${root}/community/notice/detail">[공지]개인정보</a></td>
-	        <td>2021/03/21</td>
-	      </tr>
-	      <tr>
-	        <td>02</td>
-	        <td>[공지] 근로자의 날</td>
-	        <td>2022/03/22</td>
-	      </tr>
-	      <tr>
-	        <td>03</td>
-	        <td>[공지]사무실이전으로 인한 일부 업무중단</td>
-	        <td>2022/06/30</td>
-	      </tr>
-	      <tr>
-	        <td>04</td>
-	        <td>[공지]시스템점검으로 인한 서비스이용불가안내</td>
-	        <td>2023/01/01</td>
-	      </tr>
-	      <tr>
-	        <td>05</td>
-	        <td>[공지]창립기념일 휴무안내</td>
-	        <td>2022/08/28</td>
-	      </tr>
-	      <tr>
-	        <td>06</td>
-	        <td>[공지][약관]개정
-	        <td>2021/10/01</td>
-	      </tr>
-	      <tr>
-	        <td>07</td>
-	        <td>[공지]모임신청 시 본인인증 필수 전환</td>
-	        <td>2022/11/03</td>
-	      </tr>
-	      <tr>
-	        <td>08</td>
-	        <td>[공지]창립기념일 휴무안내</td>
-	        <td>2022/08/28</td>
-	      </tr>
-	      <tr>
-	        <td>09</td>
-	        <td>[공지][약관]개정
-	        <td>2021/10/01</td>
-	      </tr>
-	      <tr>
-	        <td>10</td>
-	        <td>[공지]모임신청 시 본인인증 필수 전환</td>
-	        <td>2022/11/03</td>
-	      </tr>
-	    </tbody>
-	  </table>
+			<c:forEach items="${nvoList}" var="nvo">
+					<tr>
+						<td>${nvo.no}</td>
+						<td>${nvo.title}</td>
+						<td>${nvo.writerName}</td>
+						<td>${nvo.enrollDate}</td>
+					</tr>
+				</c:forEach>
+		</table>
 	</div>
 
         <br><br>
@@ -93,10 +51,20 @@
 
 
 	<!-- 페이징 -->
-	<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+	<%@ include file="/WEB-INF/views/common/notice-paging.jsp" %>
 
 	<!-- 푸터 -->
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 	
 </body>
 </html>
+<script>
+	      //행 클릭했을 때 , 상세조회
+		  const tbody = document.querySelector('table > tbody');
+      console.log(tbody);
+      tbody.addEventListener("click" , (event)=>{
+      const no = event.target.parentNode.children[0].innerText;
+        location.href = '${root}/community/notice/detail?no=' + no;
+      });
+    
+</script>

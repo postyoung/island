@@ -61,7 +61,6 @@ main table>tbody>tr:hover {
 									<a id="write-btn" class="btn btn-info btn-md" style="float: right;" href="${root}/admin/notice/write">글쓰기</a>								
 								</div>
 							</c:if>
-							
 						</div>
 				</main>
 			</div>

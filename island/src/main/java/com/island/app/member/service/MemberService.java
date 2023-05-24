@@ -105,7 +105,8 @@ public class MemberService {
 	
 }
 	//마이페이지 문의내역
-	public List<QnaVo> getWriteList() {
-		return dao.getWriteList(sst);
+	public List<QnaVo> getWriteList(String no) {
+		return dao.getWriteList(sst,no);
 	}
+	
 }//class

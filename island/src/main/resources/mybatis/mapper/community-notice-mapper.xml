@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="notice">
+  	<select id="getNoticeList" resultType="noticeVo">
+			SELECT 
+		    N.NO,
+		    N.TITLE,
+		    N.CONTENT,
+		    TO_CHAR(N.ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE,
+		    N.DEL_YN,
+		    A.NAME AS WRITERNAME
+		FROM NOTICE N
+		JOIN ADMIN A ON (N.WRITER_NO = A.NO)
+		ORDER BY NO DESC
+
+  	
+  	</select>
+  	
+  	<select id="getCnt" resultType="int">
+  	SELECT COUNT(NO)
+ 		FROM NOTICE 
+ 		WHERE DEL_YN='N'
+  	
+  	</select>
+  	
+  	<select id="getNotice" resultType="noticeVo">
+  		SELECT 
+	    N.NO
+        ,N.TITLE
+        ,N.CONTENT
+        ,N.ENROLL_DATE
+        ,N.MODIFY_DATE
+        ,N.DEL_YN
+        ,A.NAME AS WRITERNAME
+		FROM NOTICE N
+	    JOIN ADMIN A ON (N.WRITER_NO = A.NO)
+		WHERE N.DEL_YN = 'N'
+		AND N.NO = #{no}
+  	</select>
+  	
+  </mapper>
