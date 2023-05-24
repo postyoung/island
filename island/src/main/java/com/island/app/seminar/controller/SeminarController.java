@@ -32,7 +32,7 @@ import com.island.app.seminar.vo.SeminarVo;
 
 /**
  * 
- * @author 서지현
+ * @author 
  *
  */
 @Controller
@@ -164,9 +164,15 @@ public class SeminarController {
 	
 	//세미나 상세 조회(화면)
 	@GetMapping("detail")
-	public String getSeminarDetail(String no, Model m) throws Exception {
+	public String getSeminarDetail(String no, Model m, HttpSession session) throws Exception {
 		//세미나 상세조회 + 조회수 증가
 		SeminarVo svo = ss.getSeminarDetail(no);
+
+		//댓글 영역 로그인 유저 프로필 가져오기
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		System.out.println(loginMember);
+		//svo.setLoginMemberProfile(loginMember.getProfileName());
+		
 		
 		//List<SeminarReplyVo> srvo = ss.getSeminarReply(no);
 		if(svo == null) {

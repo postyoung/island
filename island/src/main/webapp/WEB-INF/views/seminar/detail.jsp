@@ -68,8 +68,9 @@
             <div id="founder-info">
               <table id="info-table" style="table-layout: fixed">
                 <tr>
-                  <th rowspan="5">
-                    <img src="${root}/resources/img/member/profile/load/${svo.profile}" alt="프로필사진" id="founder-photo">
+                  <th rowspan="5"> 
+                    <img src="${root}/resources/img/member/profile/load/${svo.profile}" onerror= "this.onerror=null; this.src = 
+        'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" id="founder-photo">
                   </th>
                 </tr>
                 <tr>
@@ -194,14 +195,15 @@
         <div id="line-second"></div>
         <div id="reply-form">
           <form action="#" method="post">
-            <img src="${root}/resources/img/seminar/upload/member-profile1.jpg" alt="프로필사진" id="member-photo"> 
+            <img src="${root}/resources/img/member/profile/load/${svo.loginMemberProfile}" onerror= "this.onerror=null; this.src = 
+        'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'"  id="member-photo"> 
             <textarea class="form-control reply-textarea" id="exampleFormControlTextarea1" rows="3" placeholder="기대평이나 문의사항을 댓글에 남겨주세요. 부적절한 내용시 제재받을 수 있습니다." style="resize: none;"></textarea>
             <input class="btn btn-outline-secondary" id="reply-write" type="submit" value="등록">
           </form>
           <div id="line-third"></div>
         </div>
         <div id="reply-form">
-            <img src="${root}/resources/img/seminar/upload/member-profile1.jpg" alt="프로필사진" id="member-writed-photo"> 
+            <img src="${root}/resources/img/seminar/upload/member-profile1.jpg" id="member-writed-photo"> 
             <div id="reply-box">
               <span><b>박정*</b></span>
               <span id="reply-write-date">2023/04/12 13:40</span>

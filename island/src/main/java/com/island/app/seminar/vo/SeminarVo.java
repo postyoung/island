@@ -49,6 +49,7 @@ public class SeminarVo {
 	
 	//로그인한 유저vo
 	private String loginMemberNo;
+	private String loginMemberProfile;
 	
 	
 	public void setSeminarTime(String sHour, String sMinute, String fHour, String fMinute) {
