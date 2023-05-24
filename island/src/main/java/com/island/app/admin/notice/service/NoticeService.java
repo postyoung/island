@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.island.app.admin.notice.dao.NoticeDao;
 import com.island.app.admin.notice.vo.NoticeVo;
+import com.island.app.common.page.PageVo;
 
 /**
  * 
@@ -30,8 +31,8 @@ public class NoticeService {
 		this.sst = sst;
 	}
 
-	public List<NoticeVo> getNoticeList() {
-		return dao.getNoticeList(sst);
+	public List<NoticeVo> getNoticeList(PageVo pv) {
+		return dao.getNoticeList(sst , pv);
 	}
 
 	
@@ -43,10 +44,18 @@ public class NoticeService {
 	 public NoticeVo getNotice(String num) {
 		 return dao.getNotice(sst , num);
 	 }
-//	  
-//	 public int edit(NoticeVo vo) { return dao.edit(sst , vo); }
-//	 
-//	 public int delete(String num) { return dao.delete(sst , num); }
+	  
+	 public int edit(NoticeVo vo) {
+		 return dao.edit(sst , vo); 
+	 }
+	 
+	 public int delete(String num) {
+		 return dao.delete(sst , num);
+	 }
+
+	 public int getNoticeListCnt() {
+			return dao.getNoticeListCnt(sst);
+	}
 	 
 
 	

@@ -29,6 +29,8 @@
 		
 		<typeAlias type="com.island.app.seminar.vo.SeminarVo" alias="seminarVo"/>
 		
+		<typeAlias type="com.island.app.member.interest.vo.MemberInterestVo" alias="memberInterestVo"/>
+		
 	</typeAliases>
 	
 

@@ -34,11 +34,12 @@ public class GroupService {
         return dao.getTotalCount(sst, groupVo);
     }
 
-//    public int edit() {
-//        int result1 = dao.editPicture(sst,FileVo);
-//        int result2 = dao.edit(sst, asdf);
-//        return result1 * result2;
-//    }
+    public int edit(GroupVo groupVo){
+        return dao.edit(sst,groupVo);
+    }
+    public int delete(GroupVo groupVo){
+        return dao.delete(sst ,groupVo);
+    }
 
 
 }

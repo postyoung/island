@@ -31,48 +31,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn"
-												class="btn btn-primary .btn-sm"
-												onclick="location.href='${root}/admin/authorize/detail'">권한
-												수정</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn"
-												class="btn btn-primary .btn-sm">권한 수정</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn"
-												class="btn btn-primary .btn-sm">권한 수정</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn"
-												class="btn btn-primary .btn-sm">권한 수정</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn"
-												class="btn btn-primary .btn-sm">권한 수정</button></td>
-									</tr>
+									<c:forEach items="${adminList}" var="avo">
+										<tr class="align-middle">
+											<td>${avo.name}</td>
+											<td>${avo.id}</td>
+											<td>${avo.enrollDate}</td>
+											<td>관리자 계정 등급 : ${avo.pmNo}</td>
+											<td><button id="deleteBtn"
+													class="btn btn-primary .btn-sm"
+													onclick="location.href='${root}/admin/authorize/detail?no=${avo.no}'">권한
+													수정</button></td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

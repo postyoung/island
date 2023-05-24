@@ -9,11 +9,6 @@
 </head>
 <style>
 /* 추가한 css */
-#page-area {
-	width: 600px;
-	margin: auto;
-	
-}
 
 div>h2 {
 	line-height: 3.3;
@@ -66,18 +61,17 @@ main table>tbody>tr:hover {
 									<a id="write-btn" class="btn btn-info btn-md" style="float: right;" href="${root}/admin/notice/write">글쓰기</a>								
 								</div>
 							</c:if>
-							<br>
-							<div id="page-area">
-								<!-- 페이징 -->
-								<%@ include file="/WEB-INF/views/common/notice-paging.jsp"%>
-							</div>
-							<br>
 						</div>
 				</main>
 			</div>
 		</div>
 	</div>
+	<br>
+		
+	<!-- 페이징 -->
+	<%@ include file="/WEB-INF/views/common/admin-notice-paging.jsp"%>
 
+	<br>
 </body>
 </html>
 <script>

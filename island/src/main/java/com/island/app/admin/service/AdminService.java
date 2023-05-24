@@ -48,10 +48,23 @@ public class AdminService {
 	}
 
 	public int getCnt(Map<String, String> searchMap) {
-		return dao.getCnt(sst , searchMap);
+		return dao.getCnt(sst, searchMap);
 	}
 
 	public List<AdminVo> getAdminList(PageVo pv, Map<String, String> searchMap) {
-		return dao.getAdminList(sst, pv , searchMap);
+		return dao.getAdminList(sst, pv, searchMap);
+	}
+
+	public AdminVo getAdmin(String no) {
+		return dao.getAdmin(sst, no);
+	}
+
+	public int changeAuthor(AdminVo vo) {
+
+		return dao.changeAuthor(sst, vo);
+	}
+
+	public int delete(AdminVo avo) {
+		return dao.delete(sst, avo);
 	}
 }

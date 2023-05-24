@@ -39,6 +39,18 @@ public class SeminarVo {
 	private String delYn;
 	private String seminarThumbnail; //세미나 썸네일 사진파일
 	
+	//개설자 vo
+	private String writerNick;
+	private String email;
+	private String email2;
+	private String phone;
+	private String memberAttach; //소속
+	private String profile;
+	
+	//로그인한 유저vo
+	private String loginMemberNo;
+	private String loginMemberProfile;
+	
 	
 	public void setSeminarTime(String sHour, String sMinute, String fHour, String fMinute) {
 		this.seminarTime =" " +sHour + ":" + sMinute + " ~ " + fHour + ":" +fMinute ;

@@ -86,7 +86,7 @@ table td{
   border: 8px solid rgb(227, 227, 227);
   border-radius: 5px;
   display: inline-block;
-  padding: 20px 20px;
+  padding: 10px 20px;
 }
 
 .row {
@@ -122,11 +122,19 @@ table td{
 
 #heart-icon{
   display: inline-block;
-  margin-left: 540px;
+  margin-left: 190px;
 }
 
 .btn-info{
   margin-left: 400px;
+}
+
+#interest-btn{
+    width: 130px;
+    height: 40px;
+    margin-left: 480px;
+    margin-bottom: 10px;
+	
 }
 
 
@@ -165,7 +173,8 @@ table td{
 .detail-info-content{
   margin-left: 20px;
   width: 1100;
-  height: 500px;
+  height: 100%;
+  margin-bottom: 70px;
 }
 
 .adress-info-content{
@@ -297,6 +306,10 @@ table td{
 
 #member-report{
   margin-left : 30px;
+}
+
+.writer-area{
+	padding-left: 10px;
 }
 
 /* 모달창 영역 */

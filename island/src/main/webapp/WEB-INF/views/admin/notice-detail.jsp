@@ -10,12 +10,31 @@
 
 <style>
 /* 추가한 css */
-div>h2 {
-	line-height: 3.3;
-	margin-top: 40px;
+.shadow {
+   width: 90%;
+   height: 600px;
+   margin: auto;
+   margin-top: 100px;
+}
+
+#form-title, #form-content {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+.view-area {
+	display: none;
+}
+
+.form-area {
+	display: none;
+}
+
+.act {
+	display: block;
 }
 </style>
-
 </head>
 
 <body>
@@ -30,61 +49,89 @@ div>h2 {
 			<!-- main -->
 			<div id="wrap">
 				<main>
-					<form class="noticedetailform" action="${root}/admin/notice/detail" method="get">
-						<div class="container">
-							<h2>공지사항 상세페이지</h2>
-							<div id="notice-area">
-								<table id="tableTitle" class="table table-bordered table">
-									<tr>
-										<td>번호</td>
-										<td>${vo.no}</td>
-									</tr>
-									<tr>
-										<td>제목</td>
-										<td>${vo.title}</td>
-									</tr>
-									<tr>
-										<td>작성일자</td>
-										<td>${vo.enrollDate}</td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td height="200px;">${vo.content}</td>
-									</tr>
-								</table>
+					<div class="shadow p-3 mb-5 bg-body rounded">
+						<h2 align="center" style="margin-top: 20px;">공지사항 상세 및 수정 페이지</h2>
+							<div class="view-area act">
+								<div class="notice-area">
+									<table id="tableTitle" class="table table-bordered table-hover">
+										<tbody>
+											<tr>
+												<td>번호</td>
+												<td>${vo.no}</td>
+											</tr>
+											<tr>
+												<td>작성일자</td>
+												<td>${vo.enrollDate}</td>
+											</tr>
+											<tr>
+												<td>제목</td>
+												<td>${vo.title}</td>
+											</tr>
+											<tr>
+												<td>내용</td>
+												<td style="height: 300px;">${vo.content}</td>
+											</tr>
+											
+										</tbody>
+									</table>
+									<c:if test="${loginAdmin.id eq 'admin'}">
+										<div id="notice-btn-area" style="text-align: right; margin-top: 10px;">
+											<button class="btn btn-md btn-warning" onclick="toggleActive();">수정하기</button>
+											<button class="btn btn-md btn-danger" onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'">삭제하기</button>
+											<button class="btn btn-md btn-info" onclick="location.href='${root}/admin/notice/list'">목록</button>
+										</div>
+									</c:if>
+								</div>
 							</div>
-							<div id="notice-area">
-								<table id="tableTitle" class="table table-bordered table">
-									<tr>
-										<td>번호</td>
-										<td>${vo.no}</td>
-									</tr>
-									<tr>
-										<td>제목</td>
-										<td>${vo.title}</td>
-									</tr>
-									<tr>
-										<td>작성일자</td>
-										<td>${vo.enrollDate}</td>
-									</tr>
-									<tr>
-										<td>내용</td>
-										<td height="200px;">${vo.content}</td>
-									</tr>
-								</table>
-							</div>"src/main/webapp/WEB-INF/views/admin/faq-edit.jsp"
 
+						<div class="form-area">
+							<form action="${root}/admin/notice/edit" method="POST">
+								<input type="hidden" name="no" value="${vo.no}">
+								<div class="notice-area">
+									<table id="tableTitle" class="table table-bordered table-hover">
+										<tbody>
+											<tr>
+												<td>번호</td>
+												<td>${vo.no}</td>
+											</tr>
+											<tr>
+												<td>작성일자</td>
+												<td>${vo.enrollDate}</td>
+											</tr>
+											<tr>
+												<td>제목</td>
+												<td><input id="form-title" type="text" name="title"	value="${vo.title}"></td>
+											</tr>
+											<tr>
+												<td>내용</td>
+												<td><textarea id="form-content" style="height: 300px;" name="content">${vo.content}</textarea></td>
+											</tr>
 
-							<div id="notice-btn-area" style="text-align: right; margin-top: 10px;">
-		                            <button onclick="location.href='${root}/admin/notice/edit?num=${vo.no}'" class="btn btn-md btn-warning">수정</button>
-		                            <button onclick="location.href='${root}/admin/notice/delete?num=${vo.no}'" class="btn btn-md btn-danger">삭제</button>
-		                        </div>
+										</tbody>
+									</table>
+								</div>
+									<div style="text-align: right;">
+										<input class="btn btn-md btn-warning" type="submit"	value="공지사항수정하기">
+										<input class="btn btn-md btn-info" type="button" value="목록" onclick="location.href='${root}/admin/notice/list'">
+									</div>
+							</form>
 						</div>
-					</form>
+					</div>
 				</main>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>
+<script>
+	//수정하기 버튼 클릭 시 동작하는 내용
+	function toggleActive() {
+		
+		const viewArea = document.querySelector(".view-area");
+		const formArea = document.querySelector(".form-area");
+		console.log(viewArea.classList);
+		viewArea.classList.remove('act');
+		formArea.classList.add('act');
+	}
+</script>
+
