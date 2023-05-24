@@ -73,13 +73,39 @@
 		WHERE
 		ID = #{id}
 	</select>
-	
-	<select id="getBoardList" resultType="adminVo">
-	
+
+	<select id="getAdminList" resultType="adminVo">
+		SELECT
+		NO,
+		PM_NO,
+		ID,
+		NAME,
+		ENROLL_DATE,
+		QUIT_YN
+		FROM ADMIN
+		WHERE
+		QUIT_YN = 'N'
+		ORDER BY NO DESC
 	</select>
-	
+
 	<select id="getCnt" resultType="int">
-		
+		SELECT COUNT(NO)
+		FROM ADMIN
+		WHERE
+		QUIT_YN = 'N'
 	</select>
-	
+
+	<update id="changeAuthor">
+		UPDATE ADMIN
+		SET
+		QUIT_YN = 'Y'
+		WHERE NO = #{vo.no}
+	</update>
+
+	<update id="delete">
+		UPDATE ADMIN
+		SET
+		PM_NO = '1'
+		WHERE NO = #{vo.no}
+	</update>
 </mapper>

@@ -36,115 +36,44 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm"
-												data-bs-toggle="modal" data-bs-target="#staticBackdrop">계정
-												삭제</button> <!-- Modal -->
-											<div class="modal fade" id="staticBackdrop"
-												data-bs-backdrop="static" data-bs-keyboard="false"
-												tabindex="-1" aria-labelledby="staticBackdropLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content" style="text-align: center">
-														<div class="modal-header">
-															<h1 class="modal-title fs-5" id="staticBackdropLabel">관리자
-																계정 삭제</h1>
-															<button type="button" class="btn-close"
-																data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body">
-															<h6 class="modalBox">관리자 이름 : 박재욱</h6>
-															<h6 class="modalBox">아이디 : wodnr1225</h6>
-															<h6 class="modalBox">계정 생성일 : 2023년 4월 28일</h6>
-															<h6 class="modalBox">관리자 권한 등급 : 3</h6>
-															<h6>해당 관리자를 삭제하시겠습니까?</h6>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary"
-																data-bs-dismiss="modal">취소하기</button>
-															<button type="button" class="btn btn-danger">삭제하기</button>
+									<c:forEach items="${adminList}" var="avo">
+										<tr class="align-middle">
+											<td>${avo.name}</td>
+											<td>${avo.id}</td>
+											<td>${avo.enrollDate}</td>
+											<td>관리자 계정 등급 : ${avo.pmNo}</td>
+											<td><button id="deleteBtn"
+													class="btn btn-danger .btn-sm" data-bs-toggle="modal"
+													data-bs-target="#staticBackdrop${avo.no}">계정 삭제</button> <!-- Modal -->
+												<div class="modal fade" id="staticBackdrop${avo.no}"
+													data-bs-backdrop="static" data-bs-keyboard="false"
+													tabindex="-1" aria-labelledby="staticBackdropLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content" style="text-align: center">
+															<div class="modal-header">
+																<h1 class="modal-title fs-5" id="staticBackdropLabel">관리자
+																	계정 삭제</h1>
+																<button type="button" class="btn-close"
+																	data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<div class="modal-body">
+																<h6 class="modalBox">관리자 이름 : ${avo.name}</h6>
+																<h6 class="modalBox">아이디 : ${avo.id}</h6>
+																<h6 class="modalBox">계정 생성일 : ${avo.enrollDate}</h6>
+																<h6 class="modalBox">관리자 권한 등급 : ${avo.pmNo}</h6>
+																<h6>해당 관리자를 삭제하시겠습니까?</h6>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn btn-secondary"
+																	data-bs-dismiss="modal">취소하기</button>
+																<button type="submit" class="btn btn-danger">삭제하기</button>
+															</div>
 														</div>
 													</div>
-												</div>
-											</div></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-									<tr class="align-middle">
-										<td>박재욱</td>
-										<td>wodnr1225</td>
-										<td>2023년 4월 28일</td>
-										<td>관리자 계정 등급 : 3</td>
-										<td><button id="deleteBtn" class="btn btn-danger .btn-sm">계정
-												삭제</button></td>
-									</tr>
-
+												</div></td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -158,4 +87,6 @@
 </html>
 <script
 	src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous">
+	
+</script>
