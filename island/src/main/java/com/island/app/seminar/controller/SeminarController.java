@@ -3,6 +3,7 @@ package com.island.app.seminar.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,14 +23,16 @@ import com.google.gson.Gson;
 import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.vo.MemberVo;
 import com.island.app.seminar.Service.SeminarService;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
 /**
  * 
- * @author 서지현
+ * @author 
  *
  */
 @Controller
@@ -44,24 +47,26 @@ public class SeminarController {
 
 	//세미나 목록 조회(+페이징)
 	@GetMapping("list")
-	public String getSeminarList(@RequestParam(defaultValue = "1")int page, Model m) throws Exception {
+	public String getSeminarList(@RequestParam(defaultValue = "1")int page, @RequestParam Map<String,String> searchMap, Model m) throws Exception {
 		//페이징
-		int listCount = ss.getSeminarCnt();
+		int listCount = ss.getSeminarCnt(searchMap);
 		int currentPage = page;
 		int pageLimit = 5;
 		int boardLimit = 9;
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
 		//요일얻기
-		List<SeminarVo> svoList = ss.getSeminarList(pv);
+		List<SeminarVo> svoList = ss.getSeminarList(searchMap, pv);
 		if(svoList == null) {
 			throw new Exception("세미나 목록 조회 실패");
 		}
+		m.addAttribute("searchMap", searchMap);
 		m.addAttribute("pv", pv);
 		m.addAttribute("svoList", svoList);
 		return "seminar/list";
 	}
 	
+
 	//세미나 개설하기(화면)
 	@GetMapping("create")
 	public String createSeminar(Model m, HttpSession session) {
@@ -159,11 +164,90 @@ public class SeminarController {
 	
 	//세미나 상세 조회(화면)
 	@GetMapping("detail")
-	public String seminarDetail() {
+	public String getSeminarDetail(String no, Model m, HttpSession session) throws Exception {
+		//세미나 상세조회 + 조회수 증가
+		SeminarVo svo = ss.getSeminarDetail(no);
+
+		//댓글 영역 로그인 유저 프로필 가져오기
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		System.out.println(loginMember);
+		//svo.setLoginMemberProfile(loginMember.getProfileName());
+		
+		
+		//List<SeminarReplyVo> srvo = ss.getSeminarReply(no);
+		if(svo == null) {
+			throw new Exception("세미나 상세조회 실패");
+		}
+		m.addAttribute("svo", svo);
 		return "seminar/detail";
 	}
 	
 	
+	//세미나 관심내역 추가
+		@GetMapping("interest")
+		public String addInterestSeminar(SeminarVo svo, HttpSession session , Model m) throws Exception {
+			//로그인 유저 가져오기 
+			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+			String writerNo = svo.getWriterNo(); //개설자 번호
+
+			//로그인 유저 있는지 없는지
+			if(loginMember == null) {
+				session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+				return "redirect:/seminar/detail?no=" + svo.getNo();
+			}
+			
+			String loginMemberNo = loginMember.getNo();
+			svo.setLoginMemberNo(loginMemberNo);
+
+			
+			//개설자이면 관심내역 추가 x
+			if(writerNo.equals(loginMemberNo)) {
+				session.setAttribute("alertMsg", "본인이 개설한 세미나를 관심내역에 추가할 수 없습니다.");
+				return "redirect:/seminar/detail?no=" + svo.getNo();
+			}
+
+			//로그인 유저가 관심내역에 해당 세미나 관심내역 추가 한적있는지 조회하기
+			MemberInterestVo mivo= ss.selectInterstSeminar(svo);
+			
+			//mivo가 존재하면 이미 관심내역에 있음.
+			if(mivo != null) {
+				session.setAttribute("alertMsg", "이미 관심내역에 추가된 세미나입니다.");
+				return "redirect:/seminar/detail?no=" + svo.getNo();
+			}
+			
+			//조회안되면 관심내역에 insert + seminar likeCount +1
+			int result = ss.addInterestSeminar(svo);
+			if(result != 1) {
+				throw new Exception("관심내역 세미나 추가 및 좋아요 수 추가 에러");
+			}
+			session.setAttribute("alertMsg", "해당 세미나가 관심내역에 추가되었습니다!");
+			return "redirect:/seminar/detail?no=" + svo.getNo();
+			
+		}
+	
+	
+	//세미나 신고하기
+	@PostMapping("report")
+	public String reportSeminar(SeminarReportVo srvo, HttpSession session) throws Exception {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + srvo.getSNo();
+		}
+		
+		int result = ss.reportSeminar(srvo);
+		if(result != 1) {
+			throw new Exception("세미나 신고 실패");
+		}
+		session.setAttribute("alertMsg", "신고가 접수되었습니다.");
+		return "redirect:/seminar/detail?no=" + srvo.getSNo();
+	}
+		
+		
+		
 	//세미나 수정 페이지(화면)
 	@GetMapping("edit")
 	public String seminarEdit() {
@@ -175,6 +259,16 @@ public class SeminarController {
 	@GetMapping("apply")
 	public String seminarApply() {
 		return "seminar/apply";
+	}
+	
+	
+	
+	//세미나 삭제하기
+	@GetMapping("delete")
+	public String deleteSeminar(String no) {
+		
+		
+		return "redirect:/seminar/list";
 	}
 	
 	

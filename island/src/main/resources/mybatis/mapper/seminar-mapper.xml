@@ -71,9 +71,16 @@
  	
  	<select id="getSeminarCnt" resultType="int">
  		SELECT COUNT(NO)
-			FROM SEMINAR
+			FROM SEMINAR 
 			WHERE DEL_YN ='N' 
 			AND BLOCK_YN = 'N'
+			AND TO_DATE(START_DAY, 'YYYY-MM-DD') > CURRENT_DATE
+			<if test="searchOption == 'name'">
+				AND NAME LIKE '%${searchValue}%'
+			</if>
+			<if test="searchOption == 'place'">
+				AND PLACE LIKE '%${searchValue}%'
+			</if>
  	</select>
  	
  	<select id="getSeminarList" resultType="seminarVo">
@@ -88,7 +95,113 @@
 		FROM SEMINAR
 		WHERE DEL_YN = 'N'
 		AND BLOCK_YN = 'N'
-		ORDER BY NO DESC
+		AND TO_DATE(START_DAY, 'YYYY-MM-DD') > CURRENT_DATE
+		<if test="searchOption == 'name'">
+			AND NAME LIKE '%${searchValue}%'
+			ORDER BY NO DESC
+		</if>
+		<if test="searchOption == 'place'">
+			AND PLACE LIKE '%${searchValue}%'
+			ORDER BY NO DESC
+		</if>
+		<if test="sort == 'like'">
+			ORDER BY LIKE_COUNT DESC
+		</if>
+		<if test="sort == 'close'">
+			ORDER BY CLOSE_DAY
+		</if>
+		<if test="searchOption != 'name' and searchOption != 'place' and sort != 'like' and sort != 'close'">
+		    ORDER BY NO DESC
+		</if>
  	</select>
+
+	<select id="getSeminarDetail" resultType="seminarVo">
+		SELECT 
+		    S.NO
+		    , S.WRITER_NO
+		    , S.SEMINAR_THUMBNAIL
+		    , S.NAME
+		    , S.INTRO
+		    , S.EXINTRO
+		    , S.START_DAY
+		    , S.SEMINAR_TIME
+		    , S.PLACE
+		    , S.DETAIL_ADDRESS
+		    , S.LIKE_COUNT
+		    , S.HIT
+		    , S.MAX_CAPACITY
+		    , S.CURRENT_CAPACITY
+		    , S.CLOSE_DAY
+		    , S.CLOSE_TIME
+		    , S.PAY_YN
+		    , NVL(S.EXPENSE, 0) AS EXPENSE
+		    , M.NO
+		    , M.NICK AS WRITER_NICK
+		    , M.EMAIL
+		    , M.EMAIL2
+		    , M.PHONE
+		    , M.ATTACH  AS MEMBER_ATTACH
+		    , M.PROFILE
+		FROM SEMINAR S
+		JOIN MEMBER M
+		ON (S.WRITER_NO = M.NO)
+		WHERE S.NO = #{no}
+	</select>
+ 	
+ 	<update id="increaseSminarHit">
+ 		UPDATE SEMINAR 
+		    SET HIT= HIT+1
+		WHERE NO = #{no}
+ 	</update>
+ 	
+ 	<select id="selectInterstSeminar" resultType="memberInterestVo">
+ 		SELECT
+		    NO
+		    ,S_NO
+		    ,M_NO
+		FROM  INTEREST
+		WHERE S_NO = #{no}
+		AND M_NO= #{loginMemberNo}
+ 	</select>
+ 	
+ 	
+ 	<insert id="addInterestSeminar">
+ 		INSERT INTO INTEREST 
+ 		(
+ 			NO
+ 			,S_NO
+ 			,M_NO
+ 		) 
+ 		VALUES
+ 		(	
+ 			SEQ_INTEREST_NO.NEXTVAL
+ 			,#{no}
+ 			,#{loginMemberNo}
+ 		)
+ 	</insert>
+ 	
+ 	<update id="addLikeCount">
+ 		UPDATE SEMINAR
+    		SET LIKE_COUNT = LIKE_COUNT+1
+		WHERE NO = #{no}
+ 	</update>
+ 	
+ 	<insert id="reportSeminar">
+ 		INSERT INTO SEMINAR_REPORT
+ 		(
+ 			NO
+ 			,S_NO
+ 			,RE_CATEGORY_NO 
+ 			,REPORT_DETAIL
+ 		) 
+ 		VALUES
+ 		(
+ 			SEQ_SEMINAR_REPORT_NO.NEXTVAL 
+ 			,#{sNo}
+ 			,#{reCategoryNo} 
+ 			,#{reportDetail}
+ 		)
+ 	</insert>
+ 	
  	
 </mapper>

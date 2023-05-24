@@ -30,6 +30,7 @@ import com.island.app.common.page.PageVo;
 import com.island.app.community.review.Service.SeminarReviewService;
 import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
+import com.island.app.member.vo.MemberVo;
 
 /**
  * 
@@ -92,7 +93,7 @@ public class SeminarReviewController {
 		//로그인 여부 체크
 		
 		//세미나 게시글번호 가져오기 (임시코드)
-		String seminarNo = "5";
+		String seminarNo = "38";
 		srvo.setSeminarNo(seminarNo);
 		
 		//회원 번호 가져오기 (loginMember에서 getNo해오기 임시코드)
@@ -156,7 +157,15 @@ public class SeminarReviewController {
 	
 	//세미나 리뷰 신고하기
 	@PostMapping("seminarReview/report")
-	public String reportSeminarReview(ReviewReportVo rrvo, HttpSession session) throws Exception {//리뷰번호 가져와야함
+	public String reportSeminarReview(ReviewReportVo rrvo, HttpSession session) throws Exception {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/community/seminarReview/detail?no="+ rrvo.getReviewNo();
+		}
 		int result = srs.reportSeminarReview(rrvo);
 		if(result != 1) {
 			throw new Exception("세미나 리뷰 신고 실패");

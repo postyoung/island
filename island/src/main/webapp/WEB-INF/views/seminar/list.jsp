@@ -23,18 +23,12 @@
     <h2><b>ISLAND</b> | 모집중인 세미나</h2>
   </div>
   <div id="seminar-serch-area">
-    <form action="${root}/seminar/search" class="d-flex" role="search" id="search-box">
-      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="select-size">
-        <option selected>지역</option>
-        <option value="1">서울</option>
-        <option value="2">경기</option>
-        <option value="3">인천</option>
-        <option value="4">강원</option>
-        <option value="5">부산</option>
-        <option value="6">제주</option>
-        <option value="7">기타</option>
+    <form action="${root}/seminar/list" class="d-flex" role="search" id="search-box">
+      <select class="form-select form-select-sm mb-3" name="searchOption" aria-label=".form-select-lg example" id="select-size">
+        <option value="name">세미나명</option>
+        <option value="place">지역</option>
       </select>
-      <input class="form-control me-2" id="search-box-size" type="search" placeholder="검색할 내용을 입력하세요." aria-label="Search">
+      <input class="form-control me-2" name="searchValue" id="search-box-size" type="search" placeholder="검색할 내용을 입력하세요." aria-label="Search">
       <button class="btn btn-light " type="submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -44,9 +38,9 @@
   </div>
 
   <div id="select-menu">
-    <a href="#" class="ms-3 me-3">최신순</a>
-    |<a href="#" class="ms-3 me-3">인기순</a>
-    |<a href="#" class="ms-3 me-3">종료된 세미나</a>
+    <a href="${root}/seminar/list" class="ms-3 me-3">최신순</a>
+    |<a href="${root}/seminar/list?sort=like" class="ms-3 me-3">인기순</a>
+    |<a href="${root}/seminar/list?sort=close" class="ms-3 me-3">마감임박순</a>
     <button type="button" class="btn btn-outline-secondary" onclick="location.href='${root}/seminar/create'">개설하기</button>
   </div>
 
@@ -64,7 +58,7 @@
             <div class="card shadow-sm">
               <img class="bd-placeholder-img card-img-top" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" width="100%" height="250">
               <div class="card-body">
-                <i class="bi-heart" style="font-size:1.5rem; color: red; cursor: pointer;"></i>
+                <i class="bi-heart-fill" style="font-size:1.5rem; color: red;"></i>
                 <span id="good-icon">${svo.likeCount}</span>
                 <p class="card-text">
                   <b>${svo.name}</b>
@@ -74,7 +68,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${root}/seminar/detail'">상세보기</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${root}/seminar/detail?no=${svo.no}'">상세보기</button>
                   </div>
                   <small class="text-muted">${svo.payYn}</small>
                 </div>
@@ -112,29 +106,3 @@
 </c:if>
 <c:remove var="alertMsg"/>
 
-<script>
-
-  var i = 0;
-  $('i').on('click',function(){
-      if(i==0){
-          $(this).attr('class','bi-heart-fill');
-          i++;
-          $.ajax({
-            url : '',
-            type : '',
-            data :{},
-            success : function(){
-
-            },
-            error : function(){
-              
-            }
-          });
-      }else if(i==1){
-          $(this).attr('class','bi-heart');
-          i--;
-      }
-
-  });
-
-</script>
