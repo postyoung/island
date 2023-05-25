@@ -38,9 +38,9 @@ public class NoticeController {
 
 	//공지사항 목록조회
 	@GetMapping("notice/list")
-	public String noticeList(Model model , @RequestParam(defaultValue = "1") int page) {
+	public String noticeList(Model model , @RequestParam(defaultValue = "1") int page) throws Exception {
 		
-		//서비스
+		//서비스&페이징
 		int listCount = ns.getNoticeListCnt();
 		int currentPage = page;
 		int pageLimit = 5;
@@ -48,6 +48,10 @@ public class NoticeController {
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		List<NoticeVo> nvoList = ns.getNoticeList(pv);
+		
+		if(nvoList == null) {
+			throw new Exception("공지사항 목록 조회 실패");
+		}
 		
 		model.addAttribute("pv", pv);
 		model.addAttribute("nvoList" , nvoList);
@@ -60,6 +64,7 @@ public class NoticeController {
 		
 		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
 		vo.setWriterNo(loginAdmin.getNo());
+		
 		if(loginAdmin == null) {
 			model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 			return "common/error-page";

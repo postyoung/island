@@ -61,6 +61,8 @@ main table>tbody>tr:hover {
 									<a id="write-btn" class="btn btn-info btn-md" style="float: right;" href="${root}/admin/notice/write">글쓰기</a>								
 								</div>
 							</c:if>
+							<!-- 페이징 -->
+							<%@ include file="/WEB-INF/views/common/admin-notice-paging.jsp"%>
 						</div>
 				</main>
 			</div>
@@ -68,8 +70,7 @@ main table>tbody>tr:hover {
 	</div>
 	<br>
 		
-	<!-- 페이징 -->
-	<%@ include file="/WEB-INF/views/common/admin-notice-paging.jsp"%>
+	
 
 	<br>
 </body>
