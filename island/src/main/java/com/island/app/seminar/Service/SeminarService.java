@@ -133,8 +133,14 @@ public class SeminarService {
 		return dao.seminarModify(sst, svo);
 	}
 
+	//세미나 수정 위한 정보 조회
 	public SeminarVo getSeminarDetail(String sNo) {
 		return dao.getSeminarDetail(sst, sNo);
+	}
+	
+	//세미나 신청하기
+	public int seminarApply(SeminarVo svo) {
+		return dao.seminarApply(sst, svo);
 	}
 	
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,9 @@
 	
 	<link rel="stylesheet" href="${root}/resources/css/seminar/apply.css">
 	<script defer src="${root}/resources/js/seminar/apply.js"></script>
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 	
 </head>
 <body>
@@ -49,7 +53,7 @@
           </tr>
           <tr>
             <td class="info">
-              ${svo.payYn}  |  비용 : ${svo.expense}원
+              ${svo.payYn}  |  비용 : <fmt:formatNumber value="${svo.expense}" pattern="#,### 원"/>
             </td>
           </tr>
         </table><br>
@@ -81,42 +85,46 @@
           <table class="table table-bordered" id="info-table" style="table-layout: fixed">
             <tr>
               <th class="table-light" width="13%">결제금액</th>
-              <td > ${svo.expense}원</td>
+              <th class="pay"><fmt:formatNumber value="${svo.expense}" pattern="#,### 원"/></th>
+              
             </tr>
-            <tr>
-              <th class="table-light">결제수단</th>
-              <td>
-                <div>
-                  <button type="button" class="btn btn-outline-secondary" id="card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
-                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
-                      <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
-                    </svg>
-                    신용카드
-                  </button>
-                  <button type="button" class="btn btn-outline-secondary" id="account">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-exchange" viewBox="0 0 16 16">
-                      <path d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z"/>
-                    </svg>
-                    실시간 계좌이체
-                  </button>
-                  
-                  <div style="margin-left: 10px;">간편결제</div>
-                  <button type="button" class="btn btn-light" id="kakaopay">
-                    <img src="${root}/resources/img/seminar/kakaopay.png" alt="카카오페이" width="80px" height="27px">
-                  </button>
-                  <button type="button" class="btn btn-light" id="naverpay">
-                    <img src="${root}/resources/img/seminar/naverpay.png" alt="네이버페이" width="80px" height="27px">
-                  </button>
-                  </button>
-                  <button type="button" class="btn btn-light" id="tosspay">
-                    <img src="${root}/resources/img/seminar/tosspay.png" alt="토스페이" width="110px" height="55px" style="margin-top: -13px;">
-                  </button>
+            	<c:if test="${svo.expense ne '0' && svo.expense gt 0}">
+            	
+		            <tr>
+		              <th class="table-light">결제수단</th>
+		              <td>
+		                <div>
+		                  <button type="button" class="btn btn-outline-secondary" id="card">
+		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+		                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+		                      <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+		                    </svg>
+		                    신용카드
+		                  </button>
+		                  <button type="button" class="btn btn-outline-secondary" id="account">
+		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-exchange" viewBox="0 0 16 16">
+		                      <path d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z"/>
+		                    </svg>
+		                    실시간 계좌이체
+		                  </button>
+		                  
+		                  <div style="margin-left: 10px;">간편결제</div>
+		                  <button type="button" class="btn btn-light" id="kakaopay">
+		                    <img src="${root}/resources/img/seminar/kakaopay.png" alt="카카오페이" width="80px" height="27px">
+		                  </button>
+		                  <button type="button" class="btn btn-light" id="naverpay">
+		                    <img src="${root}/resources/img/seminar/naverpay.png" alt="네이버페이" width="80px" height="27px">
+		                  </button>
+		                  </button>
+		                  <button type="button" class="btn btn-light" id="tosspay">
+		                    <img src="${root}/resources/img/seminar/tosspay.png" alt="토스페이" width="110px" height="55px" style="margin-top: -13px;">
+		                  </button>
+		                </div>
+		
+		              </td>
+		            </tr>
+            	</c:if>
 
-                </div>
-
-              </td>
-            </tr>
           </table>
         </div>
 
@@ -130,7 +138,7 @@
                 전체동의
               </th>
               <td id="agree-info">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                <input class="form-check-input" type="checkbox" name="box1" id="flexCheckDefault2">
                 (필수) 개인정보 제3자 제공 동의 내용보기<br>
                 아일랜드(이하 “회사“)는 신청자와 개설자간 원활한 의사소통 및 모임 진행을 위하여 필요한 최소한의 개인정보만을 개설자에게 제공하며, 
                 회사가 제공하는 서비스를 통하여 결제가 이루어진 경우 거래 당사자간 원활한 의사소통과 세미나 등 거래이행을 위하여
@@ -144,18 +152,21 @@
                 4. 개인정보를 제공받는 자의 개인정보 보유 및 이용 기간<br>
                 - 모임 종료 후 3개월 / 회원탈퇴 시 혹은 위탁계약 종료시 까지
                 개인정보 제3자 제공 동의는 거부할 수 있으며, 이 경우 참여 신청이 제한될 수 있습니다.<br><br>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                <input class="form-check-input" type="checkbox" name="box2" id="flexCheckDefault3">
                 (필수) 취소/환불약관 동의 내용보기<br>
                 신청기간 마감 전까지 환불신청 가능(결제수단, 사유, 환불시점에 따라 수수료 차감)
               </td>
             </tr>
           </table>
         </div>
+        <form action="${root}/seminar/apply/${svo.no}" method="post" onsubmit="return applyCheck();">
+          <input type="hidden" name="loginMemberNo" value="${loginMember.no}">
 
-        <div id="btn-area">
-          <button type="button" class="btn btn-primary">신청하기</button>
-          <button type="button" class="btn btn-secondary" id="cancle" onclick="history.back();">취소하기</button>
-        </div>
+          <div id="btn-area">
+            <input type="submit" class="btn btn-primary" value="신청하기"/>
+            <button type="button" class="btn btn-secondary" id="cancle" onclick="history.back();">취소하기</button>
+          </div>
+        </form>
 
       </div>
         
@@ -174,3 +185,17 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
+<script>
+
+  const checkBox2 = document.querySelector("input[name=box1]");
+  const checkBox3 = document.querySelector("input[name=box2]");
+  
+  function applyCheck() {
+    if (!checkBox2.checked || !checkBox3.checked) {
+      alert("필수 동의를 체크해주세요.");
+      return false;
+    } 
+    return true;
+  }
+  </script>	
+    

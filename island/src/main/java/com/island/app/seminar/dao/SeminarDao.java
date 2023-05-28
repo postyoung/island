@@ -122,4 +122,9 @@ public class SeminarDao {
 	public int seminarModify(SqlSessionTemplate sst, SeminarVo svo) {
 		return sst.update("seminar.seminarModify", svo);
 	}
+	
+	//세미나 신청하기
+	public int seminarApply(SqlSessionTemplate sst, SeminarVo svo) {
+		return sst.insert("seminar.seminarApply", svo);
+	}
 }

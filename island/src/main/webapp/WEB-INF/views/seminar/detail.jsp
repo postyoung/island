@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,7 +114,7 @@
               <div class="box-div">
                 모집마감일 : ${svo.closeDay}  ${svo.closeTime} 까지
               </div>
-              <span id="free-or-pay"><b>${svo.payYn}</b></span> ${svo.expense}원
+              <span id="free-or-pay"><b>${svo.payYn}</b></span> <fmt:formatNumber value="${svo.expense}" pattern="#,### 원"/>
               <c:if test="${loginMember.no != svo.writerNo}">
                 <button type="button" class="btn btn-info" onclick="location.href='${root}/seminar/apply/${svo.no}'">신청하기</button>
               </c:if>

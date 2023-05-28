@@ -385,7 +385,7 @@ public class SeminarController {
 	//세미나 신청하기(화면)
 	@GetMapping("apply/{sNo}")
 	public String seminarApply(@PathVariable String sNo, HttpSession session, Model m ) {
-		//로그인 한 유저만 신고 가능
+		//로그인 한 유저만 신청가능
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
 		//로그인 유저 있는지 없는지
@@ -403,6 +403,28 @@ public class SeminarController {
 		}
 		m.addAttribute("svo", svo);
 		return "seminar/apply";
+	}
+	
+	//세미나 신청하기
+	@PostMapping("apply/{sNo}")
+	public String seminarApply(@PathVariable String sNo ,HttpSession session, SeminarVo svo) {
+		System.out.println(svo);
+		//로그인 한 유저만 신청가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + sNo;
+		}
+		//서비스
+		svo.setNo(sNo);
+		int result = ss.seminarApply(svo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 신청 실패");
+		}
+		session.setAttribute("alertMsg", "신청이 완료되었습니다.");
+		return "redirect:/seminar/list";
 	}
 	
 	
