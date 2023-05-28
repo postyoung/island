@@ -53,21 +53,18 @@ nav a {
 #review-write-area{
   width: 1200px;
   height: 100%;
-  margin-left: 400px;
+  margin: auto;
   margin-bottom: 100px;
 }
 
 #btn-area{
-  width: 500px;
+   width: fit-content;
   height: 40px;
   margin: auto;
   margin-top: 60px;
 
 }
 
-.box{
-  margin-left: 40px;
-}
 
 #top-area{
   margin-top: 30px;

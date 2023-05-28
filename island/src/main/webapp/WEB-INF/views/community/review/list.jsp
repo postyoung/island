@@ -57,7 +57,8 @@
 		        <div class="col-md-3">
 		          <div class="shadow-sm box">
 		            <div class="member-info-area">
-		              <img src="${root}/resources/img/member/${srvo.memberProfile}" alt="프로필사진" class="member-profile" >
+		              <img src="${root}/resources/img/member/profile/load/${srvo.memberProfile}" onerror= "this.onerror=null; this.src = 
+        'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" class="member-profile" >
 		              <b>${srvo.memberNick}</b>
 		            </div>
 		            <div class="seminar-name">

@@ -83,22 +83,32 @@ public class SeminarReviewController {
 	
 	//세미나 리뷰 작성하기 (화면)
 	@GetMapping("seminarReview/write")
-	public String seminarReviewWrite() {
+	public String seminarReviewWrite(HttpSession session) {
+		//로그인 여부 체크
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/community/seminarReview/list";
+		}
 		return "community/review/write";
 	}
 	
 	//세미나 리뷰 작성하기
 	@PostMapping("seminarReview/write")
-	public String seminarReviewWrite(SeminarReviewVo srvo, MultipartFile thumbnailFile, HttpServletRequest req) throws Exception {
+	public String seminarReviewWrite(SeminarReviewVo srvo, MultipartFile thumbnailFile, HttpServletRequest req, HttpSession session) throws Exception {
 		//로그인 여부 체크
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/community/seminarReview/list";
+		}
 		
 		//세미나 게시글번호 가져오기 (임시코드)
-		String seminarNo = "38";
+		String seminarNo = "39";
 		srvo.setSeminarNo(seminarNo);
 		
 		//회원 번호 가져오기 (loginMember에서 getNo해오기 임시코드)
-		String memberNo = "7";
-		srvo.setMemberNo(memberNo);
+		srvo.setMemberNo(loginMember.getNo());
 		
 		//데이터 준비(파일)
 		String path = req.getServletContext().getRealPath("/resources/img/community/review/upload/");
