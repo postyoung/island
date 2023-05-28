@@ -95,7 +95,7 @@
 		</if>
 	</select>
 	
-	<select id="getcategoryNo" resultType="int">
+	<select id="getcategoryNo" resultType="String">
 	    SELECT NAME
 	    FROM FAQ_CATEGORY
 	    WHERE NO = #{categoryNo}

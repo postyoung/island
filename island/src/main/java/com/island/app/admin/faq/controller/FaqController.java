@@ -110,7 +110,7 @@ public class FaqController {
 	
 	//Faq상세조회
 	@GetMapping("faq/detail")
-	public String getFaq(FaqVo vo, String num, Model model , HttpSession session) {
+	public String getFaq(FaqVo vo, String num, Model model , HttpSession session, String categoryNo) {
 		
 		
 		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
@@ -124,7 +124,7 @@ public class FaqController {
 			model.addAttribute("errorMsg" , "상세조회실패...");
 			return "common/error-page";
 		}
-	    String categoryName = fs.getCategoryName(fvo.getCategoryNo());
+	    String categoryName = fs.getcategoryName(categoryNo);
 		
 	    model.addAttribute("fvo" , fvo);
 		model.addAttribute("categoryName" , categoryName);

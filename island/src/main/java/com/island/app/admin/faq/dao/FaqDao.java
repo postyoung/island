@@ -49,8 +49,9 @@ public class FaqDao {
 		return sst.selectOne("adminfaq.getCnt");
 	}
 
-	public String getCategoryName(SqlSessionTemplate sst , int categoryNo) {
-		return sst.selectOne("adminfaq.getcategoryNo" , categoryNo);
+	
+	public String getcategoryName(SqlSessionTemplate sst, String categoryName) {
+		return sst.selectOne("adminfaq.getcategoryNo" , categoryName );
 	}
 	
 
