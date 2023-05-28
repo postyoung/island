@@ -151,4 +151,30 @@
         WHERE M.NO = #{no}
  	</select>
  	
+ 	<select id="getSvoList" resultType="seminarVo">
+ 		SELECT
+ 			i.NO AS ino,
+ 			i.M_NO AS loginMemberNo,
+ 			s.NO,
+		    s.NAME,
+		    s.EXPENSE,
+		    s.PLACE,
+		    s.MAX_CAPACITY,
+		    s.CLOSE_DAY,
+		    s.START_DAY,
+            s.SEMINAR_TIME,
+		    s.SEMINAR_THUMBNAIL
+		FROM
+		    INTEREST i
+		    INNER JOIN SEMINAR s ON i.S_NO = s.NO
+		WHERE
+		    i.M_NO = #{no}
+ 	</select>
+ 	
+ 	<delete id="interestEdit">
+ 		DELETE FROM INTEREST WHERE NO = #{no}
+ 		
+ 	</delete>
+ 	
+ 	
 </mapper>

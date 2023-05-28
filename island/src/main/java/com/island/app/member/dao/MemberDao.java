@@ -7,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.island.app.community.qna.vo.QnaVo;
+import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.vo.MemberVo;
+import com.island.app.seminar.vo.SeminarVo;
 @Repository
 public class MemberDao{
 	//회원가입
@@ -35,7 +37,7 @@ public class MemberDao{
 	}
 	//회원탈퇴
 	public int quit(SqlSession sst, MemberVo vo) {
-		return sst.update("member.quit" , vo);
+		return sst.update("memSsber.quit" , vo);
 	}
 	//회원탈퇴 비번확인
 	public MemberVo quitConfirm(SqlSessionTemplate sst, MemberVo vo) {
@@ -44,6 +46,14 @@ public class MemberDao{
 	//마이페이지 문의내역
 	public List<QnaVo> getWriteList(SqlSessionTemplate sst, String no) {
 		return sst.selectList("member.getQnaList", no);
+	}
+	//마이페이지 관심내역
+	public List<SeminarVo> getInterestList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("member.getSvoList",no);
+	}
+	//관심취소
+	public int interestEdit(SqlSessionTemplate sst, String svono) {
+		return sst.delete("member.interestEdit",svono);
 	}
 	
 
