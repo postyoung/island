@@ -1,5 +1,6 @@
 package com.island.app.group.dao;
 
+import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.vo.GroupVo;
 import org.apache.ibatis.session.RowBounds;
@@ -26,6 +27,10 @@ public class GroupDao {
         sst.insert("group.create", groupVo);
     }
 
+    public void saveThumbnail(SqlSessionTemplate sst, FileVo fileVo) {
+        sst.insert("group.saveThumbnail", fileVo);
+    }
+
     public int getTotalCount(SqlSessionTemplate sst, GroupVo groupVo) {
         return sst.selectOne("group.total",groupVo);
     }
@@ -46,5 +51,6 @@ public class GroupDao {
     public int delete(SqlSessionTemplate sst , GroupVo groupVo){
         return sst.update("group.delete" , groupVo);
     }
+
 
 }

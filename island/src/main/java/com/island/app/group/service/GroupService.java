@@ -1,5 +1,6 @@
 package com.island.app.group.service;
 
+import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.dao.GroupDao;
 import com.island.app.group.vo.GroupVo;
@@ -27,8 +28,9 @@ public class GroupService {
     public GroupVo detail(int no) {
         return dao.detail(sst, no);
     }
-    public void create(GroupVo groupVo) {
-       dao.create(sst, groupVo);
+    public void create(GroupVo groupVo, FileVo fileVo) {
+        dao.create(sst, groupVo);
+        dao.saveThumbnail(sst, fileVo);
     }
     public int getTotalCount(GroupVo groupVo){
         return dao.getTotalCount(sst, groupVo);

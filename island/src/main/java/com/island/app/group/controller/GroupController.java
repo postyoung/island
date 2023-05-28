@@ -1,5 +1,7 @@
 package com.island.app.group.controller;
 
+import com.island.app.common.file.FileUploader;
+import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.service.GroupService;
 import com.island.app.group.vo.GroupVo;
@@ -12,12 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Slf4j
 @Controller
@@ -80,22 +84,49 @@ public class GroupController {
 	public String create()  {
 		return "group/group-create";
 	}
+
+
 	@PostMapping("create")
-	public String create(GroupVo groupVo , MultipartFile multipartFile , HttpSession session , HttpServletRequest request) throws Exception {
+	public String create(GroupVo groupVo , MultipartFile thumbnailFile, HttpSession session , HttpServletRequest request) throws Exception {
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		if (loginMember == null) {
 			session.setAttribute("alertMsg", "로그인 을 해주세요");
 		}
 
-		//데이터 준비
-		String path = request.getServletContext().getRealPath("resources/img/group/upload/");
-			return "redirect:/group/list";
+		String path = request.getServletContext().getRealPath("/resources/img/group/upload/");
+		String changeName = "";
+		String originName = "";
+
+		if(!thumbnailFile.isEmpty()) {
+			changeName = FileUploader.upload(thumbnailFile, path);
+			originName = FileUploader.getOriginName(thumbnailFile);
+		}else {
+			changeName = "example.jpeg";
+			originName = "example.jpeg";
 		}
 
+		// TODO: 유효성 검사
+		String mNo = loginMember.getNo();
+		groupVo.setMNo(mNo);
 
+		// Set default values
+		groupVo.setHit("0");
+		groupVo.setDelYn("N");
+		groupVo.setReportYn("N");
+		groupVo.setBlockYn("N");
+		groupVo.setEnrollDate("2023-05-28");
+
+		FileVo fileVo = new FileVo();
+		fileVo.setChangeName(changeName);
+		fileVo.setOriginName(originName);
+
+		groupService.create(groupVo, fileVo);
+
+		return "redirect:/group/list";
+	}
 
 	//소모임수정페이지
-	@GetMapping("edit")
+	@PostMapping("edit")
 	public String edit(GroupVo vo , RedirectAttributes ra) throws Exception {
 		int result = groupService.edit(vo);
 
@@ -107,6 +138,7 @@ public class GroupController {
 		ra.addAttribute("no", vo.getNo());
 		return "redirect:group/detail";
 	}
+
 	//소모임신청자관리페이지
 	@GetMapping("manage")
 	public String management() {
