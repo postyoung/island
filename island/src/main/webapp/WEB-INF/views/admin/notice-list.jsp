@@ -33,7 +33,10 @@ main table>tbody>tr:hover {
 			<div id="wrap">
 				<main>
 						<div class="container">
-							<h2>공지사항 리스트</h2>
+							<h2 style="margin-left: 40px; margin-top: 40px;" >공지사항 리스트</h2>
+							<hr>
+							<br> <br>
+							
 							<table class="table table-hover table-bordered"
 								style="text-align: center;">
 								<thead>
@@ -61,6 +64,8 @@ main table>tbody>tr:hover {
 									<a id="write-btn" class="btn btn-info btn-md" style="float: right;" href="${root}/admin/notice/write">글쓰기</a>								
 								</div>
 							</c:if>
+							<!-- 페이징 -->
+							<%@ include file="/WEB-INF/views/common/admin-notice-paging.jsp"%>
 						</div>
 				</main>
 			</div>
@@ -68,8 +73,7 @@ main table>tbody>tr:hover {
 	</div>
 	<br>
 		
-	<!-- 페이징 -->
-	<%@ include file="/WEB-INF/views/common/admin-notice-paging.jsp"%>
+	
 
 	<br>
 </body>

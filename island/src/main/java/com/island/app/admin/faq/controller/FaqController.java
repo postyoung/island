@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.island.app.admin.faq.service.FaqService;
 import com.island.app.admin.faq.vo.FaqVo;
+import com.island.app.admin.vo.AdminVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.member.vo.MemberVo;
 
@@ -38,9 +39,9 @@ public class FaqController {
 	
 	//Faq목록조회
 	@GetMapping("faq/list")
-	public String getfaqList(Model model , @RequestParam(defaultValue = "1") int page) {
+	public String getfaqList(Model model , @RequestParam(defaultValue = "1") int page) throws Exception {
 	
-		//서비스 
+		//서비스 &페이징
 		int listCount = fs.getCnt();
 		int currentPage = page;
 		int pageLimit = 5; 
@@ -48,6 +49,10 @@ public class FaqController {
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		List<FaqVo> fvoList = fs.getFaqList(pv);
+			
+		if(fvoList == null) {
+			throw new Exception("FAQ 목록 조회 실패...");
+		}
 		
 		//화면
 		model.addAttribute("pv", pv);
@@ -57,29 +62,32 @@ public class FaqController {
 	
 	//Faq작성하기 화면(관리자만)
 	@GetMapping("faq/write")
-	public String faqWrite(HttpSession session , Model model) {
-	    MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-	    if (loginMember == null) {
+	public String faqWrite(FaqVo vo , HttpSession session , Model model) {
+		
+	    AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+	    vo.setWriterNo(loginAdmin.getNo());
+	    
+	    if (loginAdmin == null) {
 	        model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 	        return "common/error-page";
 	    }
-	    String id = loginMember.getId();
+	    String id = loginAdmin.getId();
 	    boolean isAdmin = "admin".equals(id);
 
 	    if (!isAdmin) {
 	        model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 	        return "common/error-page";
 	    }
-	    return "faq-write";
+	    return "admin/faq-write";
 	}
 
 	//faq 작성하기 (관리자만)
 	@PostMapping("faq/write")
 	public String faqWrite(FaqVo fvo, HttpSession session) {
-	    MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
 	    String id = null;
-	    if (loginMember != null) {
-	        id = loginMember.getId();
+	    if (loginAdmin != null) {
+	        id = loginAdmin.getId();
 	    }
 	    if (!"admin".equalsIgnoreCase(id)) {
 	        session.setAttribute("alertMsg", "관리자만 FAQ 작성이 가능합니다.");
@@ -102,15 +110,27 @@ public class FaqController {
 	
 	//Faq상세조회
 	@GetMapping("faq/detail")
-	public String getFaq(String no, Model model) throws Exception {
+	public String getFaq(FaqVo vo, String num, Model model , HttpSession session) {
 		
-		FaqVo fvo = fs.getFaq(no);
 		
-		if(fvo != null) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		vo.setWriterNo(loginAdmin.getNo());
+		
+		FaqVo fvo = fs.getFaq(num);
+		
+		System.out.println(fvo);
+		
+		if(fvo == null) {
 			model.addAttribute("errorMsg" , "상세조회실패...");
 			return "common/error-page";
 		}
-		model.addAttribute("fvo" , fvo);
+	    String categoryName = fs.getCategoryName(fvo.getCategoryNo());
+		
+	    model.addAttribute("fvo" , fvo);
+		model.addAttribute("categoryName" , categoryName);
+		
+		System.out.println(fvo);
+		
 		return "admin/faq-detail";
 		
 		
@@ -120,11 +140,11 @@ public class FaqController {
 	//Faq수정하기 (관리자만)
 	@PostMapping ("faq/edit")
 	public String faqEdit(FaqVo fvo , Model model , HttpSession session) {
-		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
 		String id = null;
 		
-		if(loginMember != null) {
-			id = loginMember.getId();
+		if(loginAdmin != null) {
+			id = loginAdmin.getId();
 		}
 		
 		if(!"admin".equalsIgnoreCase(id)) {
@@ -152,11 +172,10 @@ public class FaqController {
 		if(result != 1) {
 			throw new Exception("FAQ 삭제 실패 ...");
 		}
-		
 		session.setAttribute("alertMsg", "삭제성공!!");
 		return "redirect:/admin/faq/list?page=1";
 	}
 		
-	
+
 	
 }

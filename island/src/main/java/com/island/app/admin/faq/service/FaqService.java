@@ -11,6 +11,12 @@ import com.island.app.admin.faq.dao.FaqDao;
 import com.island.app.admin.faq.vo.FaqVo;
 import com.island.app.common.page.PageVo;
 
+/**
+ * 
+ * @author 김수경
+ *
+ */
+
 @Service
 @Transactional
 public class FaqService {
@@ -33,10 +39,9 @@ public class FaqService {
 		return dao.faqWrite(sst, vo);
 	}
 	//상세조회
-	public FaqVo getFaq(String no) {
+	public FaqVo getFaq(String num) {
 		
-		
-		return dao.getFaq(sst, no);
+		return dao.getFaq(sst, num);
 	}
 	//수정하기
 	public int faqedit(FaqVo vo) {
@@ -47,15 +52,15 @@ public class FaqService {
 	public int faqdelete(String no) {
 		return  dao.faqdelete(sst , no);
 	}
-	//
 	
 	//게시글 갯수 조회 
 	public int getCnt() {
 		return dao.getCnt(sst);
 	}
+	public String getCategoryName(int categoryNo) {
+		return dao.getCategoryName(sst, categoryNo);
+	}
 	
 	
-
-
 
 }
