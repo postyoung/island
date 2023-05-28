@@ -12,6 +12,7 @@ import lombok.Data;
 @Data
 public class FileVo {
 	private String no;
+	private String seminarNo;
 	private String reviewNo;
 	private String originName;
 	private String changeName;

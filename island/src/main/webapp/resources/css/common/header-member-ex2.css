@@ -1,0 +1,64 @@
+.btn{
+  --background-color: #4232c6;
+  font-size: 1.4rem;
+  width: 92px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: system-ui,sans-serif;
+  border-radius: 6px;
+}
+#header-btn-login {
+  margin: 15px 5px 0px 30px;
+  padding : 7.5px 15px ;
+}
+
+#header-btn-signup{
+  padding : 7.5px 15px ;
+  margin: 15px 0px 0px;
+}
+
+#header-menu{
+  font-size: 18px;
+}
+.py-2 {
+  padding-top: 0.31rem!important;
+  padding-bottom: 0.31rem!important;
+}
+
+.px-3 {
+  padding-right: 0.63rem!important;
+  padding-left: 0.63rem!important;
+}
+
+#bel{
+  padding: 0px 20px;
+}
+.nav{
+  --bs-nav-link-padding-x: 1.25rem;
+  --bs-nav-link-padding-y: 0.31rem;
+}
+.nav-link{
+  color:black;
+}
+.my-4 {
+  margin-top: 0.5rem !important;
+}
+.pagination {
+  margin-left: 43%;
+}
+.paging-area{
+ margin-bottom: 5%;
+}
+#memberWelcomProfile {
+  width: 55px;
+  height: 55px;
+  border-radius: 100px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.profile-welcomeArea{
+  margin-top: 20px;
+}
+
+
