@@ -8,13 +8,13 @@
             NO
             ,NAME
             ,INTRO
-            ,TO_CHAR(ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE
+            ,ENROLL_DATE
         FROM
             SMALL_GROUP
         WHERE
             1=1
         <if test="enrollDate != null">
-            AND TO_CHAR(ENROLL_DATE, 'YYYYMMDD') = #{enrollDate}
+            AND ENROLL_DATE = #{enrollDate}
         </if>
         <if test="place != null">
             AND PLACE = #{place}
@@ -30,7 +30,7 @@
         WHERE
             1=1
         <if test="enrollDate != null">
-            AND TO_CHAR(ENROLL_DATE, 'YYYYMMDD') = #{enrollDate}
+            AND ENROLL_DATE = #{enrollDate}
         </if>
         <if test="place != null">
             AND PLACE = #{place}
@@ -59,7 +59,7 @@
             ,ENROLL_DATE
         ) VALUES (
             SMALL_GROUP_SEQ.NEXTVAL
-            ,${mNo}
+            ,#{mNo}
             ,#{cNo}
             ,#{lNo}
             ,#{name}
@@ -79,6 +79,19 @@
             ,#{enrollDate}
         )
     </insert>
+    <insert id="saveThumbnail">
+        INSERT INTO GROUP_PO (
+        NO
+        ,G_NO
+        ,ORIGIN_NAME
+        ,CHANGE_NAME
+        ) VALUES (
+        GROUP_PO_SEQ.NEXTVAL
+        ,SMALL_GROUP_SEQ.CURRVAL
+        ,#{originName}
+        ,#{changeName}
+        )
+    </insert>
     <update id="edit" parameterType="groupvo">
         update SMALL_GROUP
         set
@@ -90,7 +103,7 @@
         INTRO = #{intro},
         EXINTRO = #{exintro},
         WHERE
-            NO = #{no}
+        NO = #{no}
     </update>
     <select id="detail" resultType="groupVo">
         SELECT
@@ -134,6 +147,7 @@
         WHERE
             NO = #{no}
     </select>
+
 
 
 
