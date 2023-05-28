@@ -12,19 +12,4 @@
     });
 
 
-    //세미나 삭제버튼
-    function seminarDelete(){
-      if(confirm("세미나 컨텐츠를 정말 삭제하시겠습니까?")){
-        location.href="#";
-      }
-
-      
-    }
-    
-    
-    //댓글 삭제버튼
-    function replyDelete(){
-      if(confirm("작성하신 댓글을 삭제하시겠습니까?")){
-        location.href="${root}/";
-      }
-    }
+   

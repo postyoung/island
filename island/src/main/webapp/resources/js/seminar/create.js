@@ -15,5 +15,3 @@ function setThumbnail(event) {
 }
 
 
-//세미나 개설 폼 빈내용 체크하기
-

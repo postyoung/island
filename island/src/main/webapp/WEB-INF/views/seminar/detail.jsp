@@ -11,7 +11,9 @@
 	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 	
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  
 	<link rel="stylesheet" href="${root}/resources/css/seminar/detail.css">
 	<script defer src="${root}/resources/js/seminar/detail.js"></script>
 </head>
@@ -112,7 +114,9 @@
                 모집마감일 : ${svo.closeDay}  ${svo.closeTime} 까지
               </div>
               <span id="free-or-pay"><b>${svo.payYn}</b></span> ${svo.expense}원
-              <button type="button" class="btn btn-info" onclick="location.href='${root}/seminar/apply'">신청하기</button>
+              <c:if test="${loginMember.no != svo.writerNo}">
+                <button type="button" class="btn btn-info" onclick="location.href='${root}/seminar/apply/${svo.no}'">신청하기</button>
+              </c:if>
             </div>
           </div>
         </div>
@@ -191,36 +195,23 @@
 
       <!-- 문의 기대평댓글 -->
       <div class="comment-area" id="add-comment">
-        <div class="menu-title">문의/기대평 댓글 (0건)</div>
+        <div class="menu-title">문의/기대평 댓글 (<span id="replyCount-area"></span>건)</div>
         <div id="line-second"></div>
         <div id="reply-form">
-          <form action="#" method="post">
+          <form action="${root}/seminar/reply/write" method="post" onsubmit="return writeReply();">
             <img src="${root}/resources/img/member/profile/load/${svo.loginMemberProfile}" onerror= "this.onerror=null; this.src = 
         'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'"  id="member-photo"> 
-            <textarea class="form-control reply-textarea" id="exampleFormControlTextarea1" rows="3" placeholder="기대평이나 문의사항을 댓글에 남겨주세요. 부적절한 내용시 제재받을 수 있습니다." style="resize: none;"></textarea>
+            <input type="hidden" name="sNo" value="${svo.no}">
+            <textarea class="form-control reply-textarea" name= "content" id="exampleFormControlTextarea1" required rows="3" placeholder="기대평이나 문의사항을 댓글에 남겨주세요. 부적절한 내용시 제재받을 수 있습니다." style="resize: none;"></textarea>
             <input class="btn btn-outline-secondary" id="reply-write" type="submit" value="등록">
           </form>
           <div id="line-third"></div>
         </div>
+
+        <!-- 회원들이 작성한 댓글 영역  -->
         <div id="reply-form">
-            <img src="${root}/resources/img/seminar/upload/member-profile1.jpg" id="member-writed-photo"> 
-            <div id="reply-box">
-              <span><b>박정*</b></span>
-              <span id="reply-write-date">2023/04/12 13:40</span>
-              <span id="member-report">
-                <button id="siren-btn" data-bs-toggle="modal" data-bs-target="#memberReport">
-                  신고하기
-                </button>
-              </span>
-              <span id="edit-and-delete-area">
-                <a href="#" class="reply-btn">수정</a>|
-                <a class="reply-btn" onclick="replyDelete()">삭제</a>
-              </span>
-              <div id="writed-content">
-                세미나 참여 원하는데 참여 연령 조건이 따로 있을까요?
-              </div>
-            </div>  
-          <div id="line-third"></div>
+            
+
         </div>
 
         
@@ -248,8 +239,10 @@
       </div>
       <div id="btn-zone">
         <button type="button" class="btn btn-dark" onclick="location.href='${root}/seminar/list'">목록</button>
-        <button type="button" id="edit-btn" class="btn btn-light" onclick="location.href='${root}/seminar/edit'">수정</button>
+        <c:if test="${loginMember.no == svo.writerNo}">
+        <button type="button" id="edit-btn" class="btn btn-light" onclick="location.href='${root}/seminar/edit/${svo.no}'">수정</button>
         <button type="button" id="delete-btn" class="btn btn-danger" onclick="seminarDelete()">삭제</button>
+        </c:if>
       </div>
     </div>
 
@@ -324,31 +317,33 @@
 	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
 	          주의하시기 바랍니다.
 	        </div>
-	        <form action="" method="POST">
+	        <form action="${root}/seminar/member/report/${svo.no}" method="POST" onsubmit="return memberReportValid();">
 	          <div class="mb-3">
+              <input type="hidden" id="writer-no-input" name="mNo" value="">
+              <input type="hidden" id="reply-no-input" name="srNo" value="">
 	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
 	            <div id="category">
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName1">
-	              <label class="form-check-label" for="reCategoryName1">
+	              <input class="form-check-input" type="radio" name="cNo" value="1" id="meReCategoryName1">
+	              <label class="form-check-label" for="meReCategoryName1">
 	                욕설/비방/혐오 발언으로 다른회원에게 공격적인 언행
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName2">
-	              <label class="form-check-label" for="reCategoryName2">
+	              <input class="form-check-input" type="radio" name="cNo" value="2" id="meReCategoryName2">
+	              <label class="form-check-label" for="meReCategoryName2">
 	                광고, 홍보, 중복 등록 등 스팸/도배 행위 
 	              </label><br>
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName3">
-	              <label class="form-check-label" for="reCategoryName3">
-	                성적/폭력적인 내용으로 불법적인 행동
+	              <input class="form-check-input" type="radio" name="cNo" value="3" id="meReCategoryName3">
+	              <label class="form-check-label" for="meReCategoryName3">
+	                성적/폭력적인 내용으로 불법적인 언행
 	              </label><br> 
-	              <input class="form-check-input" type="radio" name="flexRadioDefault" id="reCategoryName4">
-	              <label class="form-check-label" for="reCategoryName4">
+	              <input class="form-check-input" type="radio" name="cNo" value="4" id="meReCategoryName4">
+	              <label class="form-check-label" for="meReCategoryName4">
 	                기타
 	            </div>
 	            </label>
 	          </div>
 	          <div class="mb-3">
 	            <label for="message-text" class="col-form-label">상세사유</label>
-	            <textarea class="form-control" id="message-text" style="resize: none;"></textarea>
+	            <textarea class="form-control" name="reportEx" id="member-report-message-text" style="resize: none;"></textarea>
 	          </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -376,17 +371,136 @@
 
 <script>
 
-//신고 상세사유 입력체크
+//세미나 신고 상세사유 입력체크
 const radioBtn = document.querySelector("#reCategoryName4");
 const detailEx = document.querySelector("#message-text");
 
-
 function validateForm(){
-	if(document.getElementById("reCategoryName4").checked && document.getElementById("message-text").value == ""){
+  var selectedValue = $('input[name="reCategoryNo"]:checked').val(); // 선택된 라디오 버튼의 값 가져오기
+
+  if (!selectedValue) {
+    alert('신고 사유를 선택해주세요.'); 
+    return false; 
+  }
+
+	if(radioBtn.checked && detailEx.value == ""){
 		alert("신고 상세사유를 입력해주세요.");
 		return false;
 	}
 }
 
-</script>
+//회원 신고 상세사유 입력체크
+const meReRadioBtn = document.querySelector("#meReCategoryName4");
+const meReportDtailEx = document.querySelector("#member-report-message-text");
+
+function memberReportValid(){
+  var selectedValue = $('input[name="cNo"]:checked').val(); // 선택된 라디오 버튼의 값 가져오기
+
+  if (!selectedValue) {
+    alert('신고 사유를 선택해주세요.'); 
+    return false;
+  }
+
+  if(meReRadioBtn.checked && meReportDtailEx.value ==""){
+    alert("신고 상세사유를 입력해주세요.")
+    return false;
+  }
+}
+
+
+
+//댓글 삭제하기
+function replyDelete(replyNo , replyWriter){
+  const loginMemberNo = '${loginMember.no}'; 
+  if(replyWriter == loginMemberNo){
+    const result = confirm("해당 댓글을 삭제하시겠습니까?");
+    if(result == true){
+      location.href='${root}/seminar/reply/delete?no='+replyNo+'&writerNo='+replyWriter+'&sNo=' +${svo.no};
+      //alert("해당 댓글이 삭제되었습니다");
+    }
+  }else if(typeof loginMemberNo == 'undefined' || loginMemberNo == null || loginMemberNo == "" || replyNo != loginMemberNo){
+    alert("작성자만 삭제가 가능합니다.");
+  }
+}
+
+
+//세미나 댓글 조회하기
+loadSeminarReply();
+
+function loadSeminarReply(){
+  const loginMemberNo = '${loginMember.no}';
+
+  $.ajax({
+    url : "${root}/seminar/reply/list",
+    type : "get",
+    data : {
+      'sNo' : '${svo.no}'
+    },
+    dataType: "json",
+    contentType:'application/json; charset=utf-8',
+  success: function(data) {
+    // 서버로부터 받은 JSON 데이터 처리
+    const replyCountArea = document.querySelector("#replyCount-area");
+    if(data == 0){
+      replyCountArea.innerText = 0;
+    }else{
+      replyCountArea.innerText = data[0].replyCount;
+    }
+
+    for (let replyVo of data) {
+      const replyTemplate = `
+        <div class="reply-box">
+          <img src="${root}/resources/img/member/profile/load/`+ replyVo.profile+ `" onerror= "this.onerror=null; this.src = 'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'"id="member-writed-photo">
+          <div id="reply-box">
+            <span><b> `+ replyVo.writerNick +` </b></span>
+            <span id="reply-write-date">`+ replyVo.enrollDate + `</span>
+            <span id="member-report">
+              <button id="siren-btn" data-bs-toggle="modal" data-bs-target="#memberReport" data-writer-no="`+ replyVo.writerNo+ `" data-reply-no="`+ replyVo.no+`">
+                신고하기
+              </button>
+            </span>
+            <span id="edit-and-delete-area">
+                <a class="reply-btn" onclick="replyDelete(`+ replyVo.no + `,`+replyVo.writerNo +`)">삭제</a>
+            </span>
+              <div id="writed-content">` + replyVo.content + `</div>
+          </div>
+          <div id="line-third"></div>
+        </div>
+      `;
+
+      $('#reply-form').append(replyTemplate);
+    }
+
+$('#memberReport').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // 클릭한 버튼 요소 가져오기
+  var writerNo = button.data('writer-no'); // 데이터 속성 값 추출
+  var replyNo = button.data('reply-no'); // 데이터 속성 값 추출
+  var modal = $(this);
+  modal.find('#writer-no-input').val(writerNo); // 모달 내용의 writerNo input 요소에 값 설정
+  modal.find('#reply-no-input').val(replyNo); // 모달 내용의 replyNo input 요소에 값 설정
+});
+
+  }
+  });
+}
+
+
+//댓글작성 시 로그인 되어있는지 확인
+function writeReply(){
+  const writerNo = '${loginMember.no}'
+  if(writerNo <=0){
+    alert("로그인 후 이용해주세요.");
+    return false;
+  }
+  return true;
+}
+
+
+//세미나 게시글 삭제
+function seminarDelete(){
+  if(confirm("해당 세미나를 삭제하시겠습니까?")){
+    location.href='${root}/seminar/delete/${svo.no}'
+  }
+}
+
 </script>

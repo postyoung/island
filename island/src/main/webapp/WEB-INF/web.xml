@@ -32,12 +32,12 @@
 	
 	<!-- 필터 -->
 	<filter>
-		<filter-name>myFilter</filter-name> <!-- 이름은 자유롭게 --><!-- dfp =new DelegatingFilterProxy(); -->
+		<filter-name>encFilter</filter-name> <!-- 이름은 자유롭게 --><!-- dfp =new DelegatingFilterProxy(); -->
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 	
 	<filter-mapping>
-		<filter-name>myFilter</filter-name>
+		<filter-name>encFilter</filter-name>
 		<url-pattern>/*</url-pattern> <!-- url 패턴중에 /* 이런 형식의 요청이 들어오면 myFilter 의 객체 적용-->
 	</filter-mapping>
 </web-app>

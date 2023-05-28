@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="com.island.app.member.vo.MemberVo" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,10 +81,13 @@
 	          </td>
 	        </tr>
 	      </table>
+	      
 	      <div id="btn-area">
-	        <button type="button" type="submit" class="btn btn-success" 
-	        onclick="location.href='${root}/community/seminarReview/edit?no=${srDetail.no}'">수정하기</button>
-	        <button type="button" type="button" class="btn btn-danger box" onclick="reviewDelete()">삭제</button>
+	      	<c:if test="${loginMember.no == srDetail.memberNo}">
+		        <button type="button" type="submit" class="btn btn-success" 
+		        onclick="location.href='${root}/community/seminarReview/edit?no=${srDetail.no}'">수정하기</button>
+		        <button type="button" type="button" class="btn btn-danger box" onclick="reviewDelete()">삭제</button>
+		    </c:if>
 	        <button type="button" class="btn btn-secondary box" onclick="location.href='${root}/community/seminarReview/list'">목록</button>
 	      </div>
 	  </div>

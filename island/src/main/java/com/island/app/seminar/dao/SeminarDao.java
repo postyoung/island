@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
+import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.reply.vo.SeminarReplyVo;
 import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
@@ -74,5 +76,50 @@ public class SeminarDao {
 	//세미나 신고하기
 	public int reportSeminar(SqlSessionTemplate sst, SeminarReportVo srvo) {
 		return sst.insert("seminar.reportSeminar", srvo);
+	}
+	
+	//세미나 댓글작성하기
+	public int writeSeminarReply(SqlSessionTemplate sst, SeminarReplyVo srvo) {
+		return sst.insert("seminar.writeReply", srvo);
+	}
+	
+	//세미나 댓글 조회하기
+	public List<SeminarReplyVo> getSeminarReplyList(SqlSessionTemplate sst, String sNo) {
+		return sst.selectList("seminar.getSeminarReplyList", sNo);
+	}
+	
+	//세미나 댓글 삭제하기
+	public int deleteSeminarReply(SqlSessionTemplate sst, SeminarReplyVo srvo) {
+		return sst.update("seminar.deleteSeminarReply", srvo);
+	}
+	
+	//해당 세미나 댓글 갯수조회
+	public int getReplyCnt(SqlSessionTemplate sst, String sNo) {
+		return sst.selectOne("seminar.getReplyCnt", sNo);
+	}
+	
+	//세미나 댓글 회원 신고
+	public int reportMember(SqlSessionTemplate sst, MemberReportVo mrvo) {
+		return sst.insert("seminar.reportMember", mrvo);
+	}
+	
+	//세미나 삭제하기
+	public int deleteSeminar(SqlSessionTemplate sst, String sNo) {
+		return sst.update("seminar.deleteSeminar", sNo);
+	}
+	
+	//세미나 수정 상세조회
+	public SeminarVo getSeminarDetailToEdit(SqlSessionTemplate sst, String sNo) {
+		return sst.selectOne("seminar.getSeminarDetailToEdit", sNo);
+	}
+	
+	//세미나 썸네일 경로 수정
+	public int seminarAttachModify(SqlSessionTemplate sst, FileVo fvo) {
+		return sst.update("seminar.seminarAttachModify", fvo);
+	}
+	
+	//세미나 수정하기
+	public int seminarModify(SqlSessionTemplate sst, SeminarVo svo) {
+		return sst.update("seminar.seminarModify", svo);
 	}
 }

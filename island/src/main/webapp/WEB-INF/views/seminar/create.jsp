@@ -8,7 +8,7 @@
 <title>ISLAND 세미나 개설 | ISLAND</title>
 
 	<!-- 헤더 -->
-	<%@ include file="/WEB-INF/views/common/header-member-textarea.jsp" %>
+	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
 	
 	<!-- include libraries(jQuery, bootstrap) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -43,12 +43,14 @@ function validateCloseDay() {
 
 function validCheck(){
   //세미나 상세내용 비어있는지 체크
-  var textareaValue = document.getElementById('summernote').value;
-    if (textareaValue.trim() === '') {
-      alert('세미나 상세내용을 작성해주세요.');
-      return false;
-    }
   
+//썸머노트 안에 내용 체크 
+const textareaValue = document.querySelector("#summernote");
+if(textareaValue.value == ""){
+  alert("세미나 상세내용을 작성해주세요.");
+  return false;
+}
+
   //세미나 장소 설정했는지 체크
   let place = document.querySelector("input[name=place]");
   if(place.value == ''){
@@ -63,10 +65,7 @@ function validCheck(){
     alert('세미나 일시를 오늘 날짜 이후로 선택해주세요.');
     return false; // 제출을 막음
   }
-
   return false;
-  
-  
 }
 
 
@@ -133,7 +132,7 @@ function validCheck(){
         <div class="detail-info-area">
           <div class="detail-title">상세내용</div><span class="essential">(필수)</span>
           	<div id="detail-info-box">
-	          	<textarea id="summernote" name="exintro" required></textarea>
+	          	<textarea id="summernote" name="exintro" ></textarea>
           	</div>
         </div>
 
@@ -358,7 +357,7 @@ function validCheck(){
         </div>
 
         <div id="btn-area">
-          <input class="btn btn-success" type="submit" value="개설하기" onclick="check();">
+          <input class="btn btn-success" type="submit" value="개설하기">
           <button class="btn btn-light" id="cancle-btn" type="button" onclick="history.back();">취소하기</button>
         </div>
 
@@ -430,4 +429,6 @@ function  seminarExintroImg(fileList){
   });
 
 }
+
+
 </script>

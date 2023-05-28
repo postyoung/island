@@ -35,5 +35,6 @@
 		<beans:property name="maxUploadSizePerFile" value="50000000"></beans:property>
 	</beans:bean>
 	
+	<beans:bean class="com.google.gson.Gson"></beans:bean>
 	
 </beans:beans>

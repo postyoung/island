@@ -122,7 +122,7 @@ table td{
 
 #heart-icon{
   display: inline-block;
-  margin-left: 190px;
+  margin-left: 215px;
 }
 
 .btn-info{
@@ -186,7 +186,8 @@ table td{
 .comment-area{
   margin-left: 20px;
   width: 1100;
-  height: 500px;
+  height: 100%;
+  margin-bottom: 120px;
 }
 
 .apply-guide-area{
@@ -272,7 +273,7 @@ table td{
 }
 
 #btn-zone{
-  width: 350px;
+  width: fit-content;
   height: 100px;
   margin: auto;
   padding : 10px 10px;

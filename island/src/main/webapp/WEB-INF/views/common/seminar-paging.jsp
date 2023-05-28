@@ -13,7 +13,7 @@
 <div class="paging-area">
 
   <nav aria-label="..." >
-    <ul class="pagination" >
+    <ul class="pagination" style="margin-left: 46%;" >
     
 	    <c:if test="${pv.currentPage > 1}">
 	      <li class="page-item">
@@ -22,7 +22,7 @@
 	    </c:if>
 			
 		<c:forEach begin="${pv.startPage}" end="${pv.endPage}" step="1" var="i">
-	      <li class="page-item">
+	      <li class="page-item ${pv.currentPage == i ? 'active' : ''}">
 	      	<a class="page-link" href="${root}/seminar/list?page=${i}&searchOption=${searchMap.searchOption}&searchValue=${searchMap.searchValue}">${i}</a>
 	      </li>
 		</c:forEach>	    
