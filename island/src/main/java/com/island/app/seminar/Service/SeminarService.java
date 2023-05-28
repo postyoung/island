@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
+import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.seminar.bank.vo.BankVo;
 import com.island.app.seminar.dao.SeminarDao;
+import com.island.app.seminar.reply.vo.SeminarReplyVo;
 import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
@@ -53,8 +55,8 @@ public class SeminarService {
 		return dao.getSeminarList(sst, pv, searchMap);
 	}
 
-	//세미나 상세조회
-	public SeminarVo getSeminarDetail(String no) throws Exception {
+	//세미나 상세조회 (+조회수 증가)
+	public SeminarVo getSeminarDetailAndHit(String no) throws Exception {
 		//세미나 조회수 증가
 		int result = dao.increaseSminarHit(sst, no);
 		if(result != 1) {
@@ -80,6 +82,59 @@ public class SeminarService {
 	//세미나 신고하기
 	public int reportSeminar(SeminarReportVo srvo) {
 		return dao.reportSeminar(sst, srvo);
+	}
+
+	//세미나 댓글작성하기
+	public int writeSeminarReply(SeminarReplyVo srvo) {
+		return dao.writeSeminarReply(sst, srvo);
+	}
+	
+	//세미나 댓글 조회하기
+	public List<SeminarReplyVo> getSeminarReplyList(String sNo) {
+		return dao.getSeminarReplyList(sst, sNo);
+	}
+	
+	//세미나 댓글 삭제하기
+	public int deleteSeminarReply(SeminarReplyVo srvo) {
+		return dao.deleteSeminarReply(sst, srvo);
+	}
+	
+	//해당 세미나 댓글 갯수조회
+	public int getReplyCnt(String sNo) {
+		return dao.getReplyCnt(sst, sNo);
+	}
+	
+	//세미나 댓글 회원 신고
+	public int reportMember(MemberReportVo mrvo) {
+		return dao.reportMember(sst, mrvo);
+	}
+	
+	//세미나 삭제하기
+	public int deleteSeminar(String sNo) {
+		return dao.deleteSeminar(sst, sNo);
+	}
+	
+	//세미나 수정 상세조회
+	public SeminarVo getSeminarDetailToEdit(String sNo) {
+		return dao.getSeminarDetailToEdit(sst, sNo);
+	}
+	
+	//세미나 수정하기 (+세미나 썸네일 사진 수정)
+	public int seminarModifyWithAttach(FileVo fvo, SeminarVo svo) {
+		int seminarResult = dao.seminarModify(sst, svo);
+		if(seminarResult != 1) {
+			new IllegalStateException("세미나 수정 실패");
+		}
+		return dao.seminarAttachModify(sst, fvo);
+	}
+	
+	//세미나 수정(내용만)
+	public int seminarModifyOnlyDetail(SeminarVo svo) {
+		return dao.seminarModify(sst, svo);
+	}
+
+	public SeminarVo getSeminarDetail(String sNo) {
+		return dao.getSeminarDetail(sst, sNo);
 	}
 	
 	

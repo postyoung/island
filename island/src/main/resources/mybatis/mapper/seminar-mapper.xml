@@ -203,5 +203,138 @@
  		)
  	</insert>
  	
+ 	<insert id="writeReply">
+ 		INSERT INTO SM_REPLY 
+ 		(
+ 			NO
+ 			,WRITER_NO
+ 			,S_NO
+ 			,CONTENT
+ 		) 
+ 		VALUES
+ 		(
+ 			SEQ_SM_REPLY_NO.NEXTVAL
+ 			,#{writerNo}
+ 			,#{sNo}
+ 			,#{content}
+ 		)
+ 	</insert>
  	
+ 	<select id="getSeminarReplyList" resultType="seminarReplyVo">
+ 		SELECT
+		    R.NO
+		    , S.NO AS S_NO
+		    , R.ENROLL_DATE
+		    , R.CONTENT
+		    , M.NO AS WRITER_NO
+		    , M.NICK AS WRITER_NICK
+		    , M.PROFILE
+		FROM SM_REPLY R
+		JOIN MEMBER M
+		ON (R.WRITER_NO = M.NO)
+		JOIN SEMINAR S
+		ON (R.S_NO =S.NO)
+		WHERE R.DEL_YN = 'N'
+		AND S.NO = #{sNo}
+		ORDER BY R.NO DESC
+ 	</select>
+ 	
+ 	<update id="deleteSeminarReply">
+ 		UPDATE SM_REPLY 
+		    SET 
+		DEL_YN = 'Y'
+		WHERE NO = #{no}
+		AND WRITER_NO = #{writerNo} 
+		AND S_NO = #{sNo}
+ 	</update>
+ 	
+ 	<select id="getReplyCnt" resultType="int">
+ 		SELECT 
+		    COUNT(NO) AS REPLY_COUNT
+		FROM SM_REPLY
+		WHERE DEL_YN = 'N'
+		AND S_NO = #{sNo}
+ 	</select>
+ 	
+ 	<insert id="reportMember">
+ 		INSERT INTO MEMBER_REPORT
+ 		(
+ 			NO
+ 			, M_NO
+ 			, C_NO
+ 			, SR_NO
+ 			, REPORT_EX
+ 		) 
+ 		VALUES
+ 		(
+ 			SEQ_MEMBER_REPORT_NO.NEXTVAL
+ 			, #{mNo}
+ 			, #{cNo}
+ 			, #{srNo}
+ 			, #{reportEx}
+ 		)
+ 	</insert>
+ 	
+ 	<update id="deleteSeminar">
+ 		UPDATE SEMINAR
+		    SET 
+		DEL_YN = 'Y'
+		WHERE NO = #{sNo}
+ 	</update>
+ 	
+ 	<select id="getSeminarDetailToEdit" resultType="seminarVo">
+ 	SELECT 
+	    S.NO
+	    , S.WRITER_NO
+	    , S.SEMINAR_THUMBNAIL
+	    , S.NAME
+	    , S.INTRO
+	    , S.EXINTRO
+	    , S.START_DAY
+	    , S.SEMINAR_TIME
+	    , S.PLACE
+	    , S.DETAIL_ADDRESS
+	    , S.MAX_CAPACITY
+	    , S.CLOSE_DAY
+	    , S.CLOSE_TIME
+	    , B.BANKNAME BANK_NAME
+	    , S.PAY_YN
+	    , S.ACOUNTNUM 
+	    , S.EXPENSE
+	    , M.NO
+	    , M.NICK AS WRITER_NICK
+	    , M.EMAIL
+	    , M.EMAIL2
+	    , M.PHONE
+	    , M.ATTACH  AS MEMBER_ATTACH
+	    , M.PROFILE
+	FROM SEMINAR S
+	JOIN MEMBER M
+	ON (S.WRITER_NO = M.NO)
+	JOIN BANK B
+    ON (B.NO = S.BANK_NO)
+	WHERE S.NO = #{sNo}
+ 	</select>
+ 	
+ 	<update id="seminarAttachModify">
+ 		UPDATE SEMINAR_ATTACH
+		    SET
+		ORIGIN_NAME = #{originName}
+		,CHANGE_NAME = #{changeName}
+		,MODIFY_DATE =SYSDATE
+		WHERE SEMINAR_NO = #{seminarNo}
+ 	</update>
+ 	
+ 	<update id="seminarModify">
+ 		UPDATE SEMINAR 
+		    SET
+		NAME = #{name}
+		,INTRO = #{intro}
+		,EXINTRO = #{exintro}
+		<if test="seminarThumbnail != null and seminarThumbnail != ''">
+		,SEMINAR_THUMBNAIL = #{seminarThumbnail}
+		</if>
+		,MODIFIED_DATE =SYSDATE
+		WHERE NO = #{no}
+ 	</update>
 </mapper>

@@ -30,26 +30,26 @@
     
       <div id="apply-info-area">
         
-          <img id="seminar-apply-photo" src="${root}/resources/img/seminar/upload/seminar1.png" alt="세미나사진">
+          <img id="seminar-apply-photo" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" alt="세미나사진">
         <table class="info-text">
           <tr>
             <td id="seminar-name">
-             [세미나] 나에게 딱 맞는 창업아이템 온라인 특강
+             [세미나] ${svo.name}
             </td>
           </tr>
           <tr>
             <td class="info">
-              세미나 장소 : 강남구 역삼동 테헤란로4길 남도빌딩
+              세미나 장소 : ${svo.place} ${detailAddress}
             </td>
           </tr>
           <tr>
             <td class="info">
-              일시 : 2023-05-01 (월) 14:00 ~ 16:30
+              일시 : ${svo.startDay}   |  시간 : ${svo.seminarTime}
             </td>
           </tr>
           <tr>
             <td class="info">
-              유료  |  비용 : 21,000 원
+              ${svo.payYn}  |  비용 : ${svo.expense}원
             </td>
           </tr>
         </table><br>
@@ -61,15 +61,15 @@
           <table class="table table-bordered" id="info-table" style="table-layout: fixed">
             <tr>
               <th class="table-light" width="10%">이름</th>
-              <td>서지현</td>
+              <td>${loginMember.name}</td>
               <th class="table-light"  width="15%">이메일</th>
-              <td>qkasdlkf@naver.com</td>
+              <td>${loginMember.email}@${loginMember.email2}</td>
             </tr>
             <tr>
               <th class="table-light">소속</th>
-              <td><input type="text" class="form-control" placeholder='' maxlength="18"></td>
+              <td>${loginMember.attach}</td>
               <th class="table-light">전화번호</th>
-              <td>010-1234-1234</td>
+              <td>${loginMember.phone}</td>
             </tr>
           </table>
         </div>
@@ -81,7 +81,7 @@
           <table class="table table-bordered" id="info-table" style="table-layout: fixed">
             <tr>
               <th class="table-light" width="13%">결제금액</th>
-              <td >21,000원</td>
+              <td > ${svo.expense}원</td>
             </tr>
             <tr>
               <th class="table-light">결제수단</th>
@@ -153,7 +153,7 @@
         </div>
 
         <div id="btn-area">
-          <button type="button" class="btn btn-primary">결제하기</button>
+          <button type="button" class="btn btn-primary">신청하기</button>
           <button type="button" class="btn btn-secondary" id="cancle" onclick="history.back();">취소하기</button>
         </div>
 

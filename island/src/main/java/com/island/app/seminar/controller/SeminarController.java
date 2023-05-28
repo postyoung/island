@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +26,11 @@ import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
+import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.member.vo.MemberVo;
 import com.island.app.seminar.Service.SeminarService;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.reply.vo.SeminarReplyVo;
 import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
 
@@ -39,10 +43,11 @@ import com.island.app.seminar.vo.SeminarVo;
 @RequestMapping("seminar")
 public class SeminarController {
 	private final SeminarService ss;	
-	
+	private final Gson gson;
 	@Autowired
-	public SeminarController(SeminarService ss) {
+	public SeminarController(SeminarService ss, Gson gson) {
 		this.ss = ss;
+		this.gson = gson;
 	}
 
 	//세미나 목록 조회(+페이징)
@@ -164,17 +169,18 @@ public class SeminarController {
 	
 	//세미나 상세 조회(화면)
 	@GetMapping("detail")
-	public String getSeminarDetail(String no, Model m, HttpSession session) throws Exception {
+	public String getSeminarDetailAndHit(String no, Model m, HttpSession session) throws Exception {
 		//세미나 상세조회 + 조회수 증가
-		SeminarVo svo = ss.getSeminarDetail(no);
+		SeminarVo svo = ss.getSeminarDetailAndHit(no);
 
 		//댓글 영역 로그인 유저 프로필 가져오기
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-		System.out.println(loginMember);
-		//svo.setLoginMemberProfile(loginMember.getProfileName());
+		if(loginMember !=null) {
+			svo.setLoginMemberProfile(loginMember.getProfileName());
+		}else {
+			svo.setLoginMemberProfile("noimage.jpg");
+		}
 		
-		
-		//List<SeminarReplyVo> srvo = ss.getSeminarReply(no);
 		if(svo == null) {
 			throw new Exception("세미나 상세조회 실패");
 		}
@@ -182,13 +188,69 @@ public class SeminarController {
 		return "seminar/detail";
 	}
 	
+	//ajax로 세미나 댓글 조회
+	@ResponseBody
+	@GetMapping("reply/list")
+	public String getSeminarReplyList(String sNo) {
+		//해당 세미나 댓글 갯수조회
+		int replyCount = ss.getReplyCnt(sNo);
+		
+		if(replyCount != 0) {
+			//해당 세미나 댓글 조회
+			List<SeminarReplyVo> srvoList = ss.getSeminarReplyList(sNo);
+			srvoList.get(0).setReplyCount(Integer.toString(replyCount));
+			String str =gson.toJson(srvoList); 
+			return str;
+		}
+		return "0";
+	}
+	
+	
+	
+	//세미나 댓글 등록
+	@PostMapping("reply/write")
+	public String writeSeminarReply(SeminarReplyVo srvo, HttpSession session) {
+		System.out.println(srvo);
+		//로그인 되어있는지 확인
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember == null ) {
+			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
+			return "redirect:/seminar/detail?no=" + srvo.getSNo();
+		}
+		srvo.setWriterNo(loginMember.getNo());
+		
+		int result = ss.writeSeminarReply(srvo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 댓글 작성 실패");
+		}
+		session.setAttribute("alertMsg", "댓글이 작성되었습니다!");
+		return "redirect:/seminar/detail?no=" + srvo.getSNo();
+	}
+	
+	//세미나 댓글 삭제
+	@GetMapping("reply/delete")
+	public String deleteSeminarReply(SeminarReplyVo srvo ,HttpSession session) {
+		//로그인 유저 가져오기 
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "작성자만 삭제 가능합니다.");
+			return "redirect:/seminar/detail?no=" + srvo.getSNo();
+		}
+		int result = ss.deleteSeminarReply(srvo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 댓글 삭제 실패");
+		}
+		session.setAttribute("alertMsg", "댓글이 삭제되었습니다.");
+		return "redirect:/seminar/detail?no=" + srvo.getSNo();
+	}
+	
+	
 	
 	//세미나 관심내역 추가
 		@GetMapping("interest")
 		public String addInterestSeminar(SeminarVo svo, HttpSession session , Model m) throws Exception {
 			//로그인 유저 가져오기 
 			MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
-			String writerNo = svo.getWriterNo(); //개설자 번호
 
 			//로그인 유저 있는지 없는지
 			if(loginMember == null) {
@@ -196,6 +258,7 @@ public class SeminarController {
 				return "redirect:/seminar/detail?no=" + svo.getNo();
 			}
 			
+			String writerNo = svo.getWriterNo(); //개설자 번호
 			String loginMemberNo = loginMember.getNo();
 			svo.setLoginMemberNo(loginMemberNo);
 
@@ -242,32 +305,125 @@ public class SeminarController {
 		if(result != 1) {
 			throw new Exception("세미나 신고 실패");
 		}
-		session.setAttribute("alertMsg", "신고가 접수되었습니다.");
+		session.setAttribute("alertMsg", "세미나 신고가 접수되었습니다.");
 		return "redirect:/seminar/detail?no=" + srvo.getSNo();
 	}
 		
+	
+	//세미나 댓글 회원 신고
+	@PostMapping("member/report/{sNo}")
+	public String reportMember(HttpSession session , MemberReportVo mrvo , @PathVariable String sNo) {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + sNo;
+		}
+		
+		int result = ss.reportMember(mrvo);
+		if(result != 1) {
+			throw new IllegalStateException("회원 신고 실패");
+		}
+		session.setAttribute("alertMsg", "회원 신고가 접수되었습니다.");
+		return "redirect:/seminar/detail?no=" + sNo;
+	}
 		
 		
 	//세미나 수정 페이지(화면)
-	@GetMapping("edit")
-	public String seminarEdit() {
+	@GetMapping("edit/{sNo}")
+	public String seminarModify(@PathVariable String sNo, HttpSession session, Model m) {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + sNo;
+		}
+		
+		SeminarVo svo = ss.getSeminarDetailToEdit(sNo);
+		if(svo == null) {
+			throw new IllegalStateException("세미나 상세조회 실패(수정페이지)");
+		}
+		m.addAttribute("svo", svo);
 		return "seminar/edit";
 	}
 	
+	//세미나 수정하기
+	@PostMapping("edit")
+	public String seminarModify(SeminarVo svo ,MultipartFile thumbnailFile, HttpSession session) {
+		int result = 0;
+		FileVo fvo = new FileVo();
+		if(!thumbnailFile.isEmpty()) {
+			String path = session.getServletContext().getRealPath("/resources/img/seminar/upload/");
+			String originName = thumbnailFile.getOriginalFilename();
+			String changeName = FileUploader.upload(thumbnailFile, path);
+			
+			
+			fvo.setOriginName(originName);
+			fvo.setChangeName(changeName);
+			svo.setSeminarThumbnail(changeName);
+			fvo.setSeminarNo(svo.getNo());
+			
+			result = ss.seminarModifyWithAttach(fvo, svo);
+			if(result != 1) {
+				throw new IllegalStateException("세미나 게시글 수정 실패");
+			}
+			session.setAttribute("alertMsg", "정상적으로 수정되었습니다.");
+			return "redirect:/seminar/detail?no=" + svo.getNo();
+		}
+		result = ss.seminarModifyOnlyDetail(svo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 게시글 수정 실패");
+		}
+		session.setAttribute("alertMsg", "정상적으로 수정되었습니다.");
+		return "redirect:/seminar/detail?no=" + svo.getNo();
+	}
 	
 	//세미나 신청하기(화면)
-	@GetMapping("apply")
-	public String seminarApply() {
+	@GetMapping("apply/{sNo}")
+	public String seminarApply(@PathVariable String sNo, HttpSession session, Model m ) {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + sNo;
+		}
+		
+		//신청 했는지 여부 체크
+		
+		//신청할 세미나 정보 조회
+		SeminarVo svo = ss.getSeminarDetail(sNo);
+		if(svo == null) {
+			throw new IllegalStateException("세미나 신청 중 정보 조회 실패");
+		}
+		m.addAttribute("svo", svo);
 		return "seminar/apply";
 	}
 	
 	
 	
 	//세미나 삭제하기
-	@GetMapping("delete")
-	public String deleteSeminar(String no) {
+	@GetMapping("delete/{sNo}")
+	public String deleteSeminar(@PathVariable String sNo, HttpSession session) {
+		//로그인 한 유저만 신고 가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + sNo;
+		}
 		
+		int result = ss.deleteSeminar(sNo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 게시글 삭제 실패");
+		}
+		session.setAttribute("alertMsg", "해당 세미나가 삭제되었습니다.");
 		return "redirect:/seminar/list";
 	}
 	
