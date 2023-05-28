@@ -5,15 +5,18 @@
 <mapper namespace="adminfaq">
     <select id="getFaqList" resultType="faqVo">
         SELECT 
-            F.NO,
-            C.NAME AS CATEGORYNAME,
-            F.TITLE,
-            F.CONTENT,
-            F.ENROLL_DATE,
-            A.NAME AS WRITERNAME
-        FROM FAQ F
-        JOIN FAQ_CATEGORY C ON (F.CATEGORY_NO = C.NO)
-        JOIN ADMIN A ON (F.WRITER_NO = A.NO)
+		    F.NO
+		    , F.TITLE
+		    , F.CONTENT
+		    , F.ENROLL_DATE
+		    , F.DEL_YN
+		    , C.NAME AS CATEGORY_NAME
+		    , A.NAME AS WRITER_NAME
+		FROM FAQ F
+		JOIN ADMIN A ON F.WRITER_NO = A.NO
+		JOIN FAQ_CATEGORY C ON F.CATEGORY_NO = C.NO
+		WHERE F.DEL_YN = 'N'
+		ORDER BY F.NO DESC
         
     </select>
     
@@ -23,32 +26,36 @@
 			    NO
 			    ,TITLE
 			    ,CONTENT
-			    ,WRITER_NO
-			    ,CATEGORY_NO
+			    ,WRITER_NAME
+			    ,CATEGORY_NAME
+			    , ENROLL_DATE
 			)
 			VALUES
 			(
 			    SEQ_FAQ_NO.NEXTVAL
-			    ,#{title}
-			    ,#{content}
-			    ,#{writeNo}
-			    ,#{categoryNo}
-			
+			    , #{title}
+			    , #{content}
+			    , #{writeName}
+			    , #{categoryName}
+			    , SYDATE
 			)
     </insert>
     
    
-    <select id="getFaq" resultType="faqVo">
+    <select id="getFaq" resultType="FaqVo">
         SELECT 
-		    NO
-		    ,TITLE
-		    ,CONTENT
-		    ,CATEGORY_NO
-		    ,ENROLL_DATE
-		    
-		FROM FAQ
-		WHERE NO = #{no}
-		
+		    F.NO,
+		    F.TITLE,
+		    F.CONTENT,
+		    F.ENROLL_DATE,
+		    F.DEL_YN,
+		    C.NAME AS CATEGORY_NAME,
+		    A.NAME AS WRITER_NAME,
+		    F.WRITER_NO
+		FROM FAQ F
+		JOIN ADMIN A ON F.WRITER_NO = A.NO
+		JOIN FAQ_CATEGORY C ON F.CATEGORY_NO = C.NO
+		WHERE F.NO = #{num}
     </select>
     
     <update id="faqedit">
@@ -58,15 +65,16 @@
 	            CONTENT = #{content},
 	            DEL_YN = #{delYn}
         WHERE NO = #{no}
-        AND WRITE_NO = #{writerNo}
+        AND WRITER_NO = #{writerNo}
     </update>
 
     <delete id="faqdelete">
         UPDATE FAQ
         	SET
-	        	TITLE = #{title},
-	            CONTENT = #{content},
-	            DEL_YN = #{delYn}
+	        	TITLE = #{title}
+	            , CONTENT = #{content}
+	            , MODIFY_DATE = SYSDATE
+	            , DEL_YN = 'Y'
         WHERE NO = #{no}
         AND WRITE_NO = #{writerNo}
        
@@ -86,5 +94,14 @@
 			AND F.CATEGORY_NO = #{searchValue}
 		</if>
 	</select>
+	
+	<select id="getcategoryNo" resultType="int">
+	    SELECT NAME
+	    FROM FAQ_CATEGORY
+	    WHERE NO = #{categoryNo}
+	</select>
+
+	
+	
 	
 </mapper>

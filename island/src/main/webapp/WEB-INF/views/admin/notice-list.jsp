@@ -33,7 +33,10 @@ main table>tbody>tr:hover {
 			<div id="wrap">
 				<main>
 						<div class="container">
-							<h2>공지사항 리스트</h2>
+							<h2 style="margin-left: 40px; margin-top: 40px;" >공지사항 리스트</h2>
+							<hr>
+							<br> <br>
+							
 							<table class="table table-hover table-bordered"
 								style="text-align: center;">
 								<thead>

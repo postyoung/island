@@ -51,15 +51,7 @@ tbody > td {
 							<h2 style="margin-left: 40px; margin-top: 40px;">자주하는 질문 FAQ</h2>
 							<hr>
 							<br> <br>
-							 <c:if test="${loginMember.id != 'admin'}">
-								<div id="write-btn-area">
-									<button type="submit" class="btn btn-info btn-md"style="float: right; margin-right: 5px;">
-										<a href="${root}/faq/write"></a>등록</button>
-								</div>
-							</c:if>
 							
-							
-							<br> <br>
 							<table class="table table-hover table-bordered" style="text-align: center;">
 								<thead>
 									<tr class="info">
@@ -86,35 +78,19 @@ tbody > td {
 	
 								</tbody>
 							</table>
+							<c:if test="${loginMember.id != 'admin'}">
+								<div id="write-btn-area">
+									<button type="submit" class="btn btn-info btn-md"style="float: right; margin-right: 5px;">
+										<a href="${root}/admin/faq/write"></a>등록</button>
+								</div>
+							</c:if>
 							
 							<br>
 							<div id="page-area">
 							<!-- 페이징 -->
-							<%@ include file="/WEB-INF/views/common/paging.jsp" %>
+							<%@ include file="/WEB-INF/views/common/admin-faq-paging.jsp" %>
 							</div>
-							<!-- 페이징처리 -->
-							<br>
-	
-							<%-- <div id="page-area">
-								<c:if test="${pv.currentPage > 1}">
-									<a class="btn btn-primary btn-lg"
-										href="${root}/faq/list?page=${pv.currentPage-1}">이전</a>
-								</c:if>
-								<c:forEach begin="${pv.startPage}" end="${pv.endPage}" step="1"
-									var="i">
-									<c:if test="${pv.currentPage != i}">
-										<a class="btn btn-primary btn-lg"
-											href="${root}/faq/list?page=${i}">${i}</a>
-									</c:if>
-									<c:if test="${pv.currentPage == i}">
-										<a class="btn btn-secondary btn-lg">${i}</a>
-									</c:if>
-								</c:forEach>
-								<c:if test="${pv.currentPage < pv.maxPage}">
-									<a class="btn btn-primary btn-lg"
-										href="${root}/faq/list?page=${pv.currentPage+1}">다음</a>
-								</c:if>
-							</div> --%>
+							
 						</div>
 					</from>
 				</main>

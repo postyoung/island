@@ -2,17 +2,28 @@ package com.island.app.admin.faq.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.island.app.admin.faq.vo.FaqVo;
 import com.island.app.common.page.PageVo;
 
+/**
+ * 
+ * @author 김수경
+ *
+ */
+
 @Repository
 public class FaqDao {
 	public List<FaqVo> getFaqList(SqlSessionTemplate sst, PageVo pv){
 		
-		return sst.selectList("adminfaq.getFaqList" , pv);
+		int limit = pv.getBoardLimit();
+		int offset = (pv.getCurrentPage()-1) * limit;
+		RowBounds rb = new RowBounds(offset , limit);
+		
+		return sst.selectList("adminfaq.getFaqList" , null , rb);
 	}
 
 	public int faqWrite(SqlSessionTemplate sst, FaqVo vo) {
@@ -20,9 +31,9 @@ public class FaqDao {
 		return sst.insert("adminfaq.faqwrite" , vo);
 	}
 	
-	public FaqVo getFaq(SqlSessionTemplate sst ,String no) {
+	public FaqVo getFaq(SqlSessionTemplate sst ,String num) {
 
-		return sst.selectOne("adminfaq.getFaq" , no );
+		return sst.selectOne("adminfaq.getFaq" , num );
 	}
 
 	public int faqedit(SqlSessionTemplate sst, FaqVo vo) {
@@ -38,10 +49,12 @@ public class FaqDao {
 		return sst.selectOne("adminfaq.getCnt");
 	}
 
-	public int getFaqListCnt(SqlSessionTemplate sst) {
-		
-		return sst.selectOne("adminfaq.getFaqListCnt");
+	public String getCategoryName(SqlSessionTemplate sst , int categoryNo) {
+		return sst.selectOne("adminfaq.getcategoryNo" , categoryNo);
 	}
+	
+
+	
 
 	
 

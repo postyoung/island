@@ -1,6 +1,11 @@
 package com.island.app.admin.faq.vo;
 
 import lombok.Data;
+/**
+ * 
+ * @author 김수경
+ *
+ */
 
 @Data
 public class FaqVo {
@@ -11,6 +16,8 @@ public class FaqVo {
 	private String enrollDate;
 	private String delYn;
 	private String categoryName;
-	private String categoryNo;
+	private int categoryNo;
 	private String writerName;
+	private String writerNo;
+	private String loginAdmin; 
 }
