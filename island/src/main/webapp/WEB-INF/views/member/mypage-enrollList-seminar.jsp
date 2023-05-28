@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISLAND 신청내역|세미나 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
-    <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList.css">
+    <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList2.css">
 </head>
 <body>
     <div id="wrap">

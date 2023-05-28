@@ -97,13 +97,13 @@ public class MemberController {
 	@GetMapping("login")
 	public String login(Model model) {
 		
-		model.addAttribute("saved_id", ""); // 초기값 설정
 		return "member/login";
 	}
 	
 	@PostMapping("login")
 	public String login(MemberVo vo, HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model) {
-	    
+		
+		//model.addAttribute("saved_id", ""); // 초기값 설정
 		// 서비스
 	    MemberVo loginMember = ms.login(vo);
 	    if (loginMember == null) {

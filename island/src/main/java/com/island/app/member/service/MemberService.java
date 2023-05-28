@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.island.app.community.qna.vo.QnaVo;
 import com.island.app.member.dao.MemberDao;
+import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.vo.MemberVo;
+import com.island.app.seminar.vo.SeminarVo;
 /**
  * 
  * @author 김수진
@@ -107,6 +109,15 @@ public class MemberService {
 	//마이페이지 문의내역
 	public List<QnaVo> getWriteList(String no) {
 		return dao.getWriteList(sst,no);
+	}
+	
+	//마이페이지 관심내역
+	public List<SeminarVo> getInterestList(String no) {
+		return dao.getInterestList(sst,no);
+	}
+	//관심취소
+	public int interestEdit(String svono)  {
+		return dao.interestEdit(sst , svono);
 	}
 	
 }//class
