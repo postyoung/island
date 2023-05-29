@@ -172,7 +172,7 @@
  	</select>
  	
  	<delete id="interestEdit">
- 		DELETE FROM INTEREST WHERE NO = #{no}
+ 		DELETE FROM INTEREST WHERE S_NO = #{no}
  		
  	</delete>
  	
