@@ -70,7 +70,7 @@ public class MemberMypagelistController {
 		public String mypageLikeSeminardel(Model model, HttpSession session, MemberInterestVo vo) throws Exception {
 			
 			//데이터
-			String svono = vo.getNo();
+			String svono = vo.getSNo();
 			
 			//서비스
 			int result = ms.interestEdit(svono);

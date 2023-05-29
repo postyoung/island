@@ -10,6 +10,13 @@
 <%@include file="/WEB-INF/views/common/header-member.jsp"%>
 <link rel="stylesheet"
 	href="${root}/resources/css/member/mypageEnrollList.css">
+	<c:if test="${not empty alertMsg}">
+  	<script type="text/javascript">
+	  alert('${sessionScope.alertMsg}');
+  	</script>
+  </c:if>
+  
+  <c:remove var="alertMsg" scope="session"/>
 </head>
 <body>
 	<div id="wrap">
@@ -54,26 +61,26 @@
 										</thead>
 										<c:forEach items="${svoList}" var="svo">
 											<tbody style="margin-bottom: 200px;">
-												<form action="${root}/mypage/list/likeList/seminar" method="post">
 												<tr>
+													<td style="display: none;">${svo.no}</td>
 													<td><img class="group_info_img"
 														src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" onerror= "this.onerror=null; this.src = 
                                                 'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" ></td>
-												
 												<td>${svo.name}</td>
 												<td>${svo.expense}</td>
 												<td>${svo.place}</td>
 												<td>${svo.maxCapacity}</td>
 												<td>${svo.closeDay}</td>
 												<td>${svo.startDay} ${svo.seminarTime}</td>
-												<input type="hidden" name="no" value="${svo.no}">
-													<td><input type="submit"
-														class="btn btn-outline-primary" value="관심취소"></td>
-													</tr>
+												<form action="${root}/mypage/list/likeList/seminar" method="post">
+												<input type="hidden" name="sNo" value="${svo.no}">
+												<td><input type="submit"
+													class="btn btn-outline-primary" value="관심취소"></td>
+												</tr>
+											</tbody>
 												</form>
 												
 											</c:forEach>
-										</tbody>
 									</table>
 								
 															</div>
@@ -107,7 +114,6 @@
 <script>
 	//행 클릭했을 때 , 상세조회
 	const tbody = document.querySelector('table > tbody');
-	console.log(tbody);
 	tbody.addEventListener("click" , (event)=>{
 	const no = event.target.parentNode.children[0].innerText;
 	  location.href = '${root}/seminar/detail?no=' + no;

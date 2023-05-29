@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class MemberInterestVo {
 	private String no;
-	private String g_no;
-	private String s_no;
-	private String m_no;
+	private String gNo;
+	private String sNo;
+	private String mNo;
 }
