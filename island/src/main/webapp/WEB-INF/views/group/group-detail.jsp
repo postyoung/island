@@ -28,7 +28,7 @@
                     </div>
                     <div class="flex-grow-1 ms-3 py-2">
                         <h2 class="mb-0">모임제목</h2>
-                        <p class="mb-2 width">모임소개</p>
+                        <p class="mb-2 width" >모임소개</p>
                         <p class="mb-2 width">모임일시 : </p>
                         <p class="mb-2 width">모집인원 : 1명</p>
                         <p class="mb-2 width">모집마감일 : 2023</p>

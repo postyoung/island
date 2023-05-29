@@ -22,7 +22,7 @@
         <div class = "title">
             <h2>개설하기</h2>
         </div>
-        <form class="create" method="post">
+        <form class="create" method="post" enctype="multipart/form-data">
         <div class = "contact-me">
             <div class="left">
                 <div class="card">
@@ -42,8 +42,8 @@
                         <i class="fa-solid fa-phone-volume"></i>
                     </div>
                     <div class="info-text">
-                        <h3>담당자명</h3>
-                        <input type="text" placeholder="" name="text" class="input">
+                        <td>담당자</td>
+                        <td><input type="text" placeholder="" name="text" class="input" value="${loginMember.nick}"></td>
                     </div>
                 </div>
                 <div class="card">
@@ -51,8 +51,8 @@
                         <i class="fa-solid fa-phone-volume"></i>
                     </div>
                     <div class="info-text">
-                        <h3>전화번호</h3>
-                        <input type="text" placeholder="" name="text" class="input">
+                        <td>전화번호</td>
+                        <td><input type="text" placeholder="" name="text" class="input" value="${loginMember.phone}"></td>
                     </div>
                 </div>
                 <div class="card">
@@ -60,8 +60,8 @@
                         <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div class="info-text">
-                        <h3>이메일</h3>
-                        <input type="email" placeholder="" name="text" class="input">
+                        <td>이메일</td>
+                        <td><input type="email" placeholder="" name="text" class="input" value="${loginMember.email}"></td>
                     </div>
                 </div>
                 <div class="card">
@@ -69,8 +69,8 @@
                         <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div class="info-text">
-                        <h3>소속</h3>
-                        <input type="text" placeholder="" name="text" class="input">
+                        <td>소속</td>
+                        <td><input type="text" placeholder="" name="text" class="input" value="${loginMember.attach}"></td>
                     </div>
                 </div>
                 <div class="card">
@@ -78,22 +78,22 @@
                         <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div class="info-text">
-                        <h3>모집인원</h3>
-                        <input type="text" placeholder="" name="text" class="input">
+                        <td>모집인원</td>
+                        <td><input type="text" placeholder="" name="text" class="input" value="${create.peoplenum}"></td>
                     </div>
                 </div>
                 <div class="card">
                     <div class="dropdown">
-                        <h3>카테고리</h3>
+                        <td>카테고리</td>
                         <!-- Example single danger button -->
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 Action
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">취미</a></li>
+                                <li><a class="dropdown-item" href="#">교육</a></li>
+                                <li><a class="dropdown-item" href="#">문화</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Separated link</a></li>
                             </ul>
@@ -106,11 +106,11 @@
 
                     <div class = "form-group">
                         <label for="name">모임명</label>
-                        <input type="text" id="name">
+                        <input type="text" id="name" value="${create.name}">
                     </div>
                     <div class = "form-group">
                         <label for="name">간단한 모임 소개</label>
-                        <input type="text" id="text">
+                        <input type="text" id="text" value="${create.intro}">
                     </div>
                     <div class = "form-group">
                         <label for="msg">상세정보</label>
@@ -121,9 +121,9 @@
                             <div class="date-selector">
                                 <label for="msg">그룹정보</label>
                                 <label for="start-date">모임 시작일:</label>
-                                <input type="date" id="start-date" name="start-date">
+                                <input type="date" id="start-date" name="start-date" value="${create.starttime}">
                                 <label for="end-date">모임 종료일:</label>
-                                <input type="date" id="end-date" name="end-date">
+                                <input type="date" id="end-date" name="end-date" value="${create.finishtime}">
                                 <input type="text" id="pr" >
                             </div>
                             <input type="text" id="sample4_postcode" placeholder="우편번호">
