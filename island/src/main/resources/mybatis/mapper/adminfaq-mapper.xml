@@ -58,26 +58,24 @@
 		WHERE F.NO = #{num}
     </select>
     
-    <update id="faqedit">
-        UPDATE FAQ
-        	SET
-	        	TITLE = #{title},
-	            CONTENT = #{content},
-	            DEL_YN = #{delYn}
-        WHERE NO = #{no}
-        AND WRITER_NO = #{writerNo}
-    </update>
+    <update id="faqedit" parameterType="FaqVo">
+	  UPDATE FAQ
+		  SET
+		    TITLE = #{title},
+		    CONTENT = #{content},
+		    CATEGORY_NO = #{categoryNo},
+		    MODIFY_DATE = SYSDATE
+	  WHERE NO = #{no}
+</update>
+
+    
 
     <delete id="faqdelete">
         UPDATE FAQ
         	SET
-	        	TITLE = #{title}
-	            , CONTENT = #{content}
 	            , MODIFY_DATE = SYSDATE
 	            , DEL_YN = 'Y'
         WHERE NO = #{no}
-        AND WRITE_NO = #{writerNo}
-       
     </delete>
     
     <select id="getCnt" resultType="int">
@@ -95,7 +93,7 @@
 		</if>
 	</select>
 	
-	<select id="getcategoryNo" resultType="int">
+	<select id="getcategoryNo" resultType="String">
 	    SELECT NAME
 	    FROM FAQ_CATEGORY
 	    WHERE NO = #{categoryNo}

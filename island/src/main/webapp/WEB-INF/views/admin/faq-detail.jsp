@@ -101,7 +101,7 @@
 											</tr>
 											<tr>
 												<td>분류</td>
-												<td>${fvo.CategoryName}</td>
+												<td>${fvo.categoryName}</td>
 											</tr>
 											<tr>
 												<td>제목</td>

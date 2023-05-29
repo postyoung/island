@@ -38,19 +38,20 @@ public class FaqDao {
 
 	public int faqedit(SqlSessionTemplate sst, FaqVo vo) {
 		
-		return sst.update("adminfaq.edit" , vo);
+		return sst.update("adminfaq.faqedit" , vo);
 	}
 	
 	public int faqdelete(SqlSessionTemplate sst, String no) {
-		return sst.update("adminfaq.delete" , no);
+		return sst.update("adminfaq.faqdelete" , no);
 	}
 	//게시글 갯수 조회 
 	public int getCnt(SqlSessionTemplate sst) {
 		return sst.selectOne("adminfaq.getCnt");
 	}
 
-	public String getCategoryName(SqlSessionTemplate sst , int categoryNo) {
-		return sst.selectOne("adminfaq.getcategoryNo" , categoryNo);
+	
+	public String getcategoryName(SqlSessionTemplate sst, String categoryName) {
+		return sst.selectOne("adminfaq.getcategoryNo" , categoryName );
 	}
 	
 

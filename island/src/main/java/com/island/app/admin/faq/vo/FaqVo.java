@@ -9,15 +9,17 @@ import lombok.Data;
 
 @Data
 public class FaqVo {
-	
-	private String no;
-	private String title;
-	private String content;
-	private String enrollDate;
-	private String delYn;
-	private String categoryName;
-	private int categoryNo;
-	private String writerName;
-	private String writerNo;
-	private String loginAdmin; 
+    private String no;
+    private String title;
+    private String content;
+    private String enrollDate;
+    private String delYn;
+    private String categoryName;
+    private String categoryNo;
+    private String writerName;
+    private String writerNo;
+    private String loginAdmin;
+    
 }
+
+
