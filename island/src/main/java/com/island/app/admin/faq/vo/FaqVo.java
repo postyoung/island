@@ -19,6 +19,7 @@ public class FaqVo {
     private String writerName;
     private String writerNo;
     private String loginAdmin;
+    
 }
 
 

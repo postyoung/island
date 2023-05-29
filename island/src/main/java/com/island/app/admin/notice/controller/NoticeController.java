@@ -147,7 +147,6 @@ public class NoticeController {
 	public String noticeDelete(@RequestParam("num") String num) throws Exception {
 		
 		int result = ns.delete(num);
-		System.out.println(num);
 		
 		if(result != 1) {
 			throw new Exception("공지사항 삭제 실패...");

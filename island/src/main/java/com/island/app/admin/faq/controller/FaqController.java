@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -118,8 +119,6 @@ public class FaqController {
 		
 		FaqVo fvo = fs.getFaq(num);
 		
-		System.out.println(fvo);
-		
 		if(fvo == null) {
 			model.addAttribute("errorMsg" , "상세조회실패...");
 			return "common/error-page";
@@ -129,7 +128,6 @@ public class FaqController {
 	    model.addAttribute("fvo" , fvo);
 		model.addAttribute("categoryName" , categoryName);
 		
-		System.out.println(fvo);
 		
 		return "admin/faq-detail";
 		
@@ -140,6 +138,7 @@ public class FaqController {
 	//Faq수정하기 (관리자만)
 	@PostMapping ("faq/edit")
 	public String faqEdit(FaqVo fvo , Model model , HttpSession session) {
+		
 		AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
 		String id = null;
 		
@@ -160,7 +159,7 @@ public class FaqController {
 		}
 		
 		session.setAttribute("alertMsg", "수정성공!!");
-		return "redirect:/admin/faq/detail?num =" +fvo.getNo();
+		return "redirect:/admin/faq/detail?num=" + fvo.getNo();
 		
 	}
 	
