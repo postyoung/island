@@ -390,16 +390,14 @@ public class SeminarController {
 	public String applyCheckSeminar(SeminarVo svo) {
 		MemberApplyVo maVo = new MemberApplyVo();
 		maVo = ss.applyCheckSeminar(svo);
-		System.out.println(maVo);
 		
 		if(svo.getLoginMemberNo() == null || svo.getLoginMemberNo() == "" || maVo == null) {
 			return "0";
 		}
-		
-		
 		return "1";
-				
 	}
+	
+	
 	
 	//세미나 신청하기(화면)
 	@GetMapping("apply/{sNo}")
