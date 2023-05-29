@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.member.apply.vo.MemberApplyVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.member.vo.MemberVo;
@@ -382,10 +383,26 @@ public class SeminarController {
 		return "redirect:/seminar/detail?no=" + svo.getNo();
 	}
 	
+	
+	//ajax로 신청 했는지 여부 체크
+	@ResponseBody
+	@GetMapping("apply/check")
+	public String applyCheckSeminar(SeminarVo svo) {
+		MemberApplyVo maVo = new MemberApplyVo();
+		maVo = ss.applyCheckSeminar(svo);
+		
+		if(svo.getLoginMemberNo() == null || svo.getLoginMemberNo() == "" || maVo == null) {
+			return "0";
+		}
+		return "1";
+	}
+	
+	
+	
 	//세미나 신청하기(화면)
 	@GetMapping("apply/{sNo}")
 	public String seminarApply(@PathVariable String sNo, HttpSession session, Model m ) {
-		//로그인 한 유저만 신고 가능
+		//로그인 한 유저만 신청가능
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
 		//로그인 유저 있는지 없는지
@@ -393,9 +410,7 @@ public class SeminarController {
 			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
 			return "redirect:/seminar/detail?no=" + sNo;
 		}
-		
-		//신청 했는지 여부 체크
-		
+
 		//신청할 세미나 정보 조회
 		SeminarVo svo = ss.getSeminarDetail(sNo);
 		if(svo == null) {
@@ -403,6 +418,28 @@ public class SeminarController {
 		}
 		m.addAttribute("svo", svo);
 		return "seminar/apply";
+	}
+	
+	//세미나 신청하기
+	@PostMapping("apply/{sNo}")
+	public String seminarApply(@PathVariable String sNo ,HttpSession session, SeminarVo svo) {
+		System.out.println(svo);
+		//로그인 한 유저만 신청가능
+		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+		
+		//로그인 유저 있는지 없는지
+		if(loginMember == null) {
+			session.setAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+			return "redirect:/seminar/detail?no=" + sNo;
+		}
+		//서비스
+		svo.setNo(sNo);
+		int result = ss.seminarApply(svo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 신청 실패");
+		}
+		session.setAttribute("alertMsg", "신청이 완료되었습니다.");
+		return "redirect:/seminar/list";
 	}
 	
 	

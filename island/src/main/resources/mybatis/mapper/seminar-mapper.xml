@@ -337,4 +337,34 @@
 		,MODIFIED_DATE =SYSDATE
 		WHERE NO = #{no}
  	</update>
+ 	
+ 	<insert id="seminarApply">
+ 	INSERT INTO APPLY_LIST
+ 	(
+ 		NO
+ 		, M_NO
+ 		, AS_NO
+ 		, S_NO
+ 	) 
+ 	VALUES
+ 	(
+ 		SEQ_APPLY_LIST_NO.NEXTVAL
+ 		, #{loginMemberNo}
+ 		, 2
+ 		, #{no}
+ 	)
+ 	</insert>
+ 	
+ 	<select id="applyCheckSeminar" resultType="memberApplyVo">
+ 		SELECT 
+		    NO
+		    ,M_NO
+		    ,AS_NO
+		    ,S_NO
+		FROM APPLY_LIST
+		WHERE M_NO = #{loginMemberNo}
+		AND S_NO =#{no}
+ 	</select>
+ 	
+ 	
 </mapper>

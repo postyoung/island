@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.member.apply.vo.MemberApplyVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.seminar.bank.vo.BankVo;
@@ -121,5 +122,15 @@ public class SeminarDao {
 	//세미나 수정하기
 	public int seminarModify(SqlSessionTemplate sst, SeminarVo svo) {
 		return sst.update("seminar.seminarModify", svo);
+	}
+	
+	//세미나 신청하기
+	public int seminarApply(SqlSessionTemplate sst, SeminarVo svo) {
+		return sst.insert("seminar.seminarApply", svo);
+	}
+	
+	//세미나 신청 했는지 조회
+	public MemberApplyVo applyCheckSeminar(SqlSessionTemplate sst, SeminarVo svo) {
+		return sst.selectOne("seminar.applyCheckSeminar", svo);
 	}
 }
