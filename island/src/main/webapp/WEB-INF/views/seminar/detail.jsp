@@ -115,9 +115,9 @@
                 모집마감일 : ${svo.closeDay}  ${svo.closeTime} 까지
               </div>
               <span id="free-or-pay"><b>${svo.payYn}</b></span> <fmt:formatNumber value="${svo.expense}" pattern="#,### 원"/>
-              <c:if test="${loginMember.no != svo.writerNo}">
-                <button type="button" class="btn btn-info" onclick="location.href='${root}/seminar/apply/${svo.no}'">신청하기</button>
-              </c:if>
+              <span id="apply-state">
+                
+              </span>
             </div>
           </div>
         </div>
@@ -502,6 +502,41 @@ function seminarDelete(){
   if(confirm("해당 세미나를 삭제하시겠습니까?")){
     location.href='${root}/seminar/delete/${svo.no}'
   }
+}
+
+//세미나 이미 신청자인지 조회
+applyCheckSeminar();
+
+function applyCheckSeminar(){
+  const applyStatusArea = document.querySelector("#apply-state");
+  const loginMemberNo = '${loginMember.no}';
+  $.ajax({
+    url : '${root}/seminar/apply/check',
+    type : 'GET',
+    data : {
+      'loginMemberNo' : loginMemberNo,
+      'no' : '${svo.no}'
+    },
+    success : function (data){
+      console.log(data);
+      if(data == '0'){
+        applyStatusArea.innerHTML +='<c:if test="${loginMember.no != svo.writerNo}">'
+        applyStatusArea.innerHTML +=' <button type="button" class="btn btn-info" onclick="apllyBtn();">신청하기</button></c:if>'
+      }else{
+        applyStatusArea.innerHTML = "<span class='apply-state'>신청완료</span>"
+      }
+
+      }, 
+    error : function(error){
+      console.log(error.status);
+    }
+  });
+
+}
+
+//세미나 신청 이동
+function apllyBtn(){
+  location.href='${root}/seminar/apply/${svo.no}';
 }
 
 </script>

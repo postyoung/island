@@ -313,6 +313,14 @@ table td{
 	padding-left: 10px;
 }
 
+.apply-state{
+	margin-left : 350px;
+	color : #d82525;
+	font-size: 19px;
+    font-weight: 500;
+
+}
+
 /* 모달창 영역 */
 .caution{
   font-size: 13px;

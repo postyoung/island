@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.member.apply.vo.MemberApplyVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.seminar.bank.vo.BankVo;
@@ -141,6 +142,11 @@ public class SeminarService {
 	//세미나 신청하기
 	public int seminarApply(SeminarVo svo) {
 		return dao.seminarApply(sst, svo);
+	}
+	
+	//세미나 신청 했는지 조회
+	public MemberApplyVo applyCheckSeminar(SeminarVo svo) {
+		return dao.applyCheckSeminar(sst, svo);
 	}
 	
 	

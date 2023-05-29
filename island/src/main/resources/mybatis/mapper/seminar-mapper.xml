@@ -355,4 +355,16 @@
  	)
  	</insert>
  	
+ 	<select id="applyCheckSeminar" resultType="memberApplyVo">
+ 		SELECT 
+		    NO
+		    ,M_NO
+		    ,AS_NO
+		    ,S_NO
+		FROM APPLY_LIST
+		WHERE M_NO = #{loginMemberNo}
+		AND S_NO =#{no}
+ 	</select>
+ 	
+ 	
 </mapper>
