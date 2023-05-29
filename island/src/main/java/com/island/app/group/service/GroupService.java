@@ -43,5 +43,11 @@ public class GroupService {
         return dao.delete(sst ,groupVo);
     }
 
+//    public GroupVo getBorad(String no) throws Exception {
+//        int result = dao.hit(sst, no);
+//        if (result != 1) {
+//            throw new Exception();
+//        }
+//    }
 
 }

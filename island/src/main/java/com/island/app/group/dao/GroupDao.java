@@ -22,32 +22,36 @@ public class GroupDao {
     //게시글 목록
 
 
-    //게시글 등록
+    //게시글 작성
     public void create(SqlSessionTemplate sst, GroupVo groupVo) {
         sst.insert("group.create", groupVo);
     }
 
+    //이미지썸네일
     public void saveThumbnail(SqlSessionTemplate sst, FileVo fileVo) {
         sst.insert("group.saveThumbnail", fileVo);
     }
-
+    //리스트페이징
     public int getTotalCount(SqlSessionTemplate sst, GroupVo groupVo) {
         return sst.selectOne("group.total",groupVo);
     }
-
+    //상세페이지
     public GroupVo detail(SqlSessionTemplate sst, int no) {
         return sst.selectOne("group.detail", no);
     }
+    //수정하기
     public int edit(SqlSessionTemplate sst , GroupVo groupVo){
         return sst.update("group.edit" , groupVo);
     }
-
+    //신청하기
     public void join(SqlSessionTemplate sst , GroupVo groupVo){
         sst.insert("group.join" , groupVo);
     }
+    //조회수
     public int hit(SqlSessionTemplate sst , String no){
         return sst.update("group.hit" , no);
     }
+    //삭제하기
     public int delete(SqlSessionTemplate sst , GroupVo groupVo){
         return sst.update("group.delete" , groupVo);
     }

@@ -1,5 +1,6 @@
 package com.island.app.group.vo;
 
+import com.island.app.common.file.FileVo;
 import lombok.Data;
 
 @Data
@@ -23,6 +24,7 @@ public class GroupVo {
     private String blockYn; //블락여부
     private String enrollDate; //개설일자
     private String grClose; //모임 종료일시
+
 
 
 }
