@@ -355,6 +355,13 @@
  	)
  	</insert>
  	
+ 	<update id="addSeminarCurrentCapacity">
+ 		UPDATE SEMINAR
+		    SET CURRENT_CAPACITY = CURRENT_CAPACITY+1
+		WHERE NO = #{sno}
+ 	</update>
+ 	
+ 	
  	<select id="applyCheckSeminar" resultType="memberApplyVo">
  		SELECT 
 		    NO
@@ -366,5 +373,51 @@
 		AND S_NO =#{no}
  	</select>
  	
+ 	<insert id="payApplySeminar">
+ 		INSERT INTO PAY_LIST
+ 		(
+ 			NO
+ 			, S_NO
+ 			, M_NO
+ 			, PW_NO
+ 			, PS_NO
+ 		) 
+ 		VALUES
+ 		(
+ 			SEQ_PAY_LIST_NO.NEXTVAL 
+ 			, #{sNo}
+ 			, #{mNo}
+ 			, #{pwNo}
+ 			, 2
+ 		)
+ 	</insert>
+	
+	<select id="bestSeminarList" resultType="seminarVo">
+		SELECT 
+			ROWNUM , 
+     		NO,
+	        LIKE_COUNT,
+	        NAME,
+	        START_DAY,
+	        PLACE,
+	        DETAIL_ADDRESS,
+	        SEMINAR_THUMBNAIL
+			FROM (
+			    SELECT 
+			        NO,
+			        LIKE_COUNT,
+			        NAME,
+			        START_DAY,
+			        PLACE,
+			        DETAIL_ADDRESS,
+			        SEMINAR_THUMBNAIL
+			    FROM SEMINAR
+			    WHERE DEL_YN = 'N'
+			        AND BLOCK_YN = 'N'
+			        AND TO_DATE(START_DAY, 'YYYY-MM-DD') > CURRENT_DATE
+			    ORDER BY LIKE_COUNT DESC
+			)
+			<![CDATA[WHERE ROWNUM <= 6]]>
+	</select>
  	
 </mapper>

@@ -15,6 +15,15 @@
 	
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
+
+  <!--IMPORT -->
+  <!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<!-- 토스 -->
+<script src="https://js.tosspayments.com/v1/payment"></script>
 	
 </head>
 <body>
@@ -110,14 +119,14 @@
 		                  
 		                  <div style="margin-left: 10px;">간편결제</div>
 		                  <button type="button" class="btn btn-light" id="kakaopay">
-		                    <img src="${root}/resources/img/seminar/kakaopay.png" alt="카카오페이" width="80px" height="27px">
+		                    <img src="${root}/resources/img/seminar/kakaopay.png" onclick="kakaopay()" alt="카카오페이" width="80px" height="27px">
 		                  </button>
 		                  <button type="button" class="btn btn-light" id="naverpay">
 		                    <img src="${root}/resources/img/seminar/naverpay.png" alt="네이버페이" width="80px" height="27px">
 		                  </button>
 		                  </button>
 		                  <button type="button" class="btn btn-light" id="tosspay">
-		                    <img src="${root}/resources/img/seminar/tosspay.png" alt="토스페이" width="110px" height="55px" style="margin-top: -13px;">
+		                    <img src="${root}/resources/img/seminar/tosspay.png" id="payment-button" alt="토스페이" width="110px" height="55px" style="margin-top: -13px;">
 		                  </button>
 		                </div>
 		
@@ -163,7 +172,9 @@
           <input type="hidden" name="loginMemberNo" value="${loginMember.no}">
 
           <div id="btn-area">
-            <input type="submit" class="btn btn-primary" value="신청하기"/>
+            <c:if test="${svo.expense eq '0' || svo.expense le 0}">
+              <input type="submit" class="btn btn-primary" value="신청하기"/>
+            </c:if>
             <button type="button" class="btn btn-secondary" id="cancle" onclick="history.back();">취소하기</button>
           </div>
         </form>
@@ -175,8 +186,6 @@
 
     </div>
   </div>
-
-
 
 
 
@@ -197,5 +206,77 @@
     } 
     return true;
   }
+
+
+  function kakaopay(){
+  const result = false;
+
+    if (!checkBox2.checked || !checkBox3.checked) {
+      alert("필수 동의를 체크해주세요.");
+      return;
+    } 
+    
+        var IMP = window.IMP;
+        IMP.init('키값');
+        IMP.request_pay({      
+            pg : '키값',
+            pay_method : 'card',
+            merchant_uid : 'merchant_' + new Date().getTime(),   //주문번호
+            name : '[세미나]${svo.name}',                        //상품명
+            amount : '${svo.expense}',                          //가격
+            //customer_uid : buyer_name + new Date().getTime(),  //해당 파라미터값이 있어야 빌링 키 발급 시도
+            buyer_email : $('.sessionuserID').val(),             //구매자 이메일
+            buyer_name : '${loginMember.name}',                           //구매자 이름
+            buyer_tel : 'hp',                                    //전화번호
+            buyer_addr : 'addr',                                //주소
+            buyer_postcode : '123-456'                           //우편번호 
+         },function(data){
+            if(data.success){
+               var msg = "결제가 완료 되었습니다! 감사합니다.";               //아임포트 uid는 실제 결제 시 결제 고유번호를 서버와 비교해서 결제처리하는데 필요없긴함.
+                  
+                  $.ajax({
+                     type : 'GET',
+                     url : '${root}/seminar/apply/pay',
+                     data : {
+                      "sNo"  : '${svo.no}',
+                      "mNo"  : '${loginMember.no}',
+                      "pwNo" : '1'
+                    },
+                  });
+              }else{
+                 var msg = "결제 실패"
+                 msg += "에러 내용" + rsp.error_msg;
+              }
+            alert(msg);
+            document.location.href="${root}/seminar/list";
+         });
+
+    }
+
+
+    //토스
+    var clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq'
+      var tossPayments = TossPayments(clientKey)
+
+      var button = document.getElementById('payment-button') // 결제하기 버튼
+
+      button.addEventListener('click', function () {
+        const result = false;
+
+        if (!checkBox2.checked || !checkBox3.checked) {
+          alert("필수 동의를 체크해주세요.");
+          return;
+        }
+        tossPayments.requestPayment('카드', {
+          amount: '${svo.expense}',
+          orderId: 'RBcbHjKR-NmlxD-oMTdLO',
+          orderName:  '[세미나] ${svo.name}',
+          customerName: '${loginMember.name}',
+          successUrl: 'http://127.0.0.1:8888/app/seminar/apply/pay?sNo=${svo.no}&mNo=${loginMember.no}&pwNo=2',
+          failUrl: 'http://127.0.0.1:8888/app/seminar/list',
+        })
+      })
+  
+
   </script>	
     
