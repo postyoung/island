@@ -56,5 +56,11 @@ public class GroupDao {
         return sst.update("group.delete" , groupVo);
     }
 
+    public void manage(SqlSessionTemplate sst , GroupVo groupVo){
+        sst.insert("group.manage" , groupVo);
+    }
+
+
+
 
 }

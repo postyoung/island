@@ -147,6 +147,19 @@
         WHERE
             NO = #{no}
     </select>
+    <select id="manage" resultType="groupVo">
+        SELECT
+            M_NO,
+            ENROLL_DATE,
+            APPLYDATE,
+            STARTTIME,
+            PHONE,
+            NAME
+        FROM
+            SMALL_GROUP
+        WHERE
+            NO = #{no}
+    </select>
 
 
 
