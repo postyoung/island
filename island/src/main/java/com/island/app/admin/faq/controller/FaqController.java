@@ -165,13 +165,13 @@ public class FaqController {
 	
 	//Faq 삭제하기 (관리자만)
 	@GetMapping("faq/delete")
-	public String faqdelete(String no , HttpSession session) throws Exception {
-		int result = fs.faqdelete(no);
+	public String faqdelete(@RequestParam("num") String num) throws Exception {
+		int result = fs.faqdelete(num);
 		
 		if(result != 1) {
 			throw new Exception("FAQ 삭제 실패 ...");
 		}
-		session.setAttribute("alertMsg", "삭제성공!!");
+		
 		return "redirect:/admin/faq/list?page=1";
 	}
 		

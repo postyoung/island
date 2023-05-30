@@ -60,22 +60,19 @@
     
     <update id="faqedit" parameterType="FaqVo">
 	  UPDATE FAQ
-		  SET
-		    TITLE = #{title},
-		    CONTENT = #{content},
-		    CATEGORY_NO = #{categoryNo},
-		    MODIFY_DATE = SYSDATE
-	  WHERE NO = #{no}
-</update>
-
-    
+			SET
+				TITLE = COALESCE(#{title} , TITLE)
+				, CONTENT = COALESCE(#{content} , content)
+				, MODIFY_DATE = SYSDATE
+		WHERE NO = #{no}
+	</update>
 
     <delete id="faqdelete">
         UPDATE FAQ
         	SET
-	            , MODIFY_DATE = SYSDATE
+	            MODIFY_DATE = SYSDATE
 	            , DEL_YN = 'Y'
-        WHERE NO = #{no}
+        WHERE NO = #{num}
     </delete>
     
     <select id="getCnt" resultType="int">

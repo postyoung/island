@@ -84,7 +84,7 @@
 										<div id="faq-btn-area" style="text-align: right; margin-top: 10px;">
 											<button class="btn btn-md btn-warning" onclick="toggleActive();">수정</button>
 											<button class="btn btn-danger btn-md" style="margin-right: 5px;" onclick=" location.href='${root}/admin/faq/delete?num=${fvo.no}'" >삭제</button>
-											<button class="btn btn-info btn-md" style="margin-right: 5px;" onclick=" location.href='${root}/app/admin/faq/list'" >취소</button>
+											<button class="btn btn-info btn-md" style="margin-right: 5px;" onclick=" location.href='${root}/admin/faq/list'" >취소</button>
 										</div>
 								</c:if>
 							</div>
