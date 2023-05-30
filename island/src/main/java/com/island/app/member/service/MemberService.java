@@ -119,5 +119,21 @@ public class MemberService {
 	public int interestEdit(String svono)  {
 		return dao.interestEdit(sst , svono);
 	}
+	//마이페이지 신청내역
+	public List<SeminarVo> getEnrollList(String no) {
+		return dao.getEnrollList(sst, no);
+	}
+	//신청취소
+	public int enrollEdit(String svono) {
+		return dao.enrollEdit(sst, svono);
+	}
+	//신청내역에서 리뷰작성
+	public SeminarVo checkSeminarReview(String no) {
+		return dao.enrollReivew(sst, no);
+	}
+	//개설내역
+	public List<SeminarVo> getmadeListSeminar(String no) {
+		return dao.getmadeListSeminar(sst,no);
+	}
 	
 }//class
