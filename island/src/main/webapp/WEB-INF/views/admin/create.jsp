@@ -37,12 +37,9 @@
 									<div class="form-group">
 										<label for="InputId" class="mt-4"><h4>아이디</h4></label> <input
 											type="text" class="form-control" name="id" id="InputId"
-											placeholder="아이디를 입력해주세요">
-										<!-- 
-											 <input type="button"
+											placeholder="아이디를 입력해주세요"> <input type="button"
 											class="btn btn-primary mt-4" value="아이디 중복 확인"
 											onclick="checkDup();">
-											 -->
 									</div>
 									<div class="form-group">
 										<label for="inputPassword" class="mt-4"><h4>비밀번호</h4></label>
@@ -86,9 +83,9 @@
 	</div>
 </body>
 <script>
-//const checkAll = false;
+const checkAll = false;
 
-/* const inputName = document.querySelector('#inputName');
+const inputName = document.querySelector('#inputName');
 const checkName = /^[가-힣]+$/;
 
 inputName.addEventListener('input', () => {
@@ -98,11 +95,12 @@ inputName.addEventListener('input', () => {
   } else {
     nameInput.setCustomValidity('');
   }
-}); */
+});
 
 //아이디 중복 여부 확인
-/* function checkDup(){
-    const id = document.querySelector("input[name=id]").value;
+ function checkDup(){
+	// const checkId = "^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+	const id = document.querySelector("input[name=id]").value;
     $.ajax({
         url : '/app/admin/id-check',
         type : 'POST',
@@ -126,6 +124,7 @@ inputName.addEventListener('input', () => {
 
 // 비밀번호 일치해야 제출 가능하게
 function checkValidation(){
+	// const checkPwd = "^(?=.*[!@#$%^&*()\\-_=+\\[{\\]}\\\\|;:'\",<.>/?])(?!.*[ㄱ-ㅎㅏ-ㅣ가-힣])[A-Za-z!@#$%^&*()\\-_=+\\[{\\]}\\\\|;:'\",<.>/?]{8,}$";
     if(!isPwdOk()){
         alert("비밀번호가 일치하지 않습니다.");
         document.querySelector("main input[name=pwd]").focus();
@@ -153,6 +152,6 @@ idBox.addEventListener('change' , checkIdChange);
 
 function checkIdChange(){
 	checkAll = false;
-} */
+}
 </script>
 </html>
