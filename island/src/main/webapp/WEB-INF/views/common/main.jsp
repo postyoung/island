@@ -206,67 +206,35 @@
 <!-- 세미나  -->
 <div id="hero-slides" style="overflow: hidden;">
   <div id="header">
-    이번주 인기있는 세미나 TOP 7
-  <div id="menu" hidden>
-  <div id="hamburger" hidden>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
+    <b>인기있는 세미나 TOP 6</b>
+	  <div id="menu" hidden>
+		  <div id="hamburger" hidden>
+			  <div class="slice"></div>
+			  <div class="slice"></div>
+			  <div class="slice"></div>
+		  </div>
+	  </div>
   </div>
-  </div>
-  </div>
+  
   <div id="slides-cont">
   <div class="button" id="next"></div>
   <div class="button" id="prev"></div>
   <div id="slides">
-  <div class="slide" style="background-image: url(/img/세미나사진1.png);">
-  <div class="number">01</div>
-  <div class="body">
-  <div class="location">Shibuya, Japan</div>
-  <div class="headline">Photo by Benjamin Hung</div><a href="https://unsplash.com/photos/EYmhcdGuYmI" target="_blank">
-  <div class="link">View on Unsplash</div></a>
-  </div>
-  </div>
-  <div class="slide" style="background-image: url(/img/세미나사진2.png);">
-  <div class="number">02</div>
-  <div class="body">
-  <div class="location">Mong Kok, Hong Kong</div>
-  <div class="headline">Photo by Ryan Tang</div><a href="https://unsplash.com/photos/ANJHXftvvJ8" target="_blank">
-  <div class="link">View on Unsplash</div></a>
-  </div>
-  </div>
-  <div class="slide" style="background-image: url(/img/세미나사진3.png);">
-  <div class="number">03</div>
-  <div class="body">
-  <div class="location">Incheon, South Korea</div>
-  <div class="headline">Photo by Steve Roe</div><a href="https://unsplash.com/photos/73aocAAt7rs" target="_blank">
-  <div class="link">View on Unsplash</div></a>
-  </div>
-  </div>
-  <div class="slide" style="background-image: url(/img/세미나사진4.png);">
-  <div class="number">04</div>
-  <div class="body">
-  <div class="location">Wan Chai, Hong Kong</div>
-  <div class="headline">Photo by Sean Foley</div><a href="https://unsplash.com/photos/aPDCEoW7B78" target="_blank">
-  <div class="link">View on Unsplash</div></a>
-  </div>
-  </div>
-  <div class="slide" style="background-image: url(/img/세미나사진1.png);">
-  <div class="number">05</div>
-  <div class="body">
-  <div class="location">Shibuya-ku, Japan</div>
-  <div class="headline">Photo by Alex Knight</div><a href="https://unsplash.com/photos/Akz00I_GGjU" target="_blank">
-  <div class="link">View on Unsplash</div></a>
-  </div>
-  </div>
-  <div class="slide" style="background-image: url(https://alca.tv/static/u/31979576-5060-4513-aae2-b379b87e7fe6_opt.png);">
-  <div class="number">06</div>
-  <div class="body">
-  <div class="location">Tokyo, Japan</div>
-  <div class="headline">Photo by Benjamin Hung</div><a href="https://unsplash.com/photos/pTn26knnKVw" target="_blank">
-  <div class="link">View on Unsplash</div></a>
-  </div>
-  </div>
+  	<c:forEach items="${svoList}" var="svo" >
+  	
+	  <div class="slide" style="background-image: url(${root}/resources/img/seminar/upload/${svo.seminarThumbnail});">
+	  	<div class="number">${svo.rownum}</div>
+	  <div class="body">
+		 <%--  <div class="location">주소 : ${svo.place} ${svo.detailAddress}</div> --%>
+		  <div class="headline" >${svo.name}</div>
+		  <a href="${root}/seminar/detail?no=${svo.no}" target="_blank">
+		  	<div class="link">View</div>
+		  </a>
+	  </div>
+	  </div>
+	  
+  	</c:forEach>
+	
   
   </div>
   <div id="next-catch"></div>

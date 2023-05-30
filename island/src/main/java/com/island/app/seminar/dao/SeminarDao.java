@@ -13,6 +13,7 @@ import com.island.app.member.apply.vo.MemberApplyVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.pay.vo.SeminarPayVo;
 import com.island.app.seminar.reply.vo.SeminarReplyVo;
 import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
@@ -125,12 +126,27 @@ public class SeminarDao {
 	}
 	
 	//세미나 신청하기
-	public int seminarApply(SqlSessionTemplate sst, SeminarVo svo) {
+	public int applySeminar(SqlSessionTemplate sst, SeminarVo svo) {
 		return sst.insert("seminar.seminarApply", svo);
 	}
 	
 	//세미나 신청 했는지 조회
 	public MemberApplyVo applyCheckSeminar(SqlSessionTemplate sst, SeminarVo svo) {
 		return sst.selectOne("seminar.applyCheckSeminar", svo);
+	}
+	
+	//세미나 현재참가인원 +1
+	public int addSeminarCurrentCapacity(SqlSessionTemplate sst, String sno) {
+		return sst.update("seminar.addSeminarCurrentCapacity", sno);
+	}
+	
+	//세미나 결제하기
+	public int payApplySeminar(SqlSessionTemplate sst, SeminarPayVo spvo) {
+		return sst.insert("seminar.payApplySeminar", spvo);
+	}
+	
+	//메인화면 인기있는 세미나 조회
+	public List<SeminarVo> bestSeminarList(SqlSessionTemplate sst) {
+		return sst.selectList("seminar.bestSeminarList");
 	}
 }

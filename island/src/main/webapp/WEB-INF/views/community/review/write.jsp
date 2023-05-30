@@ -22,6 +22,7 @@
 	
 <link rel="stylesheet" href="${root}/resources/css/community/review/write.css">
 
+
 </head>
 <body>
 	
@@ -55,7 +56,7 @@
 	          <tr>
 	            <th class="text-center">평점</th>
 	            <td>
-	              <input type="radio" class="form-check-input" name="point" id="point0" value="★★★★★">
+	              <input type="radio" class="form-check-input" name="point" id="point0" value="★★★★★" checked>
 	              <label for="point0">★★★★★</label>
 	              <input type="radio" class="form-check-input bean" name="point" id="point1" value="★★★★">
 	              <label for="point1">★★★★</label>
@@ -158,6 +159,12 @@ $('#summernote').summernote({
 	
 	//리뷰썸네일 사진 첨부파일 유무 검사
 	function validateForm() {
+			//썸머노트 안에 내용 체크 
+			const textareaValue = document.querySelector("#summernote");
+			if(textareaValue.value == ""){
+			  alert("세미나 상세내용을 작성해주세요.");
+			  return false;
+			}
 			const fileInput = document.querySelector('#testFile');
 			if (fileInput.value === '') {
 				alert('리뷰 썸네일 파일을 선택해주세요.');

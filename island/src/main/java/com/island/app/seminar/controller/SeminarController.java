@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +31,7 @@ import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.member.vo.MemberVo;
 import com.island.app.seminar.Service.SeminarService;
 import com.island.app.seminar.bank.vo.BankVo;
+import com.island.app.seminar.pay.vo.SeminarPayVo;
 import com.island.app.seminar.reply.vo.SeminarReplyVo;
 import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
@@ -211,7 +212,6 @@ public class SeminarController {
 	//세미나 댓글 등록
 	@PostMapping("reply/write")
 	public String writeSeminarReply(SeminarReplyVo srvo, HttpSession session) {
-		System.out.println(srvo);
 		//로그인 되어있는지 확인
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		if(loginMember == null ) {
@@ -401,7 +401,7 @@ public class SeminarController {
 	
 	//세미나 신청하기(화면)
 	@GetMapping("apply/{sNo}")
-	public String seminarApply(@PathVariable String sNo, HttpSession session, Model m ) {
+	public String applySeminar(@PathVariable String sNo, HttpSession session, Model m ) {
 		//로그인 한 유저만 신청가능
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
@@ -422,8 +422,7 @@ public class SeminarController {
 	
 	//세미나 신청하기
 	@PostMapping("apply/{sNo}")
-	public String seminarApply(@PathVariable String sNo ,HttpSession session, SeminarVo svo) {
-		System.out.println(svo);
+	public String applySeminar(@PathVariable String sNo ,HttpSession session, SeminarVo svo) {
 		//로그인 한 유저만 신청가능
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		
@@ -434,11 +433,24 @@ public class SeminarController {
 		}
 		//서비스
 		svo.setNo(sNo);
-		int result = ss.seminarApply(svo);
+		int result = ss.applySeminar(svo);
 		if(result != 1) {
 			throw new IllegalStateException("세미나 신청 실패");
 		}
 		session.setAttribute("alertMsg", "신청이 완료되었습니다.");
+		return "redirect:/seminar/list";
+	}
+	
+	//세미나 결제 (+현재참가인원 업뎃 , 참가내역 insert)
+	@GetMapping("apply/pay")
+	public String payApplySeminar(SeminarPayVo spvo, SeminarVo svo, HttpSession session) {
+		svo.setLoginMemberNo(spvo.getMNo());
+		svo.setNo(spvo.getSNo());
+		int result = ss.payApplySeminar(spvo, svo);
+		if(result != 1) {
+			throw new IllegalStateException("세미나 결제 실패");
+		}
+		session.setAttribute("alertMsg", "결제가 완료되었습니다! 감사합니다.");
 		return "redirect:/seminar/list";
 	}
 	

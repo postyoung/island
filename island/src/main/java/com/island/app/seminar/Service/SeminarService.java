@@ -15,6 +15,7 @@ import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.report.vo.MemberReportVo;
 import com.island.app.seminar.bank.vo.BankVo;
 import com.island.app.seminar.dao.SeminarDao;
+import com.island.app.seminar.pay.vo.SeminarPayVo;
 import com.island.app.seminar.reply.vo.SeminarReplyVo;
 import com.island.app.seminar.report.vo.SeminarReportVo;
 import com.island.app.seminar.vo.SeminarVo;
@@ -139,14 +140,33 @@ public class SeminarService {
 		return dao.getSeminarDetail(sst, sNo);
 	}
 	
-	//세미나 신청하기
-	public int seminarApply(SeminarVo svo) {
-		return dao.seminarApply(sst, svo);
+	//세미나 신청하기 (+ 현재 참가인원 추가)
+	public int applySeminar(SeminarVo svo) {
+		int result = dao.addSeminarCurrentCapacity(sst, svo.getNo());
+		if(result != 1) {
+			throw new IllegalStateException("현재 참가인원 추가 실패");
+		}
+		return dao.applySeminar(sst, svo);
 	}
 	
 	//세미나 신청 했는지 조회
 	public MemberApplyVo applyCheckSeminar(SeminarVo svo) {
 		return dao.applyCheckSeminar(sst, svo);
+	}
+	
+	//세미나 결제 (+현재참가인원 업뎃 , 참가내역 insert)
+	public int payApplySeminar(SeminarPayVo spvo, SeminarVo svo) {
+		int capacityResult = dao.addSeminarCurrentCapacity(sst, spvo.getSNo());
+		int applyResult = dao.applySeminar(sst, svo);
+		if(capacityResult != 1 && applyResult != 1) {
+			throw new IllegalStateException("현재 참가인원 업데이트 및 신청 실패");
+		}
+		return dao.payApplySeminar(sst, spvo);
+	}
+	
+	//메인화면 인기있는 세미나 조회
+	public List<SeminarVo> bestSeminarList() {
+		return dao.bestSeminarList(sst);
 	}
 	
 	
