@@ -99,7 +99,7 @@ a{
 }
 
 
-/* ¸Þ´º¹Ùcss */
+/* ï¿½Þ´ï¿½ï¿½ï¿½css */
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -503,9 +503,9 @@ img, video, svg {
 .mf1-position-relative {
   position: relative;
 }
-/* ¸Þ´º¹Ùcss */
+/* ï¿½Þ´ï¿½ï¿½ï¿½css */
 
-/* ÇªÅÍ css */
+/* Çªï¿½ï¿½ css */
 /* variables */
 :root {
     /* colors */
@@ -755,9 +755,9 @@ img, video, svg {
     }
   }
   
-/* ÇªÅÍ css */
+/* Çªï¿½ï¿½ css */
 
-/* ¼Ò°³±Û  */
+/* ï¿½Ò°ï¿½ï¿½ï¿½  */
 .text_box{
   margin-top: 300px;
   display: flex;
@@ -779,7 +779,7 @@ img, video, svg {
 }
 
 
-/* ¼Ò¸ðÀÓ */
+/* ï¿½Ò¸ï¿½ï¿½ï¿½ */
 
 @import url("https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap");
 :root {
@@ -870,16 +870,16 @@ img, video, svg {
   transition: transform calc(var(--d) * 2) var(--e), -webkit-transform calc(var(--d) * 2) var(--e);
 }
 .card:nth-child(1):before {
-  background-image: url(/img/¼Ò¸ðÀÓ»çÁø1.png);
+  background-image: url(/img/ï¿½Ò¸ï¿½ï¿½Ó»ï¿½ï¿½ï¿½1.png);
 }
 .card:nth-child(2):before {
-  background-image: url(/img/¼Ò¸ðÀÓ»çÁø2.png);
+  background-image: url(/img/ï¿½Ò¸ï¿½ï¿½Ó»ï¿½ï¿½ï¿½2.png);
 }
 .card:nth-child(3):before {
-  background-image: url(/img/¼Ò¸ðÀÓ»çÁø3.png);
+  background-image: url(/img/ï¿½Ò¸ï¿½ï¿½Ó»ï¿½ï¿½ï¿½3.png);
 }
 .card:nth-child(4):before {
-  background-image: url(/img/¼Ò¸ðÀÓ»çÁø4.png);
+  background-image: url(/img/ï¿½Ò¸ï¿½ï¿½Ó»ï¿½ï¿½ï¿½4.png);
 }
 
 .content {
@@ -994,7 +994,7 @@ img, video, svg {
 }
 
 
-/* ¸®ºä, °øÁö»çÇ× faq */
+/* ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ faq */
 .tabs {
   margin: auto;
   /* position:absolute; */
@@ -1059,7 +1059,7 @@ img, video, svg {
   transform:scale(1);
 }
 
-/* ¼¼¹Ì³ª */
+/* ï¿½ï¿½ï¿½Ì³ï¿½ */
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,400,900,800i");
 
 
@@ -1072,9 +1072,13 @@ img, video, svg {
 #hero-slides #header {
   height: 12vh;
   line-height: 12vh;
-  padding: 0 3vw;
+  padding: 0 12vw;
   position: relative;
 }
+ #header {
+ 	font-size: 35px;
+ }
+ 
 #hero-slides #header #logo {
   font-size: 2.5vh;
   font-style: italic;
@@ -1287,7 +1291,7 @@ img, video, svg {
   transition-delay: 60ms;
 }
 #hero-slides #slides .slide .headline {
-  font-size: 2.667em;
+  font-size: 1.5em;
   font-weight: 900;
   transition-delay: 50ms;
 }
@@ -1405,5 +1409,9 @@ img, video, svg {
   #hero-slides #slides .slide {
     font-size: 0.75vw;
   }
+}
+
+.headline{
+	padding-bottom: 25px;
 }
 
