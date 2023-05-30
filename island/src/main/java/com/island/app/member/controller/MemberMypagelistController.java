@@ -3,6 +3,7 @@ package com.island.app.member.controller;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.island.app.community.qna.vo.QnaVo;
+import com.island.app.member.apply.vo.MemberApplyVo;
 import com.island.app.member.interest.vo.MemberInterestVo;
 import com.island.app.member.service.MemberService;
 import com.island.app.member.vo.MemberVo;
@@ -41,9 +43,57 @@ public class MemberMypagelistController {
 		}
 		//마이페이지 신청내역리스트 세미나
 		@GetMapping("enrollList/seminar")
-		public String mypageEnrollSeminarList() {
+		public String mypageEnrollSeminarList(HttpSession session, Model model) {
+			
+			//데이터
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			String no = loginMember.getNo();
+			
+			//서비스
+			List<SeminarVo> svoList = ms.getEnrollList(no);
+			
+			//화면
+			model.addAttribute("svoList",svoList);
+			
 			return "member/mypage-enrollList-seminar";
 		}
+		//신청취소
+		@PostMapping("enrollList/seminar")
+		public String mypageEnrollSeminarListdel(Model model, HttpSession session, MemberApplyVo vo) throws Exception {
+			
+			//데이터
+			String svono = vo.getSNo();
+			
+			//서비스
+			int result = ms.enrollEdit(svono);
+			
+			//화면
+			if(result != 1) {
+				model.addAttribute("errorMsg" , "신청취소 삭제실패");
+				return "common/error-page";
+			}
+			
+			session.setAttribute("alertMsg", "신청취소 되었습니다.");
+			return "redirect:/mypage/list/enrollList/seminar";
+		}
+		//신청내역에서 리뷰작성
+		@GetMapping("enrollList/seminarReview/write")
+		public String mypageEnrollSeminarListwriteReview(Model model, String no,HttpSession session) {
+		   
+			//데이터
+			
+			//서비스
+		    SeminarVo result = ms.checkSeminarReview(no);
+		    
+		    if (result != null) {
+		        return "redirect:/community/seminarReview/write?no="+no;
+		    } else {
+		    	session.setAttribute("alertMsg" , "리뷰를 작성할 수 없습니다.");
+		        return "redirect:/mypage/list/enrollList/seminar";
+		    }
+		}
+
+		
 		//마이페이지 관심내역리스트 소모임
 		@GetMapping("likeList/group")
 		public String mypageLikeGroupList() {
@@ -92,7 +142,17 @@ public class MemberMypagelistController {
 		}
 		//마이페이지 개설내역리스트 세미나
 		@GetMapping("madeList/seminar")
-		public String mypageMadeSeminarList() {
+		public String mypageMadeSeminarList(HttpSession session, Model model) {
+			//데이터
+			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			String no = loginMember.getNo();
+			
+			//서비스
+			List<SeminarVo> svoList = ms.getmadeListSeminar(no);
+			
+			//화면
+			model.addAttribute("svoList",svoList);
+			
 			return "member/mypage-made-list-seminar";
 		}
 		//마이페이지 작성내역(화면)

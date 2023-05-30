@@ -102,8 +102,8 @@
 		</div>
 	</div>
 </body>
-</html>
 <script>
-	const btn = document.querySelector("#editBtn${getAdmin.no}");
-	btn.attr("disabled", true);
+	const authorize = document.querySelector("#editBtn${getAdmin.no}");
+	authorize.attr("disabled", true);
 </script>
+</html>

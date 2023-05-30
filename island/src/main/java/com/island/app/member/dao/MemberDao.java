@@ -55,6 +55,22 @@ public class MemberDao{
 	public int interestEdit(SqlSessionTemplate sst, String svono) {
 		return sst.delete("member.interestEdit",svono);
 	}
+	//마이페이지 신청내역
+	public List<SeminarVo> getEnrollList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("member.getEnrollList",no);
+	}
+	//신청취소
+	public int enrollEdit(SqlSessionTemplate sst, String svono) {
+		return sst.delete("member.enrollEdit", svono);
+	}
+	//신청내역에서 리뷰작성
+	public SeminarVo enrollReivew(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("member.enrolllReivew",no);
+	}
+	//개설내역
+	public List<SeminarVo> getmadeListSeminar(SqlSessionTemplate sst, String no) {
+		return sst.selectList("member.getmadeListSeminar", no);
+	}
 	
 
 }

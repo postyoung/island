@@ -59,8 +59,9 @@
 											<th>관심취소</th>
 											<th></th>
 										</thead>
+										<tbody style="margin-bottom: 200px;">
 										<c:forEach items="${svoList}" var="svo">
-											<tbody style="margin-bottom: 200px;">
+												<form action="${root}/mypage/list/likeList/seminar" method="post">
 												<tr>
 													<td style="display: none;">${svo.no}</td>
 													<td><img class="group_info_img"
@@ -72,15 +73,13 @@
 												<td>${svo.maxCapacity}</td>
 												<td>${svo.closeDay}</td>
 												<td>${svo.startDay} ${svo.seminarTime}</td>
-												<form action="${root}/mypage/list/likeList/seminar" method="post">
 												<input type="hidden" name="sNo" value="${svo.no}">
 												<td><input type="submit"
 													class="btn btn-outline-primary" value="관심취소"></td>
 												</tr>
-											</tbody>
-												</form>
-												
-											</c:forEach>
+											</form>
+										</c:forEach>
+									</tbody>
 									</table>
 								
 															</div>

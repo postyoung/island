@@ -9,6 +9,14 @@
     <title>ISLAND 신청내역|세미나 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList2.css">
+    <c:if test="${not empty alertMsg}">
+  	<script type="text/javascript">
+	  alert('${sessionScope.alertMsg}');
+  	</script>
+  </c:if>
+
+  <c:remove var="alertMsg" scope="session"/>
+
 </head>
 <body>
     <div id="wrap">
@@ -44,7 +52,7 @@
                                                                             <th></th>
                                                                             <th>세미나명</th>
                                                                             <th>가격</th>
-                                                                            <th>세미나 장소</th>
+                                                                            <th>세미나장소</th>
                                                                             <th>모집인원</th>
                                                                             <th>세미나일시</th>
                                                                             <th>신청현황</th>
@@ -52,19 +60,26 @@
                                                                             <th>신청취소</th>
                                                                             <th>리뷰</th>
                                                                         </thead>
-                                                                   
-                                                                            <tbody>
-                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
-                                                                                <td>아이디어조</td>
-                                                                                <td>10,000</td>
-                                                                                <td>강원도 원주시 63빌딩</td>
-                                                                                <td>100</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td>신청대기</td>
+                                                                        <tbody>
+                                                                            <c:forEach items="${svoList}" var="svo">
+                                                                            <form action="${root}/mypage/list/enrollList/seminar" method="post">
+                                                                                <tr>
+                                                                                    <td style="display: none;">${svo.no}</td>
+                                                                                    <td><img class="group_info_img" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" onerror= "this.onerror=null; this.src = 
+                                                                                    'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" ></td>
+                                                                                <td>${svo.name}</td>
+                                                                                <td>${svo.expense}</td>
+                                                                                <td>${svo.place}</td>
+                                                                                <td>${svo.maxCapacity}</td>
+                                                                                <td>${svo.startDay}<br> ${svo.seminarTime}</td>
+                                                                                <td>${svo.state}</td>
                                                                                 <td>입금대기</td>
+                                                                                <input type="hidden" name="sNo" value="${svo.no}">
                                                                                 <td><input type="submit" class="btn btn-outline-primary" value="신청취소"></td>
-                                                                                <td><input type="submit" class="btn btn-outline-primary" value="리뷰작성" onclick="location.href='${root}/community/seminarReview/write'"></td>
+                                                                                <td><input type="button" class="btn btn-outline-primary" value="리뷰작성" onclick="location.href='${root}/mypage/list/enrollList/seminarReview/write?no=${svo.no}'"></td>
                                                                                 </tr>
+                                                                            </form>
+                                                                        </c:forEach>
                                                                             </tbody>
                                                                     </table>
                                                                 </div>
@@ -90,9 +105,19 @@
         </main>
    	
     </div>
-    <div>
+    <div style="margin-top: 250px;">
         <%@include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 
 </body>
 </html>
+<script>
+	//행 클릭했을 때 , 상세조회
+	const tbody = document.querySelector('table > tbody');
+	tbody.addEventListener("click" , (event)=>{
+	const no = event.target.parentNode.children[0].innerText;
+	  location.href = '${root}/seminar/detail?no=' + no;
+	});
+	
+	
+	</script>
