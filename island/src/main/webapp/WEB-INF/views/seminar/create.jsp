@@ -46,7 +46,7 @@ function validCheck(){
   
 //썸머노트 안에 내용 체크 
 const textareaValue = document.querySelector("#summernote");
-if(textareaValue.value == ""){
+if(textareaValue.value == ""){ 
   alert("세미나 상세내용을 작성해주세요.");
   return false;
 }

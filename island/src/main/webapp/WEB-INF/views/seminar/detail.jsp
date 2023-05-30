@@ -16,7 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   
 	<link rel="stylesheet" href="${root}/resources/css/seminar/detail.css">
-	<script defer src="${root}/resources/js/seminar/detail.js"></script>
+
 </head>
 <body>
 	<!-- 세미나 참가신청 영역 -->
