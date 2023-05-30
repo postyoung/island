@@ -176,5 +176,77 @@
  		
  	</delete>
  	
+ 	<select id="getEnrollList" resultType="seminarVo">
+ 	SELECT
+    A.NO AS aNo,
+    A.M_NO AS loginMemberNo,
+    A.S_NO,
+    S.NO,
+    S.NAME,
+    S.EXPENSE,
+    S.PLACE,
+    S.MAX_CAPACITY,
+    S.START_DAY,
+    S.SEMINAR_TIME,
+    S.SEMINAR_THUMBNAIL,
+    A.AS_NO,
+    A.P_NO,
+    AS_STATE.STATE
+	FROM
+	    APPLY_LIST A
+	INNER JOIN
+	    APPLY_STATE AS_STATE ON A.AS_NO = AS_STATE.NO
+	INNER JOIN
+	    SEMINAR S ON A.S_NO = S.NO
+	WHERE
+	    A.M_NO = #{no}
+ 	
+ 	</select>
+ 	
+ 	<delete id="enrollEdit">
+ 	 DELETE FROM APPLY_LIST WHERE S_NO = #{no}
+ 	</delete>
+ 	
+ 	<select id="enrolllReivew" resultType="seminarVo">
+ 		SELECT
+    A.NO AS aNo,
+    A.M_NO AS loginMemberNo,
+    A.S_NO,
+    S.NO,
+    S.NAME,
+    S.EXPENSE,
+    S.PLACE,
+    S.MAX_CAPACITY,
+    S.START_DAY,
+    S.SEMINAR_TIME,
+    S.SEMINAR_THUMBNAIL,
+    A.AS_NO,
+    A.P_NO,
+    AS_STATE.STATE
+	FROM
+	    APPLY_LIST A
+	INNER JOIN
+	    APPLY_STATE AS_STATE ON A.AS_NO = AS_STATE.NO
+	INNER JOIN
+	    SEMINAR S ON A.S_NO = S.NO
+	WHERE
+        TO_DATE(START_DAY, 'YYYY-MM-DD') > TRUNC(SYSDATE)
+        and A.S_NO = #{no}
+ 	</select>
+ 	
+ 	<select id="getmadeListSeminar" resultType="seminarVo">
+ 	SELECT 
+	    NAME, 
+	    EXPENSE, 
+	    PLACE, 
+	    MAX_CAPACITY, 
+	    CLOSE_DAY,
+	    START_DAY,
+	    SEMINAR_TIME,
+	    SEMINAR_THUMBNAIL
+	FROM SEMINAR
+	WHERE WRITER_NO = #{no}
+ 	</select>
+ 	
  	
 </mapper>

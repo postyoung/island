@@ -38,6 +38,7 @@ public class SeminarVo {
 	private String reportYn;
 	private String delYn;
 	private String seminarThumbnail; //세미나 썸네일 사진파일
+	private String state; //신청현황
 	
 	//개설자 vo
 	private String writerNick;

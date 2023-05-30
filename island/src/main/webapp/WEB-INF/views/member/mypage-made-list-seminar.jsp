@@ -46,25 +46,24 @@
                                                                             <th>가격</th>
                                                                             <th>세미나 장소</th>
                                                                             <th>모집인원</th>
-                                                                            <th>대기인원</th>
-                                                                            <th>참여확정</th>
                                                                             <th>신청마감일시</th>
                                                                             <th>세미나 일시</th>
                                                                             <th>세미나수정</th>
                                                                         </thead>
                                                                    
                                                                             <tbody>
-                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
-                                                                                <td>아이디어조</td>
-                                                                                <td>10,000</td>
-                                                                                <td>강원도 원주시 63빌딩</td>
-                                                                                <td>100</td>
-                                                                                <td>2</td>
-                                                                                <td>1</td>
-                                                                                <td>2023-12-01</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
+                                                                                <c:forEach items="${svoList}" var="svo">
+                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" onerror= "this.onerror=null; this.src = 
+                                                                                    'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" ></td>
+                                                                                <td>${svo.name}</td>
+                                                                                <td>${svo.expense}</td>
+                                                                                <td>${svo.place}</td>
+                                                                                <td>${svo.maxCapacity}</td>
+                                                                                <td>${svo.closeDay}</td>
+                                                                                <td>${svo.startDay} ${svo.seminarTime}</td>
                                                                                 <td><input type="submit" class="btn btn-outline-primary" value="수정하기" onclick="location.href='${root}/seminar/edit'"></td>
                                                                                 </tr>
+                                                                            </c:forEach>
                                                                             </tbody>
                                                                     </table>
                                                                 </div>
@@ -90,7 +89,7 @@
         </main>
    	
     </div>
-    <div>
+    <div style="margin-top: 840px;">
         <%@include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 

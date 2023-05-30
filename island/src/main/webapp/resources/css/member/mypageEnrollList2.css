@@ -132,7 +132,8 @@ h3 {
     padding: 9px;
 }
 th {
+    width: 102px;
     font-size: 15px;
-    padding: 9px;
+    padding: 10px;
     background-color: #f5f9ff;
 }
