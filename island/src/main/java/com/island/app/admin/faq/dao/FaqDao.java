@@ -51,8 +51,12 @@ public class FaqDao {
 
 	
 	public String getcategoryName(SqlSessionTemplate sst, String categoryName) {
-		return sst.selectOne("adminfaq.getcategoryNo" , categoryName );
+		return sst.selectOne("adminfaq.getcategoryName" , categoryName );
 	}
+
+
+	
+
 	
 
 	

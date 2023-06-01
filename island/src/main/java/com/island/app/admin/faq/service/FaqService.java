@@ -58,10 +58,9 @@ public class FaqService {
 		return dao.getCnt(sst);
 	}
 	
-	public String getcategoryName(String categoryName) {
-		return dao.getcategoryName(sst, categoryName);
+	public String getcategoryName(String categoryNo) {
+		return dao.getcategoryName(sst, categoryNo);
 	}
-	
 	
 
 }

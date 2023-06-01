@@ -24,10 +24,10 @@
         INSERT INTO FAQ
 			(
 			    NO
-			    ,TITLE
-			    ,CONTENT
-			    ,WRITER_NAME
-			    ,CATEGORY_NAME
+			    , TITLE
+			    , CONTENT
+			    , WRITER_NO
+			    , CATEGORY_NO
 			    , ENROLL_DATE
 			)
 			VALUES
@@ -35,9 +35,9 @@
 			    SEQ_FAQ_NO.NEXTVAL
 			    , #{title}
 			    , #{content}
-			    , #{writeName}
-			    , #{categoryName}
-			    , SYDATE
+			    , #{writerNo}
+			    , #{categoryNo}
+			    , SYSDATE
 			)
     </insert>
     
@@ -90,13 +90,12 @@
 		</if>
 	</select>
 	
-	<select id="getcategoryNo" resultType="String">
-	    SELECT NAME
-	    FROM FAQ_CATEGORY
-	    WHERE NO = #{categoryNo}
-	</select>
+	<select id="getcategoryName" resultType="FaqVo">
+	   SELECT NAME
+			FROM FAQ_CATEGORY
+			WHERE NO = #{categoryNo}
 
-	
+	</select>
 	
 	
 </mapper>

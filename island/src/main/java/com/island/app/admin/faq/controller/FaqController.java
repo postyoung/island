@@ -2,6 +2,7 @@ package com.island.app.admin.faq.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,15 +64,16 @@ public class FaqController {
 	
 	//Faq작성하기 화면(관리자만)
 	@GetMapping("faq/write")
-	public String faqWrite(FaqVo vo , HttpSession session , Model model) {
+	public String faqWrite(FaqVo fvo , HttpSession session , Model model) {
 		
 	    AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
-	    vo.setWriterNo(loginAdmin.getNo());
 	    
 	    if (loginAdmin == null) {
 	        model.addAttribute("errorMsg" , "잘못된 접근입니다.");
 	        return "common/error-page";
 	    }
+	    fvo.setWriterNo(loginAdmin.getNo());
+
 	    String id = loginAdmin.getId();
 	    boolean isAdmin = "admin".equals(id);
 
@@ -80,23 +82,22 @@ public class FaqController {
 	        return "common/error-page";
 	    }
 	    return "admin/faq-write";
+	    
 	}
 
 	//faq 작성하기 (관리자만)
 	@PostMapping("faq/write")
-	public String faqWrite(FaqVo fvo, HttpSession session) {
+	public String faqWrite(FaqVo fvo, HttpSession session ) {
+		
 		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
-	    String id = null;
-	    if (loginAdmin != null) {
-	        id = loginAdmin.getId();
-	    }
-	    if (!"admin".equalsIgnoreCase(id)) {
-	        session.setAttribute("alertMsg", "관리자만 FAQ 작성이 가능합니다.");
-	        return "redirect:/admin/faq/list?page=1";
-	    }
+	    String writerNo = loginAdmin.getNo();
+	    
+	    fvo.setWriterNo(writerNo);
 
 	    int result = fs.faqWrite(fvo);
-
+	    
+	    System.out.println(fvo);
+	   
 	    if (result != 1) {
 	        session.setAttribute("alertMsg", "Faq 작성완료!!");
 	    } else {
