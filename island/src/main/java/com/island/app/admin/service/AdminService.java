@@ -60,11 +60,10 @@ public class AdminService {
 	}
 
 	public int changeAuthor(AdminVo vo) {
-
 		return dao.changeAuthor(sst, vo);
 	}
 
-	public int delete(AdminVo avo) {
-		return dao.delete(sst, avo);
+	public int delete(String no) {
+		return dao.delete(sst, no);
 	}
 }

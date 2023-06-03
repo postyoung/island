@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- int pmNo = (int) session.getAttribute("loginAdmin").getpmNo();
+			if (pmNo >= 1) {
+				session.setAttribute("alertMsg", "해당 권한으로는 접속 불가능 합니다.");
+				response.sendRedirect("/app/admin/main"); // 로그인 페이지로 이동
+			}	}
+%>
+ -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +51,11 @@
 										</tr>
 									</c:forEach>
 								</tbody>
-							</table>
+							</table class="mb-4">
+							<div class="d-flex justify-content-center">
+								<%@include
+									file="/WEB-INF/views/common/admin-authorize-paging.jsp"%>
+							</div>
 						</div>
 					</div>
 				</div>

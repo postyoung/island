@@ -85,11 +85,12 @@
 		FROM ADMIN
 		WHERE
 		QUIT_YN = 'N'
+		AND PM_NO NOT IN ('4')
 		ORDER BY NO DESC
 	</select>
 
 	<select id="getCnt" resultType="int">
-		SELECT COUNT(NO)
+		SELECT COUNT(*)
 		FROM ADMIN
 		WHERE
 		QUIT_YN = 'N'
@@ -98,14 +99,14 @@
 	<update id="changeAuthor">
 		UPDATE ADMIN
 		SET
-		QUIT_YN = 'Y'
-		WHERE NO = #{vo.no}
+		PM_NO = #{pmNo}
+		WHERE NO = #{no}
 	</update>
 
 	<update id="delete">
 		UPDATE ADMIN
 		SET
-		PM_NO = '1'
-		WHERE NO = #{vo.no}
+		QUIT_YN = 'Y'
+		WHERE NO = #{no}
 	</update>
 </mapper>

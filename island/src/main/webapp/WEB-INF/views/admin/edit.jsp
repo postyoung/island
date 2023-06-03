@@ -28,7 +28,8 @@
 						<div class="card-body col-sm-12 d-flex justify-content-center">
 							<div
 								class="col-sm-8 col-md-offset-3 d-flex justify-content-center">
-								<form role="form" action="${root}/admin/edit" method="post">
+								<form role="form" action="${root}/admin/edit" method="post"
+									onsubmit="return checkValidation();">
 									<input type="hidden" name="no" value="${loginAdmin.no}">
 									<div class="form-group">
 										<label for="inputName"><h4>관리자 이름</h4></label> <input
@@ -87,83 +88,65 @@
 	</div>
 </body>
 <script>
-const checkAll = false;
+	let isIdDupOk = false;
+	// 아이디 중복 확인
+	function checkDup() {
+		const id = document.querySelector("input[name=id]").value;
+		$.ajax({
+			url : '/app/admin/id-check',
+			type : 'POST',
+			data : {
+				'id' : id
+			},
+			success : function(data) {
+				if (data == 'notDup') {
+					isIdDupOk = true;
+					alert("사용 가능한 아이디 입니다.");
+				} else {
+					alert("사용 불가한 아이디 입니다.");
+				}
+			},
+			error : function(e) {
+				console.log(e);
+			},
+		});
 
-const inputName = document.querySelector('#inputName');
-const checkName = /^[가-힣]+$/;
+	}
 
-inputName.addEventListener('input', () => {
-  const name = inputName.value;
-  if (!checkName.test(name)) {
-    nameInput.setCustomValidity('한글로');
-  } else {
-    nameInput.setCustomValidity('');
-  }
-});
+	// 비밀번호 일치해야 제출 가능
+	function checkValidation() {
+		if (!isIdDupOk) {
+			alert("중복확인을 진행해주세요");
+			return false;
+		}
 
-//아이디 중복 여부 확인
- function checkDup(){
-	// const checkId = "^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$";
-	const id = document.querySelector("input[name=id]").value;
-    $.ajax({
-        url : '/app/admin/id-check',
-        type : 'POST',
-        data : {
-            'id' : id
-        } ,
-        success : function(data){
-            if(data == 'notDup'){
-                alert("사용 가능한 아이디 입니다.");
-                checkAll = true;
-            }else{
-                alert("사용 불가한 아이디 입니다.");
-                document.querySelector("input[name=id]").value = "";
-            }
-        } ,
-        error : function(e) {
-            console.log(e);
-        } ,
-    });
-}
+		if (!isPwdOk()) {
+			alert("비밀번호가 일치하지 않습니다.");
+			document.querySelector("input[name=pwd]").focus();
+			return false;
+		}
+		return true;
+	}
 
-// 비밀번호 일치해야 제출 가능하게
-function checkValidation(){
-	// const checkPwd = "^(?=.*[!@#$%^&*()\\-_=+\\[{\\]}\\\\|;:'\",<.>/?])(?!.*[ㄱ-ㅎㅏ-ㅣ가-힣])[A-Za-z!@#$%^&*()\\-_=+\\[{\\]}\\\\|;:'\",<.>/?]{8,}$";
-    if(!isPwdOk()){
-        alert("비밀번호가 일치하지 않습니다.");
-        document.querySelector("main input[name=pwd]").focus();
-        return false;
-    }
-    return true;
-}
+	function isPwdOk() {
+		const pwd1 = document.querySelector("input[name=pwd]").value;
+		const pwd2 = document.querySelector("input[name=pwd2]").value;
 
-function isPwdOk(){
-    const pwd1 = document.querySelector("main input[name=pwd]").value;
-    const pwd2 = document.querySelector("main input[name=pwd2]").value;
+		if (pwd1 != pwd2)
+			return false;
+		return true;
+	}
 
-    if(pwd1 != pwd2) return false;
-    return true;
-}
+	// 아이디 값이 변경 시 중복확인 값 초기화
+	const idTag = document.querySelector("input[name=id]");
+	idTag.addEventListener('change', checkIdChange);
 
-if(checkAll > 0) {
-	  const target = document.querySelector('#join-submit');
-	  target.disabled = false;
-}
+	function checkIdChange() {
+		isIdDupOk = false;
+	}
 
-const idBox = document.querySelector("main input[name=id]");
-
-idBox.addEventListener('change' , checkIdChange);
-
-function checkIdChange(){
-	checkAll = false;
-}
-// const level = ${getAdmin.no};
-const level = 2;
-const authorize = document.querySelector("#inlineRadio2");
-authorize.checked = true;
-
-// const authorize = document.querySelector("#editBtn${getAdmin.no}");
-authorize.attr("disabled", true);
-
+	// 관리자 정보 수정 권한 값 가져오기
+	$(":radio[name='inlineRadioOptions'][value='${loginAdmin.pmNo}']").attr(
+			'checked', true);
 </script>
 </html>
