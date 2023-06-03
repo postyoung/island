@@ -10,6 +10,14 @@
 <%@include file="/WEB-INF/views/common/header-member.jsp" %>
 <link rel="stylesheet" href="${root}/resources/css/member/login.css">
 
+<c:if test="${not empty alertMsg}">
+    <script type="text/javascript">
+    alert('${sessionScope.alertMsg}');
+    </script>
+</c:if>
+
+<c:remove var="alertMsg" scope="session"/>
+
 </head>
 <body>
 <div id="wrap">
@@ -33,7 +41,7 @@
                               <label for="save_id" style="margin-right: 158px;">아이디 저장</label>
                             </li>
                             <li class="find">
-                                <a href="${root}/mypage/find" style="margin-right: 10px;">아이디 / 비밀번호찾기</a>
+                                <a href="${root}/mypage/find" style="margin-right: 10px;">아이디 / 비밀번호변경</a>
                             </li>
                             <li class="join">
                                 <a href="${root}/member/join">회원가입</a>

@@ -9,6 +9,16 @@
     <title>ISLAND 마이페이지|아이디/비번찾기 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypageFind.css">
+
+    <c:if test="${not empty alertMsg}">
+        <script type="text/javascript">
+        alert('${alertMsg}');
+        </script>
+    </c:if>
+    
+    <c:remove var="alertMsg" scope="request"/>
+
+
 </head>
 <body>
     <div id="wrap">
@@ -25,7 +35,7 @@
                                     <div class="main_content">
                                         <!-- 아이디 찾기 시작-->
                                         <section class="find_email">
-                                            <form action="">
+                                            <form action="${root}/mypage/findId" method="post">
                                                 <h3 class="title">아이디 찾기</h3>
                                                 <div class="edit_wrap">
                                                     <div class="edit_name">
@@ -51,19 +61,20 @@
                                             </section>
 
                                     
-                                <!-- 비밀번호 찾기 -->
+                                <!-- 비밀번호 변경 -->
                                 <section class="find_password">
-                                    <form action="">
-                                        <h3 class="title">비밀번호 찾기</h3>
+                                    <form action="${root}/mypage/checkInfoForPwdEdit" method="post">
+                                        <h3 class="title">비밀번호 변경</h3>
                                         <div class="edit_wrap">
                                             <div class="edit_name">
-                                                <label for="email">이메일</label>
-                                                    <input type="email" id="name" name="name" required >
+                                                <label for="id">아이디</label>
+                                                    <input type="text" id="id" name="id" required >
                                             </div>
                                             
                                             <div class="edit_phone">
-                                                <label for="phone">휴대전화</label>
-                                                <input type="text" id="phone" name="phone" required>
+                                                <label for="id_num">주민번호</label>
+                                                <input type="text" id="resident" name="resident" value="" required style="width: 149px;">
+                                                <input type="password" id="resident2" name="resident2" required style="width: 155px; height: 30px;">
                                             </div>
                                         </div>
                                             <!-- 버튼영역시작 -->

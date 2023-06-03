@@ -1,6 +1,5 @@
 package com.island.app.group.vo;
 
-import com.island.app.common.file.FileVo;
 import lombok.Data;
 
 @Data
@@ -22,4 +21,9 @@ public class GroupVo {
     private String reportYn; //신고여부
     private String blockYn; //블락여부
     private String enrollDate; //개설일자
+    private String walistnum; // 대기인원
+    private String takenum; //참여확정
+    private String groupThumnail; //썸네일 파일
+    private String loginMemberNo; //로그인한 유저 번호
+    private String state; //신청현황
 }

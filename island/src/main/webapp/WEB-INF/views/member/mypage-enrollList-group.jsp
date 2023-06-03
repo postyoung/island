@@ -9,6 +9,15 @@
     <title>ISLAND 신청내역|소모임 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList.css">
+
+    <c:if test="${not empty alertMsg}">
+        <script type="text/javascript">
+        alert('${sessionScope.alertMsg}');
+        </script>
+    </c:if>
+  
+    <c:remove var="alertMsg" scope="session"/>
+
 </head>
 <body>
     <div id="wrap">
@@ -51,14 +60,21 @@
                                                                         </thead>
                                                                    
                                                                             <tbody>
-                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
-                                                                                <td>아이디어조</td>
-                                                                                <td>강남구 역삼동</td>
-                                                                                <td>10</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td>신청대기</td>
+                                                                                <c:forEach items="${gvoList}" var="gvo">
+                                                                                    <form action="${root}/mypage/list/enrollList/group" method="post">
+                                                                                <tr>
+                                                                                    <td style="display: none;">${gvo.no}</td>
+                                                                                    <td><img class="group_info_img" src="${root}/resources/img/group/${gvo.groupThumnail}" onerror="this.onerror=null; this.src = '${root}/resources/img/member/noimage.jpg'" ></td>
+                                                                                <td>${gvo.name}</td>
+                                                                                <td>${gvo.place}</td>
+                                                                                <td>${gvo.peoplenum}</td>
+                                                                                <td>${gvo.starttime} ~ ${gvo.finishtime}</td>
+                                                                                <td>${gvo.state}</td>
+                                                                                <input type="hidden" name="gNo" value="${gvo.no}">
                                                                                 <td><input type="submit" class="btn btn-outline-primary" value="신청취소"></td>
                                                                                 </tr>
+                                                                            </form>
+                                                                            </c:forEach>
                                                                             </tbody>
                                                                     </table>
                                                                 </div>
@@ -91,3 +107,17 @@
 
 </body>
 </html>
+<script>
+	//행 클릭했을 때 , 상세조회
+	const tbody = document.querySelector('table > tbody');
+tbody.addEventListener("click", (event) => {
+  if (event.target.tagName !== 'TD' || event.target.classList.contains('btn')) {
+    return; // 리뷰 작성 버튼을 제외한 다른 요소를 클릭한 경우 처리하지 않음
+  }
+  
+  const no = event.target.parentNode.querySelector('td:first-child').innerText;
+  location.href = '${root}/group/detail?no=' + no;
+});
+
+
+</script>

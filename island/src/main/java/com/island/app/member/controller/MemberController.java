@@ -103,61 +103,22 @@ public class MemberController {
 	@PostMapping("login")
 	public String login(MemberVo vo, HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model) {
 		
-		//model.addAttribute("saved_id", ""); // 초기값 설정
 		// 서비스
 	    MemberVo loginMember = ms.login(vo);
 	    if (loginMember == null) {
 	        session.setAttribute("alertMsg", "로그인 실패 ... ");
 	        
-//	        // 로그인 실패 시에도 아이디를 쿠키에 저장
-//	        Cookie savedIdCookie = new Cookie("saved_id", vo.getId());
-//	        savedIdCookie.setMaxAge(7 * 24 * 60 * 60); // 쿠키의 유효기간 설정 (7일)
-//	        res.addCookie(savedIdCookie);
-	    } else {
-	    	
-	        // 아이디 저장 체크박스 상태 확인
-	        if (req.getParameter("save_id") != null) {
-	            // 아이디를 쿠키에 저장
-	            Cookie savedIdCookie = new Cookie("saved_id", vo.getId());
-	            savedIdCookie.setMaxAge(7 * 24 * 60 * 60); // 쿠키의 유효기간 설정 (7일)
-	            res.addCookie(savedIdCookie);
-	        } else {
-	            // 아이디 저장 체크박스가 체크되지 않았을 경우, 기존에 저장된 쿠키 제거
-	            Cookie[] cookies = req.getCookies();
-	            if (cookies != null) {
-	                for (Cookie cookie : cookies) {
-	                    if (cookie.getName().equals("saved_id")) {
-	                        cookie.setMaxAge(0); // 쿠키의 유효기간을 0으로 설정하여 삭제
-	                        res.addCookie(cookie);
-	                        break;
-	                    }
-	                }
-	            }
-	        }
-	        // 로그인 성공 시에만 saved_id 값을 전달
-	        model.addAttribute("saved_id", vo.getId());
-	        
-	    }
-
+	    }	
 	    // 화면
 	    session.setAttribute("loginMember", loginMember);
 	    return "redirect:/main";
+
 	}
 	//로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
 		session.invalidate();
-		// 아이디 저장 쿠키 삭제
-	    Cookie[] cookies = req.getCookies();
-	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	            if (cookie.getName().equals("saved_id")) {
-	                cookie.setMaxAge(0); // 쿠키의 유효기간을 0으로 설정하여 삭제
-	                res.addCookie(cookie);
-	                break;
-	            }
-	        }
-	    }
+		
 		return "redirect:/main";
 	}
 	

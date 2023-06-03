@@ -40,6 +40,10 @@ public class SeminarVo {
 	private String seminarThumbnail; //세미나 썸네일 사진파일
 	private String rownum;
 	private String state; //신청현황
+	private String pway; //결제수단
+	private String pstate; //결제현황
+	
+	
 	//개설자 vo
 	private String writerNick;
 	private String email;
