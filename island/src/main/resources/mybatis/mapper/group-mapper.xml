@@ -36,6 +36,20 @@
             AND PLACE = #{place}
         </if>
     </select>
+    <select id="categoryList" resultType="groupCategoryVo">
+       SELECT
+            NO
+            ,CATEGORY
+        FROM
+            GROUP_CATEGORY
+    </select>
+    <select id="localCategoryList" resultType="localCategoryVo">
+        SELECT
+            NO
+            ,NAME
+        FROM
+            LOCAL_CATEGORY
+    </select>
     <insert id="create" parameterType="groupVo">
         INSERT INTO SMALL_GROUP (
             NO
@@ -49,8 +63,6 @@
             ,PEOPLENUM
             ,STARTTIME
             ,FINISHTIME
-            ,GR_CLOSE
-            ,TERM
             ,APPLYDATE
             ,HIT
             ,DEL_YN
@@ -69,8 +81,6 @@
             ,#{peoplenum}
             ,#{starttime}
             ,#{finishtime}
-            ,#{grClose}
-            ,#{term}
             ,#{applydate}
             ,#{hit}
             ,#{delYn}
@@ -111,7 +121,6 @@
             NAME,
             INTRO,
             PEOPLENUM,
-            TERM,
             STARTTIME,
             FINISHTIME,
             DEL_YN,
@@ -141,7 +150,7 @@
             NO,
             NAME,
             PEOPLENUM,
-            TERM
+            STARTTIME
         FROM
             SMALL_GROUP
         WHERE

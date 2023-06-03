@@ -3,7 +3,9 @@ package com.island.app.group.service;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.dao.GroupDao;
+import com.island.app.group.vo.GroupCategoryVo;
 import com.island.app.group.vo.GroupVo;
+import com.island.app.group.vo.LocalCategoryVo;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,12 @@ public class GroupService {
     public void create(GroupVo groupVo, FileVo fileVo) {
         dao.create(sst, groupVo);
         dao.saveThumbnail(sst, fileVo);
+    }
+    public List<GroupCategoryVo> getCategoryList(){
+        return dao.getCategoryList(sst);
+    }
+    public List<LocalCategoryVo> getLocalCategoryList(){
+        return dao.getLocalCategoryList(sst);
     }
     public int getTotalCount(GroupVo groupVo){
         return dao.getTotalCount(sst, groupVo);

@@ -8,6 +8,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" />
     <%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/offcanvas-navbar/">
     <script defer src="${root}/resources/js/group/group-create.js"></script>
@@ -33,7 +34,7 @@
                         <div class="profile-image">
                             <img id="preview" src="default-profile-image.png" alt="프로필 이미지">
                             <label for="image-upload" class="custom-file-upload">이미지 업로드</label>
-                            <input id="image-upload" type="file" onchange="previewImage(event)">
+                            <input id="image-upload" name="thumbnailFile" type="file" onchange="previewImage(event)">
                         </div>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
                     </div>
                     <div class="info-text">
                         <td>담당자</td>
-                        <td><input type="text" placeholder="" name="text" class="input" value="${loginMember.nick}"></td>
+                        <td><input type="text" placeholder="담당자" class="input" value="${loginMember.nick}" disabled></td>
                     </div>
                 </div>
                 <div class="card">
@@ -52,7 +53,7 @@
                     </div>
                     <div class="info-text">
                         <td>전화번호</td>
-                        <td><input type="text" placeholder="" name="text" class="input" value="${loginMember.phone}"></td>
+                        <td><input type="text" placeholder="전화번호" name="text" class="input" value="${loginMember.phone}" disabled></td>
                     </div>
                 </div>
                 <div class="card">
@@ -61,7 +62,7 @@
                     </div>
                     <div class="info-text">
                         <td>이메일</td>
-                        <td><input type="email" placeholder="" name="text" class="input" value="${loginMember.email}"></td>
+                        <td><input type="email" placeholder="이메일" class="input" value="${loginMember.email}@${loginMember.email2}" disabled></td>
                     </div>
                 </div>
                 <div class="card">
@@ -70,7 +71,7 @@
                     </div>
                     <div class="info-text">
                         <td>소속</td>
-                        <td><input type="text" placeholder="" name="text" class="input" value="${loginMember.attach}"></td>
+                        <td><input type="text" placeholder="소속" class="input" value="${loginMember.attach}" disabled></td>
                     </div>
                 </div>
                 <div class="card">
@@ -79,7 +80,24 @@
                     </div>
                     <div class="info-text">
                         <td>모집인원</td>
-                        <td><input type="text" placeholder="" name="text" class="input" value="${create.peoplenum}"></td>
+                        <td><input type="number" min="1" placeholder="" name="peoplenum" class="input" value="${create.peoplenum}" required></td>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="dropdown">
+                        <td>지역</td>
+                        <!-- Example single danger button -->
+                        <div class="btn-group">
+                            <button type="button" id="local-category-button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                선택
+                            </button>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${localCategoryList}" var="c">
+                                    <li><button type="button" class="dropdown-item" onclick="selectLocalCategory(this, ${c.no})">${c.name}</button></li>
+                                </c:forEach>
+                            </ul>
+                            <input type="hidden" name="lNo" />
+                        </div>
                     </div>
                 </div>
                 <div class="card">
@@ -87,16 +105,15 @@
                         <td>카테고리</td>
                         <!-- Example single danger button -->
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Action
+                            <button type="button" id="category-button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                선택
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">취미</a></li>
-                                <li><a class="dropdown-item" href="#">교육</a></li>
-                                <li><a class="dropdown-item" href="#">문화</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                <c:forEach items="${categoryList}" var="c">
+                                    <li><button type="button" class="dropdown-item" onclick="selectCategory(this, ${c.no})">${c.category}</button></li>
+                                </c:forEach>
                             </ul>
+                            <input type="hidden" name="cNo" />
                         </div>
                     </div>
                 </div>
@@ -106,38 +123,36 @@
 
                     <div class = "form-group">
                         <label for="name">모임명</label>
-                        <input type="text" id="name" value="${create.name}">
+                        <input type="text" name="name" id="name" value="${create.name}" required>
                     </div>
                     <div class = "form-group">
                         <label for="name">간단한 모임 소개</label>
-                        <input type="text" id="text" value="${create.intro}">
+                        <input type="text" name="intro" id=intro" value="${create.intro}" required>
                     </div>
                     <div class = "form-group">
                         <label for="msg">상세정보</label>
                         <div class="description-container">
-                            <textarea id="description" name="description"></textarea>
+                            <textarea id="exintro" name="exintro" required></textarea>
                         </div>
                         <div class = "form-group">
                             <div class="date-selector">
-                                <label for="msg">그룹정보</label>
-                                <label for="start-date">모임 시작일:</label>
-                                <input type="date" id="start-date" name="start-date" value="${create.starttime}">
-                                <label for="end-date">모임 종료일:</label>
-                                <input type="date" id="end-date" name="end-date" value="${create.finishtime}">
-                                <input type="text" id="pr" >
+                                <label for="applydate">신청 마감일:</label>
+                                <input type="date" id="applydate" name="applydate" value="${create.applydate}" required>
+                                <label for="starttime">모임 시작일:</label>
+                                <input type="date" id="starttime" name="starttime" value="${create.starttime}" required>
+                                <label for="finishtime">모임 종료일:</label>
+                                <input type="date" id="finishtime" name="finishtime" value="${create.finishtime}" required>
+<%--                                <input type="text" id="pr" >--%>
                             </div>
-                            <input type="text" id="sample4_postcode" placeholder="우편번호">
-                            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                            <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-                            <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-                            <span id="guide" style="color:#999;display:none"></span>
-                            <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-                            <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+                            <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+                            <input type="text" id="roadAddress" class="readonly" placeholder="도로명주소" required>
+                            <input type="text" id="detailAddress" placeholder="상세주소" required>
+                            <input type="hidden" name="place" id="place">
                         </div>
 
-                            <a href="${root}/group/list"><button type="submit" onclick="groupcreate()">개설하기</button></a>
+                            <button type="submit">개설하기</button>
                             <hr>
-                            <a href="${root}/group/list"><button type="submit" onclick="groupcancel()">취소하기</button></a>
+                            <a href="${root}/group/list">취소하기</a>
 
                     </div>
                     </div>
@@ -149,5 +164,47 @@
 
 </section>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+<script>
+    function selectLocalCategory(elem, no)  {
+        var localCategoryButton = document.querySelector("#local-category-button");
+        var localCategoryInput = document.querySelector("input[name=lNo]");
+        localCategoryButton.textContent = elem.textContent;
+        localCategoryInput.value = no;
+    }
+    function selectCategory(elem, no)  {
+        var categoryButton = document.querySelector("#category-button");
+        var categoryInput = document.querySelector("input[name=cNo]");
+        categoryButton.textContent = elem.textContent;
+        categoryInput.value = no;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            var tg = e.target;
+            if (tg.querySelector('input[type=file]').files.length !== 1) {
+                alert("썸네일 사진을 선택해주세요.");
+                return;
+            }
+            if (tg.querySelector("input[name=lNo]").value === "") {
+                alert("지역을 선택해주세요.");
+                return;
+            }
+            if (tg.querySelector("input[name=cNo]").value === "") {
+                alert("카테고리를 선택해주세요.");
+                return;
+            }
+            var place = document.querySelector("#roadAddress").value;
+            var detailAddress = document.querySelector("#detailAddress").value;
+            if (detailAddress !== "") {
+                place += " " + detailAddress;
+            }
+            tg.querySelector("#place").value = place;
+
+            tg.submit();
+        });
+    });
+</script>
 </body>
 </html>
