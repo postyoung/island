@@ -25,7 +25,7 @@
 					<div class="sb-sidenav-menu-heading">게시판</div>
 					<a class="nav-link" href="${root}/admin/notice/list">공지사항</a> <a
 						class="nav-link" href="${root}/admin/faq/list">FAQ</a> <a
-						class="nav-link" href="${root}/admin/inquiry/list">Q&A</a> <a
+						class="nav-link" href="${root}/admin/qnaan/list">Q&A</a> <a
 						class="nav-link" href="${root}/admin/statistics">통계조회</a>
 				</div>
 			</div>
