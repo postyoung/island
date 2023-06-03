@@ -16,15 +16,10 @@ public class GroupVo {
     private String peoplenum; //모집인원
     private String starttime; //모임 시작시간
     private String finishtime; //모임 종료시간
-    private String term; //모임기간
     private String applydate; //신청기간
     private String hit; //조회수
     private String delYn; //삭제여부
     private String reportYn; //신고여부
     private String blockYn; //블락여부
     private String enrollDate; //개설일자
-    private String grClose; //모임 종료일시
-
-
-
 }

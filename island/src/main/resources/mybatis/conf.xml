@@ -24,7 +24,11 @@
 		<typeAlias type="com.island.app.community.review.vo.SeminarReviewVo" alias="seminarReviewVo"/>
 
 		<typeAlias type="com.island.app.group.vo.GroupVo" alias="groupVo"/>
-		
+
+		<typeAlias type="com.island.app.group.vo.GroupCategoryVo" alias="groupCategoryVo"/>
+
+		<typeAlias type="com.island.app.group.vo.LocalCategoryVo" alias="localCategoryVo"/>
+
 		<typeAlias type="com.island.app.community.qna.vo.QnaVo" alias="qnaVo"/>
 		
 		<typeAlias type="com.island.app.seminar.vo.SeminarVo" alias="seminarVo"/>
