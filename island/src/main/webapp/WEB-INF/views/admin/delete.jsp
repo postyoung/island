@@ -9,6 +9,10 @@
 .modalBox {
 	margin-bottom: 30px;
 }
+
+.paging {
+	margin: auto;
+}
 </style>
 </head>
 <body>
@@ -57,25 +61,31 @@
 																<button type="button" class="btn-close"
 																	data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
-															<div class="modal-body">
-																<h6 class="modalBox">관리자 이름 : ${avo.name}</h6>
-																<h6 class="modalBox">아이디 : ${avo.id}</h6>
-																<h6 class="modalBox">계정 생성일 : ${avo.enrollDate}</h6>
-																<h6 class="modalBox">관리자 권한 등급 : ${avo.pmNo}</h6>
-																<h6>해당 관리자를 삭제하시겠습니까?</h6>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-secondary"
-																	data-bs-dismiss="modal">취소하기</button>
-																<button type="submit" class="btn btn-danger">삭제하기</button>
-															</div>
+															<form action="${root}/admin/delete" method="POST">
+																<div class="modal-body">
+																	<h6 class="modalBox">관리자 이름 : ${avo.name}</h6>
+																	<h6 class="modalBox">아이디 : ${avo.id}</h6>
+																	<h6 class="modalBox">계정 생성일 : ${avo.enrollDate}</h6>
+																	<h6 class="modalBox">관리자 권한 등급 : ${avo.pmNo}</h6>
+																	<h6>해당 관리자를 삭제하시겠습니까?</h6>
+																</div>
+																<input type=hidden value="${avo.no}" name="no">
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">취소하기</button>
+																	<button type="submit" class="btn btn-danger">삭제하기</button>
+																</div>
 														</div>
 													</div>
 												</div></td>
 										</tr>
+										</form>
 									</c:forEach>
 								</tbody>
-							</table>
+							</table class="mb-4">
+							<div class="d-flex justify-content-center">
+								<%@include file="/WEB-INF/views/common/admin-delete-paging.jsp"%>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -58,7 +58,7 @@ public class AdminDao {
 		return sst.update("admin.changeAuthor", vo);
 	}
 
-	public int delete(SqlSessionTemplate sst, AdminVo avo) {
-		return sst.update("admin.delete",avo);
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("admin.delete", no);
 	}
 }

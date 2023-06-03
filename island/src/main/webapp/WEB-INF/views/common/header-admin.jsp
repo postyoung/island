@@ -3,14 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="root" value="${pageContext.request.contextPath}"
 	scope="page" />
-<!-- 
+
 <%
 	if (session.getAttribute("loginAdmin") == null) {
 		response.sendRedirect("/app/admin/login"); // 로그인 페이지로 이동
 	}
 %>
-
- -->
+<c:if test="${ not empty alertMsg }">
+	<script>
+		alert('${sessionScope.alertMsg}');
+	</script>
+</c:if>
+<c:remove var="alertMsg" scope="session" />
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -35,6 +39,8 @@
 	crossorigin="anonymous"></script>
 <script src="${root}/resources/js/admin/scripts.js"></script>
 <script src="${root}/resources/js/admin/datatables-simple-demo.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">

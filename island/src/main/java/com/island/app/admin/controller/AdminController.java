@@ -2,6 +2,8 @@ package com.island.app.admin.controller;
 
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -114,7 +116,7 @@ public class AdminController {
 
 		// 화면
 		// model.addAttribute("cvoList", cvoList);
-		model.addAttribute("searchMap", searchMap);
+		// model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("adminList", adminList);
 
@@ -125,29 +127,19 @@ public class AdminController {
 	@GetMapping("authorize/detail")
 	public String authorizeChoice(String no, Model model) {
 		AdminVo getAdmin = as.getAdmin(no);
-		System.out.println(getAdmin);
 		model.addAttribute("getAdmin", getAdmin);
 		return "admin/authorize-detail";
 	}
 
 	// 권한 상세 설정
-	@PostMapping("authorize/detail1")
-	public String authorizeChoice1(AdminVo vo, Model model, HttpSession session) {
+	@PostMapping("authorize/detail")
+	public String authorizeChoice(AdminVo vo, Model model, HttpSession session, String pmno) {
+		System.out.println(pmno);
+		vo.setPmNo(pmno);
+		System.out.println(vo.getNo());
 		int result = as.changeAuthor(vo);
-		session.setAttribute("alertMsg", "수정 성공!!!");
+		session.setAttribute("alertMsg", "관리자 권한 수정이 성공하였습니다.");
 		return "admin/main-admin";
-	}
-
-	// 권한 상세 설정
-	@PostMapping("authorize/detail2")
-	public String authorizeChoice2() {
-		return "";
-	}
-
-	// 권한 상세 설정
-	@PostMapping("authorize/detail3")
-	public String authorizeChoice3() {
-		return "";
 	}
 
 	// 계정 삭제
@@ -167,7 +159,7 @@ public class AdminController {
 
 		// 화면
 		// model.addAttribute("cvoList", cvoList);
-		model.addAttribute("searchMap", searchMap);
+		// model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("adminList", adminList);
 
@@ -175,10 +167,10 @@ public class AdminController {
 	}
 
 	@PostMapping("delete")
-	public String delete(Model model) {
-		AdminVo avo = (AdminVo) model.getAttribute("avo");
-		int result = as.delete(avo);
-		return "admin/delete";
+	public String delete(HttpSession session, String no) {
+		int result = as.delete(no);
+		session.setAttribute("alertMsg", "계정 삭제가 완료되었습니다.");
+		return "redirect:/admin/main";
 	}
 
 	// 로그아웃
