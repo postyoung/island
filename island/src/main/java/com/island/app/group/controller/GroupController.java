@@ -4,7 +4,9 @@ import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.service.GroupService;
+import com.island.app.group.vo.GroupCategoryVo;
 import com.island.app.group.vo.GroupVo;
+import com.island.app.group.vo.LocalCategoryVo;
 import com.island.app.member.vo.MemberVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +83,16 @@ public class GroupController {
 
 	//소모임생성페이지
 	@GetMapping("create")
-	public String create()  {
+	public String create(HttpSession session, Model model)  {
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		if (loginMember == null) {
+			return "redirect:/member/login";
+		}
+		// get categories
+		List<GroupCategoryVo> categoryList = groupService.getCategoryList();
+		List<LocalCategoryVo> localCategoryList = groupService.getLocalCategoryList();
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("localCategoryList", localCategoryList);
 		return "group/group-create";
 	}
 
@@ -90,7 +101,7 @@ public class GroupController {
 	public String create(GroupVo groupVo , MultipartFile thumbnailFile, HttpSession session , HttpServletRequest request) throws Exception {
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		if (loginMember == null) {
-			session.setAttribute("alertMsg", "로그인 을 해주세요");
+			return "redirect:/member/login";
 		}
 
 		String path = request.getServletContext().getRealPath("/resources/img/group/upload/");
@@ -115,6 +126,8 @@ public class GroupController {
 		groupVo.setReportYn("N");
 		groupVo.setBlockYn("N");
 		groupVo.setEnrollDate("2023-05-28");
+
+		System.out.println(groupVo);
 
 		FileVo fileVo = new FileVo();
 		fileVo.setChangeName(changeName);

@@ -41,8 +41,8 @@ public class FaqDao {
 		return sst.update("adminfaq.faqedit" , vo);
 	}
 	
-	public int faqdelete(SqlSessionTemplate sst, String no) {
-		return sst.update("adminfaq.faqdelete" , no);
+	public int faqdelete(SqlSessionTemplate sst, String num) {
+		return sst.update("adminfaq.faqdelete" , num);
 	}
 	//게시글 갯수 조회 
 	public int getCnt(SqlSessionTemplate sst) {
@@ -51,8 +51,12 @@ public class FaqDao {
 
 	
 	public String getcategoryName(SqlSessionTemplate sst, String categoryName) {
-		return sst.selectOne("adminfaq.getcategoryNo" , categoryName );
+		return sst.selectOne("adminfaq.getcategoryName" , categoryName );
 	}
+
+
+	
+
 	
 
 	

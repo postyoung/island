@@ -24,11 +24,6 @@ public class GroupVo {
     private String walistnum; // 대기인원
     private String takenum; //참여확정
     private String groupThumnail; //썸네일 파일
-    
     private String loginMemberNo; //로그인한 유저 번호
     private String state; //신청현황
-    
-
-
-
 }
