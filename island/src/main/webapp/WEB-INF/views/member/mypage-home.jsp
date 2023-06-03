@@ -77,12 +77,12 @@
                                                 <h4 class="title">마이피드</h4>
                                                 <li class="feed_list">
                                                     <p class="feed">
-                                                        <span class="entities">＊</span>
-                                                        모임을
-                                                        <strong>찜</strong>
-                                                        하였습니다.
+                                                        <span class="entities"></span>
+                                                        
+                                                        <strong></strong>
+                                                        
                                                     </p>
-                                                    <a href="">아이디어조</a>                                                 
+                                                    <a href=""></a>                                                 
                                                 </li>
                                                 
                                             </div>
@@ -102,7 +102,7 @@
                                                     <strong>찜</strong>
                                                     하였습니다.
                                                 </p>
-                                                <a href="">아이디어조</a>
+                                                <a href="${root}/group/detail?no=${recentInterestGroup.no}">${recentInterestGroup.name}</a>
                                             </li>
                                             <li>
                                                 <p class="action">
@@ -111,7 +111,7 @@
                                                     <strong>참여신청</strong>
                                                     하였습니다.
                                                 </p>
-                                                <a href="">아이디어조</a>
+                                                <a href="${root}/group/detail?no=${recentEnrollGroup.no}">${recentEnrollGroup.name}</a>
                                             </li>
 
                                         </ul>
@@ -127,7 +127,7 @@
                                                     <strong>찜</strong>
                                                     하였습니다.
                                                 </p>
-                                                <a href="">아이디어조</a>
+                                                <a href="${root}/seminar/detail?no=${recentInterestSeminar.no}">${recentInterestSeminar.name}</a>
                                             </li>
                                             <li>
                                                 <p class="action">
@@ -136,7 +136,7 @@
                                                     <strong>참여신청</strong>
                                                     하였습니다.
                                                 </p>
-                                                <a href="">아이디어조</a>
+                                                <a href="${root}/seminar/detail?no=${recentEnrollSeminar.no}">${recentEnrollSeminar.name}</a>
                                             </li>
 
                                         </ul>

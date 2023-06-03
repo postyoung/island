@@ -128,6 +128,7 @@ h3 {
 }
 .group_info_img {
     width: 150px; 
+    height: 150px;
     margin-bottom: 20px;
     padding: 9px;
 }

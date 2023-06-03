@@ -9,6 +9,15 @@
     <title>ISLAND 개설내역|세미나 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList2.css">
+
+    <c:if test="${not empty alertMsg}">
+        <script type="text/javascript">
+        alert('${sessionScope.alertMsg}');
+        </script>
+    </c:if>
+  
+    <c:remove var="alertMsg" scope="session"/>
+
 </head>
 <body>
     <div id="wrap">
@@ -46,6 +55,7 @@
                                                                             <th>가격</th>
                                                                             <th>세미나 장소</th>
                                                                             <th>모집인원</th>
+                                                                            <th>신청인원</th>
                                                                             <th>신청마감일시</th>
                                                                             <th>세미나 일시</th>
                                                                             <th>세미나수정</th>
@@ -53,15 +63,19 @@
                                                                    
                                                                             <tbody>
                                                                                 <c:forEach items="${svoList}" var="svo">
-                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" onerror= "this.onerror=null; this.src = 
+                                                                                <tr>
+                                                                                    <td><img class="group_info_img" src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" onerror= "this.onerror=null; this.src = 
                                                                                     'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" ></td>
+                                                                                <td style="display: none;">${svo.no}</td>
                                                                                 <td>${svo.name}</td>
                                                                                 <td>${svo.expense}</td>
                                                                                 <td>${svo.place}</td>
                                                                                 <td>${svo.maxCapacity}</td>
+                                                                                <td>${svo.currentCapacity}</td>
                                                                                 <td>${svo.closeDay}</td>
-                                                                                <td>${svo.startDay} ${svo.seminarTime}</td>
-                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기" onclick="location.href='${root}/seminar/edit'"></td>
+                                                                                <td>${svo.startDay} 
+                                                                                    <br>${svo.seminarTime}</td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기" onclick="location.href='${root}/mypage/list/madeList/seminarEdit?no=${svo.no}'"></td>
                                                                                 </tr>
                                                                             </c:forEach>
                                                                             </tbody>
