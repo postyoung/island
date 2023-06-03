@@ -49,8 +49,8 @@ public class FaqService {
 		return dao.faqedit(sst , vo);
 	}
 	//삭제하기
-	public int faqdelete(String no) {
-		return  dao.faqdelete(sst , no);
+	public int faqdelete(String num) {
+		return  dao.faqdelete(sst , num);
 	}
 	
 	//게시글 갯수 조회 
@@ -58,10 +58,9 @@ public class FaqService {
 		return dao.getCnt(sst);
 	}
 	
-	public String getcategoryName(String categoryName) {
-		return dao.getcategoryName(sst, categoryName);
+	public String getcategoryName(String categoryNo) {
+		return dao.getcategoryName(sst, categoryNo);
 	}
-	
 	
 
 }
