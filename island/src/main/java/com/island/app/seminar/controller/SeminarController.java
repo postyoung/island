@@ -1,6 +1,9 @@
 package com.island.app.seminar.controller;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -388,6 +391,21 @@ public class SeminarController {
 	@ResponseBody
 	@GetMapping("apply/check")
 	public String applyCheckSeminar(SeminarVo svo) {
+		//모집마감일시 이후인지 체크 
+		LocalDate today = LocalDate.now();
+	    LocalTime currentTime = LocalTime.now();
+
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+	    LocalDate closeDay = LocalDate.parse(svo.getCloseDay(), dateFormatter);
+	    LocalTime closeTime = LocalTime.parse(svo.getCloseTime(), timeFormatter);
+
+	    if (today.isAfter(closeDay) || (today.isEqual(closeDay) && currentTime.isAfter(closeTime))) {
+	        return "3";
+	    }
+		
+		//신청 했는지 여부 체크
 		MemberApplyVo maVo = new MemberApplyVo();
 		maVo = ss.applyCheckSeminar(svo);
 		
@@ -446,6 +464,7 @@ public class SeminarController {
 	public String payApplySeminar(SeminarPayVo spvo, SeminarVo svo, HttpSession session) {
 		svo.setLoginMemberNo(spvo.getMNo());
 		svo.setNo(spvo.getSNo());
+		svo.setPwNo(spvo.getPwNo());
 		int result = ss.payApplySeminar(spvo, svo);
 		if(result != 1) {
 			throw new IllegalStateException("세미나 결제 실패");

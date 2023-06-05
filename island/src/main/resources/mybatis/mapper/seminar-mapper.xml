@@ -345,6 +345,9 @@
  		, M_NO
  		, AS_NO
  		, S_NO
+ 		<if test="pwNo != null and pwNo != ''">
+ 		, P_NO
+ 		</if>
  	) 
  	VALUES
  	(
@@ -352,6 +355,9 @@
  		, #{loginMemberNo}
  		, 2
  		, #{no}
+ 		<if test="pwNo != null and pwNo != ''">
+ 		, SEQ_PAY_LIST_NO.CURRVAL
+ 		</if>
  	)
  	</insert>
  	

@@ -515,15 +515,19 @@ function applyCheckSeminar(){
     type : 'GET',
     data : {
       'loginMemberNo' : loginMemberNo,
-      'no' : '${svo.no}'
+      'no' : '${svo.no}',
+      'closeDay' : '${svo.closeDay}',
+      'closeTime' : '${svo.closeTime}'
     },
     success : function (data){
       console.log(data);
       if(data == '0'){
         applyStatusArea.innerHTML +='<c:if test="${loginMember.no != svo.writerNo}">'
         applyStatusArea.innerHTML +=' <button type="button" class="btn btn-info" onclick="apllyBtn();">신청하기</button></c:if>'
-      }else{
+      }else if(data == '1'){
         applyStatusArea.innerHTML = "<span class='apply-state'>신청완료</span>"
+      }else{
+        applyStatusArea.innerHTML = "<span class='apply-state'>신청마감</span>";
       }
 
       }, 

@@ -157,11 +157,11 @@ public class SeminarService {
 	//세미나 결제 (+현재참가인원 업뎃 , 참가내역 insert)
 	public int payApplySeminar(SeminarPayVo spvo, SeminarVo svo) {
 		int capacityResult = dao.addSeminarCurrentCapacity(sst, spvo.getSNo());
-		int applyResult = dao.applySeminar(sst, svo);
-		if(capacityResult != 1 && applyResult != 1) {
-			throw new IllegalStateException("현재 참가인원 업데이트 및 신청 실패");
+		int PayApplyResult = dao.payApplySeminar(sst, spvo);
+		if(capacityResult != 1 && PayApplyResult != 1) {
+			throw new IllegalStateException("현재 참가인원 업데이트 및 결제 실패");
 		}
-		return dao.payApplySeminar(sst, spvo);
+		return dao.applySeminar(sst, svo);
 	}
 	
 	//메인화면 인기있는 세미나 조회
