@@ -10,6 +10,7 @@ import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
+import com.island.app.seminar.vo.SeminarVo;
 
 @Repository
 public class SeminarReviewDao {
@@ -74,6 +75,11 @@ public class SeminarReviewDao {
 	//세미나 리뷰 신고하기
 	public int reportSeminarReview(SqlSessionTemplate sst, ReviewReportVo rrvo) {
 		return sst.insert("community.reportSeminarReview", rrvo);
+	}
+	
+	//리뷰작성할 세미나 정보 가져오기
+	public SeminarVo getSeminarInfo(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("community.getSeminarInfo", no);
 	}
 	
 }

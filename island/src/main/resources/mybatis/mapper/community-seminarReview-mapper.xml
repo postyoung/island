@@ -162,4 +162,11 @@
  			)
  	</insert>
  	
+ 	<select id="getSeminarInfo" resultType="seminarVo">
+ 		SELECT 
+		    NO
+		    ,NAME
+		FROM SEMINAR
+		WHERE NO = #{no}
+ 	</select>
 </mapper>

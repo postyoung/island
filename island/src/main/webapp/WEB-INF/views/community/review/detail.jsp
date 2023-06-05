@@ -53,7 +53,7 @@
 	    <div id="line"></div>
 	
 	    <div id="seminar">
-	      <a href="${root}/seminar/detail">[세미나] <span> ${srDetail.seminarName}</span></a>
+	      <a href="${root}/seminar/detail?no=${srDetail.seminarNo}">[세미나] <span> ${srDetail.seminarName}</span></a>
 	    </div>
 	      <table>
 	        <tr>

@@ -12,6 +12,7 @@ import com.island.app.common.page.PageVo;
 import com.island.app.community.review.dao.SeminarReviewDao;
 import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
+import com.island.app.seminar.vo.SeminarVo;
 
 @Service
 @Transactional
@@ -78,5 +79,10 @@ public class SeminarReviewService {
 	//세미나 리뷰 신고하기
 	public int reportSeminarReview(ReviewReportVo rrvo) {
 		return dao.reportSeminarReview(sst, rrvo);
+	}
+	
+	//리뷰작성할 세미나 정보 가져오기
+	public SeminarVo getSeminarInfo(String no) {
+		return dao.getSeminarInfo(sst, no);
 	}
 }

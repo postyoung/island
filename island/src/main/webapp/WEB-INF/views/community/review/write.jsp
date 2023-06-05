@@ -44,10 +44,11 @@
 	    <div id="line"></div>
 	
 	    <div id="seminar">
-	      [세미나] <span> 나에게 딱 맞는 창업아이템 온라인 특강</span>
+	      [세미나] <span> ${svo.name}</span>
 	    </div>
 	
 	      <form action="${root}/community/seminarReview/write" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+	        <input type="hidden" name="seminarNo" value="${svo.no}">
 	        <table>
 	          <tr>
 	            <th class="text-center">제목</th>

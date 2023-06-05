@@ -1,19 +1,11 @@
 package com.island.app.community.review.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +23,7 @@ import com.island.app.community.review.Service.SeminarReviewService;
 import com.island.app.community.review.report.vo.ReviewReportVo;
 import com.island.app.community.review.vo.SeminarReviewVo;
 import com.island.app.member.vo.MemberVo;
+import com.island.app.seminar.vo.SeminarVo;
 
 /**
  * 
@@ -83,13 +76,17 @@ public class SeminarReviewController {
 	
 	//세미나 리뷰 작성하기 (화면)
 	@GetMapping("seminarReview/write")
-	public String seminarReviewWrite(HttpSession session) {
+	public String seminarReviewWrite(HttpSession session, String no, Model m) {
 		//로그인 여부 체크
 		MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 		if(loginMember == null) {
 			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			return "redirect:/community/seminarReview/list";
 		}
+		
+		//리뷰 해당 세미나 이름 조회 
+		SeminarVo svo = srs.getSeminarInfo(no);
+		m.addAttribute("svo", svo);
 		return "community/review/write";
 	}
 	
@@ -102,10 +99,6 @@ public class SeminarReviewController {
 			session.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			return "redirect:/community/seminarReview/list";
 		}
-		
-		//세미나 게시글번호 가져오기 (임시코드)
-		String seminarNo = "39";
-		srvo.setSeminarNo(seminarNo);
 		
 		//회원 번호 가져오기 (loginMember에서 getNo해오기 임시코드)
 		srvo.setMemberNo(loginMember.getNo());
