@@ -36,7 +36,7 @@
                                     <section class="main_content">
                                         <h3 class="title">소모임 개설내역</h3>
                                         <div class="sub_content">
-                                            <h4 class="data_enrolldate">2022.04.04</h4> 
+                                            <h4 class="data_enrolldate"></h4> 
                                             <div class="enroll_content">
                                                 <div>
 
@@ -56,7 +56,7 @@
                                                                             <th>모집인원</th>
                                                                             <th>대기인원</th>
                                                                             <th>참여확정</th>
-                                                                            <th>신청마감일시</th>
+                                                                            <th>신청마감<br>일시</th>
                                                                             <th>모임일시</th>
                                                                             <th>모임수정</th>
                                                                             <th>신청자관리</th>
@@ -69,8 +69,8 @@
                                                                                 <td>${gvo.name}</td>
                                                                                 <td>${gvo.place}</td>
                                                                                 <td>${gvo.peoplenum}</td>
-                                                                                <td>대기인원</td>
-                                                                                <td>참여확정</td>
+                                                                                <td>${gvo.waitingCount}</td>
+                                                                                <td>${gvo.confirmedCount}</td>
                                                                                 <td>${gvo.applydate}</td>
                                                                                 <td>${gvo.starttime} ~ ${gvo.finishtime}</td>
                                                                                 <input type="hidden" name="gNo" value="${gvo.no}">
@@ -104,7 +104,7 @@
         </main>
    	
     </div>
-    <div>
+    <div class="footer" style="margin-top: 860px;">
         <%@include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 

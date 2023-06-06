@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.island.app.common.page.PageVo;
 import com.island.app.community.qna.dao.QnaDao;
 import com.island.app.community.qna.vo.QnaVo;
+import com.island.app.community.qnaan.vo.QnaAnswerVo;
 /**
  * 
  * @author 김수진
@@ -48,6 +49,10 @@ public class QnaService {
 			throw new Exception();
 		}
 		return dao.getQna(sst, no);
+	}
+	//상세조회해서 답변 보여주기
+	public List<QnaAnswerVo> getQnaAnswerList(String qNo) {
+	    return dao.getQnaAnswerList(sst, qNo);
 	}
 	
 	//수정하기 화면

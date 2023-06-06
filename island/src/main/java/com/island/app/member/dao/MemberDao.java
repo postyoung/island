@@ -39,14 +39,19 @@ public class MemberDao{
 	public MemberVo selectOneByNo(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.selectOne("member.getMember" , vo);
 	}
-	//회원탈퇴
-	public int quit(SqlSession sst, MemberVo vo) {
-		return sst.update("memSsber.quit" , vo);
-	}
-	//회원탈퇴 비번확인
-	public MemberVo quitConfirm(SqlSessionTemplate sst, MemberVo vo) {
-		return sst.selectOne("member.quitConfirm",vo);
-	}
+	   // 회원탈퇴
+    public void quit(SqlSession sst, MemberVo vo) {
+        sst.update("member.quit", vo);
+    }
+    // 회원탈퇴 비밀번호 확인
+    public MemberVo quitConfirm(SqlSessionTemplate sst, String memberId) {
+        return sst.selectOne("member.quitConfirm", memberId);
+    }
+
+    // 회원의 개설 내역에 진행중인 세미나/소모임이 있는지 확인
+    public List<String> getEventDatesForMember(SqlSessionTemplate sst, String no) {
+        return sst.selectList("member.getEventDatesForMember", no);
+    }
 	//마이페이지 문의내역
 	public List<QnaVo> getWriteList(SqlSessionTemplate sst, String no) {
 		return sst.selectList("member.getQnaList", no);

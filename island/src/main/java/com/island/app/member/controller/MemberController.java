@@ -106,7 +106,7 @@ public class MemberController {
 		// 서비스
 	    MemberVo loginMember = ms.login(vo);
 	    if (loginMember == null) {
-	        session.setAttribute("alertMsg", "로그인 실패 ... ");
+	        session.setAttribute("alertMsg", "로그인 실패 : 일치하는 정보가 없습니다.");
 	        
 	    }	
 	    // 화면
@@ -114,13 +114,18 @@ public class MemberController {
 	    return "redirect:/main";
 
 	}
-	//로그아웃
-	@RequestMapping("logout")
-	public String logout(HttpSession session, HttpServletRequest req, HttpServletResponse res) {
-		session.invalidate();
-		
-		return "redirect:/main";
-	}
+	// 로그아웃
+    @GetMapping("logout")
+    public String logout(HttpSession session, Model model) {
+        String alertMsg = (String) session.getAttribute("alertMsg");
+        if (alertMsg != null) {
+            model.addAttribute("alertMsg", alertMsg);
+            session.removeAttribute("alertMsg");
+        }
+        session.invalidate();
+        return "member/logout";
+    }
+
 	
 	
 

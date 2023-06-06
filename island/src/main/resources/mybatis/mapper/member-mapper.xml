@@ -150,8 +150,10 @@
 	INNER JOIN (
 	    SELECT 
 	        A.G_NO
-	    FROM APPLY_LIST A
-	    WHERE M_NO = #{no}
+	    FROM 
+	        APPLY_LIST A
+	    WHERE 
+		M_NO = #{no}
 	    AND A.NO = (
 	        SELECT MAX(NO)
 	        FROM APPLY_LIST
@@ -174,11 +176,12 @@
 	    FROM 
 	        INTEREST I
 	    WHERE 
-	        M_NO = #{no}
-	    AND I.G_NO = (
-	        SELECT MAX(G_NO)
+	        I.M_NO = #{no}
+	    AND I.NO = (
+	        SELECT MAX(NO)
 	        FROM INTEREST
 	        WHERE M_NO = #{no}
+		AND G_NO IS NOT NULL
 	    )
 	) I ON G.NO = I.G_NO
 
@@ -226,39 +229,57 @@
 	        WHERE M_NO = #{no}
 	        AND S_NO IS NOT NULL
 	    )
-	) A ON S.NO = A.S_NO
+	) I ON S.NO = I.S_NO
 
 
  	</select>
  	
- 	<update id="quit" >
- 	UPDATE MEMBER
+ 	<update id="quit">
+    UPDATE MEMBER
     SET
-         Q_REASON = #{qReason}
-        ,QUIT_YN= 'Y'
+        Q_REASON = #{qReason},
+        QUIT_YN = 'Y'
     WHERE
         NO = #{no}
- 	</update>
+	</update>
+	
+	<select id="quitConfirm" resultType="memberVo">
+	    SELECT *
+	    FROM MEMBER
+	    WHERE ID = #{memberId}
+	</select>
+	
+	<select id="getEventDatesForMember" resultType="java.lang.String">
+	    SELECT event_date
+		FROM (
+		    SELECT 'seminar' AS type, NAME, START_DAY AS event_date, NO
+		    FROM SEMINAR
+		    WHERE WRITER_NO = #{no}
+		    UNION ALL
+		    SELECT 'small_group' AS type, NAME, finishtime AS event_date, NO
+		    FROM SMALL_GROUP
+		    WHERE M_NO = #{no}
+		) events
+		WHERE event_date >= TRUNC(SYSDATE)
+	</select>
+
  	
- 	<select id="quitConfirm" resultType="memberVo">
- 	SELECT * 
-	FROM MEMBER
-	WHERE NO= #{no}
- 	</select>
- 	
- 	<select id="getQnaList" resultType="qnaVo">
-		SELECT 
-		Q.NO
-		,Q.TITLE
-		,Q.WRITER_NO
-		,Q.ENROLL_DATE
-		,Q.ANSWER_YN
-		,Q.DEL_YN
-        ,M.NO
-		FROM QNA Q
-        JOIN MEMBER M ON (Q.WRITER_NO=M.NO)
-        WHERE M.NO = #{no}
- 	</select>
+	<select id="getQnaList" resultType="qnaVo">
+	    SELECT 
+	        Q.NO,
+	        Q.TITLE,
+	        Q.WRITER_NO,
+	        TO_CHAR(Q.ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE,
+	        Q.ANSWER_YN,
+	        Q.DEL_YN,
+	        M.NO
+	    FROM QNA Q
+	    JOIN MEMBER M ON (Q.WRITER_NO=M.NO)
+	    WHERE M.NO = #{no}
+	    ORDER BY Q.NO DESC
+	</select>
+
+
  	
  	<select id="getInterestList" resultType="seminarVo">
  		SELECT
@@ -464,17 +485,33 @@
  	
  	<select id="getmadeListGroup" resultType="groupVo">
  	SELECT
- 		NO,
-	    NAME, 
-	    PLACE, 
-	    PEOPLENUM, 
-	    STARTTIME,
-	    FINISHTIME,
-        APPLYDATE,
-	    GROUP_THUMNAIL
-	FROM SMALL_GROUP
-	WHERE M_NO = #{no}
-	ORDER BY NO DESC
+    sg.NO,
+    sg.NAME,
+    sg.PLACE,
+    sg.PEOPLENUM,
+    sg.STARTTIME,
+    sg.FINISHTIME,
+    sg.APPLYDATE,
+    sg.GROUP_THUMNAIL,
+    COUNT(CASE WHEN ga.STATUS = 'applied' THEN 1 END) AS WAITING_COUNT,
+    COUNT(CASE WHEN ga.STATUS = 'approved' THEN 1 END) AS CONFIRMED_COUNT
+	FROM
+	    SMALL_GROUP sg
+	LEFT JOIN
+	    GROUP_APPLY ga ON sg.NO = ga.G_NO
+	WHERE
+	    sg.M_NO = #{no}
+	GROUP BY
+	    sg.NO,
+	    sg.NAME,
+	    sg.PLACE,
+	    sg.PEOPLENUM,
+	    sg.STARTTIME,
+	    sg.FINISHTIME,
+	    sg.APPLYDATE,
+	    sg.GROUP_THUMNAIL
+	ORDER BY
+	    sg.NO DESC
  	</select>
  	
  	<select id="checkGroupEdit" resultType="groupVo">

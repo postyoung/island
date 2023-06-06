@@ -27,7 +27,15 @@ public class GroupVo {
     private String loginMemberNo; //로그인한 유저 번호
     private String state; //신청현황
 
+    private String waitingCount; //대기인원
+    private String confirmedCount; //확정인원
+    
+    
+    
+
+
     private String thumbnailPath; //썸네일
     private String localCategoryName; //지역카테고리명
     private String groupCategoryName; //소모임카테고리명
+
 }
