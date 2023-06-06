@@ -5,19 +5,36 @@
 <mapper namespace="group">
     <select id="list" parameterType="groupVo" resultType="groupVo">
         SELECT
-            NO
-            ,NAME
-            ,INTRO
-            ,ENROLL_DATE
+            S.NO
+            ,S.L_NO
+            ,S.C_NO
+            ,S.NAME
+            ,S.INTRO
+            ,S.ENROLL_DATE
+            ,CONCAT('/app/resources/img/group/upload/', GP.CHANGE_NAME) THUMBNAIL_PATH
+            ,LC.NAME LOCAL_CATEGORY_NAME
+            ,GC.CATEGORY GROUP_CATEGORY_NAME
         FROM
-            SMALL_GROUP
+            SMALL_GROUP S
+        LEFT JOIN
+            GROUP_PO GP
+        ON
+            S.NO = GP.G_NO
+        LEFT JOIN
+            LOCAL_CATEGORY LC
+        ON
+            S.L_NO = LC.NO
+        LEFT JOIN
+            GROUP_CATEGORY GC
+        ON
+            S.C_NO = GC.NO
         WHERE
             1=1
-        <if test="enrollDate != null">
-            AND ENROLL_DATE = #{enrollDate}
+        <if test="lNo != null">
+            AND S.L_NO = #{lNo}
         </if>
-        <if test="place != null">
-            AND PLACE = #{place}
+        <if test="cNo != null">
+            AND S.C_NO = #{cNo}
         </if>
         ORDER BY
             ENROLL_DATE DESC
@@ -49,6 +66,17 @@
             ,NAME
         FROM
             LOCAL_CATEGORY
+    </select>
+    <select id="getGroupDetailImages" resultType="groupPoVo">
+       SELECT
+            NO
+            ,G_NO
+            ,ORIGIN_NAME
+            ,CHANGE_NAME
+        FROM
+            GROUP_PO2
+        WHERE
+            G_NO = #{no}
     </select>
     <insert id="create" parameterType="groupVo">
         INSERT INTO SMALL_GROUP (
@@ -86,20 +114,33 @@
             ,#{delYn}
             ,#{reportYn}
             ,#{blockYn}
-            ,#{enrollDate}
+            ,TO_CHAR(SYSDATE, 'YYYY-MM-DD')
         )
     </insert>
     <insert id="saveThumbnail">
         INSERT INTO GROUP_PO (
-        NO
-        ,G_NO
-        ,ORIGIN_NAME
-        ,CHANGE_NAME
+            NO
+            ,G_NO
+            ,ORIGIN_NAME
+            ,CHANGE_NAME
         ) VALUES (
-        GROUP_PO_SEQ.NEXTVAL
-        ,SMALL_GROUP_SEQ.CURRVAL
-        ,#{originName}
-        ,#{changeName}
+            GROUP_PO_SEQ.NEXTVAL
+            ,SMALL_GROUP_SEQ.CURRVAL
+            ,#{originName}
+            ,#{changeName}
+        )
+    </insert>
+    <insert id="saveGroupDetailImage">
+        INSERT INTO GROUP_PO2 (
+            NO
+            ,G_NO
+            ,ORIGIN_NAME
+            ,CHANGE_NAME
+        ) VALUES (
+            GROUP_PO2_SEQ.NEXTVAL
+            ,SMALL_GROUP_SEQ.CURRVAL
+            ,#{originName}
+            ,#{changeName}
         )
     </insert>
     <update id="edit" parameterType="groupvo">
@@ -117,18 +158,35 @@
     </update>
     <select id="detail" resultType="groupVo">
         SELECT
-            NO,
-            NAME,
-            INTRO,
-            PEOPLENUM,
-            STARTTIME,
-            FINISHTIME,
-            DEL_YN,
-            EXINTRO
+            S.NO
+            ,S.L_NO
+            ,S.C_NO
+            ,S.NAME
+            ,S.INTRO
+            ,S.PEOPLENUM
+            ,S.STARTTIME
+            ,S.FINISHTIME
+            ,S.DEL_YN
+            ,S.EXINTRO
+            ,CONCAT('/app/resources/img/group/upload/', GP.CHANGE_NAME) THUMBNAIL_PATH
+            ,LC.NAME LOCAL_CATEGORY_NAME
+            ,GC.CATEGORY GROUP_CATEGORY_NAME
         FROM
-        SMALL_GROUP
+            SMALL_GROUP S
+        LEFT JOIN
+            GROUP_PO GP
+        ON
+            S.NO = GP.G_NO
+        LEFT JOIN
+            LOCAL_CATEGORY LC
+        ON
+            S.L_NO = LC.NO
+        LEFT JOIN
+            GROUP_CATEGORY GC
+        ON
+            S.C_NO = GC.NO
         WHERE
-        NO = #{no}
+            S.NO = #{no}
     </select>
     <update id="hit" parameterType="int">
         UPDATE BOARD

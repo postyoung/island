@@ -3,6 +3,7 @@ package com.island.app.group.dao;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.vo.GroupCategoryVo;
+import com.island.app.group.vo.GroupPoVo;
 import com.island.app.group.vo.GroupVo;
 import com.island.app.group.vo.LocalCategoryVo;
 import org.apache.ibatis.session.RowBounds;
@@ -30,6 +31,10 @@ public class GroupDao {
     //이미지썸네일
     public void saveThumbnail(SqlSessionTemplate sst, FileVo fileVo) {
         sst.insert("group.saveThumbnail", fileVo);
+    }
+    //상세정보이미지 업로드
+    public void saveGroupDetailImage(SqlSessionTemplate sst, FileVo fileVo) {
+        sst.insert("group.saveGroupDetailImage", fileVo);
     }
     //리스트페이징
     public int getTotalCount(SqlSessionTemplate sst, GroupVo groupVo) {
@@ -70,6 +75,7 @@ public class GroupDao {
     }
 
 
-
-
+    public List<GroupPoVo> getGroupDetailImages(SqlSessionTemplate sst, int no) {
+        return sst.selectList("group.getGroupDetailImages" , no);
+    }
 }

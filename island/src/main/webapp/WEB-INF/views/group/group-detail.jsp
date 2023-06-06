@@ -29,9 +29,9 @@
                     <div class="flex-grow-1 ms-3 py-2">
                         <h2 class="mb-0">모임제목</h2>
                         <p class="mb-2 width" >모임소개</p>
-                        <p class="mb-2 width">모임일시 : </p>
-                        <p class="mb-2 width">모집인원 : 1명</p>
-                        <p class="mb-2 width">모집마감일 : 2023</p>
+                        <p class="mb-2 width">모임일시 : ${smallGroup.starttime}</p>
+                        <p class="mb-2 width">모집인원 : ${smallGroup.peoplenum}명</p>
+                        <p class="mb-2 width">모집마감일 : ${smallGroup.finishtime}</p>
                         <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
@@ -60,8 +60,8 @@
                         <img src="${root}/resources/img/group/k.jpeg" class="mt-2" width="60px">
                     </div>
                     <div class="flex-grow-1 ms-3 py-2">
-                        <div id="pro" class="mb-0">이름 : 권순영</div>
-                        <div class="mb-2 width">이메일 : postsoonyoung@gmail.com</div>
+                        <div id="pro" class="mb-0">이름 : ${loginMember.name}</div>
+                        <div class="mb-2 width">이메일 : ${loginMember.email}@${loginMember.email2}</div>
                         <div class="mb-2 width">전화번호 : 010-1234-5678</div>
                         <div class="mb-2 width">소속 : 없음</div>
                         <a href="${root}/group/edit"><button class="btn btn-primary" onclick="modify()">수정하기</button></a>
@@ -75,18 +75,11 @@
                 <h1>상세내용</h1>
                 <hr>
                 <div>
-                    1) 모든 요일 수준별 반편성.
-                    <br>
-                    2) 기타입문자 원데이클래스로 맛보기 강습 체험가능.
-                    <br>
-                    3) 정규반 1달 등록에 강습 무제한 수강.
-                    <br>
-                    4) 연습실 무료사용. 악기 무료대여.
-                    <br>
-                    5) 일렉반, 드럼은 소수로 1인1악기 개별 강습.
-                    <br>
-                    6) 강습이후 카페같은 이쁜공간에서 반사람들과 친목, 뒷풀이, 합주,공연, 다과 등 힐링의 시간을 보내실 수 있습니다^^
+                    ${smallGroup.exintro}
                     <hr>
+                    <c:forEach var="image" items="${detailImages}">
+                        <img src="${root}/resources/img/group/upload/${image.changeName}" width="100%" alt="${image.originName}">
+                    </c:forEach>
                     <h2>지도보기</h2>
                     <hr>
                     <h2>댓글</h2>
