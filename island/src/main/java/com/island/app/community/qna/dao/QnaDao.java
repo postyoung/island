@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.island.app.common.page.PageVo;
 import com.island.app.community.qna.vo.QnaVo;
+import com.island.app.community.qnaan.vo.QnaAnswerVo;
 /**
  *
  * @author 김수진
@@ -34,6 +35,10 @@ public class QnaDao {
 	//상세조회
 	public QnaVo getQna(SqlSessionTemplate sst, String no) {
 		return sst.selectOne("qna.getQna",no);
+	}
+	//상세조회해서 질문답변가져오기
+	public List<QnaAnswerVo> getQnaAnswerList(SqlSessionTemplate sst, String qNo) {
+	    return sst.selectList("qna.getQnaAnswerList", qNo);
 	}
 	
 	//조회수

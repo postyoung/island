@@ -270,7 +270,7 @@ public class MemberMypagelistController {
 		    SeminarVo result = ms.checkSeminarEdit(no);
 		    
 		    if (result != null) {
-		        return "redirect:/seminar/edit?no="+no;
+		        return "redirect:/seminar/edit/"+no;
 		    } else {
 		    	session.setAttribute("alertMsg" , "세미나 일시 이후에 세미나 수정을 할 수 없습니다.");
 		        return "redirect:/mypage/list/madeList/seminar";
