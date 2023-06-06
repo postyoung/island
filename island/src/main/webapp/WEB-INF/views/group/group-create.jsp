@@ -130,9 +130,15 @@
                         <input type="text" name="intro" id=intro" value="${create.intro}" required>
                     </div>
                     <div class = "form-group">
-                        <label for="msg">상세정보</label>
+                        <label for="exintro">상세정보</label>
                         <div class="description-container">
                             <textarea id="exintro" name="exintro" required></textarea>
+                        </div>
+                        <div>
+<%--                            <img id="preview" src="default-profile-image.png" alt="이미지s">--%>
+                            <div id="detail-images"></div>
+                            <label for="files" class="custom-file-upload">이미지 업로드</label>
+                            <input id="files" name="files" type="file" multiple onchange="previewImages(event)">
                         </div>
                         <div class = "form-group">
                             <div class="date-selector">

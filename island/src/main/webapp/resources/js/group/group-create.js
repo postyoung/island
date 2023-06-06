@@ -2,10 +2,25 @@
 function previewImage(event) {
     var reader = new FileReader();
     reader.onload = function() {
-    var output = document.getElementById('preview');
-    output.src = reader.result;
-}
+        var output = document.getElementById('preview');
+        output.src = reader.result;
+    }
     reader.readAsDataURL(event.target.files[0]);
+}
+
+function previewImages(event) {
+    var detailImages = document.querySelector('#detail-images');
+    detailImages.innerHTML = '';
+    for (var file of event.target.files) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var imageElement = document.createElement('img');
+            imageElement.src = event.target.result;
+            imageElement.style.maxWidth = '100%';
+            detailImages.innerHTML = detailImages.innerHTML + imageElement.outerHTML;
+        }
+        reader.readAsDataURL(file);
+    }
 }
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function execDaumPostcode() {
