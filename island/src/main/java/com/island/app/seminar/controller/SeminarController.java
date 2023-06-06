@@ -105,11 +105,6 @@ public class SeminarController {
 		}
 		svo.setWriterNo(loginMember.getNo());
 		
-		//세미나 일시 유효성 검사 (오늘 날짜 이후인지)
-		
-		//세미나 참가모집 일시가 세미나 일시 이전인지 검사
-		
-		
 		//세미나 시작시간~종료시간 세팅
 		svo.setSeminarTime(svo.getSHour(), svo.getSMinute(), svo.getFHour(), svo.getFMinute());
 		//세미나 참가신청 마감일시 세팅
