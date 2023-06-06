@@ -1,5 +1,7 @@
 package com.island.app.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -76,27 +78,33 @@ public class MemberMypageController {
 			
 			return "member/mypage-quit";
 		}
-		//마이페이지 회원탈퇴 
+		// 마이페이지 회원탈퇴
 		@PostMapping("quit")
 		public String quit(MemberVo vo, HttpSession session, Model model) {
-			
-			//데이터
-			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-			String no = loginMember.getNo();
-			
-			//서비스
-			MemberVo result = ms.quit(vo);
-			
-			//화면
-			if (result != null) {
-			   model.addAttribute("alertMsg", "회원 탈퇴되었습니다. ISLAND를 이용해주셔서 감사합니다.");
-			   session.invalidate();
-			    
-			}else {
-				session.setAttribute("alertMsg", "회원탈퇴 실패: 관리자에게 문의하세요.");
-			}
-			return "redirect:/main";
+		    // 데이터
+		    MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		    String memberId = loginMember.getId();
+
+		    // 서비스
+		    List<String> eventDates = ms.quit(memberId, vo.getPwd(), vo.getQReason());
+
+		    // 진행중인 세미나/소모임 여부 확인
+		    if (eventDates != null) {
+		        if (eventDates.isEmpty()) {
+		            // 회원 탈퇴 성공
+		            session.setAttribute("alertMsg", "회원 탈퇴되었습니다. ISLAND를 이용해주셔서 감사합니다.");
+		            return "redirect:/member/logout";
+		        } else {
+		            // 진행중인 세미나/소모임이 있음을 알리는 처리
+		            session.setAttribute("alertMsg", "진행중인 세미나/소모임이 있어 회원 탈퇴가 불가능합니다.");
+		            return "redirect:/mypage/home";
+		        }
+		    } else {
+		        session.setAttribute("pwdAlertMsg", "회원탈퇴 실패: 비밀번호가 일치하지 않습니다.");
+		        return "member/mypage-quit";
+		    }
 		}
+
 		
 		
 }//class

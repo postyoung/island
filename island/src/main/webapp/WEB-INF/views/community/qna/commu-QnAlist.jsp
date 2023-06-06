@@ -76,6 +76,7 @@
             <th>제목</th>
             <th>작성자</th>
             <th>조회수</th>
+            <th>답변여부</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -86,6 +87,7 @@
             <td>${qvo.title}</td>
             <td>${qvo.writerName}</td>
             <td>${qvo.hit}</td>
+            <td>${qvo.answerYn}</td>
           </tr>
         	</c:forEach>
     

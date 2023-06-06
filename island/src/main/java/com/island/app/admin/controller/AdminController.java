@@ -25,6 +25,12 @@ public class AdminController {
 		this.as = as;
 	}
 
+	// 메인
+	@GetMapping("main")
+	public String main(Model model) {
+		return "admin/main-admin";
+	}
+
 	// 로그인 (화면)
 	@GetMapping("login")
 	public String login() {
@@ -44,7 +50,13 @@ public class AdminController {
 
 	// 계정 생성 (화면)
 	@GetMapping("create")
-	public String create() {
+	public String create(HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 3) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
 		return "admin/create";
 	}
 
@@ -72,12 +84,6 @@ public class AdminController {
 		}
 	}
 
-	// 메인
-	@RequestMapping("main")
-	public String main() {
-		return "admin/main-admin";
-	}
-
 	// 정보 수정 (화면)
 	@GetMapping("edit")
 	public String edit() {
@@ -100,7 +106,14 @@ public class AdminController {
 	// 권한 설정
 	@GetMapping("authorize")
 	public String authorize(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
+			Model model, HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 3) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
+
 		// 데이터
 		int listCount = as.getCnt(searchMap);
 		int currentPage = page;
@@ -114,7 +127,7 @@ public class AdminController {
 
 		// 화면
 		// model.addAttribute("cvoList", cvoList);
-		model.addAttribute("searchMap", searchMap);
+		// model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("adminList", adminList);
 
@@ -125,29 +138,17 @@ public class AdminController {
 	@GetMapping("authorize/detail")
 	public String authorizeChoice(String no, Model model) {
 		AdminVo getAdmin = as.getAdmin(no);
-		System.out.println(getAdmin);
 		model.addAttribute("getAdmin", getAdmin);
 		return "admin/authorize-detail";
 	}
 
 	// 권한 상세 설정
-	@PostMapping("authorize/detail1")
-	public String authorizeChoice1(AdminVo vo, Model model, HttpSession session) {
+	@PostMapping("authorize/detail")
+	public String authorizeChoice(AdminVo vo, Model model, HttpSession session, String pmno) {
+		vo.setPmNo(pmno);
 		int result = as.changeAuthor(vo);
-		session.setAttribute("alertMsg", "수정 성공!!!");
+		session.setAttribute("alertMsg", "관리자 권한 수정이 성공하였습니다.");
 		return "admin/main-admin";
-	}
-
-	// 권한 상세 설정
-	@PostMapping("authorize/detail2")
-	public String authorizeChoice2() {
-		return "";
-	}
-
-	// 권한 상세 설정
-	@PostMapping("authorize/detail3")
-	public String authorizeChoice3() {
-		return "";
 	}
 
 	// 계정 삭제
@@ -167,7 +168,7 @@ public class AdminController {
 
 		// 화면
 		// model.addAttribute("cvoList", cvoList);
-		model.addAttribute("searchMap", searchMap);
+		// model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("adminList", adminList);
 
@@ -175,10 +176,10 @@ public class AdminController {
 	}
 
 	@PostMapping("delete")
-	public String delete(Model model) {
-		AdminVo avo = (AdminVo) model.getAttribute("avo");
-		int result = as.delete(avo);
-		return "admin/delete";
+	public String delete(HttpSession session, String no) {
+		int result = as.delete(no);
+		session.setAttribute("alertMsg", "계정 삭제가 완료되었습니다.");
+		return "redirect:/admin/main";
 	}
 
 	// 로그아웃

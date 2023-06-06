@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.island.app.common.page.PageVo;
 import com.island.app.community.qna.service.QnaService;
 import com.island.app.community.qna.vo.QnaVo;
+import com.island.app.community.qnaan.vo.QnaAnswerVo;
 import com.island.app.member.vo.MemberVo;
 /**
  * 
@@ -89,15 +90,19 @@ public class QnaController {
 	//Q&A 상세 
 	@GetMapping("qna/detail")
 	public String QnAdetail(String no, Model model) throws Exception {
-		QnaVo vo = qs.getQna(no);
-		
-		if(vo == null) {
-			throw new Exception("게시글조회실패");
-		}
-		model.addAttribute("qvo", vo);
-		
-	return "community/qna/commu-QnAdetail";
+	    QnaVo vo = qs.getQna(no);
+	    List<QnaAnswerVo> answerList = qs.getQnaAnswerList(no); // QNA_AN 테이블의 데이터 목록을 가져옴
+	    
+	    if(vo == null) {
+	        throw new Exception("게시글 조회 실패");
+	    }
+	    
+	    model.addAttribute("qvo", vo);
+	    model.addAttribute("answerList", answerList); // 뷰로 QNA_AN 데이터 목록 전달
+	    
+	    return "community/qna/commu-QnAdetail";
 	}
+
 	
 	//수정하기(화면)
 	@GetMapping("qna/edit")

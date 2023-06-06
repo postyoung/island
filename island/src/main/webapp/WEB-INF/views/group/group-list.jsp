@@ -17,64 +17,40 @@
 <main>
 	<h1>소모임 목록</h1>
 	<form name="search" method="get">
-	<div class="search_form_top">
-		<h3 class="sub_title">상세검색</h3>
-	</div>
-	<fieldset class="filter_area">
-		<div class="btn_open" type="button">지역</div>
+		<div class="search_form_top">
+			<h3 class="sub_title">상세검색</h3>
+		</div>
 		<div class="dropdown-label">
 		</div>
-		<div class="dropdown">
-			<button class="dropbtn">
-				<span class="dropbtn_icon"></span>
-				<span class="dropbtn_content"></span>
-				<span class="dropbtn_click" style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
-					  onclick="dropdown()">선택하기</span>
-			</button>
-			<div class="dropdown-content">
-				<div class="fastfood" onclick="showMenu(this.innerText)">서울</div>
-				<div class="fastfood" onclick="showMenu(this.innerText)">경기</div>
-				<div class="fastfood" onclick="showMenu(this.innerText)">인천</div>
-				<div class="fastfood" onclick="showMenu(this.innerText)">강원</div>
-				<div class="fastfood" onclick="showMenu(this.innerText)">부산</div>
-				<div class="fastfood" onclick="showMenu(this.innerText)">제주</div>
-				<div class="fastfood" onclick="showMenu(this.innerText)">기타</div>
-			</div>
-		</div>
-		<span class="check_value" title=""></span>
-
-		<div class="check_area">
-			<ul class="area_check">
-
-				<!-- 지역 목록 -->
-
-			</ul>
-			<div class="button_area">
-				<div class="btn_wrap">
-					<button type="button" class="btn_check">적용</button>
-				</div>
-			</div>
-		</div>
-	</fieldset>
-	<fieldset class="filter_event_date">
-		<div id="eventDate" class="btn_open" type="date" value="모임기간">모임기간</div>
-		<label for="date">날짜:</label>
-		<input type="date" class="form-control" id="date" name="date">
-	</fieldset>
-	<fieldset class="search_area">
-		<div class="gr-list-ct">
-			<input required="required" type="text"> <span>상세검색</span> <i></i>
-		</div>
-		<button type="button" class="btn_keyword_search">검색</button>
-	</fieldset>
+		<label>
+			지역:
+			<select name="localCategoryNo">
+				<option value="">미선택</option>
+				<c:forEach items="${localCategoryList}" var="localCategory">
+					<option value="${localCategory.no}">${localCategory.name}</option>
+				</c:forEach>
+			</select>
+		</label>
+		<label>
+			취미:
+			<select name="groupCategoryNo">
+				<option value="">미선택</option>
+				<c:forEach items="${categoryList}" var="category">
+					<option value="${category.no}">${category.category}</option>
+				</c:forEach>
+			</select>
+		</label>
+		<button type="submit" class="btn_keyword_search">검색</button>
 	</form>
 	<div class="card_list">
 		<c:forEach items="${groupList}" var="group">
 			<div class="card" style="width: 15rem;">
-				<img src="https://cfile1.onoffmix.com/images/event/274639/s" class="card-img-top" alt="...">
+				<img src="${group.thumbnailPath}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">${group.name}</h5>
-					<p class="card-text">${group.intro}</p>
+					<p class="card-text">소개: ${group.intro}</p>
+					<p class="card-text">지역: ${group.localCategoryName}</p>
+					<p class="card-text">카테고리: ${group.groupCategoryName}</p>
 					<p class="card-text">${group.enrollDate}</p>
 					<a href="${root}/group/detail?no=${group.no}" class="btn btn-danger">상세보기</a>
 				</div>

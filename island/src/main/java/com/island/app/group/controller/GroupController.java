@@ -4,7 +4,10 @@ import com.island.app.common.file.FileUploader;
 import com.island.app.common.file.FileVo;
 import com.island.app.common.page.PageVo;
 import com.island.app.group.service.GroupService;
+import com.island.app.group.vo.GroupCategoryVo;
+import com.island.app.group.vo.GroupPoVo;
 import com.island.app.group.vo.GroupVo;
+import com.island.app.group.vo.LocalCategoryVo;
 import com.island.app.member.vo.MemberVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -38,25 +42,31 @@ public class GroupController {
 	@GetMapping("list")
 	public String list(
 			Model model,
-			@RequestParam(value = "date", required = false) String enrollDate,
-			@RequestParam(value = "place", required = false) String place,
+			@RequestParam(value = "groupCategoryNo", required = false) String groupCategoryNo,
+			@RequestParam(value = "localCategoryNo", required = false) String localCategoryNo,
 			@RequestParam(defaultValue = "1") int page
 	) {
 		GroupVo groupVo = new GroupVo();
-		groupVo.setEnrollDate(enrollDate);
-		groupVo.setPlace(place);
+		if (groupCategoryNo != null && !groupCategoryNo.equals("")) {
+			groupVo.setCNo(groupCategoryNo);
+		}
+
+		if (localCategoryNo != null && !localCategoryNo.equals("")) {
+			groupVo.setLNo(localCategoryNo);
+		}
 
 		int listCount = groupService.getTotalCount(groupVo);
 		int pageLimit = 5; // 5인 경우 하단 페이지네이션이 1, 2, 3, 4, 5 이렇게 나오도록 해주는 값
 		int boardLimit = 10; // 한 페이지에 몇 개 보여줄건지
 		PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
-
-		// TODO: remove this
-		System.out.println(pageVo);
-
 		List<GroupVo> groupList = groupService.list(groupVo, pageVo);
+		List<GroupCategoryVo> categoryList = groupService.getCategoryList();
+		List<LocalCategoryVo> localCategoryList = groupService.getLocalCategoryList();
+
 		model.addAttribute("pageVo", pageVo);
 		model.addAttribute("groupList", groupList);
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("localCategoryList", localCategoryList);
 		return "group/group-list";
 	}
 
@@ -74,23 +84,35 @@ public class GroupController {
     ) {
 		// TODO: no 없는 경우 에러 처리
 		GroupVo smallGroup = groupService.detail(no);
+		List<GroupPoVo> detailImages = groupService.getGroupDetailImages(no);
+
 		model.addAttribute("smallGroup", smallGroup);
+		model.addAttribute("detailImages", detailImages);
 
 		return "group/group-detail";
 	}
 
 	//소모임생성페이지
 	@GetMapping("create")
-	public String create()  {
+	public String create(HttpSession session, Model model)  {
+		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+		if (loginMember == null) {
+			return "redirect:/member/login";
+		}
+		// get categories
+		List<GroupCategoryVo> categoryList = groupService.getCategoryList();
+		List<LocalCategoryVo> localCategoryList = groupService.getLocalCategoryList();
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("localCategoryList", localCategoryList);
 		return "group/group-create";
 	}
 
 
 	@PostMapping("create")
-	public String create(GroupVo groupVo , MultipartFile thumbnailFile, HttpSession session , HttpServletRequest request) throws Exception {
+	public String create(GroupVo groupVo , MultipartFile thumbnailFile, List<MultipartFile> files, HttpSession session, HttpServletRequest request) throws Exception {
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 		if (loginMember == null) {
-			session.setAttribute("alertMsg", "로그인 을 해주세요");
+			return "redirect:/member/login";
 		}
 
 		String path = request.getServletContext().getRealPath("/resources/img/group/upload/");
@@ -105,6 +127,22 @@ public class GroupController {
 			originName = "example.jpeg";
 		}
 
+		// 상세정보 이미지
+		List<FileVo> fileVoList = new ArrayList<>();
+		for (MultipartFile file : files) {
+			String c = "example.jpeg";
+			String o = "example.jpeg";
+			if (!file.isEmpty()) {
+				c = FileUploader.upload(file, path);
+				o = FileUploader.getOriginName(file);
+			}
+
+			FileVo fVo = new FileVo();
+			fVo.setChangeName(c);
+			fVo.setOriginName(o);
+			fileVoList.add(fVo);
+		}
+
 		// TODO: 유효성 검사
 		String mNo = loginMember.getNo();
 		groupVo.setMNo(mNo);
@@ -114,13 +152,12 @@ public class GroupController {
 		groupVo.setDelYn("N");
 		groupVo.setReportYn("N");
 		groupVo.setBlockYn("N");
-		groupVo.setEnrollDate("2023-05-28");
 
 		FileVo fileVo = new FileVo();
 		fileVo.setChangeName(changeName);
 		fileVo.setOriginName(originName);
 
-		groupService.create(groupVo, fileVo);
+		groupService.create(groupVo, fileVo, fileVoList);
 
 		return "redirect:/group/list";
 	}
@@ -159,5 +196,4 @@ public class GroupController {
 		return "redirect:board/list";
 	}
 }
-
 

@@ -20,12 +20,11 @@
 					<a class="nav-link" href="${root}/admin/report/member">회원</a> <a
 						class="nav-link" href="${root}/admin/report/group">소모임</a> <a
 						class="nav-link" href="${root}/admin/report/seminar">세미나</a> <a
-						class="nav-link" href="${root}/admin/report/review">세미나 리뷰</a> <a
-						class="nav-link" href="#!">댓글</a>
+						class="nav-link" href="${root}/admin/report/review">세미나 리뷰</a>
 					<div class="sb-sidenav-menu-heading">게시판</div>
 					<a class="nav-link" href="${root}/admin/notice/list">공지사항</a> <a
 						class="nav-link" href="${root}/admin/faq/list">FAQ</a> <a
-						class="nav-link" href="${root}/admin/inquiry/list">Q&A</a> <a
+						class="nav-link" href="${root}/admin/qnaan/list">Q&A</a> <a
 						class="nav-link" href="${root}/admin/statistics">통계조회</a>
 				</div>
 			</div>

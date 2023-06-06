@@ -27,7 +27,7 @@
                                     <section class="main_content">
                                         <h3 class="title">세미나 개설내역</h3>
                                         <div class="sub_content">
-                                            <h4 class="data_enrolldate">2022.04.04</h4> 
+                                            <h4 class="data_enrolldate"></h4> 
                                             <div class="enroll_content">
                                                 <div>
 
@@ -89,7 +89,7 @@
         </main>
    	
     </div>
-    <div style="margin-top: 840px;">
+    <div class="footer" style="margin-top: 860px;">
         <%@include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 

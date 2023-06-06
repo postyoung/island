@@ -81,31 +81,30 @@ public class MemberService {
 		}
 		return dao.selectOneByNo(sst , vo);
 	}
-	
-	//회원탈퇴
-	public MemberVo quit(MemberVo vo) {
-		
-		MemberVo memberVo = dao.quitConfirm(sst,vo);
-		
-		if (memberVo != null) {
-	        memberVo.setQReason(vo.getQReason());
+	// 회원탈퇴
+	public List<String> quit(String memberId, String password, String qReason) {
+	    // 입력한 비밀번호와 회원의 비밀번호 일치 여부 확인
+	    MemberVo memberVo = dao.quitConfirm(sst, memberId);
+	    if (memberVo != null) {
+	        boolean passwordMatches = enc.matches(password, memberVo.getPwd());
+	        if (passwordMatches) {
+	            // 회원의 개설 내역에 진행중인 세미나/소모임이 있는지 확인
+	            List<String> eventDates = dao.getEventDatesForMember(sst, memberVo.getNo());
+	            if (eventDates.isEmpty()) {
+	                // 비밀번호 일치하고 진행중인 세미나/소모임이 없는 경우 회원 탈퇴 처리
+	                memberVo.setQReason(qReason);
+	                memberVo.setQuitYn("Y");
+	                dao.quit(sst, memberVo);
+	                return eventDates;
+	            } else {
+	                return eventDates;
+	            }
+	        }
+	    }
+	    return null;
+	}
 
-	        dao.quit(sst, memberVo);
-		
-		String userpwd = vo.getPwd();
-		String dbpwd = memberVo.getPwd();
-		
-		boolean result = enc.matches(userpwd, dbpwd);
-		if(result) {
-			return memberVo;
-		}else {
-			return null;
-		}
-		
-		}
-		return memberVo;
-	
-}
+
 	//마이페이지 문의내역
 	public List<QnaVo> getWriteList(String no) {
 		return dao.getWriteList(sst,no);

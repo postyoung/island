@@ -9,6 +9,15 @@
     <title>ISLAND 개설내역|소모임 | ISLAND</title>
 	<%@include file="/WEB-INF/views/common/header-member.jsp" %>
     <link rel="stylesheet" href="${root}/resources/css/member/mypageEnrollList2.css">
+
+    <c:if test="${not empty alertMsg}">
+        <script type="text/javascript">
+        alert('${sessionScope.alertMsg}');
+        </script>
+    </c:if>
+  
+    <c:remove var="alertMsg" scope="session"/>
+
 </head>
 <body>
     <div id="wrap">
@@ -27,7 +36,7 @@
                                     <section class="main_content">
                                         <h3 class="title">소모임 개설내역</h3>
                                         <div class="sub_content">
-                                            <h4 class="data_enrolldate">2022.04.04</h4> 
+                                            <h4 class="data_enrolldate"></h4> 
                                             <div class="enroll_content">
                                                 <div>
 
@@ -47,24 +56,28 @@
                                                                             <th>모집인원</th>
                                                                             <th>대기인원</th>
                                                                             <th>참여확정</th>
-                                                                            <th>신청마감일시</th>
+                                                                            <th>신청마감<br>일시</th>
                                                                             <th>모임일시</th>
                                                                             <th>모임수정</th>
                                                                             <th>신청자관리</th>
                                                                         </thead>
                                                                    
                                                                             <tbody>
-                                                                                <tr><td><img class="group_info_img" src="${root}/resources/img/member/eximg.jpeg" alt="그룹사진"></td>
-                                                                                <td>아이디어조</td>
-                                                                                <td>강남구 역삼동</td>
-                                                                                <td>10</td>
-                                                                                <td>2</td>
-                                                                                <td>1</td>
-                                                                                <td>2023-12-01</td>
-                                                                                <td>2023-12-01 ~ 2024-12-01</td>
-                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기" onclick="location.href='${root}/group/edit'"></td>
-                                                                                <td><input type="submit" class="btn btn-outline-primary" value="관리하기" onclick="location.href='${root}/group/manage'"></td>
+                                                                                <c:forEach items="${gvoList}" var="gvo">
+                                                                                <tr>
+                                                                                    <td><img class="group_info_img" src="${root}/resources/img/group/${gvo.groupThumnail}" onerror="this.onerror=null; this.src = '${root}/resources/img/member/noimage.jpg'" ></td>
+                                                                                <td>${gvo.name}</td>
+                                                                                <td>${gvo.place}</td>
+                                                                                <td>${gvo.peoplenum}</td>
+                                                                                <td>${gvo.waitingCount}</td>
+                                                                                <td>${gvo.confirmedCount}</td>
+                                                                                <td>${gvo.applydate}</td>
+                                                                                <td>${gvo.starttime} ~ ${gvo.finishtime}</td>
+                                                                                <input type="hidden" name="gNo" value="${gvo.no}">
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="수정하기" onclick="location.href='${root}/mypage/list/madeList/groupEdit?no=${gvo.no}'"></td>
+                                                                                <td><input type="submit" class="btn btn-outline-primary" value="관리하기" onclick="location.href='${root}/mypage/list/madeList/groupPeopleEdit?no=${gvo.no}'"></td>
                                                                                 </tr>
+                                                                            </c:forEach>
                                                                             </tbody>
                                                                     </table>
                                                                 </div>
@@ -91,7 +104,7 @@
         </main>
    	
     </div>
-    <div>
+    <div class="footer" style="margin-top: 860px;">
         <%@include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 

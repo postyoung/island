@@ -4,38 +4,54 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
-	
-	<typeAliases>
+   <settings>
+      <setting name="jdbcTypeForNull" value="NULL"/>
+      <setting name="mapUnderscoreToCamelCase" value="true"/>
+   </settings>
+   
+   <typeAliases>
 
-		<typeAlias type="com.island.app.member.vo.MemberVo" alias="memberVo"/>
+      <typeAlias type="com.island.app.member.vo.MemberVo" alias="memberVo"/>
 
-		<typeAlias type="com.island.app.seminar.bank.vo.BankVo" alias="bankVo"/>
+      <typeAlias type="com.island.app.seminar.bank.vo.BankVo" alias="bankVo"/>
 
-		<typeAlias type="com.island.app.admin.vo.AdminVo" alias="adminVo"/>
+      <typeAlias type="com.island.app.admin.vo.AdminVo" alias="adminVo"/>
 
-		<typeAlias type="com.island.app.admin.faq.vo.FaqVo" alias="faqVo"/>
-		
-		<typeAlias type="com.island.app.admin.notice.vo.NoticeVo" alias="noticeVo"/>
-		
-		<typeAlias type="com.island.app.community.review.vo.SeminarReviewVo" alias="seminarReviewVo"/>
+      <typeAlias type="com.island.app.admin.faq.vo.FaqVo" alias="faqVo"/>
+      
+      <typeAlias type="com.island.app.admin.notice.vo.NoticeVo" alias="noticeVo"/>
+      
+      <typeAlias type="com.island.app.community.review.vo.SeminarReviewVo" alias="seminarReviewVo"/>
 
-		<typeAlias type="com.island.app.group.vo.GroupVo" alias="groupVo"/>
-		
-		<typeAlias type="com.island.app.community.qna.vo.QnaVo" alias="qnaVo"/>
-		
-		<typeAlias type="com.island.app.seminar.vo.SeminarVo" alias="seminarVo"/>
-		
-		<typeAlias type="com.island.app.member.interest.vo.MemberInterestVo" alias="memberInterestVo"/>
-		
-		<typeAlias type="com.island.app.seminar.reply.vo.SeminarReplyVo" alias="seminarReplyVo"/>
+      <typeAlias type="com.island.app.group.vo.GroupVo" alias="groupVo"/>
 
-		<typeAlias type="com.island.app.member.apply.vo.MemberApplyVo" alias="memberApplyVo"/>
-	</typeAliases>
-	
+      <typeAlias type="com.island.app.group.vo.GroupCategoryVo" alias="groupCategoryVo"/>
 
-	
+      <typeAlias type="com.island.app.group.vo.LocalCategoryVo" alias="localCategoryVo"/>
+
+      <typeAlias type="com.island.app.community.qna.vo.QnaVo" alias="qnaVo"/>
+      
+      <typeAlias type="com.island.app.seminar.vo.SeminarVo" alias="seminarVo"/>
+      
+      <typeAlias type="com.island.app.member.interest.vo.MemberInterestVo" alias="memberInterestVo"/>
+      
+      <typeAlias type="com.island.app.seminar.reply.vo.SeminarReplyVo" alias="seminarReplyVo"/>
+
+      <typeAlias type="com.island.app.member.apply.vo.MemberApplyVo" alias="memberApplyVo"/>
+   
+      <typeAlias type="com.island.app.admin.report.vo.AdminReportSeminarVo" alias="arsVo"/>
+      
+      <typeAlias type="com.island.app.admin.report.vo.AdminReportReviewVo" alias="arrVo"/>
+      
+      <typeAlias type="com.island.app.admin.report.vo.AdminReportGroupVo" alias="argVo"/>
+      
+      <typeAlias type="com.island.app.admin.report.vo.AdminReportMemberVo" alias="armVo"/>
+      
+      <typeAlias type="com.island.app.admin.qnaan.vo.QnaanVo" alias="qnaanVo"/>
+      
+      <typeAlias type="com.island.app.community.qnaan.vo.QnaAnswerVo" alias="qnaAnswerVo"/>
+   </typeAliases>
+   
+
+   
 </configuration>

@@ -40,11 +40,11 @@
 										<input type="text" class="form-control categoryBox"
 											aria-label="Sizing example input"
 											aria-describedby="inputGroup-sizing-default" readonly
-											value="불건전">
+											value="${getReport.category}">
 									</div>
 									<button type="button" class="btn btn-secondary btn-lg groupBtn"
 										style="height: 50px; margin-top: 10px; margin-right: 10px;"
-										onclick="window.open('${root}/community/seminarReview/detail')">해당
+										onclick="window.open('${root}/community/seminarReview/detail?no=${getReport.reviewNo}')">해당
 										리뷰 조회</button>
 								</div>
 							</div>
@@ -52,15 +52,29 @@
 								<label for="exampleFormControlTextarea1" class="form-label"><h3>상세
 										내용</h3></label>
 								<textarea class="form-control report-content"
-									id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+									id="exampleFormControlTextarea1" rows="3" readonly>${getReport.detail}</textarea>
 							</div>
 							<div class="d-flex justify-content-evenly">
-								<button type="button" class="btn btn-secondary btn-lg">신고
-									취소</button>
-								<button type="button" class="btn btn-danger btn-lg">리뷰
-									삭제</button>
-								<button type="button" class="btn btn-danger btn-lg">리뷰
-									삭제 및 작성 회원 정지</button>
+								<form action="${root}/admin/check-review-report" method="post">
+									<input type="hidden" value="${getReport.reportNo}" name="no">
+									<button id="submitBtn" type="submit" value="신고 처리 완료"
+										class="btn btn-secondary btn-lg">신고 확인</button>
+								</form>
+								<form action="${root}/admin/block-review" method="post">
+									<input type="hidden" value="${getReport.reportNo}" name="no">
+									<input type="hidden" value="${getReport.reviewNo}"
+										name="reviewNo">
+									<button id="submitBtn" type="submit" value="신고 처리 완료"
+										class="btn btn-danger btn-lg">리뷰 삭제</button>
+								</form>
+								<form action="${root}/admin/block-member-review" method="post">
+									<input type="hidden" value="${getReport.reportNo}" name="no">
+									<input type="hidden" value="${getReport.reviewNo}"
+										name="reviewNo"> <input type="hidden"
+										value="${getReport.writer}" name="writerNo">
+									<button id="submitBtn" type="submit" value="신고 처리 완료"
+										class="btn btn-danger btn-lg">리뷰 삭제 및 작성자 정지</button>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -70,4 +84,8 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(":button[id='submitBtn'][value='${getReport.reportYn}']").attr(
+			'disabled', true);
+</script>
 </html>

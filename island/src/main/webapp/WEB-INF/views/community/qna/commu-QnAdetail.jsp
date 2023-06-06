@@ -47,13 +47,6 @@
 						<div class="input_title">
 
 							<input type="hidden" name="no" value="${qvo.no}">
-<!-- 
-							<div class="form-group">
-								<label  for="no">no</label>
-								<div class="col-lg-4">
-									<div  class="form-control" name="no" id="no">${qvo.no}</div>
-								</div>
-							</div> -->
 							
 							
 							<div class="form-group">
@@ -74,6 +67,8 @@
 									<div class="form-control" name="email" id="email">${qvo.writerEmail}@${qvo.writerEmail2}</div>
 								</div>
 							</div>
+
+							
 							 
 							
 							<!-- 카테고리 드롭다운 -->
@@ -88,7 +83,7 @@
 							</div>
 						</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="margin-bottom: 10px;">
 	
 							<label for="content">내용</label>
 	
@@ -98,9 +93,43 @@
 						
 						</div>
 						</div>
-					
+
+						<!-- 추가된 디테일 영역 -->
+
 						
+						
+						<div class="search_cate_area">
 					
+							
+						</div>
+					</div >
+					<hr>
+					<c:forEach items="${answerList}" var="avo">
+					<div class="form-group"  style="margin-top: 100px;">
+						<label  for="name">관리자</label>
+						<div class="col-lg-4">
+							<div  class="form-control" name="name" id="name">${avo.adminWriter}</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label  for="name">답변날짜</label>
+						<div class="col-lg-4">
+							<div  class="form-control" name="name" id="name">${avo.enrollDate}</div>
+						</div>
+					</div>
+						<div class="form-group">
+	
+							<label for="content">답변내용</label>
+	
+							<div>
+								<div class="form-control" name="content" id="content" >${avo.content}</div>
+							</div>
+						
+						</div>
+						</div>
+					</c:forEach>
+						
+																
 						
 					</div>
 					<br>

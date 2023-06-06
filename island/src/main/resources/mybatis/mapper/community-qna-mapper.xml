@@ -78,6 +78,25 @@
 		AND Q.NO = #{no}
 	</select>
 	
+	<select id="getQnaAnswerList" resultType="qnaAnswerVo">
+		SELECT 
+			QA.NO, 
+			QA.Q_NO, 
+			QA.CONTENT, 
+			QA.WRITER_NO, 
+			QA.DEL_YN, 
+			QA.MODIFY_DATE, 
+			TO_CHAR(QA.ENROLL_DATE, 'YYYY-MM-DD')ENROLL_DATE,
+			A.NO,
+		    A.NAME AS adminWriter
+		FROM QNA_AN QA
+		JOIN ADMIN A ON (QA.WRITER_NO=A.NO)
+		WHERE QA.DEL_YN = 'N' 
+			AND QA.Q_NO = #{no}
+	
+	</select>
+
+	
 	<update id="increaseHit">
 	UPDATE QNA
     	SET HIT = HIT+1
