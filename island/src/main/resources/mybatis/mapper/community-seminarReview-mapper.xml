@@ -4,162 +4,169 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="community">
- 	<insert id="seminarReviewWrite">
- 		INSERT INTO 
-	 		REVIEW
-	 		(
-	 			NO
-	 			,SEMINAR_NO
-	 			,MEMBER_NO
-	 			,TITLE
-	 			,CONTENT
-	 			,POINT
-	 			,REVIEW_THUMBNAIL
-	 		) 
-			VALUES
-			(
-				SEQ_REVIEW_NO.NEXTVAL
-				, #{seminarNo}
-				, #{memberNo}
-				, #{title}
-				, #{content}
-				, #{point}
-				, #{reviewThumbnail}
-			)
- 	</insert>
- 	
- 	<insert id="reviewAttach">
- 		INSERT INTO
- 			REVIEW_ATTACH
- 			(
- 				NO
- 				,REVIEW_NO
- 				,ORIGIN_NAME
-				,CHANGE_NAME
- 			)
- 			VALUES
- 			(
- 				SEQ_REVIEW_ATTACH_NO.NEXTVAL
- 				,SEQ_REVIEW_NO.CURRVAL
- 				,#{originName}
- 				,#{changeName}
- 			)
- 	</insert>
- 	
- 	<select id="SeminarReviewGetCnt" resultType="int">
- 		SELECT 
-		    COUNT(R.NO)
-		FROM REVIEW R
+    <insert id="seminarReviewWrite">
+       INSERT INTO 
+          REVIEW
+          (
+             NO
+             ,SEMINAR_NO
+             ,MEMBER_NO
+             ,TITLE
+             ,CONTENT
+             ,POINT
+             ,REVIEW_THUMBNAIL
+          ) 
+         VALUES
+         (
+            SEQ_REVIEW_NO.NEXTVAL
+            , #{seminarNo}
+            , #{memberNo}
+            , #{title}
+            , #{content}
+            , #{point}
+            , #{reviewThumbnail}
+         )
+    </insert>
+    
+    <insert id="reviewAttach">
+       INSERT INTO
+          REVIEW_ATTACH
+          (
+             NO
+             ,REVIEW_NO
+             ,ORIGIN_NAME
+            ,CHANGE_NAME
+          )
+          VALUES
+          (
+             SEQ_REVIEW_ATTACH_NO.NEXTVAL
+             ,SEQ_REVIEW_NO.CURRVAL
+             ,#{originName}
+             ,#{changeName}
+          )
+    </insert>
+    
+    <select id="SeminarReviewGetCnt" resultType="int">
+       SELECT 
+          COUNT(R.NO)
+      FROM REVIEW R
         JOIN MEMBER M ON R.MEMBER_NO = M.NO
-		JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
-		WHERE RE_DEL='N'
- 	</select>
- 	
- 	<select id="getSeminarReviewList" resultType="seminarReviewVo">
- 		SELECT 
-		    R.NO
-		    ,S.NAME AS SEMINAR_NAME
-		    ,R.CONTENT
-		    ,R.REVIEW_THUMBNAIL
-		    ,M.NICK AS MEMBER_NICK
-		    ,M.PROFILE MEMBER_PROFILE
-		FROM REVIEW R
-		JOIN MEMBER M ON R.MEMBER_NO = M.NO
-		JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
-		WHERE R.RE_DEL='N'
-		ORDER BY NO DESC
- 	</select>
- 	
- 	
- 	<select id="getSeminarReviewDetail" resultType="seminarReviewVo">
- 		SELECT
- 			R.NO
- 			,R.MEMBER_NO
-		    ,S.NO AS SEMINAR_NO
-		    ,S.NAME AS SEMINAR_NAME
-		    ,M.NICK AS MEMBER_NICK
-		    ,R.TITLE
-		    ,R.POINT
-		    ,R.CONTENT
-		    ,R.REVIEW_THUMBNAIL
-		FROM REVIEW R
-		JOIN SEMINAR S
-		ON (R.SEMINAR_NO=S.NO)
-		JOIN MEMBER M
-		ON (R.MEMBER_NO=M.NO)
-		WHERE R.NO = #{no}
- 	</select>
- 	
- 	<update id="modifySeminarReviewAndTumbnail">
- 		UPDATE REVIEW 
-		    SET TITLE = #{title}
-		          ,CONTENT = #{content}
-		          ,POINT = #{point}
-		          ,REVIEW_THUMBNAIL = #{reviewThumbnail}
-		          ,MODIFY_DATE =SYSDATE
-		    WHERE NO = #{no}
- 	</update>
- 	
- 	<update id="modifyReviewAttach">
- 		UPDATE REVIEW_ATTACH
-		    SET ORIGIN_NAME = #{originName} ,
-		          CHANGE_NAME = #{originName},
-		          MODIFY_DATE =SYSDATE
-		    WHERE REVIEW_NO = #{reviewNo}
- 	</update>
- 	
- 	<update id="modifySeminarReviewOnlyDetail">
- 		UPDATE REVIEW 
-		    SET TITLE = #{title}
-		          ,CONTENT = #{content}
-		          ,POINT = #{point}
-		          ,MODIFY_DATE =SYSDATE
-		    WHERE NO = #{no}
- 	</update>
- 	
- 	<update id="deleteSeminarReview">
- 		UPDATE REVIEW
-		    SET RE_DEL = 'Y'
-		WHERE NO = #{no}
- 	</update>
- 	
- 	<select id="searchSeminarReviewList" resultType="seminarReviewVo">
- 		 SELECT 
-		        R.NO
-		        ,S.NAME AS SEMINAR_NAME
-		        ,R.CONTENT
-		        ,R.REVIEW_THUMBNAIL
-		        ,M.NICK AS MEMBER_NICK
-		        ,M.PROFILE MEMBER_PROFILE
-		    FROM REVIEW R 
-		    JOIN MEMBER M ON R.MEMBER_NO = M.NO
-		    JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
-		    WHERE R.RE_DEL='N'
-		    <trim prefix="AND" prefixOverrides="AND">
-		        <if test="seminarName != null and seminarName != ''">
-		            AND S.NAME LIKE '%${seminarName}%'
-		        </if>
-		    </trim>
-		    ORDER BY R.NO DESC
- 	</select>
- 	
- 	
- 	<insert id="reportSeminarReview">
- 		INSERT INTO 
- 			REVIEW_REPORT
- 			(
- 				NO
- 				,REVIEW_NO
- 				,RE_RE_CATEGORY_NO
- 				,REPORT_DETAIL
- 			)
- 			VALUES
- 			(
-	 			SEQ_REVIEW_REPORT_NO.NEXTVAL
-	 			,#{reviewNo}
-	 			,#{reReCategoryNo}
-	 			,#{reportDetail}
- 			)
- 	</insert>
- 	
+      JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
+      WHERE RE_DEL='N'
+    </select>
+    
+    <select id="getSeminarReviewList" resultType="seminarReviewVo">
+       SELECT 
+          R.NO
+          ,S.NAME AS SEMINAR_NAME
+          ,R.CONTENT
+          ,R.REVIEW_THUMBNAIL
+          ,M.NICK AS MEMBER_NICK
+          ,M.PROFILE MEMBER_PROFILE
+      FROM REVIEW R
+      JOIN MEMBER M ON R.MEMBER_NO = M.NO
+      JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
+      WHERE R.RE_DEL='N'
+      ORDER BY NO DESC
+    </select>
+    
+    
+    <select id="getSeminarReviewDetail" resultType="seminarReviewVo">
+       SELECT
+          R.NO
+          ,R.MEMBER_NO
+          ,S.NO AS SEMINAR_NO
+          ,S.NAME AS SEMINAR_NAME
+          ,M.NICK AS MEMBER_NICK
+          ,R.TITLE
+          ,R.POINT
+          ,R.CONTENT
+          ,R.REVIEW_THUMBNAIL
+      FROM REVIEW R
+      JOIN SEMINAR S
+      ON (R.SEMINAR_NO=S.NO)
+      JOIN MEMBER M
+      ON (R.MEMBER_NO=M.NO)
+      WHERE R.NO = #{no}
+    </select>
+    
+    <update id="modifySeminarReviewAndTumbnail">
+       UPDATE REVIEW 
+          SET TITLE = #{title}
+                ,CONTENT = #{content}
+                ,POINT = #{point}
+                ,REVIEW_THUMBNAIL = #{reviewThumbnail}
+                ,MODIFY_DATE =SYSDATE
+          WHERE NO = #{no}
+    </update>
+    
+    <update id="modifyReviewAttach">
+       UPDATE REVIEW_ATTACH
+          SET ORIGIN_NAME = #{originName} ,
+                CHANGE_NAME = #{originName},
+                MODIFY_DATE =SYSDATE
+          WHERE REVIEW_NO = #{reviewNo}
+    </update>
+    
+    <update id="modifySeminarReviewOnlyDetail">
+       UPDATE REVIEW 
+          SET TITLE = #{title}
+                ,CONTENT = #{content}
+                ,POINT = #{point}
+                ,MODIFY_DATE =SYSDATE
+          WHERE NO = #{no}
+    </update>
+    
+    <update id="deleteSeminarReview">
+       UPDATE REVIEW
+          SET RE_DEL = 'Y'
+      WHERE NO = #{no}
+    </update>
+    
+    <select id="searchSeminarReviewList" resultType="seminarReviewVo">
+        SELECT 
+              R.NO
+              ,S.NAME AS SEMINAR_NAME
+              ,R.CONTENT
+              ,R.REVIEW_THUMBNAIL
+              ,M.NICK AS MEMBER_NICK
+              ,M.PROFILE MEMBER_PROFILE
+          FROM REVIEW R 
+          JOIN MEMBER M ON R.MEMBER_NO = M.NO
+          JOIN SEMINAR S ON R.SEMINAR_NO = S.NO
+          WHERE R.RE_DEL='N'
+          <trim prefix="AND" prefixOverrides="AND">
+              <if test="seminarName != null and seminarName != ''">
+                  AND S.NAME LIKE '%${seminarName}%'
+              </if>
+          </trim>
+          ORDER BY R.NO DESC
+    </select>
+    
+    
+    <insert id="reportSeminarReview">
+       INSERT INTO 
+          REVIEW_REPORT
+          (
+             NO
+             ,REVIEW_NO
+             ,RE_RE_CATEGORY_NO
+             ,REPORT_DETAIL
+          )
+          VALUES
+          (
+             SEQ_REVIEW_REPORT_NO.NEXTVAL
+             ,#{reviewNo}
+             ,#{reReCategoryNo}
+             ,#{reportDetail}
+          )
+    </insert>
+    
+    <select id="getSeminarInfo" resultType="seminarVo">
+       SELECT 
+          NO
+          ,NAME
+      FROM SEMINAR
+      WHERE NO = #{no}
+    </select>
 </mapper>
