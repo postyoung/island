@@ -25,6 +25,8 @@
 
 		<typeAlias type="com.island.app.group.vo.GroupVo" alias="groupVo"/>
 
+		<typeAlias type="com.island.app.group.vo.GroupPoVo" alias="groupPoVo"/>
+
 		<typeAlias type="com.island.app.group.vo.GroupCategoryVo" alias="groupCategoryVo"/>
 
 		<typeAlias type="com.island.app.group.vo.LocalCategoryVo" alias="localCategoryVo"/>
