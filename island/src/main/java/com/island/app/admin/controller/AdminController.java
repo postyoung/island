@@ -2,8 +2,6 @@ package com.island.app.admin.controller;
 
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +25,12 @@ public class AdminController {
 		this.as = as;
 	}
 
+	// 메인
+	@GetMapping("main")
+	public String main(Model model) {
+		return "admin/main-admin";
+	}
+
 	// 로그인 (화면)
 	@GetMapping("login")
 	public String login() {
@@ -46,7 +50,13 @@ public class AdminController {
 
 	// 계정 생성 (화면)
 	@GetMapping("create")
-	public String create() {
+	public String create(HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 3) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
 		return "admin/create";
 	}
 
@@ -74,12 +84,6 @@ public class AdminController {
 		}
 	}
 
-	// 메인
-	@RequestMapping("main")
-	public String main() {
-		return "admin/main-admin";
-	}
-
 	// 정보 수정 (화면)
 	@GetMapping("edit")
 	public String edit() {
@@ -102,7 +106,14 @@ public class AdminController {
 	// 권한 설정
 	@GetMapping("authorize")
 	public String authorize(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
+			Model model, HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 3) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
+
 		// 데이터
 		int listCount = as.getCnt(searchMap);
 		int currentPage = page;
@@ -134,9 +145,7 @@ public class AdminController {
 	// 권한 상세 설정
 	@PostMapping("authorize/detail")
 	public String authorizeChoice(AdminVo vo, Model model, HttpSession session, String pmno) {
-		System.out.println(pmno);
 		vo.setPmNo(pmno);
-		System.out.println(vo.getNo());
 		int result = as.changeAuthor(vo);
 		session.setAttribute("alertMsg", "관리자 권한 수정이 성공하였습니다.");
 		return "admin/main-admin";
