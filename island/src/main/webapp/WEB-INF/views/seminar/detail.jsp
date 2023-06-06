@@ -8,18 +8,18 @@
 <meta charset="UTF-8">
 <title>ISLAND 세미나 상세 | ISLAND</title>
 
-	<!-- 헤더 -->
-	<%@ include file="/WEB-INF/views/common/header-member.jsp" %>
-	
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+   <!-- 헤더 -->
+   <%@ include file="/WEB-INF/views/common/header-member.jsp" %>
+   
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   
-	<link rel="stylesheet" href="${root}/resources/css/seminar/detail.css">
+   <link rel="stylesheet" href="${root}/resources/css/seminar/detail.css">
 
 </head>
 <body>
-	<!-- 세미나 참가신청 영역 -->
+   <!-- 세미나 참가신청 영역 -->
   <div id="seminar-outer-area">
 
     <!-- 위에 영역 -->
@@ -152,46 +152,46 @@
         
         <!-- 카카오 지도 api 영역  -->
         <div id="map" style="width:1200px;height:400px; margin: auto; margin-top: 20px;"></div>
-		
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값&libraries=services"></script>
-		<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		        level: 4 // 지도의 확대 레벨
-		    };  
-		
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('${svo.place}', function(result, status) {
-		
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-		
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-		
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">세미나 장소</div>'
-		        });
-		        infowindow.open(map, marker);
-		
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 
-		});    
-		</script>
+      
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값&libraries=services"></script>
+      <script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+          mapOption = {
+              center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+              level: 4 // 지도의 확대 레벨
+          };  
+      
+      // 지도를 생성합니다    
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
+      
+      // 주소-좌표 변환 객체를 생성합니다
+      var geocoder = new kakao.maps.services.Geocoder();
+      
+      // 주소로 좌표를 검색합니다
+      geocoder.addressSearch('${svo.place}', function(result, status) {
+      
+          // 정상적으로 검색이 완료됐으면 
+           if (status === kakao.maps.services.Status.OK) {
+      
+              var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              var marker = new kakao.maps.Marker({
+                  map: map,
+                  position: coords
+              });
+      
+              // 인포윈도우로 장소에 대한 설명을 표시합니다
+              var infowindow = new kakao.maps.InfoWindow({
+                  content: '<div style="width:150px;text-align:center;padding:6px 0;">세미나 장소</div>'
+              });
+              infowindow.open(map, marker);
+      
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+              map.setCenter(coords);
+          } 
+      });    
+      </script>
       </div>
 
       <!-- 문의 기대평댓글 -->
@@ -249,124 +249,124 @@
 
   </div>
 
-	<!-- 세미나 신고 모달 영역 -->
-	<div class="modal fade" id="seminarReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h1 class="modal-title fs-5" id="exampleModalLabel">세미나 신고하기</h1>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body">
-	        <div class="caution">
-	          해당 모임의 취지가 다르거나 부적절한 모임일 경우 신고를 할 수 있습니다.<br>
-	          신고된 모임은 부적절한지의 여부를 결정하여 삭제 또는 경고의 조치가 주어지며
-	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
-	          주의하시기 바랍니다.
-	        </div>
-	        <form action="${root}/seminar/report" method="POST" onsubmit="return validateForm()">
-	          <div class="mb-3">
-	          <input type="hidden" name="sNo" value="${svo.no}">
-	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
-	            <div id="category">
-	              <input class="form-check-input" type="radio" name="reCategoryNo" value="1" id="reCategoryName1">
-	              <label class="form-check-label" for="reCategoryName1" style="font-size:15px;">
-	                부적절한 컨텐츠로 선정적이거나, 음란물, 폭력적 컨텐츠를 포함
-	              </label><br>
-	              <input class="form-check-input" type="radio"  name="reCategoryNo" value="2" id="reCategoryName2">
-	              <label class="form-check-label" for="reCategoryName2">
-	                내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함 
-	              </label><br>
-	              <input class="form-check-input" type="radio" name="reCategoryNo" value="3" id="reCategoryName3">
-	              <label class="form-check-label" for="reCategoryName3">
-	                저작권을 침해하는 내용
-	              </label><br> 
-	              <input class="form-check-input" type="radio" name="reCategoryNo" value="4"  id="reCategoryName4">
-	              <label class="form-check-label" for="reCategoryName4">
-	                기타
-	              </label>
-	            </div>
-	          </div>
-	          <div class="mb-3">
-	            <label for="message-text" class="col-form-label">상세사유</label>
-	            <textarea class="form-control" id="message-text" name="reportDetail" style="resize: none;"></textarea>
-	          </div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-		        <button type="submit" class="btn btn-danger">신고하기</button>
-		      </div>
-	        </form>
-	    </div>
-	  </div>
-	</div>
-	
-	
-	
-	<!-- 회원 신고 모달 영역 -->
-	<div class="modal fade" id="memberReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h1 class="modal-title fs-5" id="exampleModalLabel">회원 신고하기</h1>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body">
-	        <div class="caution">
-	          해당 회원의 활동이 부적절한 경우 신고를 할 수 있습니다.<br>
-	          신고된 내용이 부적절한지의 여부를 결정하여 회원 블락처리 및 댓글 삭제 조치가 주어지며
-	          신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
-	          주의하시기 바랍니다.
-	        </div>
-	        <form action="${root}/seminar/member/report/${svo.no}" method="POST" onsubmit="return memberReportValid();">
-	          <div class="mb-3">
+   <!-- 세미나 신고 모달 영역 -->
+   <div class="modal fade" id="seminarReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">세미나 신고하기</h1>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           <div class="caution">
+             해당 모임의 취지가 다르거나 부적절한 모임일 경우 신고를 할 수 있습니다.<br>
+             신고된 모임은 부적절한지의 여부를 결정하여 삭제 또는 경고의 조치가 주어지며
+             신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
+             주의하시기 바랍니다.
+           </div>
+           <form action="${root}/seminar/report" method="POST" onsubmit="return validateForm()">
+             <div class="mb-3">
+             <input type="hidden" name="sNo" value="${svo.no}">
+               <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
+               <div id="category">
+                 <input class="form-check-input" type="radio" name="reCategoryNo" value="1" id="reCategoryName1">
+                 <label class="form-check-label" for="reCategoryName1" style="font-size:15px;">
+                   부적절한 컨텐츠로 선정적이거나, 음란물, 폭력적 컨텐츠를 포함
+                 </label><br>
+                 <input class="form-check-input" type="radio"  name="reCategoryNo" value="2" id="reCategoryName2">
+                 <label class="form-check-label" for="reCategoryName2">
+                   내용에 허위 정보, 사기성 광고, 인신공격, 혐오발언 포함 
+                 </label><br>
+                 <input class="form-check-input" type="radio" name="reCategoryNo" value="3" id="reCategoryName3">
+                 <label class="form-check-label" for="reCategoryName3">
+                   저작권을 침해하는 내용
+                 </label><br> 
+                 <input class="form-check-input" type="radio" name="reCategoryNo" value="4"  id="reCategoryName4">
+                 <label class="form-check-label" for="reCategoryName4">
+                   기타
+                 </label>
+               </div>
+             </div>
+             <div class="mb-3">
+               <label for="message-text" class="col-form-label">상세사유</label>
+               <textarea class="form-control" id="message-text" name="reportDetail" style="resize: none;"></textarea>
+             </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+              <button type="submit" class="btn btn-danger">신고하기</button>
+            </div>
+           </form>
+       </div>
+     </div>
+   </div>
+   
+   
+   
+   <!-- 회원 신고 모달 영역 -->
+   <div class="modal fade" id="memberReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h1 class="modal-title fs-5" id="exampleModalLabel">회원 신고하기</h1>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           <div class="caution">
+             해당 회원의 활동이 부적절한 경우 신고를 할 수 있습니다.<br>
+             신고된 내용이 부적절한지의 여부를 결정하여 회원 블락처리 및 댓글 삭제 조치가 주어지며
+             신고 기능을 악용하는 것도 위반여부를 판단하여 사용에 제한이 있을 수 있으니
+             주의하시기 바랍니다.
+           </div>
+           <form action="${root}/seminar/member/report/${svo.no}" method="POST" onsubmit="return memberReportValid();">
+             <div class="mb-3">
               <input type="hidden" id="writer-no-input" name="mNo" value="">
               <input type="hidden" id="reply-no-input" name="srNo" value="">
-	            <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
-	            <div id="category">
-	              <input class="form-check-input" type="radio" name="cNo" value="1" id="meReCategoryName1">
-	              <label class="form-check-label" for="meReCategoryName1">
-	                욕설/비방/혐오 발언으로 다른회원에게 공격적인 언행
-	              </label><br>
-	              <input class="form-check-input" type="radio" name="cNo" value="2" id="meReCategoryName2">
-	              <label class="form-check-label" for="meReCategoryName2">
-	                광고, 홍보, 중복 등록 등 스팸/도배 행위 
-	              </label><br>
-	              <input class="form-check-input" type="radio" name="cNo" value="3" id="meReCategoryName3">
-	              <label class="form-check-label" for="meReCategoryName3">
-	                성적/폭력적인 내용으로 불법적인 언행
-	              </label><br> 
-	              <input class="form-check-input" type="radio" name="cNo" value="4" id="meReCategoryName4">
-	              <label class="form-check-label" for="meReCategoryName4">
-	                기타
-	            </div>
-	            </label>
-	          </div>
-	          <div class="mb-3">
-	            <label for="message-text" class="col-form-label">상세사유</label>
-	            <textarea class="form-control" name="reportEx" id="member-report-message-text" style="resize: none;"></textarea>
-	          </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-		        <button type="submit" class="btn btn-danger">신고하기</button>
-		      </div>
-	        </form>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	
-	
+               <label for="recipient-name" class="col-form-label"><b>신고하시는 사유를 선택해주세요. (필수)</b></label>
+               <div id="category">
+                 <input class="form-check-input" type="radio" name="cNo" value="1" id="meReCategoryName1">
+                 <label class="form-check-label" for="meReCategoryName1">
+                   욕설/비방/혐오 발언으로 다른회원에게 공격적인 언행
+                 </label><br>
+                 <input class="form-check-input" type="radio" name="cNo" value="2" id="meReCategoryName2">
+                 <label class="form-check-label" for="meReCategoryName2">
+                   광고, 홍보, 중복 등록 등 스팸/도배 행위 
+                 </label><br>
+                 <input class="form-check-input" type="radio" name="cNo" value="3" id="meReCategoryName3">
+                 <label class="form-check-label" for="meReCategoryName3">
+                   성적/폭력적인 내용으로 불법적인 언행
+                 </label><br> 
+                 <input class="form-check-input" type="radio" name="cNo" value="4" id="meReCategoryName4">
+                 <label class="form-check-label" for="meReCategoryName4">
+                   기타
+               </div>
+               </label>
+             </div>
+             <div class="mb-3">
+               <label for="message-text" class="col-form-label">상세사유</label>
+               <textarea class="form-control" name="reportEx" id="member-report-message-text" style="resize: none;"></textarea>
+             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+              <button type="submit" class="btn btn-danger">신고하기</button>
+            </div>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+   
+   
 
-	<!-- 푸터 -->
-	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+   <!-- 푸터 -->
+   <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
 
 <c:if test="${not empty alertMsg}">
-	<script>
-		alert("${alertMsg}");
-	</script>
+   <script>
+      alert("${alertMsg}");
+   </script>
 </c:if>
 <c:remove var="alertMsg"/>
 
@@ -384,10 +384,10 @@ function validateForm(){
     return false; 
   }
 
-	if(radioBtn.checked && detailEx.value == ""){
-		alert("신고 상세사유를 입력해주세요.");
-		return false;
-	}
+   if(radioBtn.checked && detailEx.value == ""){
+      alert("신고 상세사유를 입력해주세요.");
+      return false;
+   }
 }
 
 //회원 신고 상세사유 입력체크
@@ -515,15 +515,19 @@ function applyCheckSeminar(){
     type : 'GET',
     data : {
       'loginMemberNo' : loginMemberNo,
-      'no' : '${svo.no}'
+      'no' : '${svo.no}',
+      'closeDay' : '${svo.closeDay}',
+      'closeTime' : '${svo.closeTime}'
     },
     success : function (data){
       console.log(data);
       if(data == '0'){
         applyStatusArea.innerHTML +='<c:if test="${loginMember.no != svo.writerNo}">'
         applyStatusArea.innerHTML +=' <button type="button" class="btn btn-info" onclick="apllyBtn();">신청하기</button></c:if>'
-      }else{
+      }else if(data == '1'){
         applyStatusArea.innerHTML = "<span class='apply-state'>신청완료</span>"
+      }else{
+        applyStatusArea.innerHTML = "<span class='apply-state'>신청마감</span>";
       }
 
       }, 
