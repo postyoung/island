@@ -86,10 +86,9 @@
 										<div class="form-group">
 										<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
 											<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변완료</button>
-											<button type="button" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/edit'" class="btn btn-warning btn-md" style="margin-right: 5px;">답변수정</button>
-											<button type="reset" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-danger btn-md" style="margin-right: 5px;">삭제</button>
-											<button type="button" onclick=" location.href='http://127.0.0.1:8888/app/admin/inquiry/list'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
-
+											<button class="btn btn-md btn-warning" onclick="location.href='${root}/admin/qnaan/delete'">수정하기</button>
+											<button class="btn btn-md btn-danger" onclick="location.href='${root}/admin/qnaan/delete?num=${vo.no}'">삭제하기</button>
+											<button class="btn btn-md btn-info" onclick="location.href='${root}/admin/qnaan/list'">목록</button>
 										</div>
 									</div>
 									</form>		

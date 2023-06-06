@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,8 +45,8 @@
 								<div class="btn-group" role="group">
 									<select type="form-control" name="ancategory" id="ancategory">
 										<option>전체</option>
-										<option value="11">답변대기</option>
-										<option value="22">답변완료</option>
+										<option value="1">답변대기</option>
+										<option value="2">답변완료</option>
 									</select>
 								</div>
 	
@@ -61,18 +64,18 @@
 												</tr>
 											</thead>
 											<tbody>
-												 <c:if test="${not empty qnaanList}">
-	                                                <c:forEach items="${qnaanList}" var="qvo">
+												 <c:if test="${not empty getQnaanList}">
+	                                                <c:forEach items="${getQnaanList}" var="qnaan">
 	                                                    <tr>
-	                                                        <td>${qvo.categoryName}</td>
-	                                                        <td>${qvo.title}</td>
-	                                                        <td>${qvo.writerName}</td>
-	                                                        <td>${qvo.enrollDate}</td>
-	                                                        <td>${qvo.ancategoryName}</td>
+	                                                        <td>${qnaan.qnaancategoryName}</td>
+	                                                        <td>${qnaan.title}</td>
+	                                                        <td>${qnaan.writerName}</td>
+	                                                        <td><fmt:formatDate value="${qnaan.enrollDate}" pattern="yyyy-MM-dd" /></td>
+	                                                        <td>${qnaan.ancategoryName}</td>
 	                                                    </tr>
 	                                                </c:forEach>
 	                                            </c:if>
-	                                            <c:if test="${empty qnaanList}">
+	                                            <c:if test="${empty getQnaanList}">
 	                                                <tr>
 	                                                    <td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
 	                                                </tr>

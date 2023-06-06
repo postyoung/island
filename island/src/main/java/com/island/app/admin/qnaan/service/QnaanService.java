@@ -3,10 +3,10 @@ package com.island.app.admin.qnaan.service;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.island.app.admin.faq.vo.FaqVo;
 import com.island.app.admin.qnaan.dao.QnaanDao;
 import com.island.app.admin.qnaan.vo.QnaanVo;
 import com.island.app.common.page.PageVo;
@@ -20,10 +20,10 @@ import com.island.app.common.page.PageVo;
 @Service
 @Transactional
 public class QnaanService {
+	
 	private final QnaanDao dao;
 	private final SqlSessionTemplate sst;
-	
-	@Autowired
+
 	public QnaanService(QnaanDao dao, SqlSessionTemplate sst) {
 		this.dao = dao;
 		this.sst = sst;
@@ -32,16 +32,25 @@ public class QnaanService {
 	public int getQnaanListCnt() {
 		return dao.getQnaanListCnt(sst);
 	}
-
+	//목록조회
 	public List<QnaanVo> getQnaanList(PageVo pv) {
 		return dao.getQnaanList(sst , pv);
 	}
-
-	public int qnaanWrite(QnaanVo qnaan) {
-		return dao.qnaanWrite(sst , qnaan);
+	//상세조회
+	public QnaanVo getQnaanDetail(int no) {
+		return dao.getQnaanDetail(sst , no);
 	}
-
+	//작성하기
+	public int qnaanWrite(QnaanVo qnaanVo) {
+		return dao.qnaanWrite(sst , qnaanVo);
+    }
 	
-	
+//    public String qnaanUpdate(QnaanVo qnaanVo) {
+//    	return dao.qnaanUpdate(qnaanVo);
+//    }
+//    //삭제하기
+//    public String qnaanDelete(int no) {
+//    	return dao.qnaanDelete(no);
+//    }
 
 }

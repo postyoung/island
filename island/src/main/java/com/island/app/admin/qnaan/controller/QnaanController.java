@@ -2,6 +2,8 @@ package com.island.app.admin.qnaan.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.island.app.admin.notice.vo.NoticeVo;
+import com.island.app.admin.faq.vo.FaqVo;
 import com.island.app.admin.qnaan.service.QnaanService;
 import com.island.app.admin.qnaan.vo.QnaanVo;
 import com.island.app.common.page.PageVo;
@@ -22,76 +24,95 @@ import com.island.app.common.page.PageVo;
  * @author 김수경
  *
  */
+
 @Controller
 @RequestMapping("admin")
 public class QnaanController {
 	
-	private final QnaanService qas;
+	private final QnaanService qans;
 	
 	@Autowired
-	public QnaanController(QnaanService qas) {
-		this.qas = qas;
+	public QnaanController(QnaanService qans) {
+		this.qans = qans;
 	}
 
-	//QNA 목록조회
+	//목록조회
 	@GetMapping("qnaan/list")
-	public String qnaanList(Model model , @RequestParam(defaultValue = "1")int page) throws Exception {
+	public String qnaanList(Model model , @RequestParam(defaultValue = "1") int page) throws Exception {
 		
-		int listCount = qas.getQnaanListCnt();
+		// 서비스 & 페이징
+		int listCount = qans.getQnaanListCnt();
 		int currentPage = page;
-		int pageLimit = 5;
-		int boardLimit = 10;
+		int pageLimit = 5; 
+		int boardLimit = 10; 
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<QnaanVo> qnaanList = qas.getQnaanList(pv);
+		List<QnaanVo> getQnaanList = qans.getQnaanList(pv);
+			
+		if (getQnaanList == null) {
+			throw new Exception("Qnaan 목록조회 실패..");
+		}
 		
-		if(qnaanList == null){
-			throw new Exception("QNA 목록조회 실패");
-		}
-		model.addAttribute("pv" , pv);
-		model.addAttribute("qnaanList" , qnaanList);
-		System.out.println(qnaanList);
+		// 화면
+		model.addAttribute("pv", pv);
+		model.addAttribute("getQnaanList", getQnaanList);
 		return "admin/qnaan-list";
-	} 
-	// QNA에 대한 답변 작성 폼 페이지로 이동
-		@GetMapping("qnaan/write/{qnaNo}")
-		public String qnaanWriteForm(@PathVariable int qnaNo, Model model) {
-			QnaanVo qnaan = new QnaanVo();
-			qnaan.setQnaNo(qnaNo);
-			model.addAttribute("qnaan", qnaan);
-			System.out.println(qnaan);
-			return "admin/qnaan-write";
+	}
+	
+	//상세조회
+	@GetMapping("qnaan/detail/{no}")
+	public String qnaanDetail(@PathVariable int no, Model model) throws Exception {
+		QnaanVo qnaan = qans.getQnaanDetail(no);
+		
+		if (qnaan == null) {
+			throw new Exception("Qnaan 상세조회 실패..");
 		}
-
-		// QNA에 대한 답변 작성 처리
-		@PostMapping("qnaan/write")
-		public String qnaanWrite(@ModelAttribute("qnaan") QnaanVo qnaan) {
-			qas.qnaanWrite(qnaan);
-			return "redirect:/admin/qnaan/list";
+		
+		model.addAttribute("qnaan", qnaan);
+		return "admin/qnaan-detail";
+	}
+	
+	
+	//작성하기(화면)
+	@GetMapping("qnaan/write/{qnaNo}")
+	public String qnaanWrite(@PathVariable int qNo, QnaanVo qnaan , HttpServletRequest session , Model model) {
+		
+		qnaan.setQNo(qNo);
+		model.addAttribute("qnaan", qnaan);
+		return "admin/qnaan-write";
+	}
+	
+	//작성하기
+	@PostMapping("qnaan/write")
+	public String qnaanWrite(@ModelAttribute("qnaan") QnaanVo qnaanVo) {
+		qans.qnaanWrite(qnaanVo);
+		return "redirect:/admin/qnaan/list";
+	}
+	
+	
+	@GetMapping("qnaan/update/{no}")
+	public String qnaanUpdateForm(@PathVariable int no, Model model) throws Exception {
+		QnaanVo qnaan = qans.getQnaanDetail(no);
+		
+		if (qnaan == null) {
+			throw new Exception("Qnaan 상세조회 실패..");
 		}
+		
+		model.addAttribute("qnaan", qnaan);
+		return "admin/qnaan-update";
+	}
 	
-	
-	
-	
-	
-	
-	
-//	
-//	//QNA 답변작성하기
-//	@GetMapping("qnaan/write")
-//	public String qnaanWrite() {
-//		return "admin/qnaan-write";
+//	@PostMapping("qnaan/update")
+//	public String qnaanUpdate(@ModelAttribute("qnaanVo") QnaanVo qnaanVo) {
+//		qans.qnaanUpdate(qnaanVo);
+//		return "redirect:/admin/qnaan/detail/" + qnaanVo.getNo();
 //	}
 //	
-//	//QNA 상세조회
-//	@GetMapping("qnaan/detail")
-//	public String qnaanDetail(String num , Model model) {
-//		
-//		return "admin/qnaan-detail";
-//	}
-//	//QNA 수정하기
-//	@GetMapping("qnaan/edit")
-//	public String qnaanEdit() {
-//		return "admin/qnaan-edit";
+//	
+//	//삭제하기
+//	@GetMapping("qnaan/delete/{no}")
+//	public String qnaanDelete(@PathVariable int no) {
+//		qans.qnaanDelete(no);
+//		return "redirect:/admin/qnaan/list";
 //	}
 }
