@@ -21,6 +21,8 @@
 		
 		<typeAlias type="com.island.app.admin.notice.vo.NoticeVo" alias="noticeVo"/>
 		
+		<typeAlias type="com.island.app.admin.qnaan.vo.QnaanVo" alias="qnaanVo"/>
+		
 		<typeAlias type="com.island.app.community.review.vo.SeminarReviewVo" alias="seminarReviewVo"/>
 
 		<typeAlias type="com.island.app.group.vo.GroupVo" alias="groupVo"/>
