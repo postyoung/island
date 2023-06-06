@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminReport">
+	<select id="getSeminarReportCnt" resultType="int">
+		SELECT
+		COUNT(*)
+		from
+		SEMINAR S, SEMINAR_REPORT SR,
+		SE_RE_CATEGORY SC
+		WHERE
+		S.NO = SR.S_NO
+		AND
+		SR.RE_CATEGORY_NO = SC.NO
+		<if test='searchType == "Y"'>
+			AND SR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND S.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND SR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND S.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND S.NAME LIKE '%${searchValue}%'
+		</if>
+		ORDER BY SR.NO DESC
+	</select>
+
+	<select id="getSeminarReportList" resultType="arsVo">
+		SELECT
+		SR.NO AS
+		REPORT_NO,
+		S.NO AS SEMINAR_NO,
+		S.NAME AS NAME,
+		S.WRITER_NO
+		AS WRITER,
+		SC.EX AS CATEGORY,
+		CASE
+		SR.REPORT_YN WHEN 'N' THEN '신고 처리 대기'
+		ELSE '신고
+		처리
+		완료' END AS
+		REPORT_YN,
+		SR.REPORT_DETAIL AS DETAIL
+		from
+		SEMINAR
+		S,
+		SEMINAR_REPORT SR,
+		SE_RE_CATEGORY SC
+		WHERE S.NO = SR.S_NO
+		AND
+		SR.RE_CATEGORY_NO = SC.NO
+		<if test='searchType == "Y"'>
+			AND SR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND S.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND SR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND S.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND S.NAME LIKE '%${searchValue}%'
+		</if>
+		ORDER BY SR.NO DESC
+	</select>
+
+	<select id="getSeminarReport" resultType="arsVo">
+		SELECT
+		SR.NO AS
+		REPORT_NO,
+		S.NO
+		AS SEMINAR_NO,
+		S.NAME AS NAME,
+		S.WRITER_NO AS WRITER,
+		SC.EX AS CATEGORY,
+		CASE
+		SR.REPORT_YN WHEN
+		'N' THEN '신고 처리 대기' ELSE '신고 처리
+		완료' END AS
+		REPORT_YN,
+		SR.REPORT_DETAIL
+		AS DETAIL
+		from
+		SEMINAR S,
+		SEMINAR_REPORT SR,
+		SE_RE_CATEGORY SC
+		WHERE SR.NO
+		= #{no}
+		AND S.NO =
+		SR.S_NO
+		AND
+		SR.RE_CATEGORY_NO = SC. NO
+	</select>
+
+	<update id="seminarCheck">
+		UPDATE SEMINAR_REPORT
+		SET
+		REPORT_YN = 'Y'
+		WHERE NO =
+		#{no}
+	</update>
+
+	<update id="blockSeminar">
+		UPDATE SEMINAR
+		SET
+		BLOCK_YN = 'Y'
+		WHERE NO =
+		#{seminarNo}
+	</update>
+
+	<update id="blockMemberSeminar">
+		UPDATE MEMBER
+		SET
+		BLOCK_YN = 'Y'
+		WHERE NO = #{writerNo}
+	</update>
+
+	<select id="getReviewReportCnt" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM
+		REVIEW R, REVIEW_REPORT RR,
+		RE_RE_CATEGORY RC
+		WHERE
+		R.NO = RR.REVIEW_NO
+		AND RR.RE_RE_CATEGORY_NO =
+		RC.NO
+		<if test='searchType == "Y"'>
+			AND RR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND R.TITLE LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND RR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND R.TITLE LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND R.TITLE LIKE '%${searchValue}%'
+		</if>
+		ORDER BY RR.NO DESC
+	</select>
+
+	<select id="getReviewReportList" resultType="arrVo">
+		SELECT
+		RR.NO AS REPORT_NO,
+		R.NO AS REVIEW_NO,
+		R.MEMBER_NO AS WRITER,
+		R.TITLE AS TITLE,
+		RC.EX AS CATEGORY,
+		CASE RR.REPORT_YN WHEN 'N' THEN '신고
+		처리 대기' ELSE '신고 처리 완료' END AS
+		REPORT_YN,
+		RR.REPORT_DETAIL AS DETAIL
+		FROM
+		REVIEW R, REVIEW_REPORT RR, RE_RE_CATEGORY RC
+		WHERE R.NO = RR.REVIEW_NO
+		AND RR.RE_RE_CATEGORY_NO = RC. NO
+		<if test='searchType == "Y"'>
+			AND RR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND R.TITLE LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND RR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND R.TITLE LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND R.TITLE LIKE '%${searchValue}%'
+		</if>
+		ORDER BY RR.NO DESC
+	</select>
+
+	<select id="getReviewReport" resultType="arrVo">
+		select
+		RR.NO AS
+		REPORT_NO,
+		R.NO AS REVIEW_NO,
+		R.MEMBER_NO AS WRITER,
+		R.TITLE AS TITLE,
+		RC.EX AS CATEGORY,
+		CASE
+		RR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고
+		처리 완료' END AS
+		REPORT_YN,
+		RR.REPORT_DETAIL AS DETAIL
+		FROM REVIEW R,
+		REVIEW_REPORT RR,
+		RE_RE_CATEGORY RC
+		WHERE
+		RR.NO = #{no}
+		AND R.NO =
+		RR.REVIEW_NO
+		AND
+		RR.RE_RE_CATEGORY_NO = RC.NO
+	</select>
+
+	<update id="reviewCheck">
+		UPDATE REVIEW_REPORT
+		SET
+		REPORT_YN = 'Y'
+		WHERE NO =
+		#{no}
+	</update>
+
+	<update id="blockReview">
+		UPDATE REVIEW
+		SET
+		RE_DEL = 'Y'
+		WHERE NO =
+		#{reviewNo}
+	</update>
+
+	<update id="blockMemberReview">
+		UPDATE MEMBER
+		SET
+		BLOCK_YN = 'Y'
+		WHERE NO = #{writerNo}
+	</update>
+
+
+	<!-- 소모임 -->
+	<select id="getGroupReportCnt" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM SMALL_GROUP SG, GR_REPORT GR,
+		GRRP_CATEGORY GC
+		WHERE
+		SG.NO =
+		GR.G_NO
+		AND GR.C_NO = GC. NO
+		<if test='searchType == "Y"'>
+			AND GR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND SG.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND GR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND SG.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND SG.NAME LIKE '%${searchValue}%'
+		</if>
+		ORDER BY GR.NO DESC
+	</select>
+
+	<select id="getGroupReportList" resultType="argVo">
+		SELECT
+		GR.NO AS REPORT_NO,
+		SG.NO AS GROUP_NO,
+		SG.M_NO AS WRITER,
+		SG.NAME
+		AS NAME,
+		GC.EX AS CATEGORY,
+		CASE GR.REPORT_YN WHEN 'N' THEN '신고 처리 대기'
+		ELSE '신고 처리 완료' END AS
+		REPORT_YN,
+		GR.REPORTEX AS DETAIL
+		FROM SMALL_GROUP
+		SG, GR_REPORT GR, GRRP_CATEGORY GC
+		WHERE SG.NO = GR.G_NO
+		AND GR.C_NO =
+		GC. NO
+		<if test='searchType == "Y"'>
+			AND GR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND SG.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND GR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND SG.NAME LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND SG.NAME LIKE '%${searchValue}%'
+		</if>
+		ORDER BY GR.NO DESC
+	</select>
+
+	<select id="getGroupReport" resultType="argVo">
+		SELECT
+		GR.NO AS REPORT_NO,
+		SG.NO AS GROUP_NO,
+		SG.M_NO AS
+		WRITER,
+		SG.NAME AS NAME,
+		GC.EX AS CATEGORY,
+		CASE GR.REPORT_YN WHEN 'N'
+		THEN '신고 처리 대기' ELSE '신고 처리 완료' END AS
+		REPORT_YN,
+		GR.REPORTEX AS DETAIL
+		FROM SMALL_GROUP SG, GR_REPORT GR,
+		GRRP_CATEGORY GC
+		WHERE
+		GR.NO = #{no}
+		AND SG.NO = GR.G_NO
+		AND GR.C_NO =
+		GC.NO
+	</select>
+
+	<update id="groupCheck">
+		UPDATE GR_REPORT
+		SET
+		REPORT_YN = 'Y'
+		WHERE NO =
+		#{no}
+	</update>
+
+	<update id="blockGroup">
+		UPDATE SMALL_GROUP
+		SET
+		BLOCK_YN = 'Y'
+		WHERE NO =
+		#{groupNo}
+	</update>
+
+	<update id="blockMemberGroup">
+		UPDATE MEMBER
+		SET
+		BLOCK_YN = 'Y'
+		WHERE NO = #{writerNo}
+	</update>
+
+
+	<select id="getMemberReportCnt" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM MEMBER M, MB_REPORT MR,
+		MBRP_CATEGORY MC
+		WHERE M.NO =
+		MR.M_NO
+		AND
+		MR.C_NO = MC. NO
+		<if test='searchType == "Y"'>
+			AND MR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND M.ID LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND MR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND M.ID LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND M.ID LIKE '%${searchValue}%'
+		</if>
+	</select>
+
+	<select id="getMemberReportList" resultType="armVo">
+		SELECT
+		MR.NO AS MEMBER_REPORT_NO,
+		m.no as MEMBER_NO,
+		m.ID as ID,
+		MC.EX AS
+		CATEGORY,
+		CASE MR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고 처리 완료'
+		END AS
+		REPORT_YN,
+		MR.REPORTEX AS DETAIL
+		FROM MEMBER M, MB_REPORT MR,
+		MBRP_CATEGORY MC
+		WHERE M.NO = MR.M_NO
+		AND MR.C_NO = MC. NO
+		<if test='searchType == "Y"'>
+			AND MR.REPORT_YN = 'Y'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND M.ID LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test='searchType == "N"'>
+			AND MR.REPORT_YN = 'N'
+			<if test="searchValue!=null and !searchValue.equals('')">
+				AND M.ID LIKE '%${searchValue}%'
+			</if>
+		</if>
+		<if test="searchValue!=null and !searchValue.equals('')">
+			AND M.ID LIKE '%${searchValue}%'
+		</if>
+		ORDER BY MR.NO DESC
+	</select>
+
+	<select id="getMemberReport" resultType="armVo">
+		SELECT
+		MR.NO AS
+		MEMBER_REPORT_NO,
+		m.no as MEMBER_NO,
+		m.ID as ID,
+		MC.EX AS
+		CATEGORY,
+		CASE
+		MR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고 처리 완료'
+		END AS
+		REPORT_YN,
+		MR.REPORTEX AS DETAIL
+		FROM MEMBER M, MB_REPORT MR,
+		MBRP_CATEGORY MC
+		WHERE
+		MR.NO = #{no}
+		AND M.NO = MR.M_NO
+		AND MR.C_NO = MC. NO
+	</select>
+
+	<update id="memberCheck">
+		UPDATE MB_REPORT
+		SET
+		REPORT_YN = 'Y'
+		WHERE NO =
+		#{no}
+	</update>
+
+	<update id="blockMember">
+		UPDATE Member
+		SET
+		BLOCK_YN = 'Y'
+		WHERE NO =
+		#{writerNo}
+	</update>
+</mapper>

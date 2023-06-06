@@ -40,6 +40,18 @@
 		<typeAlias type="com.island.app.seminar.reply.vo.SeminarReplyVo" alias="seminarReplyVo"/>
 
 		<typeAlias type="com.island.app.member.apply.vo.MemberApplyVo" alias="memberApplyVo"/>
+	
+		<typeAlias type="com.island.app.admin.report.vo.AdminReportSeminarVo" alias="arsVo"/>
+		
+		<typeAlias type="com.island.app.admin.report.vo.AdminReportReviewVo" alias="arrVo"/>
+		
+		<typeAlias type="com.island.app.admin.report.vo.AdminReportGroupVo" alias="argVo"/>
+		
+		<typeAlias type="com.island.app.admin.report.vo.AdminReportMemberVo" alias="armVo"/>
+		
+		<typeAlias type="com.island.app.admin.qnaan.vo.QnaanVo" alias="qnaanVo"/>
+		
+		<typeAlias type="com.island.app.community.qnaan.vo.QnaAnswerVo" alias="qnaAnswerVo"/>
 	</typeAliases>
 	
 

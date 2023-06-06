@@ -107,6 +107,6 @@
 </body>
 <script>
 	// 수정하려는 관리자 권한 값 가져와서 버튼 막기
-	$(":input[id='editBtn'][value='${getAdmin.pmNo}']").attr('disabled', true);
+	$(":button[id='editBtn'][value='${getAdmin.pmNo}']").attr('disabled', true);
 </script>
 </html>

@@ -38,7 +38,8 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">카테고리</span>
 									<input type="text" class="form-control"
 										aria-label="Sizing example input"
-										aria-describedby="inputGroup-sizing-default" readonly>
+										aria-describedby="inputGroup-sizing-default" readonly
+										value="${getReport.category}">
 								</div>
 								<div
 									class="input-group input-group-default w-25 p-3 categoryBox">
@@ -53,13 +54,21 @@
 								<label for="exampleFormControlTextarea1" class="form-label"><h3>상세
 										내용</h3></label>
 								<textarea class="form-control report-content"
-									id="exampleFormControlTextarea1" rows="3" readonly></textarea>
+									id="exampleFormControlTextarea1" rows="3" readonly>${getReport.detail}</textarea>
 							</div>
 							<div class="d-flex justify-content-evenly">
-								<button type="button" class="btn btn-secondary btn-lg">신고
-									확인</button>
-								<button type="button" class="btn btn-danger btn-lg">회원
-									정지</button>
+								<form action="${root}/admin/check-member-report" method="post">
+									<input type="hidden" value="${getReport.memberReportNo}" name="no">
+									<button id="submitBtn" type="submit" value="신고 처리 완료"
+										class="btn btn-secondary btn-lg">신고 확인</button>
+								</form>
+								<form action="${root}/admin/block-member" method="post">
+									<input type="hidden" value="${getReport.memberReportNo}" name="no">
+									<input type="hidden" value="${getReport.memberNo}"
+										name="memberNo">
+									<button id="submitBtn" type="submit" value="신고 처리 완료"
+										class="btn btn-danger btn-lg">회원 정지</button>
+								</form>
 							</div>
 						</div>
 					</div>
