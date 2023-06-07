@@ -59,6 +59,7 @@
 													<td width="5%" class="text-center">번호</td>
 													<td width="5%" class="text-center">분류</td>
 													<td width="35%" class="text-center">제목</td>
+													<td width="15%" class="text-center">내용</td>
 													<td width="15%" class="text-center">작성자</td>
 													<td width="17%" class="text-center">작성일</td>
 													<td width="17%" class="text-center">답변여부</td>
@@ -70,8 +71,8 @@
 	                                                    <tr>
 	                                                        <td>${qnaan.no}</td>
 	                                                        <td>${qnaan.categoryName}</td>
-	                                                        <td>${qnaan.categoryName}</td>
 	                                                        <td>${qnaan.title}</td>
+	                                                        <td>${qnaan.content}</td>
 	                                                        <td>${qnaan.writerName}</td>
 	                                                        <td>${qnaan.enrollDate}</td>
 	                                                        <td>${qnaan.answerYn}</td>
