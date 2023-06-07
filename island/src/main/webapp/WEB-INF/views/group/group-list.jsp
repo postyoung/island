@@ -44,8 +44,8 @@
 	</form>
 	<div class="card_list">
 		<c:forEach items="${groupList}" var="group">
-			<div class="card" style="width: 15rem;">
-				<img src="${group.thumbnailPath}" class="card-img-top" alt="...">
+			<div class="card" style="width: 100%;">
+				<img src="${group.thumbnailPath}" class="card-img-top" alt="..." width="238.750" height="204.814" />
 				<div class="card-body">
 					<h5 class="card-title">${group.name}</h5>
 					<p class="card-text">소개: ${group.intro}</p>

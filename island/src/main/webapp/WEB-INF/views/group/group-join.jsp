@@ -25,7 +25,7 @@
       <div class="col-md-8">
         <div class="d-flex">
           <div class="flex-shrink-0">
-            <img src="예시 이미지.jpeg">
+            <img src="${root}/resources/img/group/upload/example.jpeg">
           </div>
           <div class="flex-grow-1 ms-3 py-2">
 

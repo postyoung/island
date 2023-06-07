@@ -37,7 +37,7 @@
             AND S.C_NO = #{cNo}
         </if>
         ORDER BY
-            ENROLL_DATE DESC
+            S.NO DESC
     </select>
     <select id="total" resultType="int">
         SELECT
@@ -74,7 +74,7 @@
             ,ORIGIN_NAME
             ,CHANGE_NAME
         FROM
-            GROUP_PO2
+            GROUP_PO
         WHERE
             G_NO = #{no}
     </select>
@@ -168,6 +168,8 @@
             ,S.FINISHTIME
             ,S.DEL_YN
             ,S.EXINTRO
+            ,S.APPLYDATE
+            ,S.PLACE
             ,CONCAT('/app/resources/img/group/upload/', GP.CHANGE_NAME) THUMBNAIL_PATH
             ,LC.NAME LOCAL_CATEGORY_NAME
             ,GC.CATEGORY GROUP_CATEGORY_NAME
@@ -204,6 +206,7 @@
     </delete>
     <select id="join" resultType="groupVo">
         SELECT
+            G_NO,
             M_NO,
             NO,
             NAME,
@@ -227,8 +230,6 @@
         WHERE
             NO = #{no}
     </select>
-
-
 
 
 

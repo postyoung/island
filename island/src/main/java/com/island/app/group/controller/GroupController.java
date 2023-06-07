@@ -85,7 +85,7 @@ public class GroupController {
 		// TODO: no 없는 경우 에러 처리
 		GroupVo smallGroup = groupService.detail(no);
 		List<GroupPoVo> detailImages = groupService.getGroupDetailImages(no);
-
+		log.info("detail Images : {} " , detailImages.get(0));
 		model.addAttribute("smallGroup", smallGroup);
 		model.addAttribute("detailImages", detailImages);
 
@@ -126,6 +126,7 @@ public class GroupController {
 			changeName = "example.jpeg";
 			originName = "example.jpeg";
 		}
+		groupVo.setGroupThumnail(changeName);
 
 		// 상세정보 이미지
 		List<FileVo> fileVoList = new ArrayList<>();
@@ -163,7 +164,7 @@ public class GroupController {
 	}
 
 	//소모임수정페이지
-	@PostMapping("edit")
+	@GetMapping("edit")
 	public String edit(GroupVo vo , RedirectAttributes ra) throws Exception {
 		int result = groupService.edit(vo);
 
@@ -181,6 +182,7 @@ public class GroupController {
 	public String management() {
 		return "group/group-management";
 	}
+
 	@GetMapping("delete")
 	public String delete(GroupVo groupVo , HttpSession session) throws Exception {
 		MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");

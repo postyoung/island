@@ -24,23 +24,42 @@
             <div class="col-md-8">
                 <div class="d-flex">
                     <div class="flex-shrink-0">
-                        <img id="groupfro" src="${root}/resources/img/group/k.jpeg">
+                        <c:forEach var="image" items="${detailImages}">
+                            <img id="groupfro" src="${root}/resources/img/group/upload/${image.changeName}" alt="사진 불러올 수 없음">
+                        </c:forEach>
                     </div>
                     <div class="flex-grow-1 ms-3 py-2">
-                        <h2 class="mb-0">모임제목</h2>
-                        <p class="mb-2 width" >모임소개</p>
+                        <h2 class="mb-0">${smallGroup.name}</h2>
+                        <p class="mb-2 width" >${smallGroup.intro}</p>
                         <p class="mb-2 width">모임일시 : ${smallGroup.starttime}</p>
                         <p class="mb-2 width">모집인원 : ${smallGroup.peoplenum}명</p>
+                        <p class="mb-2 width">신청기간 : ${smallGroup.applydate} </p>
                         <p class="mb-2 width">모집마감일 : ${smallGroup.finishtime}</p>
-                        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg>모임장소</p>
+                        <p class="mb-2 width">모집장소 : ${smallGroup.place}</p>
+
+
                         <a href="${root}/group/join"><button class="btn btn-primary" onclick="ask()">신청하기</button></a></a>
                         <br>
-                        <button type="button" class="btn btn-primary">신고<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-megaphone-fill" viewBox="0 0 16 16">
-                            <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-11zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25.222 25.222 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56V3.224zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02 2.02 0 0 0 0 7v2c0 1.106.896 1.996 1.994 2.009a68.14 68.14 0 0 1 .496.008 64 64 0 0 1 1.51.048zm1.39 1.081c.285.021.569.047.85.078l.253 1.69a1 1 0 0 1-.983 1.187h-.548a1 1 0 0 1-.916-.599l-1.314-2.48a65.81 65.81 0 0 1 1.692.064c.327.017.65.037.966.06z"/>
-                        </svg></button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            신고하기
+                        </button>
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Understood</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,13 +76,13 @@
             <div class="white-box">
                 <div class="d-flex" style="font-size: 12px;">
                     <div class="flex-shrink-0">
-                        <img src="${root}/resources/img/group/k.jpeg" class="mt-2" width="60px">
+                        <img style="border-radius: 20%" src="${root}/resources/img/member/profile/load/${loginMember.profileName}" class="mt-2" width="60px">
                     </div>
                     <div class="flex-grow-1 ms-3 py-2">
                         <div id="pro" class="mb-0">이름 : ${loginMember.name}</div>
                         <div class="mb-2 width">이메일 : ${loginMember.email}@${loginMember.email2}</div>
-                        <div class="mb-2 width">전화번호 : 010-1234-5678</div>
-                        <div class="mb-2 width">소속 : 없음</div>
+                        <div class="mb-2 width">전화번호 : ${loginMember.phone}</div>
+                        <div class="mb-2 width">소속 : ${loginMember.attach}</div>
                         <a href="${root}/group/edit"><button class="btn btn-primary" onclick="modify()">수정하기</button></a>
                         <a href="${root}/group/list"><button class="btn btn-primary" onclick="detaildelete()">삭제하기</button></a>
                     </div>

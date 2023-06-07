@@ -22,7 +22,7 @@
         <div class = "title">
             <h2>수정하기</h2>
         </div>
-        <form class="create" method="post" enctype="multipart/form-data">
+        <form class="create" method="get" enctype="multipart/form-data">
             <div class = "contact-me">
                 <div class="left">
                     <div class="card">
