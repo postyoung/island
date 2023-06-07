@@ -89,6 +89,27 @@
 		ORDER BY NO DESC
 	</select>
 
+	<select id="getMember" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE
+		QUIT_YN = 'N'
+	</select>
+	
+	<select id="getGroup" resultType="int">
+		SELECT COUNT(*)
+		FROM SMALL_GROUP
+		WHERE
+		DEL_YN = 'N'
+	</select>
+	
+	<select id="getSeminar" resultType="int">
+		SELECT COUNT(*)
+		FROM SEMINAR
+		WHERE
+		DEL_YN = 'N'
+	</select>
+	
 	<select id="getCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM ADMIN

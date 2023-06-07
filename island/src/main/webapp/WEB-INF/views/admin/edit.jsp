@@ -39,20 +39,26 @@
 									<div class="form-group">
 										<label for="InputId" class="mt-4"><h4>아이디</h4></label> <input
 											type="text" class="form-control" id="InputId" name="id"
-											placeholder="아이디를 입력해주세요"> <input type="button"
-											class="btn btn-primary mt-4" value="아이디 중복 확인"
-											onclick="checkDup();">
+											placeholder="영문 소문자  + 숫자 6글자 이상">
+										<div class="valid-feedback"></div>
+										<div class="invalid-feedback">아이디가 올바르지 않습니다.</div>
+										<input type="button" class="btn btn-primary mt-4"
+											value="아이디 중복 확인" onclick="checkDup();">
 									</div>
 									<div class="form-group">
 										<label for="inputPassword" class="mt-4"><h4>비밀번호</h4></label>
 										<input type="password" class="form-control" id="inputPassword"
-											name="pwd" placeholder="비밀번호를 입력해주세요">
+											name="pwd" placeholder="영문 소문자, 숫자, 특수 문자 포함 6글자 이상">
+										<div class="valid-feedback"></div>
+										<div class="invalid-feedback">비밀번호가 올바르지 않습니다.</div>
 									</div>
 									<div class="form-group">
 										<label for="inputPasswordCheck" class="mt-4"><h4>비밀번호
 												확인</h4></label> <input type="password" class="form-control"
 											id="inputPasswordCheck" name="pwd2"
 											placeholder="비밀번호 확인을 위해 다시 한번 입력 해 주세요">
+										<div class="valid-feedback"></div>
+										<div class="invalid-feedback">비밀번호가 올바르지 않습니다.</div>
 									</div>
 									<label for="radioBox" class="mt-4"><h4>권한 설정</h4></label> <br>
 									<div class="form-check form-check-inline" id="radioBox">
@@ -88,8 +94,46 @@
 	</div>
 </body>
 <script>
+	const regexName = /^[가-힣]+$/; // 한글만 허용하는 정규식
+	document.querySelector("input[id=inputName]").addEventListener("input",
+			function() {
+				//1. 입력한 value 값을 읽어온다.
+				let inputName = this.value;
+				//2. 유효성(5글자이상 10글자 이하)을 검증한다.
+
+				if (regexName.test(inputName)) {
+					this.classList.remove("is-invalid");
+					this.classList.add("is-valid");
+				} else {
+					this.classList.remove("is-valid");
+					this.classList.add("is-invalid");
+				}
+			});
+
+	//아이디 유효성 검사 
+	var regexId = /^(?=.*[a-z])(?=.*[0-9])[a-z0-9]{6,}$/;
+	document
+			.querySelector("input[id=InputId]")
+			.addEventListener(
+					"input",
+					function() {
+
+						let inputId = this.value;
+
+						if (regexId.test(inputId)) {
+							this.classList.remove("is-invalid");
+							this.classList.add("is-valid");
+							document.querySelector("input[name=idBtn]").disabled = false;
+						} else {
+							this.classList.remove("is-valid");
+							this.classList.add("is-invalid");
+							document.querySelector("input[name=idBtn]").disabled = true;
+						}
+					});
+
 	let isIdDupOk = false;
-	// 아이디 중복 확인
+	//아이디 중복확인
+
 	function checkDup() {
 		const id = document.querySelector("input[name=id]").value;
 		$.ajax({
@@ -104,16 +148,51 @@
 					alert("사용 가능한 아이디 입니다.");
 				} else {
 					alert("사용 불가한 아이디 입니다.");
+					const idBox = document.querySelector("input[name=id]").value = null;
+					document.querySelector("input[id=InputId]").classList.remove("is-valid");
 				}
 			},
 			error : function(e) {
 				console.log(e);
 			},
 		});
-
 	}
 
-	// 비밀번호 일치해야 제출 가능
+	var regexPwd = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{6,}$/; // 영문, 숫자, 특수문자 포함, 6글자 이상 조건식
+	document.querySelector("input[id=inputPassword]").addEventListener("input",
+			function() {
+				//1. 입력한 value 값을 읽어온다.
+				let inputPwd = this.value;
+				//2. 유효성(5글자이상 10글자 이하)을 검증한다.
+
+				if (regexPwd.test(inputPwd)) {
+					this.classList.remove("is-invalid");
+					this.classList.add("is-valid");
+				} else {
+					this.classList.remove("is-valid");
+					this.classList.add("is-invalid");
+				}
+			});
+
+	document.querySelector("input[id=inputPasswordCheck]").addEventListener(
+			"input", function() {
+				//1. 입력한 value 값을 읽어온다.
+				let inputPwd2 = this.value;
+				//2. 유효성(5글자이상 10글자 이하)을 검증한다.
+
+				const pwd1 = document.querySelector("input[name=pwd]").value;
+				const pwd2 = document.querySelector("input[name=pwd2]").value;
+
+				if (pwd1 != pwd2) {
+					this.classList.remove("is-valid");
+					this.classList.add("is-invalid");
+				} else {
+					this.classList.remove("is-invalid");
+					this.classList.add("is-valid");
+				}
+			});
+
+	//비밀번호 일치해야 제출 가능하게
 	function checkValidation() {
 		if (!isIdDupOk) {
 			alert("중복확인을 진행해주세요");
@@ -125,7 +204,6 @@
 			document.querySelector("input[name=pwd]").focus();
 			return false;
 		}
-		return true;
 	}
 
 	function isPwdOk() {
@@ -137,7 +215,17 @@
 		return true;
 	}
 
-	// 아이디 값이 변경 시 중복확인 값 초기화
+	function ispmNoSelected() {
+		const pmNo = document.querySelectorAll('input[type=radio][name=pmNo]');
+		for (let i = 0; i < pmNo.length; i++) {
+			if (pmNo[i].checked) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//아이디 값이 변경되면, 중복확인 값 초기화시키기
 	const idTag = document.querySelector("input[name=id]");
 	idTag.addEventListener('change', checkIdChange);
 

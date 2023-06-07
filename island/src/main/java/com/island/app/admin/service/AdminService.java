@@ -66,4 +66,20 @@ public class AdminService {
 	public int delete(String no) {
 		return dao.delete(sst, no);
 	}
+
+	public int getMemberCnt() {
+		return dao.getMemberCnt(sst);
+	}
+
+	public int getAdminCnt() {
+		return dao.getAdminCnt(sst);
+	}
+
+	public int getGroupCnt() {
+		return dao.getGroupCnt(sst);
+	}
+
+	public int getSeminarCnt() {
+		return dao.getSeminarCnt(sst);
+	}
 }
