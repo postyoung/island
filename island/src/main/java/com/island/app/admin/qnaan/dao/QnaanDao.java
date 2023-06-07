@@ -37,14 +37,33 @@ public class QnaanDao {
 	public QnaanVo getQnaanDetail(SqlSessionTemplate sst , int no) {
 		return sst.selectOne("adminqnaan.getQnaanDetail" , no);
 	}
-//
-//	public String qnaanUpdate(QnaanVo qnaanVo) {
-//		return sst.update("adminqnaan.qnaanUpdate" , qnaanVo);
-//	}
-//
-//	public String qnaanDelete(int no) {
-//		return sst.update("adminqnaan.qnaanDelete" , no);
-//	}
+
+	public int qnaanUpdate(SqlSessionTemplate sst , QnaanVo qnaanVo) {
+		return sst.update("adminqnaan.qnaanUpdate" , qnaanVo);
+	}
+
+	public int qnaanDelete(SqlSessionTemplate sst , int no) {
+		return sst.update("adminqnaan.qnaanDelete" , no);
+	}
+
+
+	public String getqnaancategoryName(SqlSessionTemplate sst, String qnaancategoryName) {
+		return sst.selectOne("adminqnaan.getqnaancategoryName" , qnaancategoryName );
+	}
+
+	public int qnaanEdit(SqlSessionTemplate sst, QnaanVo qnaanVo) {
+		return sst.update("adminqnaan.qnaanEdit" , qnaanVo);
+	}
+
+	public int qnaanUpdate(QnaanVo qnaanVo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int qnaanDelete(int no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 

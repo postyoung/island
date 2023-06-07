@@ -12,11 +12,15 @@ import lombok.Data;
 public class QnaanVo {
 	
 	private String no;
-    private int qNo;
     private String content;
     private String writerNo;
     private String delYn;
     private String modifyDate;
     private String enrollDate;
 	private String qnaancategoryName;
+	private String qnaancategoryNo;
+	private String loginAdmin;
+	private String categoryName;
+	private String title;
+	private String qnContent;
 }
