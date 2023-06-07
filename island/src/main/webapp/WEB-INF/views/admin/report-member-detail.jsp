@@ -78,4 +78,7 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(":button[id='submitBtn'][value='${getReport.reportYn}']").attr('disabled', true);
+</script>
 </html>

@@ -2,9 +2,7 @@ package com.island.app.admin.report.controller;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.island.app.admin.report.service.ReportService;
 import com.island.app.admin.report.vo.AdminReportGroupVo;
 import com.island.app.admin.report.vo.AdminReportMemberVo;
 import com.island.app.admin.report.vo.AdminReportNoVo;
 import com.island.app.admin.report.vo.AdminReportReviewVo;
 import com.island.app.admin.report.vo.AdminReportSeminarVo;
+import com.island.app.admin.vo.AdminVo;
 import com.island.app.common.page.PageVo;
 
 @Controller
@@ -34,7 +32,17 @@ public class ReportController {
 	// 회원 신고 목록 조회
 	@GetMapping("report/member")
 	public String reportMember(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
+			Model model, HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			return "redirect:/admin/login";
+		}
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 2) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
+
 		// 데이터
 		int listCount = rs.getMemberReportCnt(searchMap);
 		int currentPage = page;
@@ -44,10 +52,8 @@ public class ReportController {
 
 		// 서비스
 		List<AdminReportMemberVo> MemberReportList = rs.getMemberReportList(pv, searchMap);
-		// List<Map<String, String>> cvoList = as.getCategoryList();
 
 		// 화면
-		// model.addAttribute("cvoList", cvoList);
 		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("MemberReportList", MemberReportList);
@@ -61,42 +67,47 @@ public class ReportController {
 		model.addAttribute("getReport", getReport);
 		return "admin/report-member-detail";
 	}
-	
-	// 회원 신고 (확인)
-		@PostMapping("check-member-report")
-		public String reportMemberCheck(String no, HttpSession session) {
-			int result = rs.reportMemberCheck(no);
-			if (result != 1) {
-				session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
-				return "redirect:/admin/report/member";
-			}
-			session.setAttribute("alertMsg", "신고 처리가 완료되었습니다.");
-			return "redirect:/admin/main";
-		}
 
-		// 회원 (확인 및 회원 블락)
-		@PostMapping("block-member")
-		public String blockMember(String no, String memberNo, HttpSession session) throws Exception {
-			AdminReportNoVo vo = new AdminReportNoVo();
-			vo.setNo(no);
-			vo.setWriterNo(memberNo);
-			int result = rs.blockTheMember(vo);
-			if (result != 1) {
-				session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
-				return "redirect:/admin/report/member";
-			}
-			session.setAttribute("alertMsg", "신고 처리 및 회원 정지가 완료되었습니다.");
-			return "redirect:/admin/main";
+	// 회원 신고 (확인)
+	@PostMapping("check-member-report")
+	public String reportMemberCheck(String no, HttpSession session) {
+		int result = rs.reportMemberCheck(no);
+		if (result != 1) {
+			session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
+			return "redirect:/admin/report/member";
 		}
-	
-	
-	
-	
+		session.setAttribute("alertMsg", "신고 처리가 완료되었습니다.");
+		return "redirect:/admin/report/member";
+	}
+
+	// 회원 (확인 및 회원 블락)
+	@PostMapping("block-member")
+	public String blockMember(String no, String memberNo, HttpSession session) throws Exception {
+		AdminReportNoVo vo = new AdminReportNoVo();
+		vo.setNo(no);
+		vo.setWriterNo(memberNo);
+		int result = rs.blockTheMember(vo);
+		if (result != 1) {
+			session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
+			return "redirect:/admin/report/member";
+		}
+		session.setAttribute("alertMsg", "신고 처리 및 회원 정지가 완료되었습니다.");
+		return "redirect:/admin/report/member";
+	}
 
 	// 소모임 신고 목록 조회
 	@GetMapping("report/group")
 	public String reportGroup(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
+			Model model, HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			return "redirect:/admin/login";
+		}
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 2) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
 		// 데이터
 		int listCount = rs.getGroupReportCnt(searchMap);
 		int currentPage = page;
@@ -133,7 +144,7 @@ public class ReportController {
 			return "redirect:/admin/report/group";
 		}
 		session.setAttribute("alertMsg", "신고 처리가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/group";
 	}
 
 	// 소모임 신고 (확인 및 소모임 블락)
@@ -147,8 +158,8 @@ public class ReportController {
 			session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
 			return "redirect:/admin/report/group";
 		}
-		session.setAttribute("alertMsg", "신고 처리 및 리뷰 삭제가 완료되었습니다.");
-		return "redirect:/admin/main";
+		session.setAttribute("alertMsg", "신고 처리 및 소모임 삭제가 완료되었습니다.");
+		return "redirect:/admin/report/group";
 	}
 
 	// 소모임 신고 (확인 및 회원, 소모임 블락)
@@ -163,14 +174,23 @@ public class ReportController {
 			session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
 			return "redirect:/admin/report/group";
 		}
-		session.setAttribute("alertMsg", "신고 처리 및 회원 정지, 리뷰 삭제가 완료되었습니다.");
-		return "redirect:/admin/main";
+		session.setAttribute("alertMsg", "신고 처리 및 회원 정지, 소모임 삭제가 완료되었습니다.");
+		return "redirect:/admin/report/group";
 	}
 
 	// 세미나 신고 목록 조회
 	@GetMapping("report/seminar")
 	public String reportSeminar(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
+			Model model, HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			return "redirect:/admin/login";
+		}
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 2) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
 		// 데이터
 		int listCount = rs.getSeminarReportCnt(searchMap);
 		int currentPage = page;
@@ -178,14 +198,10 @@ public class ReportController {
 		int boardLimit = 10;
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
-		System.out.println(searchMap);
-
 		// 서비스
 		List<AdminReportSeminarVo> SeminarReportList = rs.getSeminarReportList(pv, searchMap);
-		// List<Map<String, String>> cvoList = as.getCategoryList();
 
 		// 화면
-		// model.addAttribute("cvoList", cvoList);
 		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("SeminarReportList", SeminarReportList);
@@ -210,7 +226,7 @@ public class ReportController {
 			return "redirect:/admin/report/seminar";
 		}
 		session.setAttribute("alertMsg", "신고 처리가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/seminar";
 	}
 
 	// 세미나 신고 (확인 및 세미나 블락)
@@ -225,7 +241,7 @@ public class ReportController {
 			return "redirect:/admin/report/seminar";
 		}
 		session.setAttribute("alertMsg", "신고 처리 및 세미나 삭제가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/seminar";
 	}
 
 	// 세미나 신고 (확인 및 회원, 세미나 블락)
@@ -241,13 +257,22 @@ public class ReportController {
 			return "redirect:/admin/report/seminar";
 		}
 		session.setAttribute("alertMsg", "신고 처리 및 회원 정지, 세미나 삭제가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/seminar";
 	}
 
 	// 세미나 리뷰 신고 목록 조회
 	@RequestMapping("report/review")
 	public String reportReview(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
+			Model model, HttpSession session) {
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		if (loginAdmin == null) {
+			return "redirect:/admin/login";
+		}
+		int pmNo = Integer.parseInt(loginAdmin.getPmNo());
+		if (pmNo < 2) {
+			session.setAttribute("alertMsg", "해당 관리자 등급은 접근이 불가능합니다.");
+			return "redirect:/admin/main";
+		}
 		// 데이터
 		int listCount = rs.getReviewReportCnt(searchMap);
 		int currentPage = page;
@@ -255,14 +280,10 @@ public class ReportController {
 		int boardLimit = 10;
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 
-		System.out.println(searchMap);
-
 		// 서비스
 		List<AdminReportReviewVo> ReviewReportList = rs.getReviewReportList(pv, searchMap);
-		// List<Map<String, String>> cvoList = as.getCategoryList();
 
 		// 화면
-		// model.addAttribute("cvoList", cvoList);
 		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("pv", pv);
 		model.addAttribute("ReviewReportList", ReviewReportList);
@@ -287,7 +308,7 @@ public class ReportController {
 			return "redirect:/admin/report/review";
 		}
 		session.setAttribute("alertMsg", "신고 처리가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/review";
 	}
 
 	// 리뷰 신고 (확인 및 리뷰 블락)
@@ -302,7 +323,7 @@ public class ReportController {
 			return "redirect:/admin/report/review";
 		}
 		session.setAttribute("alertMsg", "신고 처리 및 리뷰 삭제가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/review";
 	}
 
 	// 리뷰 신고 (확인 및 회원, 리뷰 블락)
@@ -318,6 +339,6 @@ public class ReportController {
 			return "redirect:/admin/report/review";
 		}
 		session.setAttribute("alertMsg", "신고 처리 및 회원 정지, 리뷰 삭제가 완료되었습니다.");
-		return "redirect:/admin/main";
+		return "redirect:/admin/report/review";
 	}
 }

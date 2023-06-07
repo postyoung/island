@@ -1,4 +1,5 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
+// Set new default font family and font color to mimic Bootstrap's default
+// styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
@@ -12,7 +13,7 @@ var myLineChart = new Chart(ctx, {
 			label : "Revenue",
 			backgroundColor : "rgba(2,117,216,1)",
 			borderColor : "rgba(2,117,216,1)",
-			data : [ 1557, 157, 1601, 1601 ],
+			data : [ memberCnt, adminCnt, groupCnt, seminarCnt ],
 		} ],
 	},
 	options : {
@@ -31,7 +32,7 @@ var myLineChart = new Chart(ctx, {
 			yAxes : [ {
 				ticks : {
 					min : 0,
-					max : 2000,
+					max : 100,
 					maxTicksLimit : 5
 				},
 				gridLines : {

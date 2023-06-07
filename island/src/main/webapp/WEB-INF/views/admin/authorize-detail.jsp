@@ -88,7 +88,7 @@
 												<h5 class="card-title">관리자 계정 등급 : 3</h5>
 												<p class="card-text">
 													공지사항 작성<br> FAQ<br> Q&A<br> 신고 관리<br>
-													계정 생성 및 권한 설정
+													계정 생성 ,삭제 및 권한 설정
 												</p>
 												<button type="submit" value="3" name="pmno" id="editBtn"
 													class="btn btn-primary">설정하기</button>
@@ -106,7 +106,6 @@
 	</div>
 </body>
 <script>
-	// 수정하려는 관리자 권한 값 가져와서 버튼 막기
 	$(":button[id='editBtn'][value='${getAdmin.pmNo}']").attr('disabled', true);
 </script>
 </html>

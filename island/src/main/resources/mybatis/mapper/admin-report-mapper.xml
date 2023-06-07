@@ -42,9 +42,7 @@
 		SC.EX AS CATEGORY,
 		CASE
 		SR.REPORT_YN WHEN 'N' THEN '신고 처리 대기'
-		ELSE '신고
-		처리
-		완료' END AS
+		ELSE '신고 처리 완료' END AS
 		REPORT_YN,
 		SR.REPORT_DETAIL AS DETAIL
 		from
@@ -84,8 +82,7 @@
 		SC.EX AS CATEGORY,
 		CASE
 		SR.REPORT_YN WHEN
-		'N' THEN '신고 처리 대기' ELSE '신고 처리
-		완료' END AS
+		'N' THEN '신고 처리 대기' ELSE '신고 처리 완료' END AS
 		REPORT_YN,
 		SR.REPORT_DETAIL
 		AS DETAIL
@@ -112,7 +109,7 @@
 	<update id="blockSeminar">
 		UPDATE SEMINAR
 		SET
-		BLOCK_YN = 'Y'
+		DEL_YN = 'Y'
 		WHERE NO =
 		#{seminarNo}
 	</update>
@@ -120,7 +117,7 @@
 	<update id="blockMemberSeminar">
 		UPDATE MEMBER
 		SET
-		BLOCK_YN = 'Y'
+		QUIT_YN = 'Y'
 		WHERE NO = #{writerNo}
 	</update>
 
@@ -159,8 +156,7 @@
 		R.MEMBER_NO AS WRITER,
 		R.TITLE AS TITLE,
 		RC.EX AS CATEGORY,
-		CASE RR.REPORT_YN WHEN 'N' THEN '신고
-		처리 대기' ELSE '신고 처리 완료' END AS
+		CASE RR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고 처리 완료' END AS
 		REPORT_YN,
 		RR.REPORT_DETAIL AS DETAIL
 		FROM
@@ -194,8 +190,7 @@
 		R.TITLE AS TITLE,
 		RC.EX AS CATEGORY,
 		CASE
-		RR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고
-		처리 완료' END AS
+		RR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고 처리 완료' END AS
 		REPORT_YN,
 		RR.REPORT_DETAIL AS DETAIL
 		FROM REVIEW R,
@@ -228,7 +223,7 @@
 	<update id="blockMemberReview">
 		UPDATE MEMBER
 		SET
-		BLOCK_YN = 'Y'
+		QUIT_YN = 'Y'
 		WHERE NO = #{writerNo}
 	</update>
 
@@ -328,7 +323,7 @@
 	<update id="blockGroup">
 		UPDATE SMALL_GROUP
 		SET
-		BLOCK_YN = 'Y'
+		DEL_YN = 'Y'
 		WHERE NO =
 		#{groupNo}
 	</update>
@@ -336,10 +331,9 @@
 	<update id="blockMemberGroup">
 		UPDATE MEMBER
 		SET
-		BLOCK_YN = 'Y'
+		QUIT_YN = 'Y'
 		WHERE NO = #{writerNo}
 	</update>
-
 
 	<select id="getMemberReportCnt" resultType="int">
 		SELECT
@@ -432,7 +426,7 @@
 	<update id="blockMember">
 		UPDATE Member
 		SET
-		BLOCK_YN = 'Y'
+		QUIT_YN = 'Y'
 		WHERE NO =
 		#{writerNo}
 	</update>

@@ -61,4 +61,20 @@ public class AdminDao {
 	public int delete(SqlSessionTemplate sst, String no) {
 		return sst.update("admin.delete", no);
 	}
+
+	public int getMemberCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("admin.getMember");
+	}
+
+	public int getAdminCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("admin.getCnt");
+	}
+
+	public int getGroupCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("admin.getGroup");
+	}
+
+	public int getSeminarCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("admin.getSeminar");
+	}
 }

@@ -35,7 +35,7 @@
 											<h2 class="card-title">총 회원 수</h2>
 											<i class="bi bi-person-fill"></i>
 											<h1 style="margin-top: 12px;">
-												<strong>1557</strong>명
+												<strong>${memberCnt}</strong>명
 											</h1>
 										</div>
 									</div>
@@ -46,7 +46,7 @@
 											<h2 class="card-title">총 관리자 수</h2>
 											<i class="bi bi-person-workspace"></i>
 											<h1 style="margin-top: 12px;">
-												<strong>157</strong>명
+												<strong>${adminCnt}</strong>명
 											</h1>
 										</div>
 									</div>
@@ -57,7 +57,7 @@
 											<h2 class="card-title">총 소모임 수</h2>
 											<i class="bi bi-people-fill"></i>
 											<h1 style="margin-top: 12px;">
-												<strong>1601</strong>개
+												<strong>${groupCnt}</strong>개
 											</h1>
 										</div>
 									</div>
@@ -68,7 +68,7 @@
 											<h2 class="card-title">총 세미나 수</h2>
 											<i class="bi bi-book-fill"></i>
 											<h1 style="margin-top: 12px;">
-												<strong>1601</strong>개
+												<strong>${seminarCnt}</strong>개
 											</h1>
 										</div>
 									</div>
@@ -98,4 +98,10 @@
 <script defer
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 	crossorigin="anonymous"></script>
-<script defer src="${root}/resources/js/admin/admin-main.js"></script>
+<script type="text/javascript">
+var memberCnt = ${memberCnt};
+var adminCnt = ${adminCnt};
+var groupCnt = ${groupCnt};
+var seminarCnt = ${seminarCnt};
+</script>
+<script defer src="${root}/resources/js/admin/admin-main-chart.js"></script>
