@@ -32,7 +32,7 @@
 			<div id="wrap">
 				<!-- 메뉴바 -->
 				<div id="wrap">
-					<form action="${root}/admin/qnaan/detail" class="qnaanDetailform"	method="get">
+					<form action="${root}/admin/qnaan/write" class="qnaanwriteform"	method="post">
 
 						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
 							<div class="col-md-0 px-0">
@@ -49,10 +49,10 @@
 								<div class="row_wrap">
 									<div class="input_title">
 										<form class="form-horizontal">
-											<table id="tableTitle" class="table table-bordered table" style="">
+											<table id="tableTitle" class="table table-bordered table" >
 												<tr>
 													<td>분류</td>
-													<td>${ancategoey}</td>
+													<td>${categoryName}</td>
 												</tr>
 												<tr>
 													<td>닉네임</td>
@@ -74,7 +74,7 @@
 												<label id="content" class="control-label col-lg-2"	for="content">답변내용 : </label>
 
 												<div class="col-lg-12" style="margin-bottom: 10px;">
-													<textarea class="form-control" name="content" id="content" rows="16" placeholder="문의한 내용에 대해 답변을 작성하시오"></textarea>
+													<input type="text" class="form-control" name="content" id="content" rows="16" placeholder="문의한 내용에 대해 답변을 작성하시오">
 												</div>
 											</div>
 										</form>

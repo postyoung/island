@@ -3,34 +3,53 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="adminqnaan">
-    <select id="getQnaanList" resultType="qnaanVo">
-		 SELECT *
-        FROM (
-            SELECT ROWNUM AS RNUM, A.*
-            FROM (
-                SELECT *
-                FROM QNA_AN
-                ORDER BY NO DESC
-            ) A
-            WHERE ROWNUM &lt;= #{end}
-        )
-        WHERE RNUM &gt;= #{start}	    
+    <select id="getQnaanList" resultType="qnaVo">
+		
+	 SELECT
+			 Q.NO
+            ,Q.TITLE
+            ,Q.CONTENT
+            ,Q.WRITER_NO
+            ,Q.CATEGORY_NO
+            ,Q.ENROLL_DATE
+            ,Q.DEL_YN
+            ,Q.ANSWER_YN
+            ,C.NAME AS CATEGORY_NAME
+            ,M.NICK AS writerName
+            FROM QNA Q
+            LEFT OUTER JOIN QNA_CATEGORY C ON (Q.CATEGORY_NO=C.NO)
+    		JOIN MEMBER M ON (Q.WRITER_NO=M.NO)
+	</select>
+	
+	<select id="getqnaancategoryName" resultType="qnaanVo">
+	   SELECT NAME
+			FROM QNA_ANCATEGORY
+			WHERE NO = #{qnaancategoryName}
+
 	</select>
 	<select id="getQnaanListCnt" resultType="int">
     	SELECT COUNT(*) FROM QNA_AN
 	</select>
 	
-	<select id="getQnaanDetail" parameterType="int" resultType="qnaanVo">
-        SELECT *
-        FROM QNA_AN
-        WHERE NO = #{no}
+	<select id="getQnaanDetail" resultType="qnaanVo">
+        SELECT 
+		    C.NAME AS CATEGORY_NAME
+		    , M.NICK
+		    , Q.TITLE
+		    , Q.CONTENT
+		    , QA.CONTENT AS QN_CONTENT
+		    FROM QNA Q 
+		    JOIN QNA_CATEGORY C ON (C.NO = Q.CATEGORY_NO)
+		    JOIN MEMBER M ON (M.NO = Q.WRITER_NO)
+		    JOIN QNA_AN QA ON (QA.Q_NO = Q.NO)
+		WHERE Q.NO= #{no}
     </select>
 	
 	<insert id="qnaanWrite" parameterType="qnaanVo">
         INSERT INTO QNA_AN
         (
         	NO
-        	, Q_NO
+        	, ANCATEGORY_NO        	
         	, CONTENT
         	, WRITER_NO
         	, DEL_YN
@@ -40,7 +59,7 @@
         VALUES
         (
         	SEQ_QNA_AN_NO.NEXTVAL
-        	, #{qNo}
+        	, #{ancategoryNo}        	
         	, #{content}
         	, #{writerNo}
         	, 'N'
@@ -49,108 +68,24 @@
        	)
     </insert>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-    <!-- <insert id="qnaanWrite" parameterType="qnaanVo">
-    	INSERT INTO QNAAN
-    	(
-    		qnaNo
-    		, content
-    		, enroll_date
-   		) 
-    	VALUES
-    	(
-    		#{qnaNo}
-    		, #{content}
-    		, NOW()
-   		)
-  </insert> -->
     
-    
-    
-    
-    <!-- <insert id="faqwrite">
-        INSERT INTO FAQ
-			(
-			    NO
-			    , TITLE
-			    , CONTENT
-			    , WRITER_NO
-			    , CATEGORY_NO
-			    , ENROLL_DATE
-			)
-			VALUES
-			(
-			    SEQ_FAQ_NO.NEXTVAL
-			    , #{title}
-			    , #{content}
-			    , #{writerNo}
-			    , #{categoryNo}
-			    , SYSDATE
-			)
-    </insert>
-    
-   
-    <select id="getFaq" resultType="FaqVo">
-        SELECT 
-		    F.NO,
-		    F.TITLE,
-		    F.CONTENT,
-		    F.ENROLL_DATE,
-		    F.DEL_YN,
-		    C.NAME AS CATEGORY_NAME,
-		    A.NAME AS WRITER_NAME,
-		    F.WRITER_NO
-		FROM FAQ F
-		JOIN ADMIN A ON F.WRITER_NO = A.NO
-		JOIN FAQ_CATEGORY C ON F.CATEGORY_NO = C.NO
-		WHERE F.NO = #{num}
-    </select>
-    
-    <update id="faqedit" parameterType="FaqVo">
-	  UPDATE FAQ
+    <update id="qnaanEdit" parameterType="qnaanVo">
+	  UPDATE QNA_AN
 			SET
-				TITLE = COALESCE(#{title} , TITLE)
-				, CONTENT = COALESCE(#{content} , content)
+				CONTENT = COALESCE(#{content} , content)
 				, MODIFY_DATE = SYSDATE
 		WHERE NO = #{no}
 	</update>
 
-    <delete id="faqdelete">
-        UPDATE FAQ
+    <update id="qnaanDelete">
+        UPDATE QNA_AN
         	SET
 	            MODIFY_DATE = SYSDATE
 	            , DEL_YN = 'Y'
         WHERE NO = #{num}
-    </delete>
+    </update>
     
-    <select id="getCnt" resultType="int">
-		SELECT COUNT(NO)
-		FROM FAQ F
-		
-		<if test="searchType == 'title'">
-			AND F.TITLE LIKE '%${searchValue}%'
-		</if>
-		<if test="searchType == 'content'">
-			AND F.CONTENT LIKE '%${searchValue}%'
-		</if>
-		<if test="searchType == 'category'">
-			AND F.CATEGORY_NO = #{searchValue}
-		</if>
-	</select>
 	
-	<select id="getcategoryName" resultType="FaqVo">
-	   SELECT NAME
-			FROM FAQ_CATEGORY
-			WHERE NO = #{categoryNo}
-
-	</select>
-	 -->
+	 
 	
 </mapper>

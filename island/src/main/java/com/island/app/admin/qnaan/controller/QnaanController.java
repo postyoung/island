@@ -3,6 +3,7 @@ package com.island.app.admin.qnaan.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.island.app.admin.faq.vo.FaqVo;
 import com.island.app.admin.qnaan.service.QnaanService;
 import com.island.app.admin.qnaan.vo.QnaanVo;
+import com.island.app.admin.vo.AdminVo;
 import com.island.app.common.page.PageVo;
+import com.island.app.community.qna.service.QnaService;
 
 /**
  * 
@@ -61,58 +64,100 @@ public class QnaanController {
 	
 	//상세조회
 	@GetMapping("qnaan/detail/{no}")
-	public String qnaanDetail(@PathVariable int no, Model model) throws Exception {
+	public String qnaanDetail(@PathVariable int no, QnaanVo qnaanVo , Model model , HttpSession session, String getqnaancategoryNo){
+		System.out.println(no);
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+		
 		QnaanVo qnaan = qans.getQnaanDetail(no);
 		
 		if (qnaan == null) {
-			throw new Exception("Qnaan 상세조회 실패..");
+			model.addAttribute("errorMsg" , "상세조회 실패..");
+			return "common/error-page";
 		}
+			System.out.println(qnaan);
+	    model.addAttribute("qnaan" , qnaan);
 		
-		model.addAttribute("qnaan", qnaan);
 		return "admin/qnaan-detail";
 	}
 	
+//	
+		// 문의 답변 수정
+		@GetMapping("qnaan/edit/{no}")
+		public String qnaanEdit(@PathVariable int no, Model model, String qnaancategoryNo) throws Exception {
+			QnaanVo qnaan = qans.getQnaanDetail(no);
+			String categoryName = qans.getqnaancategoryName(qnaancategoryNo);
+			
+			if (qnaan == null || categoryName == null) {
+				throw new Exception("Qnaan 상세조회 실패..");
+			}
+			
+			model.addAttribute("qnaan", qnaan);
+			model.addAttribute("categoryName", categoryName);
+			
+			return "admin/qnaan-edit";
+		}
+		
+		@PostMapping("qnaan/edit")
+		public String qnaanEdit(QnaanVo qnaanVo) throws Exception {
+			int result = qans.qnaanEdit(qnaanVo);
+			
+			if (result <= 0) {
+				throw new Exception("문의 답변 수정 실패..");
+			}
+			
+			return "redirect:/admin/qnaan/detail/" + qnaanVo.getNo();
+		}
+		
+		
 	
 	//작성하기(화면)
-	@GetMapping("qnaan/write/{qnaNo}")
-	public String qnaanWrite(@PathVariable int qNo, QnaanVo qnaan , HttpServletRequest session , Model model) {
+	@GetMapping("qnaan/write")
+	public String qnaanWrite(QnaanVo qnaan , HttpSession session, Model model, String qnaancategoryNo) {
 		
-		qnaan.setQNo(qNo);
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+	    
+	    if (loginAdmin == null) {
+	        model.addAttribute("errorMsg" , "잘못된 접근입니다.");
+	        return "common/error-page";
+	    }
+	    
+	    QnaanVo qanan = new QnaanVo();
+		qnaan.setQnaancategoryNo(qnaancategoryNo);
+		qnaan.setWriterNo(loginAdmin.getNo());
+		
 		model.addAttribute("qnaan", qnaan);
 		return "admin/qnaan-write";
 	}
 	
 	//작성하기
 	@PostMapping("qnaan/write")
-	public String qnaanWrite(@ModelAttribute("qnaan") QnaanVo qnaanVo) {
-		qans.qnaanWrite(qnaanVo);
-		return "redirect:/admin/qnaan/list";
-	}
-	
-	
-	@GetMapping("qnaan/update/{no}")
-	public String qnaanUpdateForm(@PathVariable int no, Model model) throws Exception {
-		QnaanVo qnaan = qans.getQnaanDetail(no);
+	public String qnaanWrite(QnaanVo qnaanVo , HttpSession session) {
 		
-		if (qnaan == null) {
-			throw new Exception("Qnaan 상세조회 실패..");
+		AdminVo loginAdmin = (AdminVo) session.getAttribute("loginAdmin");
+	    String writerNo = loginAdmin.getNo();
+	    
+		qnaanVo.setWriterNo(writerNo);
+		
+		int result = qans.qnaanWrite(qnaanVo);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "QNA 답변 작성 성공!!");
+		}else{
+			session.setAttribute("alertMsg", "QNA 답변 작성 실패..");
 		}
 		
-		model.addAttribute("qnaan", qnaan);
-		return "admin/qnaan-update";
+		return "redirect:/admin/qnaan/list";
 	}
-	
-//	@PostMapping("qnaan/update")
-//	public String qnaanUpdate(@ModelAttribute("qnaanVo") QnaanVo qnaanVo) {
-//		qans.qnaanUpdate(qnaanVo);
-//		return "redirect:/admin/qnaan/detail/" + qnaanVo.getNo();
-//	}
-//	
-//	
-//	//삭제하기
-//	@GetMapping("qnaan/delete/{no}")
-//	public String qnaanDelete(@PathVariable int no) {
-//		qans.qnaanDelete(no);
-//		return "redirect:/admin/qnaan/list";
-//	}
+		
+	//삭제하기
+	@GetMapping("qnaan/delete/{no}")
+	public String qnaanDelete(@RequestParam("no") int no) throws Exception {
+		
+		int result = qans.qnaanDelete(no);
+		
+		if(result != 1) {
+			throw new Exception("QNA 답변 삭제 실패..");
+		}
+		return "redirect:/admin/qnaan/list";
+	}
 }

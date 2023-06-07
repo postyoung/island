@@ -45,12 +45,19 @@ public class QnaanService {
 		return dao.qnaanWrite(sst , qnaanVo);
     }
 	
-//    public String qnaanUpdate(QnaanVo qnaanVo) {
-//    	return dao.qnaanUpdate(qnaanVo);
-//    }
-//    //삭제하기
-//    public String qnaanDelete(int no) {
-//    	return dao.qnaanDelete(no);
-//    }
+    public int qnaanUpdate(QnaanVo qnaanVo) {
+    	return dao.qnaanUpdate(qnaanVo);
+    }
+    //삭제하기
+    public int qnaanDelete(int no) {
+    	return dao.qnaanDelete(no);
+    }
+    public String getqnaancategoryName(String qnaancategoryNo) {
+		return dao.getqnaancategoryName(sst, qnaancategoryNo);
+	}
+
+	public int qnaanEdit(QnaanVo qnaanVo) {
+		return dao.qnaanEdit(sst , qnaanVo);
+	}
 
 }

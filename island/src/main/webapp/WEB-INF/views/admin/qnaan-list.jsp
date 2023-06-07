@@ -56,6 +56,7 @@
 										<table class="table table-hover table-bordered" style="text-align: center;" id="user-table">
 											<thead>
 												<tr>
+													<td width="5%" class="text-center">번호</td>
 													<td width="5%" class="text-center">분류</td>
 													<td width="35%" class="text-center">제목</td>
 													<td width="15%" class="text-center">작성자</td>
@@ -64,30 +65,27 @@
 												</tr>
 											</thead>
 											<tbody>
-												 <c:if test="${not empty getQnaanList}">
+
 	                                                <c:forEach items="${getQnaanList}" var="qnaan">
 	                                                    <tr>
-	                                                        <td>${qnaan.qnaancategoryName}</td>
+	                                                        <td>${qnaan.no}</td>
+	                                                        <td>${qnaan.categoryName}</td>
+	                                                        <td>${qnaan.categoryName}</td>
 	                                                        <td>${qnaan.title}</td>
 	                                                        <td>${qnaan.writerName}</td>
-	                                                        <td><fmt:formatDate value="${qnaan.enrollDate}" pattern="yyyy-MM-dd" /></td>
-	                                                        <td>${qnaan.ancategoryName}</td>
+	                                                        <td>${qnaan.enrollDate}</td>
+	                                                        <td>${qnaan.answerYn}</td>
 	                                                    </tr>
 	                                                </c:forEach>
-	                                            </c:if>
-	                                            <c:if test="${empty getQnaanList}">
-	                                                <tr>
-	                                                    <td colspan="5" style="text-align: center;">데이터가 없습니다.</td>
-	                                                </tr>
-	                                            </c:if>
+	     
 											</tbody>
 										</table>
 										
 										
 										<div class="form-group">
 											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">문의답변</button>
-	
+												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">
+													<a href="${root}/admin/qnaan/write"></a>문의답변</button>	
 											</div>
 										</div>
 										
@@ -106,3 +104,11 @@
 	</div>
 </body>
 </html>
+
+<script>
+	const table = document.querySelector("main table tbody");
+	table.addEventListener("click", function(event) {
+		const no = event.target.parentNode.children[0].innerText
+		location.href = '${root}/admin/qnaan/detail/' + no;
+	});
+</script>
