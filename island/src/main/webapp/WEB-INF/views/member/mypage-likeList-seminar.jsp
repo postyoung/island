@@ -66,7 +66,7 @@
 													<td style="display: none;">${svo.no}</td>
 													<td><img class="group_info_img"
 														src="${root}/resources/img/seminar/upload/${svo.seminarThumbnail}" onerror= "this.onerror=null; this.src = 
-                                                'http://127.0.0.1:8888/app/resources/img/member/noimage.jpg'" ></td>
+                                                'http://127.0.0.1:8888/app/resources/img/seminar/upload/seminar-ex.png'" ></td>
 												<td>${svo.name}</td>
 												<td>${svo.expense}</td>
 												<td>${svo.place}</td>

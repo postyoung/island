@@ -61,7 +61,7 @@
                                                                                     <form action="${root}/mypage/list/enrollList/group" method="post">
                                                                                         <tr>
                                                                                             <td style="display: none;">${gvo.no}</td>
-                                                                                            <td><img class="group_info_img" src="${root}/resources/img/group/${gvo.groupThumnail}" onerror="this.onerror=null; this.src = '${root}/resources/img/member/noimage.jpg'" ></td>
+                                                                                            <td><img class="group_info_img" src="${root}/resources/img/group/upload/${gvo.groupThumnail}" onerror="this.onerror=null; this.src = '${root}/resources/img/member/noimage.jpg'" ></td>
                                                                                             <td>${gvo.name}</td>
                                                                                             <td>${gvo.place}</td>
                                                                                             <td>${gvo.peoplenum}</td>

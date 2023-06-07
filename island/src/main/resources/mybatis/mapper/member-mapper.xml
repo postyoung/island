@@ -324,11 +324,13 @@
     sg.STARTTIME, 
     sg.FINISHTIME,
     sg.APPLYDATE,
-    sg.GROUP_THUMNAIL
+    gp.change_name AS GROUP_THUMNAIL
 	FROM
 	    INTEREST I
 	JOIN
 	    SMALL_GROUP sg ON sg.NO = I.G_NO
+	LEFT JOIN
+	    GROUP_PO gp ON sg.NO = gp.G_NO
 	WHERE
     I.M_NO = #{no}
 	ORDER BY I.NO DESC
@@ -339,28 +341,30 @@
  	</delete>
  	
  	<select id="getEnrollListGvo" resultType="groupVo">
- 	SELECT 
-    A.M_NO AS loginMemberNo,
-    sg.NO,
-    sg.NAME,
-    sg.PLACE,
-    sg.PEOPLENUM,
-    sg.STARTTIME, 
-    sg.FINISHTIME,
-    sg.GROUP_THUMNAIL,
-    A.AS_NO,
-    AST.STATE,
-    A.GROUPOUT
-	FROM
-	    APPLY_LIST A
-	JOIN
-	    SMALL_GROUP sg ON sg.NO = A.G_NO
-	    INNER JOIN
-		    APPLY_STATE AST ON A.AS_NO = AST.NO
-	WHERE
-	    A.GROUPOUT = 'N'
-	    AND A.M_NO = #{no}
-	ORDER BY A.NO DESC
+	SELECT 
+	    A.M_NO AS loginMemberNo,
+	    sg.NO,
+	    sg.NAME,
+	    sg.PLACE,
+	    sg.PEOPLENUM,
+	    sg.STARTTIME, 
+	    sg.FINISHTIME,
+	    gp.change_name AS GROUP_THUMNAIL,
+	    A.AS_NO,
+	    AST.STATE,
+	    A.GROUPOUT
+		FROM
+		    APPLY_LIST A
+		JOIN
+		    SMALL_GROUP sg ON sg.NO = A.G_NO
+		    INNER JOIN
+			    APPLY_STATE AST ON A.AS_NO = AST.NO
+		LEFT JOIN
+		    GROUP_PO gp ON sg.NO = gp.G_NO
+		WHERE
+		    A.GROUPOUT = 'N'
+		    AND A.M_NO = #{no}
+		ORDER BY A.NO DESC
  	</select>
  	
  	<select id="getEnrollList" resultType="seminarVo">
@@ -492,13 +496,15 @@
     sg.STARTTIME,
     sg.FINISHTIME,
     sg.APPLYDATE,
-    sg.GROUP_THUMNAIL,
+    gp.change_name AS GROUP_THUMNAIL,
     COUNT(CASE WHEN ga.STATUS = 'applied' THEN 1 END) AS WAITING_COUNT,
     COUNT(CASE WHEN ga.STATUS = 'approved' THEN 1 END) AS CONFIRMED_COUNT
 	FROM
 	    SMALL_GROUP sg
 	LEFT JOIN
 	    GROUP_APPLY ga ON sg.NO = ga.G_NO
+	LEFT JOIN
+	    GROUP_PO gp ON sg.NO = gp.G_NO
 	WHERE
 	    sg.M_NO = #{no}
 	GROUP BY
@@ -509,7 +515,7 @@
 	    sg.STARTTIME,
 	    sg.FINISHTIME,
 	    sg.APPLYDATE,
-	    sg.GROUP_THUMNAIL
+	    gp.change_name
 	ORDER BY
 	    sg.NO DESC
  	</select>
