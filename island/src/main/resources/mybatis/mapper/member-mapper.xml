@@ -298,6 +298,8 @@
 		    INTEREST i
 		    INNER JOIN SEMINAR s ON i.S_NO = s.NO
 		WHERE
+		DEL_YN = 'N'
+		    AND
 		    i.M_NO = #{no}
 		    ORDER BY ino DESC
  	</select>
@@ -398,6 +400,8 @@
 	LEFT JOIN
 	    PAY_STATE PS ON PL.PS_NO = PS.NO
 	WHERE
+	DEL_YN = 'N'
+		    AND
 	    A.M_NO = #{no}
 	    ORDER BY A.NO DESC
  	
@@ -448,6 +452,8 @@
 	LEFT JOIN
 	    PAY_STATE PS ON PL.PS_NO = PS.NO
 	WHERE
+	DEL_YN = 'N'
+		    AND
         TRUNC(SYSDATE) > TO_DATE(START_DAY, 'YYYY-MM-DD')
         and A.S_NO = #{no}
  	</select>
@@ -466,6 +472,7 @@
 	    SEMINAR_THUMBNAIL
 	FROM SEMINAR
 	WHERE WRITER_NO = #{no}
+    AND DEL_YN='N'
 	ORDER BY NO DESC
  	</select>
  	
@@ -484,6 +491,7 @@
 	FROM SEMINAR
     WHERE
         TO_DATE(START_DAY, 'YYYY-MM-DD') > TRUNC(SYSDATE)
+        AND DEL_YN='N'
 	AND NO = #{no}
  	</select>
  	
