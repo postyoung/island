@@ -123,4 +123,8 @@ public class ReportDao {
 	public int blockTheMember(SqlSessionTemplate sst, AdminReportNoVo vo) {
 		return sst.update("adminReport.blockMember", vo);
 	}
+
+	public int blockReply(SqlSessionTemplate sst, String replyNo) {
+		return sst.update("adminReport.blockReply", replyNo);
+	}
 }

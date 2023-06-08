@@ -10,4 +10,6 @@ public class AdminReportMemberVo {
 	private String category;
 	private String reportYn;
 	private String detail;
+	private String content;
+	private String replyNo;
 }

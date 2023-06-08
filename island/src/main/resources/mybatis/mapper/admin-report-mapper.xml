@@ -336,14 +336,14 @@
 	</update>
 
 	<select id="getMemberReportCnt" resultType="int">
-		SELECT
+		SELECT DISTINCT
 		COUNT(*)
-		FROM MEMBER M, MB_REPORT MR,
-		MBRP_CATEGORY MC
-		WHERE M.NO =
-		MR.M_NO
-		AND
-		MR.C_NO = MC. NO
+		FROM MEMBER M, MEMBER_REPORT MR,
+		MBRP_CATEGORY MC, SM_REPLY SR
+		WHERE
+		M.NO = MR.M_NO
+		AND MR.C_NO = MC. NO
+		AND MR.SR_NO = SR.NO
 		<if test='searchType == "Y"'>
 			AND MR.REPORT_YN = 'Y'
 			<if test="searchValue!=null and !searchValue.equals('')">
@@ -362,7 +362,7 @@
 	</select>
 
 	<select id="getMemberReportList" resultType="armVo">
-		SELECT
+		SELECT DISTINCT
 		MR.NO AS MEMBER_REPORT_NO,
 		m.no as MEMBER_NO,
 		m.ID as ID,
@@ -371,11 +371,17 @@
 		CASE MR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고 처리 완료'
 		END AS
 		REPORT_YN,
-		MR.REPORTEX AS DETAIL
-		FROM MEMBER M, MB_REPORT MR,
-		MBRP_CATEGORY MC
-		WHERE M.NO = MR.M_NO
+		MR.REPORT_EX AS DETAIL,
+		SR.CONTENT AS CONTENT,
+		SR.NO AS REPLY_NO
+		FROM MEMBER M, MEMBER_REPORT MR,
+		MBRP_CATEGORY MC, SM_REPLY
+		SR
+		WHERE
+		M.NO
+		= MR.M_NO
 		AND MR.C_NO = MC. NO
+		AND MR.SR_NO = SR.NO
 		<if test='searchType == "Y"'>
 			AND MR.REPORT_YN = 'Y'
 			<if test="searchValue!=null and !searchValue.equals('')">
@@ -406,17 +412,23 @@
 		MR.REPORT_YN WHEN 'N' THEN '신고 처리 대기' ELSE '신고 처리 완료'
 		END AS
 		REPORT_YN,
-		MR.REPORTEX AS DETAIL
-		FROM MEMBER M, MB_REPORT MR,
-		MBRP_CATEGORY MC
+		MR.REPORT_EX AS DETAIL,
+		SR.CONTENT AS CONTENT,
+		SR.NO AS REPLY_NO
+		FROM MEMBER M,
+		MEMBER_REPORT MR,
+		MBRP_CATEGORY MC, SM_REPLY
+		SR
 		WHERE
 		MR.NO = #{no}
-		AND M.NO = MR.M_NO
+		AND
+		M.NO = MR.M_NO
 		AND MR.C_NO = MC. NO
+		AND MR.SR_NO = SR.NO
 	</select>
 
 	<update id="memberCheck">
-		UPDATE MB_REPORT
+		UPDATE MEMBER_REPORT
 		SET
 		REPORT_YN = 'Y'
 		WHERE NO =
@@ -429,5 +441,12 @@
 		QUIT_YN = 'Y'
 		WHERE NO =
 		#{writerNo}
+	</update>
+	
+	<update id="blockReply">
+		UPDATE SM_REPLY
+        SET
+        DEL_YN = 'Y'
+        WHERE NO = #{replyNo}
 	</update>
 </mapper>

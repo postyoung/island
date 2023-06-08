@@ -133,8 +133,9 @@ public class ReportService {
 	}
 
 	public int blockTheMember(AdminReportNoVo vo) throws Exception {
-		int result = dao.reportMemberCheck(sst, vo.getNo());
-		if (result != 1) {
+		int resultReply = dao.blockReply(sst, vo.getReplyNo());
+		int resultCheck = dao.reportMemberCheck(sst, vo.getNo());
+		if (resultCheck != 1) {
 			throw new Exception();
 		}
 		return dao.blockTheMember(sst, vo);
