@@ -171,33 +171,36 @@
   <div>
   <div class="group-best">지금 뜨는 소모임</div>
   <main class="page-content">
-    
-    <div class="card">
+    <div class="card" style="background-image: url('https://image.idus.com/image/files/56d98c69a2e6439bacf8403226640fd0.jpg'); background-size: cover; background-position: center; min-height: 300px;")>
       <div class="content">
-        <h2 class="title">Mountain View</h2>
-        <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
-        <button class="btn">View Trips</button>
+        <h2 class="title">인물드로잉모임</h2>
+        <p class="copy">인물드로잉모임</p>
+        <a href="${root}/group/detail?no=1">
+          <button class="btn">상세보기</button></a>
       </div>
     </div>
-    <div class="card">
+    <div class="card" style="background-image: url('https://cdn-icons-png.flaticon.com/512/3749/3749934.png'); background-size: cover; background-position: center; min-height: 300px;")>
       <div class="content">
-        <h2 class="title">To The Beach</h2>
-        <p class="copy">Plan your next beach trip with these fabulous destinations</p>
-        <button class="btn">View Trips</button>
+        <h2 class="title">오늘까지만, 독서알러지!</h2>
+        <p class="copy">모임을 하며 독서의 맛을 느껴가는 모임</p>
+        <a href="${root}/group/detail?no=2">
+          <button class="btn">상세보기</button></a>
       </div>
     </div>
-    <div class="card">
+    <div class="card" style="background-image: url('https://img.appstory.co.kr/@files/monthly.appstory.co.kr/thum/Bdatafile/Board/dir_115/11542.jpg'); background-size: cover; background-position: center; min-height: 300px;")>
       <div class="content">
-        <h2 class="title">Desert Destinations</h2>
-        <p class="copy">It's the desert you've always dreamed of</p>
-        <button class="btn">Book Now</button>
+        <h2 class="title">모바일 영상편집!!</h2>
+        <p class="copy">영상편집 누구나 할 수 있습니다~!</p>
+        <a href="${root}/group/detail?no=3">
+          <button class="btn">상세보기</button></a>
       </div>
     </div>
-    <div class="card">
+    <div class="card" style="background-image: url('https://osbc.co.kr/images/con_snyk01_conbox01_img.png'); background-size: cover; background-position: center; min-height: 300px;")>
       <div class="content">
-        <h2 class="title">Explore The Galaxy</h2>
-        <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-        <button class="btn">Book Now</button>
+        <h2 class="title">coding 연습방</h2>
+        <p class="copy">C언어분들만 참가해주세요</p>
+        <a href="${root}/group/detail?no=4">
+          <button class="btn">상세보기</button></a>
       </div>
     </div>
   </main>
