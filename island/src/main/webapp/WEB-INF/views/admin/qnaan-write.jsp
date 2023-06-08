@@ -16,6 +16,13 @@
 	justify-content: center;
 	font-size: 20px;
 }
+
+.shadow {
+   width: 90%;
+   height: 600px;
+   margin: auto;
+   margin-top: 100px;
+}
 </style>
 
 
@@ -31,40 +38,32 @@
 		<div id="layoutSidenav_content">
 			<div id="wrap">
 				<!-- 메뉴바 -->
-				<div id="wrap">
-					<form action="${root}/admin/qnaan/write" class="qnaanwriteform"	method="post">
-
-						<div class="p-4 p-md-5 mb-4 rounded text-bg-white">
-							<div class="col-md-0 px-0">
-								<h1 class="text-center">1 : 1 문의하기</h1>
-							</div>
-						</div>
-
-						<!-- 문의하기 양식  -->
-
+				<form action="${root}/admin/qnaan/write" class="qnaanwriteform"	method="post">
+					<main>
 						<div class="container">
-							<h2>문의작성하기</h2>
-							<br>
-							<div class="form-group">
-								<div class="row_wrap">
-									<div class="input_title">
-										<form class="form-horizontal">
+							<!-- 문의하기 양식  -->
+								<h2>문의작성하기</h2>
+							<div class="shadow p-3 mb-5 bg-body rounded" style="height: 100%;">
+								<br>
+								<div class="form-group">
+									<div class="row_wrap">
+										<div class="input_title">
 											<table id="tableTitle" class="table table-bordered table" >
 												<tr>
 													<td>분류</td>
-													<td>${categoryName}</td>
+													<td>${qnaan.categoryName}</td>
 												</tr>
 												<tr>
 													<td>닉네임</td>
-													<td>${writerName}</td>
+													<td>${qnaan.writerName}</td>
 												</tr>
 												<tr>
 													<td>제목</td>
-													<td>${title}</td>
+													<td>${qnaan.title}</td>
 												</tr>
 												<tr>
 													<td width="200px;" height="200px;">내용</td>
-													<td>${content}</td>
+													<td>${qnaan.content}</td>
 												</tr>
 											</table>
 											<br>
@@ -73,24 +72,23 @@
 
 												<label id="content" class="control-label col-lg-2"	for="content">답변내용 : </label>
 
-												<div class="col-lg-12" style="margin-bottom: 10px;">
-													<input type="text" class="form-control" name="content" id="content" rows="16" placeholder="문의한 내용에 대해 답변을 작성하시오">
+												<div class="col-lg-12">
+													<textarea class="form-control" name="content" id="content" rows="16" >${qnaan.qnContent}</textarea>
 												</div>
 											</div>
-										</form>
-										<div class="form-group">
-											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변등록</button>
-												<button type="reset" onclick="location.href='${root}/app/admin/qnaan/detail/${qnaan.no}'" class="btn btn-info btn-md" style="margin-right: 5px;">취소</button>
-
+											<div class="form-group">
+												<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
+													<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변등록</button>
+													<a href="${root}/admin/qnaan/list"><button type="button" class="btn btn-md btn-warning">취소</button></a>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</form>
-				</div>
+					</main>
+				</form>
 			</div>
 		</div>
 	</div>

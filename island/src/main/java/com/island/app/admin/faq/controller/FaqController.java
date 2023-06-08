@@ -99,9 +99,9 @@ public class FaqController {
 	    System.out.println(fvo);
 	   
 	    if (result != 1) {
-	        session.setAttribute("alertMsg", "Faq 작성완료!!");
+	        session.setAttribute("alertMsg", "Faq 작성실패..");
 	    } else {
-	        session.setAttribute("alertMsg", "Faq 작성 실패..");
+	        session.setAttribute("alertMsg", "Faq 작성완료!!");
 	    }
 
 	    return "redirect:/admin/faq/list?page=1";

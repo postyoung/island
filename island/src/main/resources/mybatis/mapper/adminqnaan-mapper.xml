@@ -28,64 +28,44 @@
 
 	</select>
 	<select id="getQnaanListCnt" resultType="int">
-    	SELECT COUNT(*) FROM QNA_AN
+    	SELECT COUNT(NO)
+    	 FROM QNA_AN
+    	 WHERE DEL_YN = 'N'
 	</select>
 	
 	<select id="getQnaanDetail" resultType="qnaanVo">
         SELECT 
-		    C.NAME AS CATEGORY_NAME
-		    , M.NICK
-		    , Q.TITLE
-		    , Q.CONTENT
-		    , QA.CONTENT AS QN_CONTENT
-		    FROM QNA Q 
-		    JOIN QNA_CATEGORY C ON (C.NO = Q.CATEGORY_NO)
-		    JOIN MEMBER M ON (M.NO = Q.WRITER_NO)
-		    JOIN QNA_AN QA ON (QA.Q_NO = Q.NO)
-		WHERE Q.NO= #{no}
+		      C.NAME AS CATEGORY_NAME
+		      , M.NICK AS WRITER_NO
+		      , Q.TITLE
+		      , Q.CONTENT
+		      , QA.CONTENT AS QN_CONTENT
+		FROM QNA Q 
+		JOIN QNA_CATEGORY C ON (C.NO = Q.CATEGORY_NO)
+		JOIN MEMBER M ON (M.NO = Q.WRITER_NO)
+		LEFT JOIN QNA_AN QA ON (QA.Q_NO = Q.NO)
+		WHERE Q.NO = #{no}
     </select>
 	
 	<insert id="qnaanWrite" parameterType="qnaanVo">
         INSERT INTO QNA_AN
-        (
-        	NO
-        	, ANCATEGORY_NO        	
-        	, CONTENT
-        	, WRITER_NO
-        	, DEL_YN
-        	, MODIFY_DATE
-        	, ENROLL_DATE
-       	)
-        VALUES
-        (
-        	SEQ_QNA_AN_NO.NEXTVAL
-        	, #{ancategoryNo}        	
-        	, #{content}
-        	, #{writerNo}
-        	, 'N'
-        	, NULL
-        	, SYSTIMESTAMP
-       	)
+         (
+         	NO
+         	, Q_NO
+         	, CONTENT
+         	, WRITER_NO         	
+         	, ENROLL_DATE
+        	)
+		VALUES
+		(
+			SEQ_QNA_AN_NO.NEXTVAL
+			, #{qNo}
+			, #{content}
+			, #{writerNo}			
+			, SYSTIMESTAMP
+		)
     </insert>
-	
-    
-    <update id="qnaanEdit" parameterType="qnaanVo">
-	  UPDATE QNA_AN
-			SET
-				CONTENT = COALESCE(#{content} , content)
-				, MODIFY_DATE = SYSDATE
-		WHERE NO = #{no}
-	</update>
-
-    <update id="qnaanDelete">
-        UPDATE QNA_AN
-        	SET
-	            MODIFY_DATE = SYSDATE
-	            , DEL_YN = 'Y'
-        WHERE NO = #{num}
-    </update>
-    
-	
+	      
 	 
 	
 </mapper>

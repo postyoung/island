@@ -49,14 +49,16 @@ public class QnaanService {
     	return dao.qnaanUpdate(qnaanVo);
     }
     //삭제하기
-    public int qnaanDelete(int no) {
-    	return dao.qnaanDelete(no);
+    public int qnaanDelete(String num) {
+    	return dao.qnaanDelete(sst , num);
     }
     public String getqnaancategoryName(String qnaancategoryNo) {
 		return dao.getqnaancategoryName(sst, qnaancategoryNo);
 	}
 
 	public int qnaanEdit(QnaanVo qnaanVo) {
+		
+		
 		return dao.qnaanEdit(sst , qnaanVo);
 	}
 
