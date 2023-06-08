@@ -42,8 +42,8 @@ public class QnaanDao {
 		return sst.update("adminqnaan.qnaanUpdate" , qnaanVo);
 	}
 
-	public int qnaanDelete(SqlSessionTemplate sst , int no) {
-		return sst.update("adminqnaan.qnaanDelete" , no);
+	public int qnaanDelete(SqlSessionTemplate sst , String num) {
+		return sst.update("adminqnaan.qnaanDelete" , num);
 	}
 
 

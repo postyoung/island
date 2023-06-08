@@ -80,7 +80,6 @@ public class QnaanController {
 		return "admin/qnaan-detail";
 	}
 	
-//	
 		// 문의 답변 수정
 		@GetMapping("qnaan/edit/{no}")
 		public String qnaanEdit(@PathVariable int no, Model model, String qnaancategoryNo) throws Exception {
@@ -98,13 +97,14 @@ public class QnaanController {
 		}
 		
 		@PostMapping("qnaan/edit")
-		public String qnaanEdit(QnaanVo qnaanVo) throws Exception {
+		public String qnaanEdit(QnaanVo qnaanVo , Model model , HttpSession session) {
 			int result = qans.qnaanEdit(qnaanVo);
 			
-			if (result <= 0) {
-				throw new Exception("문의 답변 수정 실패..");
+			if (result != 1) {
+				model.addAttribute("errorMag" , "문의 답변 수정 실패..");
+				return "common/error-page";
 			}
-			
+			session.setAttribute("alertMsg", "문의답변 성공!!");
 			return "redirect:/admin/qnaan/detail/" + qnaanVo.getNo();
 		}
 		
@@ -151,9 +151,9 @@ public class QnaanController {
 		
 	//삭제하기
 	@GetMapping("qnaan/delete/{no}")
-	public String qnaanDelete(@RequestParam("no") int no) throws Exception {
+	public String qnaanDelete(@RequestParam("num") String num) throws Exception {
 		
-		int result = qans.qnaanDelete(no);
+		int result = qans.qnaanDelete(num);
 		
 		if(result != 1) {
 			throw new Exception("QNA 답변 삭제 실패..");

@@ -42,27 +42,18 @@
 							<br> <br>
 						</div>
 							<div class="container mt-5">
-								<div class="btn-group" role="group">
-									<select type="form-control" name="ancategory" id="ancategory">
-										<option>전체</option>
-										<option value="1">답변대기</option>
-										<option value="2">답변완료</option>
-									</select>
-								</div>
-	
-								<br> <br>
 								<div id="board-list">
 									<div class="container">
 										<table class="table table-hover table-bordered" style="text-align: center;" id="user-table">
 											<thead>
 												<tr>
-													<td width="5%" class="text-center">번호</td>
-													<td width="5%" class="text-center">분류</td>
-													<td width="35%" class="text-center">제목</td>
-													<td width="15%" class="text-center">내용</td>
-													<td width="15%" class="text-center">작성자</td>
-													<td width="17%" class="text-center">작성일</td>
-													<td width="17%" class="text-center">답변여부</td>
+													<td width="7%">번호</td>
+													<td width="7%">분류</td>
+													<td width="25%">제목</td>
+													<td width="30%">내용</td>
+													<td width="7%">작성자</td>
+													<td width="16%">작성일</td>
+													<td width="30%">답변여부</td>
 												</tr>
 											</thead>
 											<tbody>
@@ -73,7 +64,7 @@
 	                                                        <td>${qnaan.categoryName}</td>
 	                                                        <td>${qnaan.title}</td>
 	                                                        <td>${qnaan.content}</td>
-	                                                        <td>${qnaan.writerName}</td>
+	                                                        <td>${qnaan.writerNo}</td>
 	                                                        <td>${qnaan.enrollDate}</td>
 	                                                        <td>${qnaan.answerYn}</td>
 	                                                    </tr>
@@ -82,15 +73,6 @@
 											</tbody>
 										</table>
 										
-										
-										<div class="form-group">
-											<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-												<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">
-													<a href="${root}/admin/qnaan/write"></a>문의답변</button>	
-											</div>
-										</div>
-										
-										<br>
 										<div id="page-area">
 										<!-- 페이징 -->
 										<%@ include file="/WEB-INF/views/common/admin-qnaan-paging.jsp" %>

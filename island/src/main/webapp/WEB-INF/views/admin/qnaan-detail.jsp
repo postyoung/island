@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,62 +52,77 @@
 				<!-- 메뉴바 -->
 				<main>
 					<div class="shadow p-3 mb-5 bg-body rounded" style="height: 100%;">
-								<h1 class="text-center">1 : 1 문의하기 상세페이지</h1>
 						<!-- 문의하기 양식  -->
-							<form class="qnaanDetailform" style="margin-left: 225px;" action="${root}/admin/qnaan/list" method="get">
-								<div class="container">
-									<h2>문의하기 상세페이지</h2>
-									<br>
-									<!-- 테이블양식 -->
-									<div class="view-area act">
-										<div class="Qnaan_area">
-											<table id="tableTitle" class="table table-bordered table" >
-												<tr>
-													<td>분류</td>
-													<td>${qnaan.categoryName}</td>
-												</tr>
-												<tr>
-													<td>닉네임</td>
-													<td>${qnaan.writerNo}</td>
-												</tr>
-												<tr>	
-													<td>제목</td>
-													<td>${qnaan.title}</td>
-												</tr>
-												<tr>
-													<td width="200px;" height="200px;">내용</td>
-													<td >${qnaan.content}</td>
-												</tr>
-												<tr>
-														<td width="200px;" height="200px;">답변내용</td>
-														<td>${qnaan.qnContent} </td>
-													</tr>
-											</table>
-										</div>
-									</div>
-									<div class="form-area">
-										<form action="${root}/admin/qnaan/edit" method="POST">
-											<input type="hidden" name="no" value="${qnaanVo.no}">
-											<div class="qnaan-area">
-												<table id="tableAnswer" class="table table-bordered table">
-													<tr>
-														<td width="200px;" height="200px;">답변내용</td>
-														<td>${qnaanVo.qnContent} </td>
-													</tr>
-												</table>
+							<div class="container">
+								<h2>문의하기 </h2>
+								<br>
+								<!-- 테이블양식 -->
+								<div class="view-area act">
+									<div class="Qnaan_area">
+										<table id="tableTitle" class="table table-bordered table" >
+											<tr>
+												<td>분류</td>
+												<td>${qnaan.categoryName}</td>
+											</tr>
+											<tr>
+												<td>닉네임</td>
+												<td>${qnaan.writerNo}</td>
+											</tr>
+											<tr>	
+												<td>제목</td>
+												<td>${qnaan.title}</td>
+											</tr>
+											<tr>
+												<td width="200px;" height="200px;">내용</td>
+												<td >${qnaan.content}</td>
+											</tr>
+											<tr>
+												<td width="200px;" height="200px;">답변내용</td>
+												<td>${qnaan.qnContent} </td>
+											</tr>
+										</table>
+										<c:if test="${loginAdmin.id eq 'admin'}">
+											<div id="qnaan-btn-area" style="text-align: right; margin-top: 10px;">
+												<button class="btn btn-md btn-info" onclick="toggleActive();">답변</button>
+												<button class="btn btn-info btn-md" style="margin-right: 5px;" onclick=" location.href='${root}/admin/qnaan/list'" >취소</button>
 											</div>
-										</form>
-									</div>	
-									<hr>
-									
-									<div id="btn1" class="col-sm-offset-2 col-lg-10" style="text-align: right; margin-bottom: 10px; width: 100%;">
-										<button type="submit" class="btn btn-info btn-md" style="margin-right: 5px;">답변완료</button>
-										<button class="btn btn-md btn-warning" onclick="toggleActive();">수정하기</button>
-										<button class="btn btn-md btn-danger" onclick="location.href='${root}/admin/qnaan/delete?num=${qnaanvo.no}'">삭제하기</button>
-										<button class="btn btn-md btn-info" onclick="location.href='${root}/admin/qnaan/list'">목록</button>
+										</c:if>
 									</div>
 								</div>
-							</form>
+								<div class="form-area">
+									<form action="${root}/admin/qnaan/write" method="POST">
+										<div class="qnaan-area">
+											<table id="tableAnswer" class="table table-bordered table">
+												<tr>
+												<td>분류</td>
+												<td>${qnaan.categoryName}</td>
+											</tr>
+											<tr>
+												<td>닉네임</td>
+												<td>${qnaan.writerNo}</td>
+											</tr>
+											<tr>	
+												<td>제목</td>
+												<td>${qnaan.title}</td>
+											</tr>
+											<tr>
+												<td width="200px;" height="200px;">내용</td>
+												<td >${qnaan.content}</td>
+											</tr>
+											<tr>
+												<td width="200px;" height="200px;">답변내용</td>
+												<td><textarea id="form-content" style="height: 300px;" name="content"></textarea></td>
+											</tr>
+											</table>
+										</div>
+										<div style="text-align: right;">
+											<input class="btn btn-md btn-warning" type="submit" value="문의답변작성">
+											<input class="btn btn-md btn-info"  type="button" value="목록"	onclick="location.href ='${root}/admin/qnaan/list'">
+										</div>
+									</form>
+								</div>	
+								<hr>
+							</div>
 						</div>
 					</div>
 				</main>

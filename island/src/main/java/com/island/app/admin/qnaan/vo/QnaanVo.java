@@ -12,6 +12,7 @@ import lombok.Data;
 public class QnaanVo {
 	
 	private String no;
+	private String qNo;
     private String content;
     private String writerNo;
     private String delYn;
@@ -23,4 +24,5 @@ public class QnaanVo {
 	private String categoryName;
 	private String title;
 	private String qnContent;
+	private String writerName;
 }
