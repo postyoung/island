@@ -51,10 +51,16 @@
 								</div>
 							</div>
 							<div class="mb-3">
-								<label for="exampleFormControlTextarea1" class="form-label"><h3>상세
+								<label for="exampleFormControlTextarea1" class="form-label"><h3>신고
 										내용</h3></label>
-								<textarea class="form-control report-content"
+								<textarea style="height:220px;" class="form-control report-content"
 									id="exampleFormControlTextarea1" rows="3" readonly>${getReport.detail}</textarea>
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlTextarea2" class="form-label"><h3>댓글
+										내용</h3></label>
+								<textarea style="height:220px;"class="form-control report-content"
+									id="exampleFormControlTextarea2" rows="3" readonly>${getReport.content}</textarea>
 							</div>
 							<div class="d-flex justify-content-evenly">
 								<form action="${root}/admin/check-member-report" method="post">
@@ -66,8 +72,10 @@
 									<input type="hidden" value="${getReport.memberReportNo}" name="no">
 									<input type="hidden" value="${getReport.memberNo}"
 										name="memberNo">
+										<input type="hidden" value="${getReport.replyNo}"
+										name="replyNo">
 									<button id="submitBtn" type="submit" value="신고 처리 완료"
-										class="btn btn-danger btn-lg">회원 정지</button>
+										class="btn btn-danger btn-lg">회원 정지 및 댓글 삭제</button>
 								</form>
 							</div>
 						</div>

@@ -80,18 +80,19 @@ public class ReportController {
 		return "redirect:/admin/report/member";
 	}
 
-	// 회원 (확인 및 회원 블락)
+	// 회원 (확인 및 회원 블락, 댓글 삭제)
 	@PostMapping("block-member")
-	public String blockMember(String no, String memberNo, HttpSession session) throws Exception {
+	public String blockMemberRe(String no, String memberNo, String replyNo, HttpSession session) throws Exception {
 		AdminReportNoVo vo = new AdminReportNoVo();
 		vo.setNo(no);
 		vo.setWriterNo(memberNo);
+		vo.setReplyNo(replyNo);
 		int result = rs.blockTheMember(vo);
 		if (result != 1) {
 			session.setAttribute("alertMsg", "신고 처리에 실패하였습니다.");
 			return "redirect:/admin/report/member";
 		}
-		session.setAttribute("alertMsg", "신고 처리 및 회원 정지가 완료되었습니다.");
+		session.setAttribute("alertMsg", "신고 처리 및 회원 정지및 댓글 삭제가 완료되었습니다.");
 		return "redirect:/admin/report/member";
 	}
 
