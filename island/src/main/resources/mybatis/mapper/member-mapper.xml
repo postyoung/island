@@ -530,34 +530,36 @@
  	
  	<select id="checkGroupEdit" resultType="groupVo">
  	SELECT
- 		NO,
-	    NAME, 
-	    PLACE, 
-	    PEOPLENUM, 
-	    STARTTIME,
-	    FINISHTIME,
-        APPLYDATE,
-	    GROUP_THUMNAIL
-	FROM SMALL_GROUP
-    WHERE
-        TO_DATE(FINISHTIME, 'YYYY-MM-DD') > TRUNC(SYSDATE)
-	AND NO = #{no}
+    sg.NO,
+    sg.NAME,
+    sg.PLACE,
+    sg.PEOPLENUM,
+    sg.STARTTIME,
+    sg.FINISHTIME,
+    sg.APPLYDATE,
+    gp.change_name AS GROUP_THUMNAIL
+FROM SMALL_GROUP sg
+LEFT JOIN GROUP_PO gp ON sg.NO = gp.G_NO
+WHERE
+    TO_DATE(sg.FINISHTIME, 'YYYY-MM-DD') > TRUNC(SYSDATE)
+    AND sg.NO = #{no}
  	</select>
  	
  	<select id="checkGroupPeopleEdit" resultType="groupVo">
  	SELECT
- 		NO,
-	    NAME, 
-	    PLACE, 
-	    PEOPLENUM, 
-	    STARTTIME,
-	    FINISHTIME,
-        APPLYDATE,
-	    GROUP_THUMNAIL
-	FROM SMALL_GROUP
-    WHERE
-        TO_DATE(FINISHTIME, 'YYYY-MM-DD') > TRUNC(SYSDATE)
-	AND NO = #{no}
+    sg.NO,
+    sg.NAME,
+    sg.PLACE,
+    sg.PEOPLENUM,
+    sg.STARTTIME,
+    sg.FINISHTIME,
+    sg.APPLYDATE,
+    gp.change_name AS GROUP_THUMNAIL
+FROM SMALL_GROUP sg
+LEFT JOIN GROUP_PO gp ON sg.NO = gp.G_NO
+WHERE
+    TO_DATE(sg.FINISHTIME, 'YYYY-MM-DD') > TRUNC(SYSDATE)
+    AND sg.NO =#{no}
  	</select>
  	
  	
